@@ -611,7 +611,7 @@ function renderAudit(data, el){
           <td style="color:${sc(l.scores?.composite||50)}">${l.scores?.composite!=null?l.scores.composite:'—'}</td>
           <td><span class="sig-badge ${sigClass(l.signal||'')} " style="font-size:7px;padding:2px 5px">${sigLabel(l.signal||'')}</span></td>
           <td style="color:var(--muted)">${l.claude_calls!=null?l.claude_calls:'—'}</td>
-          <td style="color:${l.status?.includes('complete')||l.status?.includes('review')?'var(--green)':'var(--muted)';}">${l.status||'—'}</td>
+          <td style="color:${l.status?.includes('complete')||l.status?.includes('review')?'var(--green)':'var(--muted)'}">${l.status||'—'}</td>
         </tr>`).join('')}
       </tbody>
     </table></div>`;
