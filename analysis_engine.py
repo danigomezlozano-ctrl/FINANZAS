@@ -735,11 +735,17 @@ def run():
     fred_d   = {}
     if FRED_KEY:
         for sid, lbl in [("FEDFUNDS","fed_funds_rate"), ("T10Y2Y","yield_curve_spread"),
-                         ("DTWEXBGS","dxy_index"),      ("CPIAUCSL","cpi_yoy")]:
+                         ("DTWEXBGS","dxy_index")]:
             obs = fetch_fred(sid)
             if obs:
                 fred_d[lbl] = round(obs[0][1], 3)
                 print(f"   FRED {lbl}: {obs[0][1]:.3f}")
+        # CPI YoY real: (ultimo / hace 12 meses - 1) * 100
+        cpi_obs = fetch_fred("CPIAUCSL")
+        if cpi_obs and len(cpi_obs) >= 13:
+            cpi_yoy = round((cpi_obs[0][1] / cpi_obs[12][1] - 1) * 100, 2)
+            fred_d["cpi_yoy"] = cpi_yoy
+            print(f"   FRED cpi_yoy: {cpi_yoy}%")
 
     results["macro"] = {
         "fx_rates":  fx_rates,
