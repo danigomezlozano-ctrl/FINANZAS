@@ -529,11 +529,11 @@ function renderBacktest(data,el){
     h+=`<div class="bt-card">
       <div class="bt-name">${b.asset}</div>
       <div class="bt-row"><span>Win Rate señales</span>
-        <span style="color:${wr>=55?'var(--green)':wr>=45?'var(--amber)':'var(--red)'};font-family:var(--mono)">${wr}%</span></div>
+        <span style="font-family:var(--mono)" id="wr-${b.asset?.replace(/\s/g,'')}">${wr}%</span></div>
       <div class="bt-row"><span>Retorno medio/señal</span>
-        <span style="color:${b.avg_return_pct>0?'var(--green)':'var(--red)'};font-family:var(--mono)">${b.avg_return_pct>0?'+':''}${b.avg_return_pct}%</span></div>
+        <span style="font-family:var(--mono)">${b.avg_return_pct>0?'+':''}${b.avg_return_pct}%</span></div>
       <div class="bt-row"><span>Buy & Hold anual</span>
-        <span style="color:${bh>0?'var(--green)':'var(--red)'};font-family:var(--mono)">${bh>0?'+':''}${bh}%</span></div>
+        <span style="font-family:var(--mono)">${bh>0?'+':''}${bh}%</span></div>
       <div class="bt-row"><span>Señales totales</span>
         <span style="font-family:var(--mono);color:var(--muted)">${b.total_signals}</span></div>
       <div class="bt-row"><span>Período analizado</span>
