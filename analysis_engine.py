@@ -930,6 +930,173 @@ def run_backtest_module():
 
 # ── PIPELINE PRINCIPAL ────────────────────────────────
 
+
+# ══════════════════════════════════════════════════════
+# MÓDULO 5: PAPER TRADING (registro automático)
+# ══════════════════════════════════════════════════════
+
+PAPER_FILE = os.path.join(os.path.dirname(__file__), "paper_trades.json")
+
+def load_paper_trades():
+    """Carga el historial de paper trades existente."""
+    try:
+        if os.path.exists(PAPER_FILE):
+            with open(PAPER_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+    except: pass
+    return {"trades": [], "stats": {}}
+
+def save_paper_trades(data):
+    """Guarda el historial de paper trades."""
+    try:
+        with open(PAPER_FILE, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        print(f"  WARN paper_trades: {e}")
+
+def update_paper_trades(trading_results, paper_data):
+    """
+    Registra nuevas señales y actualiza el estado de trades abiertos.
+    - Si hay señal COMPRAR/VENDER nueva → registra trade abierto
+    - Si hay trade abierto → comprueba si tocó stop o target
+    """
+    trades = paper_data.get("trades", [])
+    existing_ids = {t["id"] for t in trades}
+
+    # ── 1. Actualizar trades abiertos ──
+    for trade in trades:
+        if trade["status"] != "open": continue
+        asset_id = trade["asset_id"]
+        # Buscar precio actual
+        current_price = None
+        for a in trading_results:
+            if a["meta"]["id"] == asset_id and a.get("quant"):
+                current_price = a["quant"].get("price")
+                break
+        if not current_price: continue
+
+        trade["current_price"] = round(current_price, 4)
+        trade["current_pnl_pct"] = round((current_price/trade["entry_price"]-1)*100, 2)
+
+        # Comprobar stop y target
+        if trade["signal"] == "COMPRAR":
+            if current_price <= trade["stop_price"]:
+                trade["status"] = "stopped"
+                trade["exit_price"] = trade["stop_price"]
+                trade["exit_date"] = DATE_ES
+                trade["pnl_pct"] = round((trade["stop_price"]/trade["entry_price"]-1)*100, 2)
+                trade["result"] = "loss"
+            elif current_price >= trade["target_price"]:
+                trade["status"] = "target_hit"
+                trade["exit_price"] = trade["target_price"]
+                trade["exit_date"] = DATE_ES
+                trade["pnl_pct"] = round((trade["target_price"]/trade["entry_price"]-1)*100, 2)
+                trade["result"] = "win"
+        elif trade["signal"] == "VENDER":
+            if current_price >= trade["stop_price"]:
+                trade["status"] = "stopped"
+                trade["exit_price"] = trade["stop_price"]
+                trade["exit_date"] = DATE_ES
+                trade["pnl_pct"] = round((trade["entry_price"]/trade["stop_price"]-1)*100, 2)
+                trade["result"] = "loss"
+            elif current_price <= trade["target_price"]:
+                trade["status"] = "target_hit"
+                trade["exit_price"] = trade["target_price"]
+                trade["exit_date"] = DATE_ES
+                trade["pnl_pct"] = round((trade["entry_price"]/trade["target_price"]-1)*100, 2)
+                trade["result"] = "win"
+
+    # ── 2. Registrar señales nuevas ──
+    new_count = 0
+    for a in trading_results:
+        if not a.get("quant"): continue
+        cal  = a["analysis"].get("calibration", {})
+        sig  = cal.get("signal", "")
+        prob = cal.get("prob", 0)
+        if sig not in ("COMPRAR", "VENDER"): continue
+        if prob < 40: continue  # solo señales con cierta conviction
+
+        trade_id = f"{a['meta']['id']}_{DATE_ES[:10]}"
+        if trade_id in existing_ids: continue  # ya registrado hoy
+
+        q  = a["quant"]
+        lv = q.get("levels", {}) or {}
+        if not lv.get("entry"): continue
+
+        trade = {
+            "id":            trade_id,
+            "asset":         a["meta"]["name"],
+            "asset_id":      a["meta"]["id"],
+            "signal":        sig,
+            "entry_date":    DATE_ES,
+            "entry_price":   lv["entry"],
+            "stop_price":    lv["stop"],
+            "target_price":  lv["target"],
+            "stop_pct":      lv.get("stop_pct"),
+            "target_pct":    lv.get("target_pct"),
+            "rr":            lv.get("rr", 2.0),
+            "prob":          prob,
+            "prob_interval": cal.get("prob_interval"),
+            "conviction":    cal.get("conviction", ""),
+            "score":         q.get("composite_score"),
+            "kelly":         q.get("kelly"),
+            "current_price": lv["entry"],
+            "current_pnl_pct": 0.0,
+            "status":        "open",
+            "exit_price":    None,
+            "exit_date":     None,
+            "pnl_pct":       None,
+            "result":        None,
+            "summary":       cal.get("summary", ""),
+        }
+        trades.append(trade)
+        existing_ids.add(trade_id)
+        new_count += 1
+        print(f"   Paper trade registrado: {a['meta']['name']} {sig} @ ${lv['entry']}")
+
+    # ── 3. Calcular estadísticas ──
+    closed = [t for t in trades if t["status"] in ("stopped","target_hit")]
+    open_t = [t for t in trades if t["status"] == "open"]
+    wins   = [t for t in closed if t["result"] == "win"]
+    losses = [t for t in closed if t["result"] == "loss"]
+
+    win_rate = round(len(wins)/len(closed)*100, 1) if closed else None
+    avg_win  = round(sum(t["pnl_pct"] for t in wins)/len(wins), 2) if wins else None
+    avg_loss = round(sum(t["pnl_pct"] for t in losses)/len(losses), 2) if losses else None
+    expectancy = None
+    if win_rate and avg_win and avg_loss:
+        wr = win_rate/100
+        expectancy = round(wr*avg_win + (1-wr)*avg_loss, 2)
+
+    stats = {
+        "total_signals":  len(trades),
+        "open":           len(open_t),
+        "closed":         len(closed),
+        "wins":           len(wins),
+        "losses":         len(losses),
+        "win_rate_pct":   win_rate,
+        "avg_win_pct":    avg_win,
+        "avg_loss_pct":   avg_loss,
+        "expectancy_pct": expectancy,
+        "new_this_run":   new_count,
+        "last_updated":   DATE_ES,
+    }
+
+    paper_data["trades"] = trades
+    paper_data["stats"]  = stats
+    return paper_data
+
+def run_paper_trading_module(trading_results):
+    print("\n--- MODULO 5: PAPER TRADING ---------------------")
+    paper_data = load_paper_trades()
+    paper_data = update_paper_trades(trading_results, paper_data)
+    save_paper_trades(paper_data)
+    s = paper_data["stats"]
+    print(f"   Señales: {s['total_signals']} total | {s['open']} abiertas | "
+          f"{s['closed']} cerradas | WR: {s['win_rate_pct']}% | "
+          f"Nuevas: {s['new_this_run']}")
+    return paper_data
+
 def run():
     print(f"\n{'='*58}\nGeoMacro Intel v8 — {DATE_ES}\n{'='*58}")
     print(f"Core trimestral: {'SI' if IS_QUARTERLY else 'NO'} | Backtest: {'SI' if IS_WEEKLY else 'NO'}\n")
@@ -969,6 +1136,9 @@ def run():
 
     results["trading"]=trading_results; results["regions"]=geo_results
     results["core"]=core_result; results["backtesting"]=backtest_results
+
+    paper_data=run_paper_trading_module(trading_results)
+    results["paper_trading"]=paper_data
 
     print("\n-> Riesgos globales...")
     if ANTHROPIC_KEY:
