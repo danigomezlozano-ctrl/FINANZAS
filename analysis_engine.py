@@ -434,14 +434,52 @@ def claude(prompt,max_tokens=800):
     return r.get("content",[{}])[0].get("text","")
 
 def parse_cal(raw):
+    """Parse calibration JSON robustly — handles markdown, extra text, nested backticks."""
     if not raw: return {}
-    clean=raw.replace("```json","").replace("```","").strip()
+    # Limpiar markdown agresivamente
+    clean = raw
+    clean = clean.replace("```json","").replace("```","")
+    # Eliminar texto antes del primer {
+    s = clean.find("{")
+    e = clean.rfind("}") + 1
+    if s == -1 or e <= s:
+        # Intentar extraer summary del texto libre
+        return {"signal":"ESPERAR","prob":50,"prob_interval":20,
+                "summary": raw[:120].replace("\n"," ").strip()}
+    json_str = clean[s:e]
+    # Reparar JSON parcial: reemplazar valores con comillas simples problemáticas
     try:
-        s=clean.find("{"); e=clean.rfind("}")+1
-        if s!=-1 and e>s: return json.loads(clean[s:e])
-    except: pass
-    return {"signal":"ESPERAR","prob":50,"prob_interval":20,
-            "summary":(raw or "")[:200]}
+        return json.loads(json_str)
+    except:
+        pass
+    # Intento 2: limpiar caracteres problemáticos línea a línea
+    try:
+        import re
+        json_str2 = re.sub(r'(?<!\)"([^"]*)"(?=\s*[,}])', 
+                           lambda m: json.dumps(m.group(1)), json_str)
+        return json.loads(json_str2)
+    except:
+        pass
+    # Fallback: extraer campos clave manualmente con regex
+    import re
+    result = {"signal":"ESPERAR","prob":50,"prob_interval":20}
+    for field, pattern in [
+        ("signal",       r'"signal"\s*:\s*"([^"]+)"'),
+        ("prob",         r'"prob"\s*:\s*(\d+)'),
+        ("prob_interval",r'"prob_interval"\s*:\s*(\d+)'),
+        ("horizon",      r'"horizon"\s*:\s*"([^"]+)"'),
+        ("summary",      r'"summary"\s*:\s*"([^"]+)"'),
+        ("conviction",   r'"conviction"\s*:\s*"([^"]+)"'),
+        ("invalidation", r'"invalidation"\s*:\s*"([^"]+)"'),
+        ("top_risk",     r'"top_risk"\s*:\s*"([^"]+)"'),
+    ]:
+        m = re.search(pattern, json_str)
+        if m:
+            val = m.group(1)
+            result[field] = int(val) if field in ("prob","prob_interval") else val
+    if not result.get("summary"):
+        result["summary"] = raw[:120].replace("\n"," ").strip()
+    return result
 
 def kahneman_trading(asset,qdata,macro_ctx,audit):
     if not audit.get("passed",False):
