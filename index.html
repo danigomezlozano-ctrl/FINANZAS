@@ -144,6 +144,7 @@ html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var
   <button class="tab-btn" onclick="showTab('geo')">🌍 Geoestrategico</button>
   <button class="tab-btn core-tab" onclick="showTab('core')">🏛 Cartera Core</button>
   <button class="tab-btn bt-tab" onclick="showTab('backtest')">📊 Backtesting</button>
+  <button class="tab-btn" onclick="showTab('paper')" style="border-bottom-color:#9b6dff">📝 Paper Trading</button>
   <button class="tab-btn" onclick="showTab('macro')">📈 Macro / Riesgos</button>
   <button class="tab-btn" onclick="showTab('audit')">📋 Auditoría</button>
 </div>
@@ -155,6 +156,7 @@ html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:var
 <div id="tab-backtest" class="tab-content" style="display:none"></div>
 <div id="tab-macro"    class="tab-content" style="display:none"></div>
 <div id="tab-audit"    class="tab-content" style="display:none"></div>
+<div id="tab-paper"    class="tab-content" style="display:none"></div>
 <script>
 var DATA=null;
 function sc(n){return n>=70?'var(--green)':n>=50?'var(--amber)':'var(--red)';}
@@ -496,6 +498,83 @@ function renderTab(name,d){
   else if(name==='backtest') renderBacktest(d,el);
   else if(name==='macro')    renderMacro(d,el);
   else if(name==='audit')    renderAudit(d,el);
+  else if(name==='paper')    renderPaper(d,el);
+}
+function renderPaper(data,el){
+  var pt=data.paper_trading||{}; var trades=pt.trades||[]; var s=pt.stats||{};
+  if(!trades.length){
+    el.innerHTML='<div class="sec-title">Paper Trading — simulación automática de señales</div>'
+      +'<div style="font-size:10px;font-family:var(--mono);color:var(--muted);padding:20px">'
+      +'El sistema registra automáticamente cada señal COMPRAR/VENDER.<br>'
+      +'Las primeras señales aparecerán en la próxima ejecución que emita señales con p>40%.</div>';
+    return;
+  }
+  var h='<div class="sec-title">Paper Trading — simulación automática · sin dinero real</div>';
+  // Stats globales
+  h+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:16px">';
+  var statItems=[
+    {l:'Total señales',v:s.total_signals||0,c:'var(--text)'},
+    {l:'Abiertas',v:s.open||0,c:'var(--amber)'},
+    {l:'Cerradas',v:s.closed||0,c:'var(--muted)'},
+    {l:'Win Rate',v:s.win_rate_pct!=null?s.win_rate_pct+'%':'—',c:s.win_rate_pct>=55?'var(--green)':s.win_rate_pct>=45?'var(--amber)':'var(--red)'},
+    {l:'Media ganancia',v:s.avg_win_pct!=null?'+'+s.avg_win_pct+'%':'—',c:'var(--green)'},
+    {l:'Media pérdida',v:s.avg_loss_pct!=null?s.avg_loss_pct+'%':'—',c:'var(--red)'},
+    {l:'Expectancy',v:s.expectancy_pct!=null?(s.expectancy_pct>0?'+':'')+s.expectancy_pct+'%':'—',c:s.expectancy_pct>0?'var(--green)':'var(--red)'},
+  ];
+  statItems.forEach(function(i){
+    h+='<div style="background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:10px">'
+      +'<div style="font-size:8px;color:var(--muted);font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">'+i.l+'</div>'
+      +'<div style="font-size:18px;font-weight:800;font-family:var(--mono);color:'+i.c+'">'+i.v+'</div></div>';
+  });
+  h+='</div>';
+  // Nota importante
+  h+='<div style="background:rgba(155,109,255,.06);border:1px solid rgba(155,109,255,.2);border-radius:7px;padding:10px 12px;margin-bottom:14px;font-size:9px;font-family:var(--mono);color:var(--muted);line-height:1.6">'
+    +'<strong style="color:var(--purple)">Regla Kahneman</strong> — Estas señales son simuladas. '
+    +'Mínimo 3 meses y 20 señales cerradas antes de considerar ejecutar cualquier operación real. '
+    +'Win rate >55% sostenido = el sistema tiene ventaja estadística. Por debajo = no operar.</div>';
+  // Tabla de trades
+  h+='<div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-family:var(--mono);margin-bottom:11px;display:flex;align-items:center;gap:8px">Historial de señales<span style="flex:1;height:1px;background:var(--border);display:block"></span></div>';
+  h+='<div style="background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden">'
+    +'<table style="width:100%;border-collapse:collapse;font-family:var(--mono);font-size:9px">'
+    +'<thead><tr style="border-bottom:1px solid var(--border)">'
+    +'<th style="text-align:left;padding:7px 11px;color:var(--muted);font-weight:400">Activo</th>'
+    +'<th style="text-align:left;padding:7px 11px;color:var(--muted);font-weight:400">Señal</th>'
+    +'<th style="text-align:left;padding:7px 11px;color:var(--muted);font-weight:400">Fecha entrada</th>'
+    +'<th style="text-align:right;padding:7px 11px;color:var(--muted);font-weight:400">Entrada</th>'
+    +'<th style="text-align:right;padding:7px 11px;color:var(--muted);font-weight:400">Stop</th>'
+    +'<th style="text-align:right;padding:7px 11px;color:var(--muted);font-weight:400">Target</th>'
+    +'<th style="text-align:right;padding:7px 11px;color:var(--muted);font-weight:400">P(éxito)</th>'
+    +'<th style="text-align:right;padding:7px 11px;color:var(--muted);font-weight:400">PnL actual</th>'
+    +'<th style="text-align:left;padding:7px 11px;color:var(--muted);font-weight:400">Estado</th>'
+    +'</tr></thead><tbody>';
+  // Ordenar: abiertos primero, luego cerrados por fecha
+  var sorted=trades.slice().sort(function(a,b){
+    if(a.status==='open'&&b.status!=='open') return -1;
+    if(a.status!=='open'&&b.status==='open') return 1;
+    return 0;
+  });
+  sorted.forEach(function(t){
+    var statusColor=t.status==='open'?'var(--amber)':t.result==='win'?'var(--green)':'var(--red)';
+    var statusLabel=t.status==='open'?'ABIERTA':t.status==='target_hit'?'✓ TARGET':'✗ STOP';
+    var pnlColor=(t.current_pnl_pct||0)>=0?'var(--green)':'var(--red)';
+    var finalPnl=t.status==='open'
+      ?(t.current_pnl_pct!=null?(t.current_pnl_pct>0?'+':'')+t.current_pnl_pct+'%':'—')
+      :(t.pnl_pct!=null?(t.pnl_pct>0?'+':'')+t.pnl_pct+'%':'—');
+    var finalPnlColor=t.status==='open'?pnlColor:(t.result==='win'?'var(--green)':'var(--red)');
+    h+='<tr style="border-bottom:1px solid var(--border)">'
+      +'<td style="padding:7px 11px;font-weight:700">'+t.asset+'</td>'
+      +'<td style="padding:7px 11px"><span style="font-size:8px;font-weight:700;padding:2px 6px;border-radius:3px;background:'+(t.signal==='COMPRAR'?'rgba(0,212,170,.12)':'rgba(247,79,79,.12)')+';color:'+(t.signal==='COMPRAR'?'var(--green)':'var(--red)')+'">'+t.signal+'</span></td>'
+      +'<td style="padding:7px 11px;color:var(--muted)">'+t.entry_date+'</td>'
+      +'<td style="padding:7px 11px;text-align:right">$'+t.entry_price+'</td>'
+      +'<td style="padding:7px 11px;text-align:right;color:var(--red)">$'+t.stop_price+'</td>'
+      +'<td style="padding:7px 11px;text-align:right;color:var(--green)">$'+t.target_price+'</td>'
+      +'<td style="padding:7px 11px;text-align:right;color:var(--amber)">'+(t.prob!=null?t.prob+'%':'—')+'</td>'
+      +'<td style="padding:7px 11px;text-align:right;color:'+finalPnlColor+'">'+finalPnl+'</td>'
+      +'<td style="padding:7px 11px"><span style="color:'+statusColor+'">'+statusLabel+'</span></td>'
+      +'</tr>';
+  });
+  h+='</tbody></table></div>';
+  el.innerHTML=h;
 }
 async function load(){
   try{
