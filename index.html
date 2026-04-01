@@ -566,4 +566,114 @@ function renderMacro(data,el){
     {label:'CPI YoY',value:f.cpi_yoy!=null?f.cpi_yoy+'%':'—',color:f.cpi_yoy>3?'var(--amber)':'var(--green)'},
     {label:'Yield 10Y-2Y',value:f.yield_curve_spread!=null?f.yield_curve_spread+'bps':'—',color:f.yield_curve_spread>=0?'var(--green)':'var(--red)'},
     {label:'DXY Index',value:f.dxy_index!=null?Number(f.dxy_index).toFixed(1):'—',color:'var(--blue)'},
-    {label:'EUR/USD',value:fx.EUR!=null?Number(fx.EUR).toFixed(4):'—
+    {label:'EUR/USD',value:fx.EUR!=null?Number(fx.EUR).toFixed(4):'—',color:'var(--text)'},
+    {label:'USD/INR',value:fx.INR!=null?Number(fx.INR).toFixed(2):'—',color:'var(--text)'},
+    {label:'USD/BRL',value:fx.BRL!=null?Number(fx.BRL).toFixed(3):'—',color:'var(--text)'},
+    {label:'Inv. crudos vs 5Y',value:eia?.vs_avg!=null?(eia.vs_avg>0?'+':'')+eia.vs_avg+'%':'—',color:eia?.vs_avg!=null?(eia.vs_avg<0?'var(--green)':'var(--red)'):'var(--muted)'},
+  ];
+  let h=`<div class="sec-title">Macro global — FRED + Frankfurter + EIA</div>
+  <div class="macro-grid">${items.map(m=>`
+  <div class="macro-card"><div class="mc-lbl">${m.label}</div>
+    <div class="mc-val" style="color:${m.color}">${m.value}</div>
+  </div>`).join('')}</div>`;
+  if(risks.length){
+    h+=`<div class="sec-title">Riesgos geopolíticos globales — análisis Kahneman v8</div>
+    <div class="risk-list">${risks.map(r=>`
+    <div class="risk-card">
+      <div class="rc-head">
+        <span class="rname">${r.name}</span>
+        <span style="font-family:var(--mono);font-size:11px;color:${r.level>65?'var(--red)':r.level>40?'var(--amber)':'var(--green)'}">${r.level}/100</span>
+      </div>
+      <div class="rc-track"><div class="rc-fill" style="width:${r.level}%;background:${r.level>65?'var(--red)':r.level>40?'var(--amber)':'var(--green)'}"></div></div>
+      <div class="rc-desc">${r.desc}</div>
+      ${r.signal?`<div style="font-size:9px;font-family:var(--mono);color:var(--amber);margin-bottom:5px">Señal: ${r.signal}</div>`:''}
+      <div class="rc-assets">${(r.assets_affected||[]).map(a=>`<span class="rc-tag">${a}</span>`).join('')}</div>
+    </div>`).join('')}</div>`;
+  }
+  el.innerHTML=h;
+}
+
+function renderAudit(data,el){
+  const log=data.audit_log||[];
+  const totalC=log.reduce((s,l)=>s+(l.claude_calls||0),0);
+  const btResults=data.backtesting||[];
+  let h=`<div class="sec-title">Log de auditoría completo — v8</div>
+  <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px;font-size:9px;font-family:var(--mono);color:var(--muted)">
+    <span>Entradas: <strong style="color:var(--text)">${log.length}</strong></span>
+    <span>Claude calls: <strong style="color:var(--text)">${totalC}</strong></span>
+    <span>Generado: <strong style="color:var(--text)">${data.generated_at}</strong></span>
+    <span>Versión: <strong style="color:var(--text)">${data.version}</strong></span>
+    <span>Backtests: <strong style="color:var(--text)">${btResults.length}</strong></span>
+  </div>
+  <div class="audit-wrap">
+  <table class="audit-tbl">
+    <thead><tr><th>Módulo</th><th>Activo</th><th>Timestamp</th><th>Score</th>
+      <th>Señal</th><th>Audit</th><th>Claude</th><th>Estado</th></tr></thead>
+    <tbody>${log.map(l=>`<tr>
+      <td><span class="mod-badge mod-${l.module||'trading'}">${l.module||'trading'}</span></td>
+      <td>${l.asset||'—'}</td>
+      <td style="color:var(--muted)">${l.timestamp||'—'}</td>
+      <td style="color:${sc(l.scores?.composite||50)}">${l.scores?.composite!=null?l.scores.composite:'—'}</td>
+      <td><span class="sig-badge ${sigClass(l.signal||'')} " style="font-size:7px;padding:2px 5px">${sigLabel(l.signal||'')}</span></td>
+      <td style="color:${l.audit_passed===false?'var(--red)':'var(--green)'}">${l.audit_passed===false?'✗ FAIL':l.audit_passed===true?'✓ OK':'—'}</td>
+      <td style="color:var(--muted)">${l.claude_calls!=null?l.claude_calls:'—'}</td>
+      <td style="color:${l.status?.includes('complete')||l.status?.includes('review')?'var(--green)':'var(--muted)'}">${l.status||'—'}</td>
+    </tr>`).join('')}
+    </tbody>
+  </table></div>`;
+  el.innerHTML=h;
+}
+
+function kTab(btn,id){
+  const card=btn.closest('.asset-card,.geo-card');
+  if(!card) return;
+  card.querySelectorAll('.k-tab').forEach(t=>t.classList.remove('active'));
+  card.querySelectorAll('.k-text').forEach(c=>c.style.display='none');
+  btn.classList.add('active');
+  const el=document.getElementById(id);
+  if(el) el.style.display='block';
+}
+
+function renderTab(name,d){
+  const el=document.getElementById('tab-'+name);
+  if(!el) return;
+  if(name==='ranking')  renderRanking(d,el);
+  else if(name==='trading')  renderTrading(d,el);
+  else if(name==='geo')      renderGeo(d,el);
+  else if(name==='core')     renderCore(d,el);
+  else if(name==='backtest') renderBacktest(d,el);
+  else if(name==='macro')    renderMacro(d,el);
+  else if(name==='audit')    renderAudit(d,el);
+}
+
+async function load(){
+  try{
+    const r=await fetch('/FINANZAS/results.json?t='+Date.now());
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const d=await r.json(); DATA=d;
+    document.getElementById('upd').textContent=
+      'Actualizado: '+(d.generated_at||'—')+' · '+(d.quarter||'')+
+      (d.is_quarterly?' · ✓ Rev.Q':'')+
+      (d.is_weekly?' · ✓ Backtest':'');
+    document.getElementById('loading').style.display='none';
+    const activeTab=document.querySelector('.tab-btn.active');
+    const tabName=activeTab?.onclick?.toString().match(/'(\w+)'/)?.[1]||'ranking';
+    document.querySelectorAll('.tab-content').forEach(c=>{c.style.display='none';c.classList.remove('active');});
+    const panel=document.getElementById('tab-'+tabName);
+    if(panel){panel.style.display='block';panel.classList.add('active');}
+    renderTab(tabName,d);
+  }catch(e){
+    document.getElementById('loading').innerHTML=`
+      <div style="color:var(--red);font-family:var(--mono);text-align:center;max-width:400px">
+        <div style="font-size:22px;margin-bottom:10px">⚠</div>
+        <div style="font-weight:700;margin-bottom:7px">results.json no encontrado</div>
+        <div style="color:var(--muted);font-size:10px;line-height:1.6">
+          Ejecuta el workflow manualmente desde GitHub Actions.<br>${e.message}
+        </div>
+      </div>`;
+  }
+}
+load(); setInterval(load,10*60*1000);
+</script>
+</body>
+</html>
