@@ -646,12 +646,6 @@ function renderTab(name,d){
   else if(name==='audit')    renderAudit(d,el);
 }
 
-  }
-  return t.split('\n').join(' ').slice(0,120);
-}
-  // Limpiar markdown: ## headers, ** bold, etc.
-+/g,' ').trim().slice(0,120);
-}
 function cleanSummary(s){
   if(!s) return '—';
   const t=s.trim();
