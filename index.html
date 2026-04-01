@@ -304,7 +304,7 @@ function renderRanking(data,el){
         ${r.category==='commodity'?(r.kelly!=null?Math.round(r.kelly*100)+'%':'—'):(r.gdp!=null?(r.gdp>0?'+':'')+r.gdp+'%':'—')}
       </div>
       <div class="${r.audit_passed===false?'audit-fail':'audit-ok'}">${r.audit_passed===false?'✗ FAIL':'✓ OK'}</div>
-      <div class="rsumm">${r.summary||'—'}</div>
+      <div class="rsumm">${cleanSummary(r.summary)}</div>
     </div>`;
   });
   h+='</div>'; el.innerHTML=h;
@@ -646,6 +646,22 @@ function renderTab(name,d){
   else if(name==='audit')    renderAudit(d,el);
 }
 
+function cleanSummary(s){
+  if(!s) return '—';
+  // Si empieza con { o ``` es JSON en bruto — extraer summary si existe
+  const t=s.trim();
+  if(t.startsWith('{') || t.startsWith('```')){
+    try{
+      const clean=t.replace(/```json|```/g,'').trim();
+      const obj=JSON.parse(clean);
+      return obj.summary||obj.signal||'—';
+    }catch(e){ return t.slice(0,80)+'...'; }
+  }
+  // Limpiar markdown: ## headers, ** bold, etc.
+  return t.replace(/#{1,3} [^
+]*/g,'').replace(/\*\*([^*]+)\*\*/g,'$1').replace(/
++/g,' ').trim().slice(0,120);
+}
 async function load(){
   try{
     const r=await fetch('/FINANZAS/results.json?t='+Date.now());
