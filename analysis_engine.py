@@ -88,16 +88,23 @@ def post_json(url, payload, headers):
 
 def send_telegram(message, level="info"):
     if not TELEGRAM_TOKEN or not TELEGRAM_CHAT_ID:
+        print(f"  WARN Telegram: token={bool(TELEGRAM_TOKEN)} chat={bool(TELEGRAM_CHAT_ID)}")
         return False
+    print(f"  -> Telegram {level}: token={TELEGRAM_TOKEN[:20]}... chat={TELEGRAM_CHAT_ID}")
     icons = {"critical":"🚨","important":"⚠️","info":"ℹ️"}
-    text  = f"{icons.get(level,'ℹ️')} *GeoMacro Intel v8*\n{message}\n\n_{DATE_ES}_"
+    # Usar texto plano sin Markdown para evitar errores de parseo
+    text = f"{icons.get(level,'i')} GeoMacro Intel v8\n{message}\n{DATE_ES}"
+    payload = {"chat_id": str(TELEGRAM_CHAT_ID), "text": text}
     r = post_json(
         f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",
-        {"chat_id": TELEGRAM_CHAT_ID, "text": text, "parse_mode": "Markdown"},
+        payload,
         {"Content-Type": "application/json"})
-    ok = r and r.get("ok")
-    print(f"  {'✓' if ok else 'WARN'} Telegram {level}")
-    return ok
+    if r and r.get("ok"):
+        print(f"  OK Telegram {level}: mensaje_id={r.get('result',{}).get('message_id')}")
+        return True
+    else:
+        print(f"  ERROR Telegram {level}: {r}")
+        return False
 
 def build_telegram_summary(results):
     alerts  = results.get("alerts", [])
