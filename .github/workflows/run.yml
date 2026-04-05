@@ -1,21 +1,30 @@
 name: GeoMacro Intel — Análisis Autónomo
+
 on:
   schedule:
     - cron: '0 6,12,18,0 * * *'
   workflow_dispatch:
+
 permissions:
   contents: write
+
 jobs:
   analyze:
     runs-on: ubuntu-latest
     timeout-minutes: 20
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+
       - name: Setup Python 3.11
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic
+
       - name: Run GeoMacro Intel v8
         env:
           ANTHROPIC_API_KEY:   ${{ secrets.ANTHROPIC_API_KEY }}
@@ -28,10 +37,11 @@ jobs:
           TELEGRAM_BOT_TOKEN:  ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:    ${{ secrets.TELEGRAM_CHAT_ID }}
         run: python analysis_engine.py
-      - name: Commit and push results
+
+      - name: Commit and push results.json
         run: |
           git config user.name  "GeoMacro Bot"
           git config user.email "bot@geomacro.local"
-          git add results.json paper_trades.json
+          git add results.json paper_trades.json || true
           git diff --staged --quiet || git commit -m "auto: analisis $(date -u '+%Y-%m-%d %H:%M UTC')"
           git push
