@@ -12,6 +12,11 @@ MÓDULO 6: Auto-auditoría (checklist 8 puntos antes de cualquier señal)
 
 import os, json, math, time, datetime, statistics, urllib.request, urllib.parse
 from urllib.request import urlopen, Request
+try:
+    import anthropic as anthropic_sdk
+    ANTHROPIC_SDK = True
+except ImportError:
+    ANTHROPIC_SDK = False
 
 ANTHROPIC_KEY    = os.environ.get("ANTHROPIC_API_KEY", "")
 FRED_KEY         = os.environ.get("FRED_API_KEY", "")
@@ -436,6 +441,24 @@ def claude(prompt, max_tokens=800):
     if not ANTHROPIC_KEY:
         print("  WARN claude: ANTHROPIC_KEY no disponible")
         return None
+    print(f"    [Claude] llamando {CLAUDE_MODEL} max_tokens={max_tokens}...")
+    # Usar SDK oficial si está disponible
+    if ANTHROPIC_SDK:
+        try:
+            client = anthropic_sdk.Anthropic(api_key=ANTHROPIC_KEY)
+            message = client.messages.create(
+                model=CLAUDE_MODEL,
+                max_tokens=max_tokens,
+                system=SYSTEM_PROMPT,
+                messages=[{"role": "user", "content": prompt}]
+            )
+            text = message.content[0].text
+            print(f"    [Claude] OK (SDK): {len(text)} chars")
+            return text
+        except Exception as e:
+            print(f"    [Claude] ERROR SDK: {e}")
+            return None
+    # Fallback: urllib manual
     payload = {
         "model": CLAUDE_MODEL,
         "max_tokens": max_tokens,
@@ -447,7 +470,6 @@ def claude(prompt, max_tokens=800):
         "x-api-key": ANTHROPIC_KEY,
         "anthropic-version": "2023-06-01"
     }
-    print(f"    [Claude] llamando {CLAUDE_MODEL} max_tokens={max_tokens}...")
     r = post_json("https://api.anthropic.com/v1/messages", payload, headers)
     if not r:
         print("    [Claude] ERROR: respuesta nula")
@@ -455,15 +477,12 @@ def claude(prompt, max_tokens=800):
     if r.get("error"):
         print(f"    [Claude] ERROR API: {r['error']}")
         return None
-    content = r.get("content", [])
-    if not content:
-        print(f"    [Claude] ERROR: content vacío. Respuesta: {str(r)[:200]}")
+    cnt = r.get("content", [])
+    if not cnt:
+        print(f"    [Claude] ERROR: content vacío")
         return None
-    text = content[0].get("text", "")
-    if not text:
-        print(f"    [Claude] ERROR: text vacío en content[0]")
-        return None
-    print(f"    [Claude] OK: {len(text)} chars")
+    text = cnt[0].get("text", "")
+    print(f"    [Claude] OK (urllib): {len(text)} chars")
     return text
 
 def parse_cal(raw):
