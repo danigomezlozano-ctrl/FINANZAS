@@ -42,6 +42,7 @@ jobs:
         run: |
           git config user.name  "GeoMacro Bot"
           git config user.email "bot@geomacro.local"
+          git pull --rebase origin main || true
           git add results.json paper_trades.json || true
           git diff --staged --quiet || git commit -m "auto: analisis $(date -u '+%Y-%m-%d %H:%M UTC')"
           git push
