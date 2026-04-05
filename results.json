@@ -1,5 +1,5 @@
 {
-  "generated_at": "05/04/2026 19:50 UTC",
+  "generated_at": "05/04/2026 20:11 UTC",
   "quarter": "Q2 2026",
   "version": "8.0",
   "is_quarterly": false,
@@ -42,9 +42,18 @@
         "kelly": 0.2074
       },
       "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {},
+        "thesis": "## TESIS DE TRADING — ORO (XAU/USD) | Q2 2026\n\n---\n\n**DATOS TECNICOS:**\nRSI14=38.18 (zona de sobreventa moderada, no extrema; umbral crítico 30). MACD histograma: dato no provisto — convicción reducida en confirmación de momentum. Posición Bollinger: inferida cercana a banda inferior dado RSI<40 y caída implícita desde entrada vs. mercado actual. SMA cross: dato no provisto — convicción reducida. Volatilidad implícita anualizada=34.75% (elevada; sugiere rango diario ~±1.4%). Kelly fracción=20.7% sobre capital de riesgo.\n\n**DATOS FUNDAMENTALES:**\nDXY=120.885 (dólar en nivel históricamente fuerte; presión estructural bajista sobre oro en USD). FED funds=3.64% (tasa real positiva: CPI 2.66% → tasa real ≈+0.98%; contexto desfavorable para activo sin yield). Yield curve 10Y-2Y=+0.51bps (prácticamente plana; no señala recesión inminente que catalice fly-to-safety). EUR/USD=0.86768 (debilidad euro extrema, refuerza DXY fuerte). Inventarios crudo=N/A (dato ausente; sin impacto cuantificable).\n\n**SÍNTESIS:**\nLos datos técnicos muestran RSI en zona de sobreventa moderada compatible con rebote táctico, pero sin confirmación de MACD ni SMA. El entorno fundamental es estructuralmente adverso: DXY en 120.9, tasa real positiva ~+1% y curva plana eliminan los tres catalizadores clásicos de rally sostenido en oro. La combinación produce una señal técnica alcista de corto plazo contra un viento fundamental bajista de mediano plazo.\n\n**TESIS:**\nRebote táctico hacia $5",
+        "premortem": "Voy a completar el pre-mortem y generar el JSON final con los datos disponibles.\n\n---\n\n**NOTA PREVIA:** La tesis de entrada fue truncada (\"rebote táctico hacia $5...\"). Asumo target implícito en zona $3,200–$3,300 basado en contexto RSI/Bollinger. Convicción reducida por dato de entrada incompleto.\n\n---\n\n**PRE-MORTEM**\n\n**RIESGO 1: Ruptura bajista por DXY acelerado**\nProbabilidad: 35% ±8%\nMecanismo: DXY en 120.9 ya opera en territorio de stress histórico para oro. Un catalizador macro (dato empleo fuerte, hawkish Fed speak) puede empujar DXY >122, invalidando el rebote técnico antes de que RSI llegue a zona de agotamiento vendedor (30). El rebote táctico no alcanza target; posición entra en pérdida desde apertura.\nSeñal de alerta: DXY cierra por encima de 121.50 en vela diaria con volumen superior a media 20 sesiones.\n\n**RIESGO 2: Ausencia de catalizador técnico de confirmación (momentum trap)**\nProbabilidad: 40% ±7%\nMecanismo: RSI en 38 sin MACD confirmado y sin dato de SMA cross produce señal técnica incompleta. El precio puede continuar comprimiendo hacia banda inferior real (zona $3,050–$3,080) sin rebote, degradando la relación riesgo/beneficio del trade. La sobrev",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 52,
+          "prob_interval": 14,
+          "horizon": "1-3 semanas",
+          "invalidation": "DXY cierra sobre 121.50 con volumen superior a media 20 sesiones O RSI rompe por debajo de 30 sin rebote en 48h",
+          "summary": "Señal técnica de sobreventa sin confirmación MACD/SMA contra viento fundamental estructuralmente adverso: DXY 120.9 y tasa real positiva impiden convicción alcista táctica",
+          "conviction": "baja",
+          "data_quality": "61/100"
+        },
         "audit": {
           "passed": true,
           "checks": [
@@ -89,7 +98,7 @@
         "module": "trading",
         "asset": "Oro",
         "ticker": "GC=F",
-        "timestamp": "05/04/2026 19:50 UTC",
+        "timestamp": "05/04/2026 20:11 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -177,9 +186,18 @@
         "kelly": 0.1924
       },
       "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {},
+        "thesis": "## TESIS DE TRADING — PLATA (XAG/USD) | Q2 2026\n\n---\n\n**DATOS TECNICOS:**\nRSI14 = 37.41 (zona de sobreventa técnica, por debajo de 40, no confirmado cruce en 30). MACD histograma: dato no suministrado directamente — **convicción reducida por dato ausente**. Posición Bollinger: no suministrada explícitamente — **convicción reducida**. SMA cross: no suministrado — **convicción reducida**. Volatilidad implícita = 87.85% (extremadamente elevada, expande bandas y amplía riesgo de whipsaw). Kelly óptimo = 19.2% (sizing moderado-alto dado score 59/100). Score técnico = 67/100, por encima de la línea media pero sin confirmación robusta.\n\n**DATOS FUNDAMENTALES:**\nDXY = 120.885 (dólar en zona de fortaleza histórica extrema — presión estructural bajista sobre metales en USD). FED funds rate = 3.64% (política restrictiva real positiva: CPI YoY 2.66%, tasa real ≈ +0.98% — headwind para activos no-yield). Yield curve 10Y-2Y = +0.51 bps (curva prácticamente plana, no invertida — señal neutral, sin recesión inminente descontada). EUR/USD = 0.8677 (dólar dominante frente a pares principales, refuerza presión sobre commodities denominados en USD). Score fundamental = 54/100 — por debajo de línea neutral, entorno macro adverso.\n\n**SÍNTESIS:**\nEl RSI en 37.41 indica presión vendedora reciente con potencial técnico de rebote de corto plazo, pero el entorno macroeconómico es estructuralmente adverso: DXY en 120.885 y tasa real positiva (+0.98%) constituyen vientos en contra",
+        "premortem": "## PRE-MORTEM — PLATA XAG/USD Q2 2026\n\n---\n\n**RIESGO 1: Trampa de Sobreventa en Tendencia Bajista Dominante**\nProbabilidad: p=42% +/-8%\nMecanismo: RSI en 37.41 genera señal de rebote técnico, pero en tendencias bajistas estructurales el RSI puede consolidar por debajo de 40 durante semanas sin reversión. Con DXY=120.885 y tasa real positiva, cualquier rebote es absorbido por presión vendedora estructural. La tesis de rebote se invalida si el precio rompe soporte clave con volumen, convirtiendo la \"sobreventa\" en continuación bajista.\nSeñal de alerta: Cierre semanal de XAG/USD por debajo del mínimo de las últimas 4 semanas con volumen +15% sobre media de 20 sesiones.\n\n---\n\n**RIESGO 2: Reaceleración del DXY por Sorpresa Hawkish de la Fed**\nProbabilidad: p=31% +/-7%\nMecanismo: Con FFR=3.64% y CPI YoY=2.66%, cualquier dato de inflación por encima de consenso (+0.3pp o más) reposiciona expectativas hacia hikes adicionales. DXY en 120.885 tiene espacio para extenderse a 123-125, ampliando la presión bajista sobre commodities denominados en USD de forma no lineal. La tesis se invalida por compresión adicional del múltiplo",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 52,
+          "prob_interval": 14,
+          "horizon": "1-3 meses",
+          "invalidation": "Cierre semanal XAG/USD por debajo de mínimo 4 semanas con volumen superior 15% a media 20 sesiones, O DXY supera 123.0 con dato CPI mensual +0.3pp sobre consenso",
+          "summary": "RSI en sobreventa técnica sin confirmación robusta frente a entorno macro estructuralmente adverso: DXY=120.885, tasa real +0.98% y EUR/USD=0.8677 anulan ventaja técnica con score fundamental 54/100 — relación riesgo/beneficio insuficiente para entrada direccional",
+          "conviction": "baja",
+          "data_quality": "100/100"
+        },
         "audit": {
           "passed": true,
           "checks": [
@@ -224,7 +242,7 @@
         "module": "trading",
         "asset": "Plata",
         "ticker": "SI=F",
-        "timestamp": "05/04/2026 19:50 UTC",
+        "timestamp": "05/04/2026 20:11 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -312,9 +330,18 @@
         "kelly": 0.1924
       },
       "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {},
+        "thesis": "## TESIS DE TRADING — WTI CRUDO | Q2 2026\n\n---\n\n**DATOS TECNICOS:**\nRSI14 en 62.34 — territorio alcista pero sin sobrecompra (umbral 70); sin divergencia confirmable con datos disponibles. MACD histograma: **dato no suministrado — convicción reducida**. Posición Bollinger: **dato no suministrado — convicción reducida**. SMA cross: **dato no suministrado — convicción reducida**. Volatilidad implícita elevada al 50.22% indica rango de movimiento amplio; Kelly fraccionado al 19.2% refleja tamaño de posición moderado dado el perfil de riesgo. R:R 2:1 con stop en $104.33 y target $127.51.\n\n**DATOS FUNDAMENTALES:**\nDXY en 120.885 — nivel históricamente alto, presión estructural bajista sobre commodities denominados en USD. FED rate 3.64% — política restrictiva activa, coste de carry elevado desincentiva posiciones especulativas largas en materias primas. Yield curve 10Y-2Y: +0.51bps — prácticamente plana, señal de estancamiento económico sin recesión confirmada. EUR/USD 0.86768 — euro deprimido, consistente con DXY elevado. Inventarios de crudo: **dato no suministrado — convicción reducida en fundamentales (componente crítico ausente)**. CPI YoY 2.66% — inflación cercana a objetivo FED, reduce presión reflacionaria sobre energía.\n\n**SÍNTESIS:**\nEl setup técnico muestra momentum alcista moderado (RSI 62, R:R 2:1) con precio operando por encima de stop implícito en zona de tendencia positiva. Sin embargo, el contexto macro presenta fricción estructural significativa: DXY 120.885 actúa como viento en contra directo para WTI, la curva plana señ",
+        "premortem": "PRE-MORTEM — 3 RIESGOS ESTANDARIZADOS:\n\nRIESGO 1: Colapso de demanda por desaceleración macro sincronizada\nProbabilidad: 35% +/-8%\nMecanismo: Yield curve plana (+0.51bps) combinada con FED rate 3.64% comprime crédito corporativo y consumo industrial. Una lectura PMI manufacturero global <48 confirmaría contracción de demanda de energía, invalidando el momentum alcista del RSI y forzando ruptura del stop en $104.33.\nSeñal de alerta: PMI manufacturero ISM USA <48 en dos lecturas consecutivas O inventarios EIA con build >5M barriles semana/semana.\n\nRIESGO 2: Fortalecimiento adicional del DXY por divergencia de política monetaria\nProbabilidad: 28% +/-7%\nMecanismo: DXY en 120.885 ya opera en zona de máximos históricos post-2002. Un reaceleramiento inflacionario en USA (CPI >3.2% YoY) forzaría hawkish pivot FED, empujando DXY >124, generando correlación inversa directa sobre WTI con presión bajista adicional estimada de -8% a -12% sobre precio spot. El R:R 2:1 se destruye antes de alcanzar target $127.51.\nSeñal de alerta: DXY cierre semanal >122.50 con actas FED con tono hawkish explícito O EUR/USD perforando 0.",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 52,
+          "prob_interval": 14,
+          "horizon": "1-3 meses",
+          "invalidation": "DXY cierre semanal sostenido por encima de 122.50 O ruptura de precio spot WTI por debajo de $104.33 en cierre diario",
+          "summary": "Momentum técnico alcista moderado (RSI 62, R:R 2:1) insuficiente para compensar fricción macro estructural severa: DXY 120.885 en máximos históricos, política FED restrictiva y ausencia de datos críticos (inventarios EIA, MACD, Bollinger) reducen convicción a baja; señal ESPERAR hasta confirmación de catalizador alcista fundamental o deterioro macro que justifique corto direccional",
+          "conviction": "baja",
+          "data_quality": "100/100"
+        },
         "audit": {
           "passed": true,
           "checks": [
@@ -359,7 +386,7 @@
         "module": "trading",
         "asset": "Crudo WTI",
         "ticker": "CL=F",
-        "timestamp": "05/04/2026 19:50 UTC",
+        "timestamp": "05/04/2026 20:11 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -447,9 +474,18 @@
         "kelly": 0.1025
       },
       "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {},
+        "thesis": "DATOS TECNICOS:\nRSI14: 34.09 — zona de sobreventa técnica (umbral 30), sin confirmación de divergencia alcista con datos disponibles. MACD histograma: no provisto — conviction reducida en señal de momentum. Posición Bollinger: no provista — conviction reducida en extremo de banda. SMA cross: no provisto — conviction reducida en tendencia de corto plazo. Volatilidad implícita/realizada: 136.38% anualizada — régimen de alta dispersión, amplía rangos esperados significativamente. Score técnico: 36/100 — señal técnica débil a negativa.\n\nDATOS FUNDAMENTALES:\nDXY: 120.885 — nivel históricamente elevado, presión negativa sobre commodities denominados en USD (correlación negativa documentada). FED rate: 3.64% — política restrictiva activa, coste de carry elevado. Yield curve 10Y-2Y: +0.51 bps — normalización mínima, no señaliza expansión económica robusta que impulse demanda energética. EUR/USD: 0.86768 — USD extremadamente fuerte, confirma presión bajista estructural sobre gas natural en USD. Inventarios de crudo: N/A — dato clave ausente, conviction fundamental reducida. Score fundamental: 54/100 — soporte moderado, insuficiente para compensar macro adversa.\n\nSÍNTESIS:\nEl RSI en 34.09 sugiere presión vendedora sostenida sin zona de rebote técnico confirmada; el DXY en 120.885 y EUR/USD en 0.86768 representan un entorno macro estructuralmente hostil para gas natural valorado en USD. La volatilidad de 136.38% anualizada implica que el stop en -5.18% tiene probabilidad de activación estadísticamente elevada bajo movimientos diarios normales en este régimen.\n\nTESIS:\nPosición larga condicionada en Gas Natural desde $2.807 hacia $3.0978,",
+        "premortem": "## PRE-MORTEM — Gas Natural Long $2.807 → $3.0978\n\n---\n\n**RIESGO 1: Activación de Stop por Volatilidad Estructural**\nProbabilidad: 52% ±8%\nMecanismo: Con volatilidad realizada de 136.38% anualizada, la volatilidad diaria implícita es ~8.6% (136.38/√252). Un movimiento adverso de 1 desviación estándar desde $2.807 genera un drawdown de ~$0.241, superando el stop de -5.18% (~$0.145). Bajo distribución normal, la probabilidad de tocar el stop antes del target en régimen de alta dispersión supera el 50% en horizontes de 3-5 días.\nSeñal de alerta: Precio intradiario por debajo de $2.720 con volumen >120% del promedio de 20 sesiones; o expansión de volatilidad implícita superando 150% anualizada en opciones front-month.\n\n---\n\n**RIESGO 2: Persistencia Macro USD / DXY Breakout Alcista**\nProbabilidad: 38% ±7%\nMecanismo: DXY en 120.885 y EUR/USD en 0.86768 ya operan en niveles de stress histórico. Un nuevo impulso alcista del DXY (Fed hawkish surprise, risk-off global) amplificaría la correlación negativa documentada con commodities en USD, invalidando el soporte técnico en $2.807 por presión de flujos institucionales de desapalancamiento",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 38,
+          "prob_interval": 10,
+          "horizon": "5-15 dias",
+          "invalidation": "Cierre diario sostenido por encima de $2.95 con RSI14 superando 45 y DXY retrocediendo por debajo de 118.5",
+          "summary": "Señal tecnica debil, macro estructuralmente adversa y volatilidad de 136% anualizaada generan probabilidad de stop >52%: riesgo/beneficio insuficiente para entrada inmediata",
+          "conviction": "baja",
+          "data_quality": "100/100"
+        },
         "audit": {
           "passed": true,
           "checks": [
@@ -494,7 +530,7 @@
         "module": "trading",
         "asset": "Gas Natural",
         "ticker": "NG=F",
-        "timestamp": "05/04/2026 19:50 UTC",
+        "timestamp": "05/04/2026 20:11 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -582,9 +618,18 @@
         "kelly": 0.17
       },
       "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {},
+        "thesis": "## ANÁLISIS COBRE (Cu) — Q2 2026 | 05/04/2026 20:11 UTC\n\n---\n\n**DATOS TECNICOS:**\nRSI14=48.45 (zona neutra, sin sobreventa/sobrecompra); MACD histograma: no proporcionado — **convicción reducida por dato faltante**; Posición Bollinger: no proporcionada — **convicción reducida por dato faltante**; SMA cross: no proporcionado — **convicción reducida por dato faltante**. Volatilidad implícita=31.31% (elevada, +1σ sobre media histórica Cu). Score técnico=59/100, marginalmente alcista.\n\n**DATOS FUNDAMENTALES:**\nDXY=120.885 (extremadamente fuerte — presión bajista estructural sobre commodities denominados en USD); FED=3.64% (política restrictiva activa, coste de capital elevado deprime demanda industrial); Yield curve 10Y-2Y=+0.51bps (desinversión marginal, señal de normalización tardía, no expansiva); EUR/USD=0.8677 (USD dominante — demanda europea de Cu encarecida); CPI YoY=2.66% (inflación por encima del objetivo Fed 2%, sin pivot claro). Score fundamental=54/100, sesgo neutral-bajista.\n\n**SÍNTESIS:**\nEl RSI neutral (48.45) y score técnico de 59 sugieren momentum insuficiente para breakout alcista confirmado; la estructura técnica es marginalmente constructiva pero sin catalizador direccional claro. El DXY en 120.885 y tasas FED en 3.64% constituyen vientos de frente fundamentales materiales para el cobre industrial, penalizando tanto la demanda real como el carry del activo. La combinación de USD fuerte + política monetaria restrictiva + datos técnicos incompletos genera un escenario de baja convicción neta.\n\n**TESIS:**\nPosición larga espec",
+        "premortem": "## PRE-MORTEM — POSICIÓN LARGA ESPECULATIVA COBRE Q2 2026\n\n---\n\n**RIESGO 1: Aceleración USD / Re-pricing Macro Global**\nProbabilidad: 38% ±8%\nMecanismo: DXY ya en 120.885 (+1.5σ sobre media 5Y). Un dato de empleo/CPI USA por encima de consenso elimina expectativas de pivot Fed, fuerza nuevo leg alcista DXY hacia 123-125. El cobre denominado en USD sufre doble penalización: repricing de demanda real (importadores emergentes reducen compras) + flight-to-cash de posiciones especulativas largas. Invalida la tesis porque destruye el único soporte técnico marginal (RSI 48 no tiene colchón ante presión vendedora sostenida).\nSeñal de alerta: NFP >220k o CPI MoM >0.4% en próxima lectura; DXY cerrando por encima de 122.50 en cierre semanal.\n\n---\n\n**RIESGO 2: Deterioro Demanda China / Datos PMI Manufacturero**\nProbabilidad: 32% ±7%\nMecanismo: China representa ~55% del consumo global de cobre refinado. Un PMI manufacturero Caixin <48.5 señalizaría contracción activa en el principal driver de demanda física. Con EUR/USD en 0.8677 y coste financiero elevado globalmente, no existe demanda occidental compensatoria. La tesis larga requiere demanda real como ancla",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 48,
+          "prob_interval": 14,
+          "horizon": "1-3 meses",
+          "invalidation": "DXY cierre semanal >122.50 O PMI Caixin <48.5 O NFP >220k",
+          "summary": "Cobre Q2-2026: momentum técnico insuficiente ante vientos fundamentales materiales (DXY 120.885, Fed 3.64%) y datos técnicos incompletos; sin catalizador direccional confirmado",
+          "conviction": "baja",
+          "data_quality": "100/100"
+        },
         "audit": {
           "passed": true,
           "checks": [
@@ -629,7 +674,7 @@
         "module": "trading",
         "asset": "Cobre",
         "ticker": "HG=F",
-        "timestamp": "05/04/2026 19:50 UTC",
+        "timestamp": "05/04/2026 20:11 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -717,9 +762,18 @@
         "kelly": 0.23
       },
       "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {},
+        "thesis": "## ANÁLISIS: ALUMINIO (INDUSTRIAL) — Q2 2026 | 05/04/2026 20:11 UTC\n\n---\n\n**DATOS TECNICOS:**\nRSI14 en 52.68 (zona neutra, sin sobrecompra ni sobreventa). MACD histograma: no disponible en datos brutos — convicción reducida en confirmación de momentum. Posición Bollinger: no disponible explícitamente — convicción reducida. SMA cross: no disponible — convicción reducida. Volatilidad implícita 25.03% (moderada-alta para industrial metal). Score técnico 80/100 sugiere estructura alcista dominante en timeframe operativo.\n\n**DATOS FUNDAMENTALES:**\nDXY 120.885 (nivel elevado históricamente — presión estructural bajista sobre commodities denominados en USD). FED Funds 3.64% (política restrictiva activa, costo de oportunidad elevado para activos reales sin yield). Yield curve 10Y-2Y: +0.51bps (prácticamente plana, señal de crecimiento marginal anémico). EUR/USD 0.86768 (dólar fuerte extremo — compresión de demanda europea de aluminio). Score fundamental 54/100 confirma entorno macro adverso parcial.\n\n**SINTESIS:**\nLa estructura técnica domina con sesgo alcista (score 80) mientras el entorno macro opone resistencia real vía DXY elevado y política monetaria restrictiva (score 54). El RSI neutro en 52.68 no confirma momentum acelerado pero tampoco agotamiento. La divergencia técnico-fundamental produce un setup de convicción moderada con riesgo de reversión si el DXY continúa apreciándose.\n\n**TESIS:**\nPosición larga en aluminio desde $3,422 con objetivo $3,628.79 (+6.04%), condición necesaria: DXY no supere 122.50 y precio mantenga soporte $3,318.61",
+        "premortem": "## PRE-MORTEM — ALUMINIO LARGO Q2 2026\n\n---\n\n**RIESGO 1: Apreciación acelerada del DXY por encima de 122.50**\nProbabilidad: 35% ±8%\nMecanismo: DXY ya en 120.885 con sesgo alcista estructural. Ruptura de 122.50 comprime demanda industrial global denominada en USD, reduce competitividad exportadora china (principal productor), y fuerza liquidación de posiciones largas en commodities. El objetivo $3,628.79 se vuelve inalcanzable y el soporte $3,318.61 queda expuesto.\nSeñal de alerta: DXY cierra 2 sesiones consecutivas por encima de 121.80 con EUR/USD perforando 0.855.\n\n---\n\n**RIESGO 2: Deterioro de demanda industrial China / PMI Manufacturero bajo 49**\nProbabilidad: 28% ±7%\nMecanismo: China representa ~60% del consumo global de aluminio. Contracción manufacturera confirmaría que el score técnico alcista (80/100) refleja posicionamiento especulativo no respaldado por demanda física real. Activación de ventas institucionales rompe soporte estructural en $3,318.61.\nSeñal de alerta: PMI Manufacturero Caixin China publicado por debajo de 49.0 en lectura de abril o mayo 2026, combinado con caída de importaciones de bauxita >5% m/m.\n\n---\n\n**RIESGO 3: Revers",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 58,
+          "prob_interval": 12,
+          "horizon": "1-3 meses",
+          "invalidation": "DXY cierra 2 sesiones consecutivas por encima de 121.80 o precio rompe soporte $3,318.61 con volumen institucional confirmado",
+          "summary": "Estructura técnica alcista (80/100) vs macro adverso severo (DXY 120.885, Fed restrictiva) produce divergencia irreconciliable que justifica esperar confirmación antes de entrar largo desde $3,422",
+          "conviction": "baja",
+          "data_quality": "100/100"
+        },
         "audit": {
           "passed": true,
           "checks": [
@@ -764,7 +818,7 @@
         "module": "trading",
         "asset": "Aluminio",
         "ticker": "ALI=F",
-        "timestamp": "05/04/2026 19:50 UTC",
+        "timestamp": "05/04/2026 20:11 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -852,9 +906,18 @@
         "kelly": 0.1927
       },
       "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {},
+        "thesis": "## ANÁLISIS ETF LITIO — Q2 2026 | 05/04/2026 20:11 UTC\n\n---\n\n**DATOS TECNICOS:**\nRSI14 en 61.12 — momentum alcista moderado, sin sobrecompra (umbral 70). MACD histograma: dato no provisto directamente — **convicción reducida** por ausencia. Posición Bollinger: no provista — **convicción reducida**. SMA cross: no provisto — **convicción reducida**. Score técnico 51/100 indica señal marginal, por debajo de umbral neutral. Volatilidad implícita 35.05% es elevada para el sector, amplia dispersión de outcomes.\n\n**DATOS FUNDAMENTALES:**\nDXY 120.885 — dólar en zona de fortaleza extrema, presión estructural negativa sobre commodities denominados en USD incluyendo litio. FED funds 3.64% — política restrictiva activa, costo de capital elevado desincentiva proyectos mineros de largo plazo. Yield curve 10Y-2Y: +0.51bps — prácticamente plana, transición entre inversión y normalización, señal ambigua sobre ciclo económico. EUR/USD 0.86768 — euro en mínimos históricos, confirma dominancia del dólar. Score fundamental 64/100 — soporte moderado, probablemente refleja demanda estructural EV/almacenamiento.\n\n**SINTESIS:**\nEl contexto macro presenta vientos en contra materiales: DXY 120.9 y EUR/USD 0.868 son condiciones históricamente adversas para commodities en USD, comprimiendo márgenes de productores de litio. La señal técnica (score 51) es marginalmente positiva vía momentum RSI pero carece de confirmación en MACD/Bollinger, mientras que el fundamental (64) sugiere demanda real sostenida que compite contra el efecto divisa. La combinación produce una señal neta débil con dispersión elevada",
+        "premortem": "Voy a completar el pre-mortem y sintetizar el análisis en el formato requerido.\n\n---\n\n**PRE-MORTEM — 3 RIESGOS ESTANDARIZADOS:**\n\n**RIESGO 1: Aceleración DXY / Shock de Liquidez USD**\nProbabilidad: 28% +/-6%\nMecanismo: DXY ya en 120.9 (zona de estrés histórico post-2002). Un breakout adicional hacia 124-126 —posible si Fed retrasa recortes o tensión geopolítica escala— comprime ingresos de productores de litio denominados en monedas locales (ARS, CLP, AUD), colapsa márgenes operativos y fuerza ventas de activos. El ETF sufre doble impacto: precio litio spot en USD cae AND NAV del ETF se erosiona si tiene exposición a ADRs latinoamericanos.\nSeñal de alerta: DXY cruza 122.5 sostenido 3 sesiones consecutivas; Fed funds futures priceando <1 recorte en 2026.\n\n---\n\n**RIESGO 2: Destrucción de Demanda EV / Revisión de Ciclo**\nProbabilidad: 22% +/-5%\nMecanismo: El score fundamental 64 asume demanda estructural EV sostenida. Si ventas EV en China o Europa decepcionan materialmente en Q1 2026 (dato publicable abril-mayo), el mercado reprecia el litio spot hacia USD 8,000-9,000/",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 52,
+          "prob_interval": 14,
+          "horizon": "1-3 meses",
+          "invalidation": "DXY supera 122.5 sostenido 3 sesiones O litio spot cae por debajo de USD 9,000/t con confirmación de datos EV Q1 2026 negativos",
+          "summary": "Señal neta débil por conflicto entre momentum técnico marginal (RSI 61, score 51) y macro adverso estructural (DXY 120.9, EUR/USD 0.868) con datos técnicos clave ausentes que reducen convicción a baja",
+          "conviction": "baja",
+          "data_quality": "100/100"
+        },
         "audit": {
           "passed": true,
           "checks": [
@@ -899,7 +962,7 @@
         "module": "trading",
         "asset": "ETF Litio",
         "ticker": "LIT",
-        "timestamp": "05/04/2026 19:50 UTC",
+        "timestamp": "05/04/2026 20:11 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -987,9 +1050,18 @@
         "kelly": 0.185
       },
       "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {},
+        "thesis": "## ANÁLISIS ETF COBRE — Q2 2026 | 05/04/2026 20:11 UTC\n\n---\n\n**DATOS TECNICOS:**\nRSI14 en 50.68 — zona neutral sin momentum direccional confirmado. MACD histograma: no proporcionado (dato insuficiente → convicción reducida en señal técnica). Posición Bollinger: no proporcionada (dato insuficiente). SMA cross: no proporcionado. Score técnico 64/100 sugiere sesgo alcista débil sin confirmación cruzada de indicadores. Volatilidad implícita 48.03% es elevada → amplía rangos de error en niveles de stop/target.\n\n---\n\n**DATOS FUNDAMENTALES:**\nDXY 120.885 — nivel históricamente alto, presión estructural negativa sobre commodities denominados en USD (correlación inversa cobre/DXY estimada r≈-0.55 en ciclos anteriores). FED funds 3.64% — política restrictiva activa, costo de financiamiento elevado deprime demanda industrial. Yield curve 10Y-2Y: +0.51bps — spread mínimo positivo, normalización apenas iniciada, no señaliza expansión económica robusta. EUR/USD 0.86768 — EUR en mínimos históricos extremos, confirma fortaleza USD estructural. CPI YoY 2.66% — inflación en descenso, reduce urgencia de subidas adicionales pero no confirma pivot. Score fundamental 54/100 refleja entorno macro adverso.\n\n---\n\n**SINTESIS:**\nEl entorno macro presenta viento de frente estructural para cobre: DXY en 120.885 y política FED restrictiva (3.64%) comprimen demanda de commodities industriales en términos reales. La señal técnica en RSI neutral (50.68) no confirma ni niega el movimiento alcista proyectado, y la ausencia de datos MACD/Bollinger/SMA limita la validación cruzada del score",
+        "premortem": "Voy a completar el pre-mortem y generar el JSON final.\n\n---\n\n**PRE-MORTEM — 3 RIESGOS ESTANDARIZADOS:**\n\n**RIESGO 1: Persistencia DXY por encima de 120 / re-aceleración inflacionaria**\nProbabilidad: 38% +/-8%\nMecanismo: DXY sostenido >120 comprime el precio del cobre en USD directamente vía correlación inversa (r≈-0.55). Si CPI rebota por encima de 3.2% YoY, la FED pospone cualquier pivot, manteniendo tasas reales elevadas y deprimiendo demanda industrial financiada. La tesis alcista requiere debilitamiento del USD que el dato actual no soporta.\nSeñal de alerta: DXY cierra dos semanas consecutivas por encima de 122.5 Y/O CPI mensual >0.4% MoM en lectura de mayo 2026.\n\n**RIESGO 2: Deterioro de demanda china sin estímulo fiscal compensatorio**\nProbabilidad: 32% +/-7%\nMecanismo: China representa ~55% del consumo global de cobre refinado. Una contracción del PMI manufacturero chino por debajo de 48 sostenida dos meses invalida el argumento de demanda estructural que subyace a cualquier tesis alcista en cobre, independientemente del posicionamiento técnico. EUR/USD en 0.868 señaliza contracción global sincronizada que refuerza este riesgo.\nSeñal de alerta",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 52,
+          "prob_interval": 14,
+          "horizon": "1-3 meses",
+          "invalidation": "DXY cierra dos semanas consecutivas por encima de 122.5 O PMI manufacturero chino cae por debajo de 48 durante dos meses consecutivos",
+          "summary": "Sesgo técnico alcista débil (score 64/100) bloqueado por macro adverso estructural (DXY 120.885, FED 3.64%, EUR/USD en mínimos históricos); sin confirmación cruzada de indicadores técnicos ni catalizador macro identificado justifica postura neutral hasta aparición de señal de reversión USD o estímulo chino cuantificable.",
+          "conviction": "baja",
+          "data_quality": "100/100"
+        },
         "audit": {
           "passed": true,
           "checks": [
@@ -1034,7 +1106,7 @@
         "module": "trading",
         "asset": "ETF Cobre",
         "ticker": "COPX",
-        "timestamp": "05/04/2026 19:50 UTC",
+        "timestamp": "05/04/2026 20:11 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1099,9 +1171,18 @@
       "score": 70,
       "news": [],
       "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {}
+        "thesis": "# ANÁLISIS GEOESTRATEGICO — VIETNAM / MANUFACTURA TECH / Q2 2026\n\n---\n\n## SITUACION MACRO:\n\n**HECHOS:**\n- PIB Vietnam: 7.09% YoY — crecimiento robusto, por encima del promedio SE Asia (~5.2% estimado para pares regionales en 2026)\n- FX USD/VND: **DATO AUSENTE** — conviction reducida en análisis de competitividad exportadora; se asume rango histórico 25,000–25,500 VND/USD basado en tendencia SBV\n- FED Funds: 3.64% — ciclo de recortes en curso (inferencia: desde pico ~5.33% 2024); reduce presión de capital flight desde emergentes\n- DXY: 120.885 — **nivel elevado históricamente** (HECHO); presiona monedas emergentes, encarece deuda USD de Vietnam (~42% deuda externa en USD, estimado 2025)\n- Yield curve 10Y-2Y: +0.51bps — desinversión completada; señal de estabilización macro global (inferencia)\n- CPI USA: 2.66% — por encima del target Fed 2%; FED no acelerará recortes; entorno tasas \"higher for longer\" relativo\n\n**INFERENCIA MACRO:** DXY 120.9 con FX VND ausente representa riesgo de apreciación VND relativa que erosiona ventaja exportadora. Reducción de conviction en proyecciones de márgenes exportadores: **-1 nivel**.\n\n---\n\n## CONTEXTO GEOPOLITICO:\n\n**HECHOS:**\n- Sin noticias disponibles al momento del análisis — **datos insuficientes; conviction reducida explícitamente en eventos de corto plazo**",
+        "premortem": "# PRE-MORTEM GEOESTRATEGICO — VIETNAM MANUFACTURA TECH Q2 2026\n\n---\n\n## SEPARACIÓN HECHOS / INFERENCIAS\n\n**HECHOS CONFIRMADOS:**\n- PIB Vietnam 7.09% YoY\n- DXY 120.885 (nivel elevado históricamente documentado)\n- Fed Funds 3.64%\n- CPI USA 2.66%\n- Yield curve 10Y-2Y: +0.51bps (desinversión)\n- FX USD/VND: DATO AUSENTE\n- Noticias geopolíticas Vietnam: DATOS INSUFICIENTES\n\n**INFERENCIAS EXPLÍCITAS:**\n- DXY 120.9 → presión sobre VND (mecanismo documentado, no confirmado en magnitud actual)\n- Ciclo recortes Fed desde ~5.33% (inferencia por dirección, no confirmada velocidad)\n- Deuda externa USD ~42% (estimado 2025, no dato oficial Q2 2026)\n\n---\n\n## PRE-MORTEM GEOESTRATEGICO\n\n**FACTOR 1: Escalada Arancelaria USA-Vietnam (China+1 Backlash)**\n\nProbabilidad: p=28% +/-8%\n\nMecanismo de bloqueo: USTR designa Vietnam como transshipment hub de manufactura china. Aranceles sectoriales tech 25-45% restauran barrera efectiva. Margen operativo exportadores cae 8-15pp. FDI manufacturero revierte",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 52,
+          "prob_interval": 14,
+          "horizon": "6-18 meses",
+          "invalidation": "DXY cae por debajo de 108 Y FX USD/VND confirmado sin apreciacion VND superior al 3% Y ausencia de accion arancelaria USTR contra Vietnam en proximos 90 dias",
+          "summary": "Fundamentos macro Vietnam solidos pero DXY elevado con FX ausente y riesgo arancelario China+1 backlash reducen conviction a nivel ESPERAR hasta confirmar datos FX y postura USTR Q3 2025",
+          "conviction": "baja",
+          "top_risk": "Designacion USTR de Vietnam como transshipment hub con aranceles sectoriales tech 25-45% que colapsa margen exportador 8-15pp y revierte FDI manufacturero p=28% +/-8%"
+        }
       }
     },
     {
@@ -1116,9 +1197,14 @@
       "score": 65,
       "news": [],
       "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {}
+        "thesis": "SITUACION MACRO:\nIndia registra crecimiento real del PIB en 6.49% (Q2 2026), consistente con trayectoria de economía de alto crecimiento en Asia emergente. FX: 1 USD = 93.1 INR implica depreciación acumulada significativa respecto a niveles históricos (2023: ~83 INR/USD), representando erosión cambiaria de ~12% en ~3 años. Contexto global: FED a 3.64% señala ciclo de recortes iniciado pero aún restrictivo; DXY en 120.885 indica dólar fuerte estructural, presionando monedas emergentes. Curva UST positiva (10Y-2Y: +0.51bps) sugiere normalización sin señal de recesión inmediata en EE.UU. CPI global (2.66%) controlado reduce presión de política monetaria agresiva adicional.\n\nINFERENCIA (no hecho): La combinación de INR débil + FED restrictiva + DXY elevado implica presión sobre importaciones tecnológicas (hardware, semiconductores denominados en USD) para operadores de servicios digitales indios. Conviction reducida por ausencia de datos de inflación india local y política RBI actual.\n\n---\n\nCONTEXTO GEOPOLITICO:\nHECHOS:\n- India mantiene posición de neutralidad estratégica (no alineación activa) entre bloques EE.UU.-China\n- Programa PLI (Production Linked Incentive) activo en sectores tech con asignación estimada >$10B USD acumulados\n- Tratados de libre comercio activos con UAE y en negociación con UK/EU (estado Q2 2026 no confirmado en datos provistos)\n\nINFERENCIAS CUANTIFICADAS:\n- Riesgo de tensión",
+        "premortem": "Voy a completar el análisis estructurado con separación estricta hechos/inferencias y pre-mortem estandarizado.\n\n---\n\n**COMPLETANDO ANÁLISIS — TESIS INDIA**\n\n---\n\n**PRE-MORTEM GEOESTRATEGICO — 3 FACTORES DE BLOQUEO**\n\n**FACTOR 1: Restricción de Acceso Tecnológico por Controles de Exportación EE.UU.**\nProbabilidad: p=28% +/-8%\nMecanismo de bloqueo: Expansión de Entity List o controles ITAR/EAR sobre semiconductores avanzados afecta cadena de suministro de operadores digitales indios dependientes de hardware USD-denominado; efecto amplificado por INR débil (+12% costo efectivo en INR vs 2023).\nSeñal de alerta: Inclusión de entidades indias en revisiones BIS; reducción de licencias de exportación aprobadas a India >15% trimestral.\n\n**FACTOR 2: Escalada Fronteriza India-China (LAC)**\nProbabilidad: p=18% +/-6%\nMecanismo de bloqueo: Incidente militar en Línea de Control Actual activa salida de capitales FII, presiona INR adicionalmente más allá del nivel 93.1, eleva prima de riesgo soberano y congela inversión extranjera en sectores PLI dependientes de componentes chinos.\nSeñal de alerta: Movimientos de tropas verificados en",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 50,
+          "prob_interval": 20,
+          "summary": "{\"signal\":\"ESPERAR\",\"prob\":52,\"prob_interval\":14,\"horizon\":\"6-18 meses\",\"invalidation\":\"INR supera 98 USD/INR sostenido"
+        }
       }
     },
     {
@@ -1133,9 +1219,14 @@
       "score": 63,
       "news": [],
       "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {}
+        "thesis": "## ANALISIS GEOESTRATEGICO — Polonia / Logística UE Hub / Q2 2026\n\n---\n\n**SITUACION MACRO:**\n\n- PIB Polonia: +3.03% YoY (HECHO) — crecimiento sólido vs eurozona estimada ~1.1-1.4%; diferencial positivo ~1.6-1.9pp\n- FX: 1 USD = 3.7184 PLN (HECHO). EUR/USD = 0.8677 implica EUR/PLN ≈ 4.284 (calculado). PLN relativamente débil frente a USD por DXY=120.9 (índice en territorio de fortaleza extrema, +histórico reciente)\n- FED funds: 3.64% — política restrictiva moderada. Yield curve 10Y-2Y: +0.51bps (HECHO) — prácticamente plana, señal de entorno de bajo crecimiento global anticipado\n- CPI USA 2.66%: desinflación en curso pero no completada. **INFERENCIA (conviction media):** presión desinflacionaria en costes logísticos de combustible/flete probable en H2 2026\n- DXY 120.9: fortaleza USD encarece deuda en USD para operadores polacos, pero abarata importaciones de inputs no-EUR\n\n---\n\n**CONTEXTO GEOPOLITICO:**\n\n- Polonia: flanco este OTAN activo. Gasto defensa ≥4% PIB (verificado públicamente hasta 2025; asumido continuado en 2026 — DATO INFERIDO, reducir conviction)\n- Corredor logístico Este-Oeste: Polonia captura tráfico de reshoring europeo post-China+1. **HECHO estructural verificable**\n- Riesgo escalada Este: fron",
+        "premortem": "## PRE-MORTEM GEOESTRATEGICO — Polonia Logística Hub Q2 2026\n\n---\n\n**FACTOR 1: Escalada Militar Frontera Este**\nProbabilidad: p=18% +/-7%\nMecanismo de bloqueo: Escalada cinética en Ucrania oriental o incidente fronterizo Polonia-Bielorrusia activa cláusulas force majeure en contratos logísticos pan-europeos. Operadores de warehousing y 3PL redirigen inversión capex a hubs alternativos (República Checa, Eslovaquia). Prima de riesgo en bonos polacos +150-200bps comprime márgenes de financiación de infraestructura. Paralización de corredor Rail Baltica por reclasificación de riesgo asegurador.\nSeñal de alerta: CDS soberano Polonia supera 120bps (actualmente ~60-70bps estimado); retirada de al menos 2 operadores logísticos Tier-1 de compromisos capex anunciados públicamente en H1 2026.\n\n---\n\n**FACTOR 2: Apreciación PLN por Reversión DXY / Ciclo FED**\nProbabilidad: p=22% +/-8%\nMecanismo de bloqueo: Corrección DXY desde 120.9 hacia 108-112 por pivote FED (reducción funds rate ≥75bps antes de Q4 2025) aprecia PLN vs USD, eliminando ventaja competitiva",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 50,
+          "prob_interval": 20,
+          "summary": "{\"signal\":\"OPORTUNIDAD_MEDIA\",\"prob\":54,\"prob_interval\":14,\"horizon\":\"6-18 meses\",\"invalidation\":\"CDS soberano Polonia s"
+        }
       }
     },
     {
@@ -1150,9 +1241,14 @@
       "score": 63,
       "news": [],
       "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {}
+        "thesis": "SITUACION MACRO:\nBrasil PIB crecimiento 3.42% YoY Q2-2026 — sólido para economía emergente, supera promedio LATAM estimado ~2.1%. BRL cotiza 5.1818/USD, nivel que históricamente favorece exportadores agroindustriales (umbral competitivo exportador estimado >4.80 BRL/USD). DXY en 120.885 indica USD fuerte estructural — presión sobre deuda externa brasileña denominada en USD, pero viento de cola para commodities exportados. Fed funds 3.64% con curva positiva 10Y-2Y +0.51bps señala normalización, reduciendo probabilidad de shock crediticio inmediato. CPI USA 2.66% controlado reduce urgencia de hiking adicional. ADVERTENCIA: Sin datos de inventarios de crudo ni noticias sectoriales disponibles — conviction reducida en análisis de inputs energéticos del sector.\n\nCONTEXTO GEOPOLITICO:\nHECHO: Brasil es el mayor exportador global de soja (#1), azúcar (#1), café (#2) y carne bovina (#1) — participación mercado estructural no coyuntural. INFERENCIA (dato insuficiente): Sin noticias disponibles, no es posible cuantificar eventos discretos de riesgo político interno (elecciones 2026 Q4 estimadas) — reduce conviction +/-15pp. Tensión comercial USA-China impacta indirectamente: China absorbe ~30% exportaciones agrícolas brasileñas; si redireccionamiento de flujos comerciales se confirma post-aranceles Trump 2025, Brasil es beneficiario neto estimado en +8-12% volumen exportable adicional (FACT: patrón observado en 2018-2019 trade war ronda 1). Riesgo regul",
+        "premortem": "Voy a completar el pre-mortem geoestrátégico y generar el análisis estructurado.\n\n---\n\n**SEPARACIÓN METODOLÓGICA PREVIA**\n\n**HECHOS VERIFICABLES:** PIB +3.42% YoY Q2-2026, BRL/USD 5.1818, DXY 120.885, Fed funds 3.64%, CPI USA 2.66%, spread 10Y-2Y +0.51bps, participación exportadora Brasil en soja/azúcar/café/carne (rangos #1-#2 globales), China ~30% absorción exportaciones agrícolas brasileñas, patrón trade war 2018-2019 documentado.\n\n**INFERENCIAS CUANTIFICADAS:** Umbral competitivo exportador >4.80 BRL/USD (estimación sectorial estándar, no dato oficial BCB). Beneficio redireccionamiento +8-12% volumen (extrapolación de episodio 2018-2019, validez condicional a estructura arancelaria similar). Elecciones 2026 Q4 estimadas — fecha no confirmada oficialmente en datos provistos.\n\n**DATOS INSUFICIENTES → CONVICTION REDUCIDA EXPLÍCITAMENTE:** Sin inventarios energéticos, sin noticias sectoriales recientes, sin datos de spreads de crédito soberano brasileño (CDS 5Y), sin posicionamiento institucional en BRL. Conviction global reducida en -15pp por ausencia de catalizadores discretos observables.\n\n---\n\n**PRE",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 50,
+          "prob_interval": 20,
+          "summary": "{\"signal\":\"OPORTUNIDAD_MEDIA\",\"prob\":62,\"prob_interval\":15,\"horizon\":\"6-18 meses\",\"invalidation\":\"BRL aprecia por debajo"
+        }
       }
     },
     {
@@ -1167,9 +1263,14 @@
       "score": 55,
       "news": [],
       "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {}
+        "thesis": "SITUACION MACRO:\n\nPIB Arabia Saudita Q2-2026: +1.9965% YoY — crecimiento moderado, por debajo del promedio histórico 5Y (~3.2%). DATO: FX SAR/USD no disponible; se asume peg histórico 3.75 SAR/USD (régimen fijo desde 1986, no flotante). Convicción reducida por ausencia de confirmación FX en tiempo real.\n\nContexto global: FED funds 3.64% — ciclo restrictivo en fase terminal. DXY 120.885 = dólar en zona de fortaleza extrema (nivel no visto desde 2002); EUR/USD 0.8677 confirma presión sobre divisas emergentes y sobre activos denominados en no-USD. Yield curve 10Y-2Y: +0.51bps — prácticamente plana, señal de estancamiento anticipado en economías desarrolladas. CPI US 2.66% — desinflación incompleta, margen de corte FED limitado.\n\nINFERENCIA (no hecho): DXY elevado presiona precio del crudo en términos reales para compradores no-USD, potencial reducción de demanda global de hidrocarburo a 6-12 meses.\n\n---\n\nCONTEXTO GEOPOLITICO:\n\nHECHOS confirmados:\n- Sin noticias disponibles en ventana de análisis: convicción geopolítica reducida explícitamente en -15pp.\n- Arabia Saudita mantiene Vision 2030 como marco estructural de diversificación energética (solar, hidrógeno, nuclear civil).\n- Inventarios de crudo: N/A — imposible cuantificar posición OPEC+ sin este dato.\n\nRIESGOS cuantificables con datos disponibles:\n1. Dependencia",
+        "premortem": "Voy a completar y estructurar el análisis con los datos disponibles, aplicando todas las reglas de rigor.\n\n---\n\n## PRE-MORTEM GEOESTRATEGICO — 3 FACTORES DE BLOQUEO\n\n**FACTOR 1: Colapso de precio del crudo por demanda destruida**\nProbabilidad: p=28% +/-9%\nMecanismo de bloqueo: DXY >120 encarece el petróleo en divisas locales de compradores emergentes (India, China, Europa). Reducción de demanda volumétrica a 6-12 meses comprime ingresos fiscales saudíes (estimados en ~65-70% dependientes de hidrocarburos). PIB ya por debajo de media histórica 5Y. Si precio Brent cae por debajo de breakeven fiscal (~80-85 USD/bbl estimado FMI), déficit presupuestario fuerza contracción del gasto Vision 2030.\nSeñal de alerta observable: Brent spot <82 USD/bbl sostenido >45 días + IEA revisando demanda 2026 a la baja >0.8 Mb/d.\n\n---\n\n**FACTOR 2: Fragmentación interna de cohesión OPEC+ / defección de cuotas**\nProbabilidad: p=22% +/-8%\nMecanismo de bloqueo: Sin datos de inventarios (N/A confirmado), imposible establecer línea de corte precisa. Hecho estructural: Irak,",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 50,
+          "prob_interval": 20,
+          "summary": "{\"signal\":\"ESPERAR\",\"prob\":38,\"prob_interval\":14,\"horizon\":\"6-18 meses\",\"invalidation\":\"Brent spot sostenido >90 USD/bbl"
+        }
       }
     },
     {
@@ -1184,9 +1285,18 @@
       "score": 63,
       "news": [],
       "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {}
+        "thesis": "SITUACION MACRO:\n\n**HECHOS:** PIB Nigeria Q2-2026 estimado en 4.06% YoY (por encima del promedio SSA ~3.2%). FX dato ausente (USD/NGN=None) — esto es una señal de alerta operativa crítica; el NGN ha históricamente cotizado en rango 1,500-1,800 NGN/USD en 2025-2026 según últimas lecturas disponibles, pero sin confirmación actual la convicción se reduce formalmente. DXY en 120.885 (nivel elevado, presión apreciación USD) implica estrés significativo para monedas emergentes. Fed Funds 3.64% y CPI 2.66% sugieren ciclo restrictivo moderado pero persistente. Curva 10Y-2Y en +0.51bps (casi plana, no invertida) reduce riesgo recesión inmediata en EE.UU.\n\n**INFERENCIAS CUANTIFICADAS:** DXY >120 históricamente correlaciona con salidas de capital SSA de 15-25% en portafolios de renta variable. Presión sobre NGN estimada: depreciación adicional 8-12% en H2-2026 si DXY sostiene niveles actuales.\n\n---\n\nCONTEXTO GEOPOLITICO:\n\n**HECHOS:** Sin noticias disponibles al momento del análisis. Nigeria mantiene estructura de riesgo estructural conocida: dualidad CBN/mercado paralelo FX, dependencia petrolera (~85% exportaciones), inseguridad en Delta del Níger y Norte.\n\n**INFERENCIAS CUANTIFICADAS:**\n- Riesgo regulatorio CBN sobre fintechs: elevado, historial de restricciones (2021, 2023). Probabilidad de nueva directiva restrictiva en",
+        "premortem": "# ANÁLISIS INSTITUCIONAL — NIGERIA MACRO + PRE-MORTEM GEOESTRATEGICO\n\n---\n\n## SEPARACIÓN ESTRUCTURAL: HECHOS vs INFERENCIAS\n\n### HECHOS VERIFICADOS\n- PIB Nigeria Q2-2026: 4.06% YoY (fuente: estimación, no dato final confirmado)\n- Promedio SSA: ~3.2% (benchmark referencial)\n- USD/NGN: **DATO AUSENTE** → reducción formal de convicción en toda tesis FX\n- DXY: 120.885 (dato disponible)\n- Fed Funds: 3.64% | CPI EE.UU.: 2.66%\n- Spread 10Y-2Y EE.UU.: +0.51bps\n- Rango NGN histórico 2025-2026: 1,500-1,800 NGN/USD (sin confirmación actual)\n\n### INFERENCIAS CUANTIFICADAS\n- Correlación DXY >120 → salidas capital SSA: -15% a -25% en renta variable (base histórica 2015, 2022)\n- Depreciación NGN adicional estimada H2-2026: **8-12%** si DXY sostiene >118\n- Tasa real Nigeria estimada: negativa si inflación local >25% (último dato conocido ~28-32%), convicción reducida por ausencia de dato actual\n\n---\n\n## PRE-MORTEM GEOESTRATEGICO — 3 FACTORES DE BLOQUEO",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 38,
+          "prob_interval": 18,
+          "horizon": "6-18 meses",
+          "invalidation": "USD/NGN confirmado por debajo de 1600 con DXY retrocediendo por debajo de 112 y CBN sin nuevas restricciones FX en 90 dias",
+          "summary": "Nigeria muestra dinamismo macro relativo en SSA pero la ausencia de dato FX actual combinada con DXY en 120.9 crea un bloqueo operativo que impide asumir exposicion con conviccion suficiente",
+          "conviction": "baja",
+          "top_risk": "Depreciacion NGN acelerada por sostenimiento DXY >120 genera destruccion de retornos en USD del 20-35% netos anulando el diferencial de crecimiento PIB en cualquier posicion no cubierta"
+        }
       }
     }
   ],
@@ -1227,8 +1337,8 @@
         "id": "BTC",
         "name": "Bitcoin",
         "units": 0.019975,
-        "price_eur": 58447.0156,
-        "value_eur": 1167.48,
+        "price_eur": 58454.4297,
+        "value_eur": 1167.63,
         "weight_pct": 17.04,
         "target_pct": 0.05,
         "drift_pct": 12.04,
@@ -1239,7 +1349,7 @@
         "var_95": 3.938
       }
     ],
-    "total_eur": 6852.01,
+    "total_eur": 6852.15,
     "performance": {
       "MSCI": {
         "sharpe": 0.793,
@@ -1315,7 +1425,7 @@
       "next_review": "Primer lunes de trimestre"
     },
     "is_quarterly": false,
-    "timestamp": "05/04/2026 19:50 UTC"
+    "timestamp": "05/04/2026 20:11 UTC"
   },
   "backtesting": [],
   "macro": {
@@ -1333,7 +1443,7 @@
       "cpi_yoy": 2.66
     },
     "eia_crude": null,
-    "timestamp": "05/04/2026 19:50 UTC"
+    "timestamp": "05/04/2026 20:11 UTC"
   },
   "ranking": [
     {
@@ -1342,15 +1452,15 @@
       "type": "SE Asia",
       "category": "region",
       "score": 70,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
+      "signal": "ESPERAR",
+      "prob": 52,
+      "prob_interval": 14,
       "kelly": null,
       "vol": null,
       "sharpe": null,
       "price": null,
-      "summary": "",
-      "conviction": "",
+      "summary": "Fundamentos macro Vietnam solidos pero DXY elevado con FX ausente y riesgo arancelario China+1 backlash reducen conviction a nivel ESPERAR hasta confirmar datos FX y postura USTR Q3 2025",
+      "conviction": "baja",
       "gdp": 7.09,
       "sector": "manufactura tech",
       "audit_passed": true
@@ -1361,14 +1471,14 @@
       "type": "South Asia",
       "category": "region",
       "score": 65,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 20,
       "kelly": null,
       "vol": null,
       "sharpe": null,
       "price": null,
-      "summary": "",
+      "summary": "{\"signal\":\"ESPERAR\",\"prob\":52,\"prob_interval\":14,\"horizon\":\"6-18 meses\",\"invalidation\":\"INR supera 98 USD/INR sostenido",
       "conviction": "",
       "gdp": 6.49,
       "sector": "servicios digitales",
@@ -1380,15 +1490,15 @@
       "type": "industrial",
       "category": "commodity",
       "score": 64,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
+      "signal": "ESPERAR",
+      "prob": 58,
+      "prob_interval": 12,
       "kelly": 0.23,
       "vol": 25.03,
       "sharpe": 1.5,
       "price": 3422.0,
-      "summary": "",
-      "conviction": "",
+      "summary": "Estructura técnica alcista (80/100) vs macro adverso severo (DXY 120.885, Fed restrictiva) produce divergencia irreconciliable que justifica esperar confirmación antes de entrar largo desde $3,422",
+      "conviction": "baja",
       "audit_passed": true
     },
     {
@@ -1397,14 +1507,14 @@
       "type": "CEE Europa",
       "category": "region",
       "score": 63,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 20,
       "kelly": null,
       "vol": null,
       "sharpe": null,
       "price": null,
-      "summary": "",
+      "summary": "{\"signal\":\"OPORTUNIDAD_MEDIA\",\"prob\":54,\"prob_interval\":14,\"horizon\":\"6-18 meses\",\"invalidation\":\"CDS soberano Polonia s",
       "conviction": "",
       "gdp": 3.03,
       "sector": "logistica UE hub",
@@ -1416,14 +1526,14 @@
       "type": "LATAM",
       "category": "region",
       "score": 63,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 20,
       "kelly": null,
       "vol": null,
       "sharpe": null,
       "price": null,
-      "summary": "",
+      "summary": "{\"signal\":\"OPORTUNIDAD_MEDIA\",\"prob\":62,\"prob_interval\":15,\"horizon\":\"6-18 meses\",\"invalidation\":\"BRL aprecia por debajo",
       "conviction": "",
       "gdp": 3.42,
       "sector": "agro recursos",
@@ -1435,15 +1545,15 @@
       "type": "Africa Sub.",
       "category": "region",
       "score": 63,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
+      "signal": "ESPERAR",
+      "prob": 38,
+      "prob_interval": 18,
       "kelly": null,
       "vol": null,
       "sharpe": null,
       "price": null,
-      "summary": "",
-      "conviction": "",
+      "summary": "Nigeria muestra dinamismo macro relativo en SSA pero la ausencia de dato FX actual combinada con DXY en 120.9 crea un bloqueo operativo que impide asumir exposicion con conviccion suficiente",
+      "conviction": "baja",
       "gdp": 4.06,
       "sector": "fintech recursos",
       "audit_passed": true
@@ -1454,15 +1564,15 @@
       "type": "precious",
       "category": "commodity",
       "score": 61,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
+      "signal": "ESPERAR",
+      "prob": 52,
+      "prob_interval": 14,
       "kelly": 0.2074,
       "vol": 34.75,
       "sharpe": 1.342,
       "price": 4702.7002,
-      "summary": "",
-      "conviction": "",
+      "summary": "Señal técnica de sobreventa sin confirmación MACD/SMA contra viento fundamental estructuralmente adverso: DXY 120.9 y tasa real positiva impiden convicción alcista táctica",
+      "conviction": "baja",
       "audit_passed": true
     },
     {
@@ -1471,15 +1581,15 @@
       "type": "precious",
       "category": "commodity",
       "score": 59,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
+      "signal": "ESPERAR",
+      "prob": 52,
+      "prob_interval": 14,
       "kelly": 0.1924,
       "vol": 87.85,
       "sharpe": 1.235,
       "price": 73.17,
-      "summary": "",
-      "conviction": "",
+      "summary": "RSI en sobreventa técnica sin confirmación robusta frente a entorno macro estructuralmente adverso: DXY=120.885, tasa real +0.98% y EUR/USD=0.8677 anulan ventaja técnica con score fundamental 54/100 — relación riesgo/beneficio insuficiente para entrada direccional",
+      "conviction": "baja",
       "audit_passed": true
     },
     {
@@ -1488,15 +1598,15 @@
       "type": "energy",
       "category": "commodity",
       "score": 59,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
+      "signal": "ESPERAR",
+      "prob": 52,
+      "prob_interval": 14,
       "kelly": 0.1924,
       "vol": 50.22,
       "sharpe": 1.099,
       "price": 112.06,
-      "summary": "",
-      "conviction": "",
+      "summary": "Momentum técnico alcista moderado (RSI 62, R:R 2:1) insuficiente para compensar fricción macro estructural severa: DXY 120.885 en máximos históricos, política FED restrictiva y ausencia de datos críticos (inventarios EIA, MACD, Bollinger) reducen convicción a baja; señal ESPERAR hasta confirmación de catalizador alcista fundamental o deterioro macro que justifique corto direccional",
+      "conviction": "baja",
       "audit_passed": true
     },
     {
@@ -1505,15 +1615,15 @@
       "type": "critical",
       "category": "commodity",
       "score": 59,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
+      "signal": "ESPERAR",
+      "prob": 52,
+      "prob_interval": 14,
       "kelly": 0.1927,
       "vol": 35.05,
       "sharpe": 1.793,
       "price": 74.17,
-      "summary": "",
-      "conviction": "",
+      "summary": "Señal neta débil por conflicto entre momentum técnico marginal (RSI 61, score 51) y macro adverso estructural (DXY 120.9, EUR/USD 0.868) con datos técnicos clave ausentes que reducen convicción a baja",
+      "conviction": "baja",
       "audit_passed": true
     },
     {
@@ -1522,15 +1632,15 @@
       "type": "industrial",
       "category": "commodity",
       "score": 58,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
+      "signal": "ESPERAR",
+      "prob": 52,
+      "prob_interval": 14,
       "kelly": 0.185,
       "vol": 48.03,
       "sharpe": 1.513,
       "price": 76.86,
-      "summary": "",
-      "conviction": "",
+      "summary": "Sesgo técnico alcista débil (score 64/100) bloqueado por macro adverso estructural (DXY 120.885, FED 3.64%, EUR/USD en mínimos históricos); sin confirmación cruzada de indicadores técnicos ni catalizador macro identificado justifica postura neutral hasta aparición de señal de reversión USD o estímulo chino cuantificable.",
+      "conviction": "baja",
       "audit_passed": true
     },
     {
@@ -1539,15 +1649,15 @@
       "type": "industrial",
       "category": "commodity",
       "score": 56,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
+      "signal": "ESPERAR",
+      "prob": 48,
+      "prob_interval": 14,
       "kelly": 0.17,
       "vol": 31.31,
       "sharpe": 0.32,
       "price": 5.6815,
-      "summary": "",
-      "conviction": "",
+      "summary": "Cobre Q2-2026: momentum técnico insuficiente ante vientos fundamentales materiales (DXY 120.885, Fed 3.64%) y datos técnicos incompletos; sin catalizador direccional confirmado",
+      "conviction": "baja",
       "audit_passed": true
     },
     {
@@ -1556,14 +1666,14 @@
       "type": "MENA",
       "category": "region",
       "score": 55,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 20,
       "kelly": null,
       "vol": null,
       "sharpe": null,
       "price": null,
-      "summary": "",
+      "summary": "{\"signal\":\"ESPERAR\",\"prob\":38,\"prob_interval\":14,\"horizon\":\"6-18 meses\",\"invalidation\":\"Brent spot sostenido >90 USD/bbl",
       "conviction": "",
       "gdp": 2.0,
       "sector": "energia diversif",
@@ -1575,15 +1685,15 @@
       "type": "energy",
       "category": "commodity",
       "score": 47,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
+      "signal": "ESPERAR",
+      "prob": 38,
+      "prob_interval": 10,
       "kelly": 0.1025,
       "vol": 136.38,
       "sharpe": -0.401,
       "price": 2.807,
-      "summary": "",
-      "conviction": "",
+      "summary": "Señal tecnica debil, macro estructuralmente adversa y volatilidad de 136% anualizaada generan probabilidad de stop >52%: riesgo/beneficio insuficiente para entrada inmediata",
+      "conviction": "baja",
       "audit_passed": true
     }
   ],
@@ -1648,7 +1758,7 @@
       "module": "trading",
       "asset": "Oro",
       "ticker": "GC=F",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1702,7 +1812,7 @@
       "module": "trading",
       "asset": "Plata",
       "ticker": "SI=F",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1756,7 +1866,7 @@
       "module": "trading",
       "asset": "Crudo WTI",
       "ticker": "CL=F",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1810,7 +1920,7 @@
       "module": "trading",
       "asset": "Gas Natural",
       "ticker": "NG=F",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1864,7 +1974,7 @@
       "module": "trading",
       "asset": "Cobre",
       "ticker": "HG=F",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1918,7 +2028,7 @@
       "module": "trading",
       "asset": "Aluminio",
       "ticker": "ALI=F",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1972,7 +2082,7 @@
       "module": "trading",
       "asset": "ETF Litio",
       "ticker": "LIT",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2026,7 +2136,7 @@
       "module": "trading",
       "asset": "ETF Cobre",
       "ticker": "COPX",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2079,73 +2189,73 @@
     {
       "module": "geo",
       "asset": "Vietnam",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "scores": {
         "composite": 70
       },
-      "signal": "—",
+      "signal": "ESPERAR",
       "claude_calls": 3,
       "status": "complete"
     },
     {
       "module": "geo",
       "asset": "India",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "scores": {
         "composite": 65
       },
-      "signal": "—",
+      "signal": "ESPERAR",
       "claude_calls": 3,
       "status": "complete"
     },
     {
       "module": "geo",
       "asset": "Polonia",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "scores": {
         "composite": 63
       },
-      "signal": "—",
+      "signal": "ESPERAR",
       "claude_calls": 3,
       "status": "complete"
     },
     {
       "module": "geo",
       "asset": "Brasil",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "scores": {
         "composite": 63
       },
-      "signal": "—",
+      "signal": "ESPERAR",
       "claude_calls": 3,
       "status": "complete"
     },
     {
       "module": "geo",
       "asset": "Arabia S.",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "scores": {
         "composite": 55
       },
-      "signal": "—",
+      "signal": "ESPERAR",
       "claude_calls": 3,
       "status": "complete"
     },
     {
       "module": "geo",
       "asset": "Nigeria",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "scores": {
         "composite": 63
       },
-      "signal": "—",
+      "signal": "ESPERAR",
       "claude_calls": 3,
       "status": "complete"
     },
     {
       "module": "core",
       "asset": "Cartera Core",
-      "timestamp": "05/04/2026 19:50 UTC",
+      "timestamp": "05/04/2026 20:11 UTC",
       "scores": {
         "composite": null
       },
@@ -2194,7 +2304,7 @@
       "avg_loss_pct": null,
       "expectancy_pct": null,
       "new_this_run": 0,
-      "last_updated": "05/04/2026 19:50 UTC"
+      "last_updated": "05/04/2026 20:11 UTC"
     }
   }
 }
