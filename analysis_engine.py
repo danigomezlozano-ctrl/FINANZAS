@@ -37,6 +37,9 @@ IS_WEEKLY    = (NOW.weekday() == 0)
 if os.environ.get("FORCE_CORE_REVIEW"): IS_QUARTERLY = True
 if os.environ.get("FORCE_BACKTEST"):    IS_WEEKLY    = True
 
+# ── MODELO CLAUDE ACTUALIZADO ─────────────────────────
+CLAUDE_MODEL = "claude-sonnet-4-6"  # modelo actual abril 2026
+
 TRADING_ASSETS = [
     {"id":"GC=F",  "name":"Oro",        "type":"precious",   "unit":"USD/oz"},
     {"id":"SI=F",  "name":"Plata",       "type":"precious",   "unit":"USD/oz"},
@@ -92,7 +95,6 @@ def send_telegram(message, level="info"):
         return False
     print(f"  -> Telegram {level}: token={TELEGRAM_TOKEN[:20]}... chat={TELEGRAM_CHAT_ID}")
     icons = {"critical":"🚨","important":"⚠️","info":"ℹ️"}
-    # Usar texto plano sin Markdown para evitar errores de parseo
     text = f"{icons.get(level,'i')} GeoMacro Intel v8\n{message}\n{DATE_ES}"
     payload = {"chat_id": str(TELEGRAM_CHAT_ID), "text": text}
     r = post_json(
@@ -113,14 +115,14 @@ def build_telegram_summary(results):
     fred    = results.get("macro", {}).get("fred", {})
 
     for a in [x for x in alerts if x.get("severity") == "high"]:
-        send_telegram(f"*{a['asset']}*\n{a['message']}", "critical")
+        send_telegram(f"{a['asset']}\n{a['message']}", "critical")
         time.sleep(0.5)
 
     buys = [r for r in ranking
             if r.get("signal","").upper() in ("COMPRAR","BUY")
             and r.get("prob",0) >= 60]
     if buys:
-        msg = "*Señales COMPRAR:*\n" + "".join(
+        msg = "Señales COMPRAR:\n" + "".join(
             f"• {s['name']}: {s['score']}/100, p={s.get('prob','?')}%\n" for s in buys)
         send_telegram(msg, "important")
         time.sleep(0.5)
@@ -128,7 +130,7 @@ def build_telegram_summary(results):
     positions = core.get("positions", [])
     if positions:
         total = core.get("total_eur", 0)
-        msg   = f"*Cartera Core — €{total:,.2f}*\n"
+        msg   = f"Cartera Core — EUR{total:,.2f}\n"
         for p in positions:
             d = p.get("drift_pct", 0)
             e = "🔴" if abs(d)>10 else "🟡" if abs(d)>5 else "🟢"
@@ -138,7 +140,7 @@ def build_telegram_summary(results):
 
     if fred:
         send_telegram(
-            f"*Macro* | FED:{fred.get('fed_funds_rate','?')}% "
+            f"Macro | FED:{fred.get('fed_funds_rate','?')}% "
             f"DXY:{fred.get('dxy_index','?')} "
             f"CPI:{fred.get('cpi_yoy','?')}% "
             f"Curve:{fred.get('yield_curve_spread','?')}bps",
@@ -430,36 +432,55 @@ REGLAS: (1) Separa hechos de inferencias siempre. (2) Toda probabilidad con inte
 (5) Sin "podria" ni "quizas" sin cuantificar. (6) Datos insuficientes = reducir conviction explicitamente.
 Respondes en español. Conciso y riguroso."""
 
-def claude(prompt,max_tokens=800):
-    if not ANTHROPIC_KEY: return None
-    r=post_json("https://api.anthropic.com/v1/messages",
-        {"model":"claude-sonnet-4-20250514","max_tokens":max_tokens,
-         "system":SYSTEM_PROMPT,"messages":[{"role":"user","content":prompt}]},
-        {"Content-Type":"application/json","x-api-key":ANTHROPIC_KEY,
-         "anthropic-version":"2023-06-01"})
-    if not r: return None
-    return r.get("content",[{}])[0].get("text","")
+def claude(prompt, max_tokens=800):
+    if not ANTHROPIC_KEY:
+        print("  WARN claude: ANTHROPIC_KEY no disponible")
+        return None
+    payload = {
+        "model": CLAUDE_MODEL,
+        "max_tokens": max_tokens,
+        "system": SYSTEM_PROMPT,
+        "messages": [{"role": "user", "content": prompt}]
+    }
+    headers = {
+        "Content-Type": "application/json",
+        "x-api-key": ANTHROPIC_KEY,
+        "anthropic-version": "2023-06-01"
+    }
+    print(f"    [Claude] llamando {CLAUDE_MODEL} max_tokens={max_tokens}...")
+    r = post_json("https://api.anthropic.com/v1/messages", payload, headers)
+    if not r:
+        print("    [Claude] ERROR: respuesta nula")
+        return None
+    if r.get("error"):
+        print(f"    [Claude] ERROR API: {r['error']}")
+        return None
+    content = r.get("content", [])
+    if not content:
+        print(f"    [Claude] ERROR: content vacío. Respuesta: {str(r)[:200]}")
+        return None
+    text = content[0].get("text", "")
+    if not text:
+        print(f"    [Claude] ERROR: text vacío en content[0]")
+        return None
+    print(f"    [Claude] OK: {len(text)} chars")
+    return text
 
 def parse_cal(raw):
-    """Parse calibration JSON robustly — handles markdown, extra text, nested backticks."""
+    """Parse calibration JSON robustly."""
     if not raw: return {}
-    # Limpiar markdown agresivamente
     clean = raw
     clean = clean.replace("```json","").replace("```","")
-    # Eliminar texto antes del primer {
     s = clean.find("{")
     e = clean.rfind("}") + 1
     if s == -1 or e <= s:
-        # Intentar extraer summary del texto libre
         return {"signal":"ESPERAR","prob":50,"prob_interval":20,
                 "summary": raw[:120].replace("\n"," ").strip()}
     json_str = clean[s:e]
-    # Reparar JSON parcial: reemplazar valores con comillas simples problemáticas
     try:
         return json.loads(json_str)
     except:
         pass
-    # Intento 2: limpiar caracteres problemáticos línea a línea
     try:
         import re
         json_str2 = re.sub(r'(?<!\)"([^"]*)"(?=\s*[,}])', 
@@ -467,7 +488,6 @@ def parse_cal(raw):
         return json.loads(json_str2)
     except:
         pass
-    # Fallback: extraer campos clave manualmente con regex
     import re
     result = {"signal":"ESPERAR","prob":50,"prob_interval":20}
     for field, pattern in [
@@ -509,6 +529,7 @@ def kahneman_trading(asset,qdata,macro_ctx,audit):
          f"Warnings: {'; '.join(audit.get('warnings',[])) or 'ninguno'}\n"
          f"MACRO: {macro_ctx}")
 
+    print(f"     -> Kahneman paso 1/3 (tesis)...")
     t1=claude(f"""{ctx}
 
 TESIS DE TRADING — formato exacto:
@@ -529,6 +550,7 @@ PROBABILIDAD INICIAL: p=X% +/-Y%
 RAZON: [una frase]""",500)
     time.sleep(0.5)
 
+    print(f"     -> Kahneman paso 2/3 (pre-mortem)...")
     t2=claude(f"""Tesis {name}: {t1}
 
 PRE-MORTEM — exactamente 3 riesgos:
@@ -551,15 +573,19 @@ Señal de alerta: [dato concreto observable]
 PROBABILIDAD AJUSTADA: p=X% +/-Y%""",400)
     time.sleep(0.5)
 
+    print(f"     -> Kahneman paso 3/3 (calibracion JSON)...")
     t3=claude(f"""Tesis:{t1}
 Pre-mortem:{t2}
 Score:{score}/100 Audit:{audit.get('score',0)}/100
 
-JSON sin markdown sin texto adicional:
+Responde SOLO con este JSON, sin texto adicional, sin markdown, sin backticks:
 {{"signal":"COMPRAR|VENDER|ESPERAR","prob":65,"prob_interval":12,"horizon":"1-3 meses","invalidation":"condicion concreta","summary":"una frase dashboard","conviction":"alta|media|baja","data_quality":"{audit.get('score',0)}/100"}}""",220)
     time.sleep(0.5)
 
-    return {"thesis":t1 or "","premortem":t2 or "","calibration":parse_cal(t3),"audit":audit}
+    cal = parse_cal(t3)
+    print(f"     -> Calibracion: signal={cal.get('signal')} prob={cal.get('prob')} summary={cal.get('summary','')[:50]}")
+
+    return {"thesis":t1 or "","premortem":t2 or "","calibration":cal,"audit":audit}
 
 def kahneman_geo(region,gdp_vals,fx_rates,news,macro_ctx):
     name=region["name"]; sec=region["sector"]
@@ -571,6 +597,7 @@ def kahneman_geo(region,gdp_vals,fx_rates,news,macro_ctx):
          f"Sector:{sec} | PIB:{gdp}% | FX:1 USD={fx} {region['currency']}\n"
          f"Noticias:{ns}\nMACRO:{macro_ctx}")
 
+    print(f"     -> Kahneman geo paso 1/3...")
     t1=claude(f"""{ctx}
 
 ANALISIS GEOESTRATEGICO — formato exacto:
@@ -587,6 +614,7 @@ OPORTUNIDAD en {sec}:
 PROBABILIDAD INICIAL: p=X% +/-Y%""",450)
     time.sleep(0.5)
 
+    print(f"     -> Kahneman geo paso 2/3...")
     t2=claude(f"""Tesis {name}:{t1}
 
 PRE-MORTEM GEOESTRATEGICO — 3 factores de bloqueo:
@@ -609,12 +637,16 @@ Señal de alerta: [observable]
 PROBABILIDAD AJUSTADA: p=X% +/-Y%""",380)
     time.sleep(0.5)
 
+    print(f"     -> Kahneman geo paso 3/3 (JSON)...")
     t3=claude(f"""Tesis:{t1} Pre-mortem:{t2}
-JSON sin markdown:
+Responde SOLO con este JSON sin texto ni markdown:
 {{"signal":"OPORTUNIDAD_ALTA|OPORTUNIDAD_MEDIA|ESPERAR|EVITAR","prob":60,"prob_interval":15,"horizon":"6-18 meses","invalidation":"condicion concreta","summary":"una frase","conviction":"alta|media|baja","top_risk":"riesgo principal"}}""",220)
     time.sleep(0.5)
 
-    return {"thesis":t1 or "","premortem":t2 or "","calibration":parse_cal(t3)}
+    cal = parse_cal(t3)
+    print(f"     -> Geo calibracion: signal={cal.get('signal')} prob={cal.get('prob')}")
+
+    return {"thesis":t1 or "","premortem":t2 or "","calibration":cal}
 
 def kahneman_core(positions,macro_ctx,perf,news_nvda,news_btc):
     pos_str="\n".join([
@@ -644,25 +676,16 @@ NOTICIAS:
 
 CHECKLIST DE CONVICTION — responde cada punto:
 
-1. MSCI World (target 70%): Tesis de diversificacion global y crecimiento compuesto a largo plazo. ¿Sigue valida? [SI/NO/DEBILITADA + razon con datos]
-
-2. NVIDIA (target 10%): Moat en infraestructura IA. ¿Ha cambiado algo fundamental en 3 meses? [SI/NO/DEBILITADA + razon]
-
-3. Bitcoin (target 5%): Reserva de valor y descorrelacion. ¿Tesis valida? [SI/NO/DEBILITADA + razon]
-
-4. CONCENTRACION: Drift NVDA actual = {[p['drift_pct'] for p in positions if p['id']=='NVDA'][0] if positions else 'N/A'}%. ¿Requiere accion inmediata? [SI/NO + razon]
-
-5. CORRELACIONES: MSCI-NVDA={corr.get('msci_nvda','N/A')} MSCI-BTC={corr.get('msci_btc','N/A')}. ¿Han aumentado reduciendo diversificacion? [SI/NO + implicacion]
-
-6. MACRO: Entorno actual (FED, DXY, ciclo). ¿Favorece esta cartera a 3-5 años? [FAVORECE/NEUTRAL/PERJUDICA + razon]
-
-7. RIESGO SISTEMICO: ¿Hay riesgo nuevo no presente hace 3 meses? [SI/NO + descripcion]
-
-8. REBALANCEO: ¿Rebalancear ahora es la accion correcta? [SI/NO/ESPERAR + razon]
-
-9. HORIZONTE: ¿Evento en 12 meses podria invalidar alguna tesis? [especificar]
-
-10. VEREDICTO: ¿Cartera bien posicionada para 3-10 años? [SI/NO/PARCIALMENTE + 2 frases]
+1. MSCI World (target 70%): ¿Tesis de diversificacion global sigue valida? [SI/NO/DEBILITADA + razon]
+2. NVIDIA (target 10%): ¿Moat en infraestructura IA ha cambiado? [SI/NO/DEBILITADA + razon]
+3. Bitcoin (target 5%): ¿Tesis reserva de valor sigue valida? [SI/NO/DEBILITADA + razon]
+4. CONCENTRACION: Drift NVDA={[p['drift_pct'] for p in positions if p['id']=='NVDA'][0] if positions else 'N/A'}%. ¿Requiere accion? [SI/NO + razon]
+5. CORRELACIONES: MSCI-NVDA={corr.get('msci_nvda','N/A')}. ¿Diversificacion reducida? [SI/NO]
+6. MACRO: ¿Entorno FED/DXY favorece cartera 3-5 años? [FAVORECE/NEUTRAL/PERJUDICA]
+7. RIESGO SISTEMICO: ¿Riesgo nuevo en 3 meses? [SI/NO + descripcion]
+8. REBALANCEO: ¿Rebalancear ahora? [SI/NO/ESPERAR + razon]
+9. HORIZONTE: ¿Evento en 12 meses que invalide tesis? [especificar]
+10. VEREDICTO: ¿Cartera bien posicionada 3-10 años? [SI/NO/PARCIALMENTE + 2 frases]
 
 JSON final sin markdown:
 {{"msci_conviction":"intacta|debilitada|invalidada","nvda_conviction":"intacta|debilitada|invalidada","btc_conviction":"intacta|debilitada|invalidada","rebalance_needed":true,"rebalance_urgency":"inmediato|proximo_mes|proximo_trimestre","rebalance_action":"descripcion o null","summary":"2 frases","overall_conviction":"alta|media|baja"}}"""
@@ -686,7 +709,7 @@ Descripcion: [impacto concreto]
 Activos: [lista]
 Señal: [observable]
 
-JSON final:
+JSON final sin markdown:
 [{{"name":"str","level":65,"desc":"str","assets_affected":["str"],"signal":"str"}}]""",650)
     if not raw: return []
     try:
@@ -928,17 +951,13 @@ def run_backtest_module():
     print(f"   Backtesting: {len(results)} activos")
     return results
 
-# ── PIPELINE PRINCIPAL ────────────────────────────────
-
-
 # ══════════════════════════════════════════════════════
-# MÓDULO 5: PAPER TRADING (registro automático)
+# MÓDULO 5: PAPER TRADING
 # ══════════════════════════════════════════════════════
 
 PAPER_FILE = os.path.join(os.path.dirname(__file__), "paper_trades.json")
 
 def load_paper_trades():
-    """Carga el historial de paper trades existente."""
     try:
         if os.path.exists(PAPER_FILE):
             with open(PAPER_FILE, "r", encoding="utf-8") as f:
@@ -947,7 +966,6 @@ def load_paper_trades():
     return {"trades": [], "stats": {}}
 
 def save_paper_trades(data):
-    """Guarda el historial de paper trades."""
     try:
         with open(PAPER_FILE, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
@@ -955,19 +973,12 @@ def save_paper_trades(data):
         print(f"  WARN paper_trades: {e}")
 
 def update_paper_trades(trading_results, paper_data):
-    """
-    Registra nuevas señales y actualiza el estado de trades abiertos.
-    - Si hay señal COMPRAR/VENDER nueva → registra trade abierto
-    - Si hay trade abierto → comprueba si tocó stop o target
-    """
     trades = paper_data.get("trades", [])
     existing_ids = {t["id"] for t in trades}
 
-    # ── 1. Actualizar trades abiertos ──
     for trade in trades:
         if trade["status"] != "open": continue
         asset_id = trade["asset_id"]
-        # Buscar precio actual
         current_price = None
         for a in trading_results:
             if a["meta"]["id"] == asset_id and a.get("quant"):
@@ -978,7 +989,6 @@ def update_paper_trades(trading_results, paper_data):
         trade["current_price"] = round(current_price, 4)
         trade["current_pnl_pct"] = round((current_price/trade["entry_price"]-1)*100, 2)
 
-        # Comprobar stop y target
         if trade["signal"] == "COMPRAR":
             if current_price <= trade["stop_price"]:
                 trade["status"] = "stopped"
@@ -1006,7 +1016,6 @@ def update_paper_trades(trading_results, paper_data):
                 trade["pnl_pct"] = round((trade["entry_price"]/trade["target_price"]-1)*100, 2)
                 trade["result"] = "win"
 
-    # ── 2. Registrar señales nuevas ──
     new_count = 0
     for a in trading_results:
         if not a.get("quant"): continue
@@ -1014,10 +1023,10 @@ def update_paper_trades(trading_results, paper_data):
         sig  = cal.get("signal", "")
         prob = cal.get("prob", 0)
         if sig not in ("COMPRAR", "VENDER"): continue
-        if prob < 40: continue  # solo señales con cierta conviction
+        if prob < 40: continue
 
         trade_id = f"{a['meta']['id']}_{DATE_ES[:10]}"
-        if trade_id in existing_ids: continue  # ya registrado hoy
+        if trade_id in existing_ids: continue
 
         q  = a["quant"]
         lv = q.get("levels", {}) or {}
@@ -1054,7 +1063,6 @@ def update_paper_trades(trading_results, paper_data):
         new_count += 1
         print(f"   Paper trade registrado: {a['meta']['name']} {sig} @ ${lv['entry']}")
 
-    # ── 3. Calcular estadísticas ──
     closed = [t for t in trades if t["status"] in ("stopped","target_hit")]
     open_t = [t for t in trades if t["status"] == "open"]
     wins   = [t for t in closed if t["result"] == "win"]
@@ -1097,8 +1105,11 @@ def run_paper_trading_module(trading_results):
           f"Nuevas: {s['new_this_run']}")
     return paper_data
 
+# ── PIPELINE PRINCIPAL ────────────────────────────────
+
 def run():
     print(f"\n{'='*58}\nGeoMacro Intel v8 — {DATE_ES}\n{'='*58}")
+    print(f"Modelo Claude: {CLAUDE_MODEL}")
     print(f"Core trimestral: {'SI' if IS_QUARTERLY else 'NO'} | Backtest: {'SI' if IS_WEEKLY else 'NO'}\n")
 
     results={
