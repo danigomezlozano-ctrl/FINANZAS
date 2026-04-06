@@ -36,7 +36,6 @@ jobs:
           UNITS_MSCI:          ${{ secrets.UNITS_MSCI }}
           TELEGRAM_BOT_TOKEN:  ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:    ${{ secrets.TELEGRAM_CHAT_ID }}
-          FORCE_BACKTEST:      "true"
         run: python analysis_engine.py
 
       - name: Commit and push results.json
