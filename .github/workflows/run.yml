@@ -11,7 +11,7 @@ permissions:
 jobs:
   analyze:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repo
@@ -36,6 +36,7 @@ jobs:
           UNITS_MSCI:          ${{ secrets.UNITS_MSCI }}
           TELEGRAM_BOT_TOKEN:  ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:    ${{ secrets.TELEGRAM_CHAT_ID }}
+          FORCE_BACKTEST:      "true"
         run: python analysis_engine.py
 
       - name: Commit and push results.json
