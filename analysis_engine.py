@@ -57,12 +57,15 @@ TRADING_ASSETS = [
 ]
 
 REGIONS = [
-    {"id":"VNM","name":"Vietnam",   "region":"SE Asia",    "currency":"VND","sector":"manufactura tech"},
-    {"id":"IND","name":"India",     "region":"South Asia", "currency":"INR","sector":"servicios digitales"},
-    {"id":"POL","name":"Polonia",   "region":"CEE Europa", "currency":"PLN","sector":"logistica UE hub"},
-    {"id":"BRA","name":"Brasil",    "region":"LATAM",      "currency":"BRL","sector":"agro recursos"},
-    {"id":"SAU","name":"Arabia S.", "region":"MENA",       "currency":"SAR","sector":"energia diversif"},
-    {"id":"NGA","name":"Nigeria",   "region":"Africa Sub.","currency":"NGN","sector":"fintech recursos"},
+    {"id":"VNM","name":"Vietnam",    "region":"SE Asia",    "currency":"VND","sector":"manufactura tech",    "etf":"VNM"},
+    {"id":"IND","name":"India",      "region":"South Asia", "currency":"INR","sector":"servicios digitales", "etf":"INDA"},
+    {"id":"POL","name":"Polonia",    "region":"CEE Europa", "currency":"PLN","sector":"logistica UE hub",    "etf":"EPOL"},
+    {"id":"BRA","name":"Brasil",     "region":"LATAM",      "currency":"BRL","sector":"agro recursos",       "etf":"EWZ"},
+    {"id":"SAU","name":"Arabia S.",  "region":"MENA",       "currency":"SAR","sector":"energia diversif",    "etf":"KSA"},
+    {"id":"ARG","name":"Argentina",  "region":"LATAM Sur",  "currency":"ARS","sector":"reforma estructural", "etf":"ARGT"},
+    {"id":"IDN","name":"Indonesia",  "region":"SE Asia",    "currency":"IDR","sector":"recursos demografía", "etf":"EIDO"},
+    {"id":"MEX","name":"México",     "region":"LATAM Norte","currency":"MXN","sector":"nearshoring",         "etf":"EWW"},
+    {"id":"CHN","name":"China",      "region":"East Asia",  "currency":"CNY","sector":"tech manufactura exp","etf":"MCHI"},
 ]
 
 CORE_ASSETS = [
@@ -188,7 +191,7 @@ def fetch_wb_gdp(iso):
 
 def fetch_fx():
     d = fetch("https://api.frankfurter.app/latest?from=USD"
-              "&to=EUR,INR,BRL,PLN,SAR,NGN,VND,GBP")
+              "&to=EUR,INR,BRL,PLN,SAR,ARS,IDR,MXN,CNY,VND,GBP")
     return d.get("rates",{}) if d else {}
 
 def fetch_eia():
@@ -957,9 +960,9 @@ def run_backtest_module():
     if not IS_WEEKLY:
         print("   Omitido (solo lunes)"); return []
     results=[]
-    for asset in TRADING_ASSETS[:4]:
+    for asset in TRADING_ASSETS:
         print(f"   Backtesting {asset['name']}...")
-        raw=fetch_yahoo(asset["id"],days=1100)
+        raw=fetch_yahoo(asset["id"],days=1825)
         if not raw or len(raw)<500:
             print(f"   SKIP {asset['name']}"); continue
         bt=run_backtest_asset(asset["name"],raw)
@@ -967,7 +970,27 @@ def run_backtest_module():
             results.append(bt)
             print(f"   {asset['name']}: WR={bt['win_rate_pct']}% B&H={bt['bh_annual_pct']}%/año")
         time.sleep(0.5)
-    print(f"   Backtesting: {len(results)} activos")
+    print(f"   Backtesting commodities: {len(results)} activos")
+
+    # ── Backtesting geográfico con ETFs proxy ──
+    print("   Backtesting geografico (ETFs proxy)...")
+    for reg in REGIONS:
+        etf = reg.get("etf")
+        if not etf:
+            continue
+        print(f"   Backtesting {reg['name']} ({etf})...")
+        raw = fetch_yahoo(etf, days=1825)
+        if not raw or len(raw) < 500:
+            print(f"   SKIP {reg['name']}"); continue
+        bt = run_backtest_asset(f"{reg['name']} ({etf})", raw)
+        if bt:
+            bt["category"] = "region"
+            bt["region"]   = reg["region"]
+            results.append(bt)
+            print(f"   {reg['name']}: WR={bt['win_rate_pct']}% B&H={bt['bh_annual_pct']}%/año")
+        time.sleep(0.3)
+
+    print(f"   Backtesting: {len(results)} activos+regiones")
     return results
 
 # ══════════════════════════════════════════════════════
