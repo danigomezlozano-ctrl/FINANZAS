@@ -1338,36 +1338,72 @@ def fetch_gdelt_events(query, max_records=10):
     GDELT DOC 2.0 API — clasifica eventos por categoría CAMEO.
     Actualización cada 15 minutos. Sin API key requerida.
     Retorna artículos relevantes con tono (negativo = adverso).
+    Estrategia: intenta 6h primero, fallback a 24h si vacío.
     """
-    try:
-        base = "https://api.gdeltproject.org/api/v2/doc/doc"
-        params = {
-            "query":      query,
-            "mode":       "artlist",
-            "maxrecords": str(max_records),
-            "format":     "json",
-            "timespan":   "6h",  # Últimas 6 horas (mismo ciclo que GitHub Actions)
-            "sort":       "DateDesc",
-        }
-        url = base + "?" + urllib.parse.urlencode(params)
-        req = Request(url, headers={"User-Agent": "GeoMacroIntel/8.0"})
-        with urlopen(req, timeout=12) as r:
-            data = json.loads(r.read().decode())
-        articles = data.get("articles", [])
-        return [
-            {
-                "title":   a.get("title", "")[:120],
-                "url":     a.get("url", ""),
-                "source":  a.get("domain", ""),
-                "date":    a.get("seendate", ""),
-                "tone":    float(a.get("tone", 0)),  # negativo = adverso
-                "lang":    a.get("language", ""),
+    base = "https://api.gdeltproject.org/api/v2/doc/doc"
+
+    for timespan in ["6h", "24h", "48h"]:
+        try:
+            params = {
+                "query":      query,
+                "mode":       "artlist",
+                "maxrecords": str(max_records),
+                "format":     "json",
+                "timespan":   timespan,
+                "sort":       "DateDesc",
             }
-            for a in articles if a.get("title")
-        ]
-    except Exception as e:
-        print(f"  WARN GDELT ({query[:30]}): {e}")
-        return []
+            url = base + "?" + urllib.parse.urlencode(params)
+            req = Request(url, headers={"User-Agent": "GeoMacroIntel/8.0"})
+            with urlopen(req, timeout=14) as r:
+                raw = r.read().decode()
+
+            # GDELT a veces devuelve HTML vacío en lugar de JSON
+            if not raw or not raw.strip() or raw.strip()[0] != "{":
+                continue  # Intentar con timespan mayor
+
+            data = json.loads(raw)
+            articles = data.get("articles", [])
+
+            if not articles:
+                continue  # Sin resultados, probar timespan mayor
+
+            return [
+                {
+                    "title":  a.get("title", "")[:120],
+                    "url":    a.get("url", ""),
+                    "source": a.get("domain", ""),
+                    "date":   a.get("seendate", ""),
+                    "tone":   float(a.get("tone", 0)),
+                    "lang":   a.get("language", ""),
+                }
+                for a in articles if a.get("title")
+            ]
+
+        except Exception as e:
+            code_str = str(e)
+            if "429" in code_str:
+                # Rate limit — esperar más y reintentar una vez
+                time.sleep(3)
+                try:
+                    with urlopen(req, timeout=14) as r:
+                        raw = r.read().decode()
+                    if raw and raw.strip() and raw.strip()[0] == "{":
+                        data = json.loads(raw)
+                        articles = data.get("articles", [])
+                        if articles:
+                            return [
+                                {"title": a.get("title","")[:120],"url":a.get("url",""),
+                                 "source":a.get("domain",""),"date":a.get("seendate",""),
+                                 "tone":float(a.get("tone",0)),"lang":a.get("language",""),}
+                                for a in articles if a.get("title")
+                            ]
+                except Exception:
+                    pass
+            # Otros errores: continuar con timespan mayor
+            continue
+
+    print(f"  WARN GDELT ({query[:35]}): sin resultados en 6h/24h/48h")
+    return []
 
 # ── PRE-FILTRO DE KEYWORDS (evita llamadas Claude innecesarias) ───────────────
 def prefilter_news(articles, event_map_entry):
@@ -1473,6 +1509,7 @@ def run_geo_intelligence_module(macro_ctx, trading_results):
         # ── Capa 1: Fetch GDELT ──
         # Usamos las primeras 3 keywords más específicas para la query GDELT
         query_terms = " OR ".join(event_entry["keywords"][:4])
+        time.sleep(2)  # Delay entre queries GDELT para evitar rate limit 429
         gdelt_articles = fetch_gdelt_events(query_terms, max_records=8)
 
         # Complementar con NewsAPI si está disponible
