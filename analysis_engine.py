@@ -347,9 +347,14 @@ def fund_score(gdp_vals,fx_rates,eia,asset_type):
 
 def comp_score(tech,fund): return round(0.40*tech+0.60*fund)
 
-def entry_levels(closes,atr_v):
+def entry_levels(closes,atr_v,direction="long"):
     if not closes or not atr_v: return None
     p=closes[-1]
+    if direction=="short":
+        stop=round(p+2.0*atr_v,4); target=round(p-4.0*atr_v,4)
+        return {"entry":round(p,4),"stop":stop,"target":target,"rr":2.0,
+                "stop_pct":round((stop-p)/p*100,2),
+                "target_pct":round((p-target)/p*100,2)}
     stop=round(p-2.0*atr_v,4); target=round(p+4.0*atr_v,4)
     return {"entry":round(p,4),"stop":stop,"target":target,"rr":2.0,
             "stop_pct":round((p-stop)/p*100,2),
@@ -1029,7 +1034,10 @@ def update_paper_trades(trading_results, paper_data):
         if not current_price: continue
 
         trade["current_price"] = round(current_price, 4)
-        trade["current_pnl_pct"] = round((current_price/trade["entry_price"]-1)*100, 2)
+        if trade["signal"] == "VENDER":
+            trade["current_pnl_pct"] = round((trade["entry_price"]/current_price-1)*100, 2)
+        else:
+            trade["current_pnl_pct"] = round((current_price/trade["entry_price"]-1)*100, 2)
 
         if trade["signal"] == "COMPRAR":
             if current_price <= trade["stop_price"]:
@@ -1074,17 +1082,29 @@ def update_paper_trades(trading_results, paper_data):
         lv = q.get("levels", {}) or {}
         if not lv.get("entry"): continue
 
+        # Niveles correctos según dirección: VENDER invierte stop y target
+        atr_v = q.get("atr")
+        if sig == "VENDER" and atr_v:
+            ep = lv["entry"]
+            sp = round(ep + 2.0 * atr_v, 4)
+            tp = round(ep - 4.0 * atr_v, 4)
+            spc = round((sp - ep) / ep * 100, 2)
+            tpc = round((ep - tp) / ep * 100, 2)
+        else:
+            ep, sp, tp = lv["entry"], lv["stop"], lv["target"]
+            spc, tpc = lv.get("stop_pct"), lv.get("target_pct")
+
         trade = {
             "id":            trade_id,
             "asset":         a["meta"]["name"],
             "asset_id":      a["meta"]["id"],
             "signal":        sig,
             "entry_date":    DATE_ES,
-            "entry_price":   lv["entry"],
-            "stop_price":    lv["stop"],
-            "target_price":  lv["target"],
-            "stop_pct":      lv.get("stop_pct"),
-            "target_pct":    lv.get("target_pct"),
+            "entry_price":   ep,
+            "stop_price":    sp,
+            "target_price":  tp,
+            "stop_pct":      spc,
+            "target_pct":    tpc,
             "rr":            lv.get("rr", 2.0),
             "prob":          prob,
             "prob_interval": cal.get("prob_interval"),
@@ -1103,7 +1123,7 @@ def update_paper_trades(trading_results, paper_data):
         trades.append(trade)
         existing_ids.add(trade_id)
         new_count += 1
-        print(f"   Paper trade registrado: {a['meta']['name']} {sig} @ ${lv['entry']}")
+        print(f"   Paper trade registrado: {a['meta']['name']} {sig} @ ${ep}")
 
     closed = [t for t in trades if t["status"] in ("stopped","target_hit")]
     open_t = [t for t in trades if t["status"] == "open"]
@@ -1166,7 +1186,7 @@ def run():
     if FRED_KEY:
         for sid,lbl in [("FEDFUNDS","fed_funds_rate"),
                         ("T10Y2Y","yield_curve_spread"),
-                        ("DTWEXBGS","dxy_index")]:
+                        ("DTWEXM","dxy_index")]:
             obs=fetch_fred(sid)
             if obs: fred_d[lbl]=round(obs[0][1],3); print(f"   FRED {lbl}: {obs[0][1]:.3f}")
         cpi_obs=fetch_fred("CPIAUCSL")
