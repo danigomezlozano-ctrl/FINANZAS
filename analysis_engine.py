@@ -1708,7 +1708,8 @@ def run():
 
     total_claude=sum(l.get("claude_calls",0) for l in results["audit_log"])
     audits_ok=sum(1 for a in trading_results if a.get("log",{}).get("audit_passed",True))
-    print(f"\nTrading:{len(trading_results)} ({audits_ok} OK) | Geo:{len(geo_results)} | GeoIntel:{len(geo_intel.get("events",[]))} | "
+    geo_intel_count = len(geo_intel.get("events", []))
+    print(f"\nTrading:{len(trading_results)} ({audits_ok} OK) | Geo:{len(geo_results)} | GeoIntel:{geo_intel_count} | "
           f"Backtest:{len(backtest_results)} | Alertas:{len(results['alerts'])} | Claude:{total_claude}")
 
     out=os.path.join(os.path.dirname(__file__),"results.json")
