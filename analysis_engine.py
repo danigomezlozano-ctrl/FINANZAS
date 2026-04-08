@@ -1167,6 +1167,434 @@ def run_paper_trading_module(trading_results):
           f"Nuevas: {s['new_this_run']}")
     return paper_data
 
+# ══════════════════════════════════════════════════════
+# MÓDULO 6: INTELIGENCIA GEOPOLÍTICA EN TIEMPO REAL
+# ══════════════════════════════════════════════════════
+#
+# FUNDAMENTO ACADÉMICO:
+# - Caldara & Iacoviello (2022, AER): GPR index — eventos geopolíticos
+#   adversos tienen impacto estadísticamente significativo en commodities
+# - IMF GFSR (2025): escaladas militares y despliegues tienen mayor impacto
+#   que amenazas verbales (hallazgo contraintuitivo clave)
+# - Evidencia Russia-Ucrania: gas natural +7.5%/evento, trigo +16% en 9 semanas
+# - Hallazgo crítico: mercados sobrerreaccionan al shock inicial y revierten
+#   → el módulo informa, NO señaliza compra/venta automática
+#
+# DISEÑO KAHNEMAN:
+# - Umbral alto de activación (evita sesgo de acción por ruido)
+# - Separación explícita información/señal
+# - Contexto histórico obligatorio en cada alerta
+# - Circuit breaker: máximo 2 alertas alta importancia por ciclo
+# - Régimen de mercado como condicionante (no alertar igual en calma que en crisis)
+
+# ── MAPA EVENTO → ACTIVOS (base académica Caldara-Iacoviello + IMF 2025) ──────
+#
+# Estructura: keyword_groups → {assets, direction, channel, magnitude_hist, duration_hist}
+# channel: supply_disruption | uncertainty | safe_haven | trade_diversion
+# magnitude_hist: magnitud histórica documentada en papers (no inventada)
+# duration_hist: días antes de reversión histórica media
+
+GEO_EVENT_MAP = [
+    {
+        "event_type": "MIDDLE_EAST_ESCALATION",
+        "keywords": [
+            "iran", "hormuz", "strait of hormuz", "persian gulf", "tehran",
+            "israel iran", "us iran", "attack iran", "strike iran",
+            "saudi oil", "aramco attack", "houthi", "red sea attack",
+            "hamas", "hezbollah escalation", "middle east war"
+        ],
+        "assets_affected": ["CL=F", "NG=F", "GC=F", "SI=F"],
+        "etfs_affected":   ["KSA", "INDA"],
+        "direction":       "up",
+        "channel":         "supply_disruption",
+        "magnitude_hist":  "WTI +8-20% (Gulf crisis 2019), Oro +5-8%",
+        "duration_hist":   "Reversión media 15-30 días si no hay disrupción física confirmada",
+        "cameo_codes":     ["14", "15", "19", "20"],  # Military action codes
+        "confidence_floor": 0.70  # Umbral mínimo de confianza Claude para alertar
+    },
+    {
+        "event_type": "RUSSIA_ENERGY_DISRUPTION",
+        "keywords": [
+            "russia sanctions", "russia gas", "nord stream", "gazprom",
+            "russia ukraine escalation", "russia nato", "pipeline sabotage",
+            "russian oil ban", "russian energy", "europe gas supply"
+        ],
+        "assets_affected": ["NG=F", "CL=F", "ALI=F"],
+        "etfs_affected":   ["EPOL"],
+        "direction":       "up",
+        "channel":         "supply_disruption",
+        "magnitude_hist":  "Gas natural +7.5%/evento (Palomba 2025), Aluminio +15% (LME 2022)",
+        "duration_hist":   "Efectos persistentes si disrupción física confirmada (>30 días)",
+        "cameo_codes":     ["16", "17"],
+        "confidence_floor": 0.68
+    },
+    {
+        "event_type": "CHINA_TAIWAN_TENSION",
+        "keywords": [
+            "taiwan strait", "china taiwan", "pla military", "taiwan blockade",
+            "china semiconductor", "tsmc risk", "taiwan invasion", "china military exercise"
+        ],
+        "assets_affected": ["GC=F", "CL=F"],
+        "etfs_affected":   ["MCHI", "VNM", "INDA"],
+        "direction":       "mixed",  # Oro sube, ETF China baja, Vietnam puede subir (nearshoring)
+        "channel":         "uncertainty",
+        "magnitude_hist":  "S&P -2.5% media conflictos socios comerciales (IMF 2025)",
+        "duration_hist":   "Recuperación media en 30 días si no hay escalada física",
+        "cameo_codes":     ["14", "15"],
+        "confidence_floor": 0.72
+    },
+    {
+        "event_type": "OPEC_SUPPLY_SHOCK",
+        "keywords": [
+            "opec cut", "opec production", "saudi production cut", "opec plus",
+            "oil supply reduction", "opec surprise", "production quota",
+            "opec meeting", "oil embargo"
+        ],
+        "assets_affected": ["CL=F", "NG=F"],
+        "etfs_affected":   ["KSA"],
+        "direction":       "up",
+        "channel":         "supply_disruption",
+        "magnitude_hist":  "WTI +5-15% sorpresa OPEC (IMF, Känzig 2021 AER)",
+        "duration_hist":   "Efecto persiste si recorte real; reversión si solo verbal",
+        "cameo_codes":     ["08", "09"],
+        "confidence_floor": 0.65
+    },
+    {
+        "event_type": "US_TRADE_WAR",
+        "keywords": [
+            "tariff", "trade war", "import duty", "trade sanctions",
+            "us china tariff", "trump tariff", "trade restrictions",
+            "export controls", "technology ban", "chip ban"
+        ],
+        "assets_affected": ["CL=F", "HG=F", "ALI=F"],
+        "etfs_affected":   ["MCHI", "EWW", "EWZ", "INDA"],
+        "direction":       "mixed",  # China baja, México puede subir (desvío comercial)
+        "channel":         "trade_diversion",
+        "magnitude_hist":  "S&P -9% Liberation Day 2025; México +3-5% desvío comercial",
+        "duration_hist":   "Efectos persistentes en cadenas de suministro (>60 días)",
+        "cameo_codes":     ["16"],
+        "confidence_floor": 0.65
+    },
+    {
+        "event_type": "GLOBAL_RISK_OFF",
+        "keywords": [
+            "nuclear threat", "war declaration", "military invasion",
+            "global recession fears", "financial crisis", "bank failure",
+            "systemic risk", "market crash", "flight to safety"
+        ],
+        "assets_affected": ["GC=F", "SI=F", "CL=F"],
+        "etfs_affected":   ["ARGT", "EWZ", "EIDO"],  # EM más vulnerables
+        "direction":       "safe_haven_up",  # Oro/plata suben, EM bajan
+        "channel":         "safe_haven",
+        "magnitude_hist":  "Oro +5-10% eventos war (SSRN 2024), EM -8-12% (IMF 2025)",
+        "duration_hist":   "Oro mantiene efecto; EM recuperan en 30 días media",
+        "cameo_codes":     ["19", "20"],
+        "confidence_floor": 0.75
+    },
+    {
+        "event_type": "LATAM_POLITICAL_SHOCK",
+        "keywords": [
+            "argentina crisis", "brazil political", "mexico security",
+            "latam election", "populism latin america", "debt default",
+            "currency crisis", "capital controls", "latam unrest"
+        ],
+        "assets_affected": ["CL=F"],
+        "etfs_affected":   ["ARGT", "EWZ", "EWW"],
+        "direction":       "down",
+        "channel":         "uncertainty",
+        "magnitude_hist":  "ETFs regionales -5-15% según magnitud crisis",
+        "duration_hist":   "Variable: puede persistir meses si es crisis sistémica",
+        "cameo_codes":     ["14", "17"],
+        "confidence_floor": 0.65
+    },
+    {
+        "event_type": "FED_SURPRISE",
+        "keywords": [
+            "fed rate hike surprise", "powell hawkish", "emergency rate cut",
+            "fed pivot", "inflation surprise", "cpi shock", "fed emergency meeting"
+        ],
+        "assets_affected": ["GC=F", "CL=F", "HG=F"],
+        "etfs_affected":   ["ARGT", "EWZ", "INDA", "EIDO"],  # EM sensibles a USD
+        "direction":       "down",  # Subida Fed = oro baja, EM bajan
+        "channel":         "monetary",
+        "magnitude_hist":  "~1-2% FX por 25bp sorpresa; EM -3-5%",
+        "duration_hist":   "Efecto inmediato, reversión parcial en 5-10 días",
+        "cameo_codes":     ["03", "04"],
+        "confidence_floor": 0.70
+    },
+]
+
+# ── VOLATILIDAD ACTUAL DEL ACTIVO (condicionante de régimen) ──────────────────
+def get_asset_current_vol(asset_id, trading_results):
+    """Obtiene volatilidad actual del activo desde los resultados del módulo trading."""
+    for a in trading_results:
+        if a["meta"]["id"] == asset_id and a.get("quant"):
+            return a["quant"].get("volatility")
+    return None
+
+# ── FETCH GDELT DOC API (gratuito, sin key) ───────────────────────────────────
+def fetch_gdelt_events(query, max_records=10):
+    """
+    GDELT DOC 2.0 API — clasifica eventos por categoría CAMEO.
+    Actualización cada 15 minutos. Sin API key requerida.
+    Retorna artículos relevantes con tono (negativo = adverso).
+    """
+    try:
+        base = "https://api.gdeltproject.org/api/v2/doc/doc"
+        params = {
+            "query":      query,
+            "mode":       "artlist",
+            "maxrecords": str(max_records),
+            "format":     "json",
+            "timespan":   "6h",  # Últimas 6 horas (mismo ciclo que GitHub Actions)
+            "sort":       "DateDesc",
+        }
+        url = base + "?" + urllib.parse.urlencode(params)
+        req = Request(url, headers={"User-Agent": "GeoMacroIntel/8.0"})
+        with urlopen(req, timeout=12) as r:
+            data = json.loads(r.read().decode())
+        articles = data.get("articles", [])
+        return [
+            {
+                "title":   a.get("title", "")[:120],
+                "url":     a.get("url", ""),
+                "source":  a.get("domain", ""),
+                "date":    a.get("seendate", ""),
+                "tone":    float(a.get("tone", 0)),  # negativo = adverso
+                "lang":    a.get("language", ""),
+            }
+            for a in articles if a.get("title")
+        ]
+    except Exception as e:
+        print(f"  WARN GDELT ({query[:30]}): {e}")
+        return []
+
+# ── PRE-FILTRO DE KEYWORDS (evita llamadas Claude innecesarias) ───────────────
+def prefilter_news(articles, event_map_entry):
+    """
+    Filtra artículos por keywords del evento.
+    Retorna los que contienen al menos 1 keyword relevante.
+    Coste: $0 (sin API).
+    """
+    keywords = event_map_entry["keywords"]
+    matched = []
+    for art in articles:
+        text = (art.get("title", "") + " " + art.get("url", "")).lower()
+        hits = [kw for kw in keywords if kw in text]
+        if hits:
+            matched.append({**art, "keyword_hits": hits})
+    return matched
+
+# ── CLASIFICACIÓN CON CLAUDE (solo artículos pre-filtrados) ──────────────────
+def classify_geo_event(articles, event_entry, macro_ctx, trading_results):
+    """
+    Claude clasifica si el conjunto de artículos constituye un evento
+    geopolítico real con impacto en activos específicos.
+
+    Incluye:
+    - Tipo de evento (CAMEO)
+    - Activos afectados y dirección
+    - Magnitud esperada con precedente histórico
+    - Duración histórica del efecto
+    - Régimen de mercado actual como condicionante
+    - Separación explícita información/señal (anti-sesgo-acción)
+    """
+    if not articles or not ANTHROPIC_KEY:
+        return None
+
+    # Obtener volatilidad actual de activos afectados (condicionante de régimen)
+    asset_vols = {}
+    for aid in event_entry["assets_affected"]:
+        v = get_asset_current_vol(aid, trading_results)
+        if v: asset_vols[aid] = round(v, 1)
+
+    vol_ctx = ", ".join([f"{k}:{v}%" for k, v in asset_vols.items()]) or "sin datos"
+
+    headlines = "\n".join([
+        f"- [{a['source']}] {a['title']} (tono:{a['tone']:.1f}, keywords:{a['keyword_hits']})"
+        for a in articles[:5]
+    ])
+
+    prompt = f"""Eres un analista de riesgos geopolíticos con acceso a literatura académica (Caldara-Iacoviello 2022, IMF GFSR 2025).
+
+EVENTO POTENCIAL: {event_entry['event_type']}
+NOTICIAS DETECTADAS (últimas 6h):
+{headlines}
+
+ACTIVOS MONITORIZADOS: {', '.join(event_entry['assets_affected'] + event_entry['etfs_affected'])}
+VOLATILIDAD ACTUAL DE ACTIVOS: {vol_ctx}
+CONTEXTO MACRO ACTUAL: {macro_ctx}
+PRECEDENTE HISTÓRICO: {event_entry['magnitude_hist']}
+DURACIÓN HISTÓRICA: {event_entry['duration_hist']}
+
+REGLAS CRÍTICAS DE EVALUACIÓN:
+1. Escaladas militares reales > amenazas verbales (IMF 2025)
+2. Disrupción física confirmada > especulación mediática
+3. Alta volatilidad actual = umbral de alerta MÁS ALTO (ya está priced in)
+4. Este módulo INFORMA, NO señaliza compra/venta. Incluir esto explícitamente.
+5. Si las noticias son ruido sin sustancia real: impact=none
+
+Responde SOLO con este JSON sin texto ni markdown:
+{{"event_type":"{event_entry['event_type']}","is_real_event":true,"impact":"high|medium|low|none","assets_up":[],"assets_down":[],"magnitude_estimate":"X-Y%","confidence":0.75,"is_escalation":true,"historical_parallel":"evento similar + año + magnitud","duration_estimate":"X-Y días","regime_adjustment":"alto_vol_ya_priced_in|normal","alert_text":"1 frase informativa sin sesgo acción","warning":"INFORMATIVO: evaluar contexto completo antes de cualquier acción"}}"""
+
+    raw = claude(prompt, max_tokens=300)
+    if not raw:
+        return None
+    try:
+        s = raw.find("{"); e = raw.rfind("}") + 1
+        if s != -1 and e > s:
+            return json.loads(raw[s:e])
+    except Exception as ex:
+        print(f"  WARN geo_intel parse: {ex}")
+    return None
+
+# ── MÓDULO PRINCIPAL ──────────────────────────────────────────────────────────
+def run_geo_intelligence_module(macro_ctx, trading_results):
+    """
+    Módulo 6: Inteligencia Geopolítica en Tiempo Real.
+
+    Arquitectura de 3 capas:
+    1. GDELT + NewsAPI → ingesta multi-fuente (coste $0)
+    2. Pre-filtro keywords → elimina ~90% ruido (coste $0)
+    3. Claude clasificación → solo artículos relevantes (~$0.50-1/mes)
+
+    Circuit breaker: máximo 2 alertas alta importancia por ciclo.
+    Kahneman: informa, no señaliza. Contexto histórico obligatorio.
+    """
+    print("\n--- MODULO 6: INTELIGENCIA GEOPOLITICA -----------")
+
+    events_detected = []
+    high_alerts_count = 0
+    MAX_HIGH_ALERTS = 2  # Circuit breaker conductual
+
+    for event_entry in GEO_EVENT_MAP:
+        etype = event_entry["event_type"]
+
+        # ── Capa 1: Fetch GDELT ──
+        # Usamos las primeras 3 keywords más específicas para la query GDELT
+        query_terms = " OR ".join(event_entry["keywords"][:4])
+        gdelt_articles = fetch_gdelt_events(query_terms, max_records=8)
+
+        # Complementar con NewsAPI si está disponible
+        news_articles = []
+        if NEWS_KEY:
+            news_articles = fetch_news(
+                " ".join(event_entry["keywords"][:3]), n=5
+            )
+            # Normalizar formato NewsAPI al formato GDELT
+            news_articles = [
+                {"title": a["title"], "source": a["source"],
+                 "tone": -1.0,  # NewsAPI no tiene tono — asumir neutro-negativo
+                 "url": "", "date": DATE_ES,
+                 "lang": "en", "keyword_hits": []}
+                for a in news_articles
+            ]
+
+        all_articles = gdelt_articles + news_articles
+
+        if not all_articles:
+            continue
+
+        # ── Capa 2: Pre-filtro keywords ──
+        filtered = prefilter_news(all_articles, event_entry)
+
+        if not filtered:
+            continue
+
+        print(f"   {etype}: {len(filtered)} artículos relevantes detectados")
+
+        # ── Capa 3: Clasificación Claude ──
+        classification = classify_geo_event(
+            filtered, event_entry, macro_ctx, trading_results
+        )
+
+        if not classification:
+            continue
+
+        impact = classification.get("impact", "none")
+        confidence = classification.get("confidence", 0)
+        confidence_floor = event_entry["confidence_floor"]
+
+        # Ignorar si impacto nulo o confianza insuficiente
+        if impact == "none" or confidence < confidence_floor:
+            print(f"   {etype}: descartado (impact={impact}, conf={confidence:.2f})")
+            continue
+
+        # Marcar el nivel de régimen de mercado
+        classification["event_type"] = etype
+        classification["assets_monitored"] = (
+            event_entry["assets_affected"] + event_entry["etfs_affected"]
+        )
+        classification["channel"] = event_entry["channel"]
+        classification["articles_analyzed"] = len(filtered)
+        classification["timestamp"] = DATE_ES
+
+        events_detected.append(classification)
+        print(f"   {etype}: DETECTADO impact={impact} conf={confidence:.2f}")
+
+    # ── Circuit breaker: limitar alertas Telegram de alta importancia ──
+    high_events = [e for e in events_detected if e.get("impact") == "high"]
+    medium_events = [e for e in events_detected if e.get("impact") == "medium"]
+
+    # Ordenar por confianza descendente
+    high_events.sort(key=lambda x: x.get("confidence", 0), reverse=True)
+
+    # Enviar Telegram solo para los top-2 de alta importancia
+    for event in high_events[:MAX_HIGH_ALERTS]:
+        assets_up   = ", ".join(event.get("assets_up", [])) or "—"
+        assets_down = ", ".join(event.get("assets_down", [])) or "—"
+        parallel    = event.get("historical_parallel", "sin precedente documentado")
+        duration    = event.get("duration_estimate", "desconocida")
+        regime      = event.get("regime_adjustment", "normal")
+        alert_text  = event.get("alert_text", "")
+        warning     = event.get("warning", "")
+
+        regime_note = (
+            "⚠️ VOLATILIDAD YA ELEVADA — efecto puede estar priced in"
+            if regime == "alto_vol_ya_priced_in" else ""
+        )
+
+        msg = (
+            f"🌍 <b>EVENTO GEOPOLÍTICO — {event['event_type']}</b>\n"
+            f"Impacto: <b>{event['impact'].upper()}</b> | Confianza: {event['confidence']:.0%}\n"
+            f"Canal: {event['channel']}\n\n"
+            f"📈 Activos al alza: {assets_up}\n"
+            f"📉 Activos a la baja: {assets_down}\n"
+            f"Magnitud estimada: {event.get('magnitude_estimate','?')}\n"
+            f"Duración histórica: {duration}\n\n"
+            f"📚 Precedente: {parallel}\n"
+            f"{regime_note}\n\n"
+            f"ℹ️ {alert_text}\n"
+            f"<i>{warning}</i>"
+        )
+        send_telegram(msg, "important")
+        time.sleep(0.5)
+        high_alerts_count += 1
+
+    # Eventos de media importancia: resumen consolidado (1 solo mensaje)
+    if medium_events:
+        lines = ["🔍 <b>RADAR GEOPOLÍTICO — Eventos medios</b>\n"]
+        for ev in medium_events[:3]:
+            lines.append(
+                f"• {ev['event_type']}: {ev.get('alert_text','')[:80]} "
+                f"(conf:{ev.get('confidence',0):.0%})"
+            )
+        lines.append("\n<i>INFORMATIVO. No implica señal de trading.</i>")
+        send_telegram("\n".join(lines), "info")
+
+    total = len(events_detected)
+    print(f"   Geo Intel: {total} eventos detectados | "
+          f"{high_alerts_count} alertas high enviadas (max {MAX_HIGH_ALERTS})")
+
+    return {
+        "events":          events_detected,
+        "high_count":      len(high_events),
+        "medium_count":    len(medium_events),
+        "circuit_breaker": high_alerts_count >= MAX_HIGH_ALERTS,
+        "timestamp":       DATE_ES,
+    }
+
+
 # ── PIPELINE PRINCIPAL ────────────────────────────────
 
 def run():
@@ -1177,7 +1605,7 @@ def run():
     results={
         "generated_at":DATE_ES,"quarter":QUARTER,"version":"8.0",
         "is_quarterly":IS_QUARTERLY,"is_weekly":IS_WEEKLY,
-        "trading":[],"regions":[],"global_risks":[],"core":{},
+        "trading":[],"regions":[],"global_risks":[],"core":{},"geo_intelligence":{},
         "backtesting":[],"macro":{},"ranking":[],"alerts":[],"audit_log":[],
     }
 
@@ -1212,6 +1640,9 @@ def run():
 
     paper_data=run_paper_trading_module(trading_results)
     results["paper_trading"]=paper_data
+
+    geo_intel=run_geo_intelligence_module(macro_ctx, trading_results)
+    results["geo_intelligence"]=geo_intel
 
     print("\n-> Riesgos globales...")
     if ANTHROPIC_KEY:
@@ -1277,7 +1708,7 @@ def run():
 
     total_claude=sum(l.get("claude_calls",0) for l in results["audit_log"])
     audits_ok=sum(1 for a in trading_results if a.get("log",{}).get("audit_passed",True))
-    print(f"\nTrading:{len(trading_results)} ({audits_ok} OK) | Geo:{len(geo_results)} | "
+    print(f"\nTrading:{len(trading_results)} ({audits_ok} OK) | Geo:{len(geo_results)} | GeoIntel:{len(geo_intel.get("events",[]))} | "
           f"Backtest:{len(backtest_results)} | Alertas:{len(results['alerts'])} | Claude:{total_claude}")
 
     out=os.path.join(os.path.dirname(__file__),"results.json")
