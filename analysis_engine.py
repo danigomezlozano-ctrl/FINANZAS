@@ -1333,19 +1333,45 @@ def get_asset_current_vol(asset_id, trading_results):
     return None
 
 # ── FETCH GDELT DOC API (gratuito, sin key) ───────────────────────────────────
-def fetch_gdelt_events(query, max_records=10):
+def fetch_geo_news(keywords, max_records=8):
     """
-    GDELT DOC 2.0 API — clasifica eventos por categoría CAMEO.
-    Actualización cada 15 minutos. Sin API key requerida.
-    Retorna artículos relevantes con tono (negativo = adverso).
-    Estrategia: intenta 6h primero, fallback a 24h si vacío.
+    Fetch de noticias geopolíticas usando NewsAPI (principal) + GDELT (fallback).
+    NewsAPI: funciona de forma fiable, key ya disponible en el sistema.
+    GDELT: fallback si NewsAPI no tiene resultados para la query.
     """
-    base = "https://api.gdeltproject.org/api/v2/doc/doc"
+    # ── NewsAPI (fuente principal) ──
+    if NEWS_KEY:
+        query = " OR ".join(keywords[:4])
+        url = (f"https://newsapi.org/v2/everything"
+               f"?q={urllib.parse.quote(query)}"
+               f"&language=en&sortBy=publishedAt"
+               f"&pageSize={max_records}&apiKey={NEWS_KEY}")
+        try:
+            d = fetch(url)
+            if d and d.get("status") == "ok":
+                articles = d.get("articles", [])
+                if articles:
+                    return [
+                        {
+                            "title":  a.get("title", "")[:120],
+                            "url":    a.get("url", ""),
+                            "source": a.get("source", {}).get("name", ""),
+                            "date":   a.get("publishedAt", ""),
+                            "tone":   -1.0,  # NewsAPI no tiene tono — neutro-negativo
+                            "lang":   "en",
+                        }
+                        for a in articles if a.get("title")
+                    ]
+        except Exception as e:
+            print(f"  WARN NewsAPI geo ({query[:30]}): {e}")
 
-    for timespan in ["6h", "24h", "48h"]:
+    # ── GDELT fallback ──
+    base = "https://api.gdeltproject.org/api/v2/doc/doc"
+    gdelt_query = " OR ".join(keywords[:3])
+    for timespan in ["24h", "48h", "1week"]:
         try:
             params = {
-                "query":      query,
+                "query":      gdelt_query,
                 "mode":       "artlist",
                 "maxrecords": str(max_records),
                 "format":     "json",
@@ -1354,55 +1380,27 @@ def fetch_gdelt_events(query, max_records=10):
             }
             url = base + "?" + urllib.parse.urlencode(params)
             req = Request(url, headers={"User-Agent": "GeoMacroIntel/8.0"})
-            with urlopen(req, timeout=14) as r:
+            with urlopen(req, timeout=12) as r:
                 raw = r.read().decode()
-
-            # GDELT a veces devuelve HTML vacío en lugar de JSON
             if not raw or not raw.strip() or raw.strip()[0] != "{":
-                continue  # Intentar con timespan mayor
-
+                continue
             data = json.loads(raw)
             articles = data.get("articles", [])
-
-            if not articles:
-                continue  # Sin resultados, probar timespan mayor
-
-            return [
-                {
-                    "title":  a.get("title", "")[:120],
-                    "url":    a.get("url", ""),
-                    "source": a.get("domain", ""),
-                    "date":   a.get("seendate", ""),
-                    "tone":   float(a.get("tone", 0)),
-                    "lang":   a.get("language", ""),
-                }
-                for a in articles if a.get("title")
-            ]
-
-        except Exception as e:
-            code_str = str(e)
-            if "429" in code_str:
-                # Rate limit — esperar más y reintentar una vez
-                time.sleep(3)
-                try:
-                    with urlopen(req, timeout=14) as r:
-                        raw = r.read().decode()
-                    if raw and raw.strip() and raw.strip()[0] == "{":
-                        data = json.loads(raw)
-                        articles = data.get("articles", [])
-                        if articles:
-                            return [
-                                {"title": a.get("title","")[:120],"url":a.get("url",""),
-                                 "source":a.get("domain",""),"date":a.get("seendate",""),
-                                 "tone":float(a.get("tone",0)),"lang":a.get("language",""),}
-                                for a in articles if a.get("title")
-                            ]
-                except Exception:
-                    pass
-            # Otros errores: continuar con timespan mayor
+            if articles:
+                return [
+                    {
+                        "title":  a.get("title", "")[:120],
+                        "url":    a.get("url", ""),
+                        "source": a.get("domain", ""),
+                        "date":   a.get("seendate", ""),
+                        "tone":   float(a.get("tone", 0)),
+                        "lang":   a.get("language", ""),
+                    }
+                    for a in articles if a.get("title")
+                ]
+        except Exception:
             continue
 
-    print(f"  WARN GDELT ({query[:35]}): sin resultados en 6h/24h/48h")
     return []
 
 # ── PRE-FILTRO DE KEYWORDS (evita llamadas Claude innecesarias) ───────────────
@@ -1509,25 +1507,8 @@ def run_geo_intelligence_module(macro_ctx, trading_results):
         # ── Capa 1: Fetch GDELT ──
         # Usamos las primeras 3 keywords más específicas para la query GDELT
         query_terms = " OR ".join(event_entry["keywords"][:4])
-        time.sleep(2)  # Delay entre queries GDELT para evitar rate limit 429
-        gdelt_articles = fetch_gdelt_events(query_terms, max_records=8)
-
-        # Complementar con NewsAPI si está disponible
-        news_articles = []
-        if NEWS_KEY:
-            news_articles = fetch_news(
-                " ".join(event_entry["keywords"][:3]), n=5
-            )
-            # Normalizar formato NewsAPI al formato GDELT
-            news_articles = [
-                {"title": a["title"], "source": a["source"],
-                 "tone": -1.0,  # NewsAPI no tiene tono — asumir neutro-negativo
-                 "url": "", "date": DATE_ES,
-                 "lang": "en", "keyword_hits": []}
-                for a in news_articles
-            ]
-
-        all_articles = gdelt_articles + news_articles
+        time.sleep(1)  # Pausa mínima entre queries
+        all_articles = fetch_geo_news(event_entry["keywords"], max_records=8)
 
         if not all_articles:
             continue
