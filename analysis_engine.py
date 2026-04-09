@@ -335,10 +335,11 @@ def fund_score(gdp_vals,fx_rates,eia,asset_type):
         if avg>5: score+=12
         elif avg>3: score+=6
         elif avg<1: score-=8
-    eur=fx_rates.get("EUR")
+    eur_raw=fx_rates.get("EUR")  # USD/EUR: cuántos EUR vale 1 USD
+    eur = round(1/eur_raw, 4) if eur_raw else None  # convertir a EUR/USD convencional
     if eur:
-        if eur>1.08: score+=8
-        elif eur<1.00: score-=8
+        if eur>1.08: score+=8   # EUR fuerte vs USD → favorable commodities
+        elif eur<1.00: score-=8  # EUR débil vs USD → desfavorable
     if asset_type=="energy" and eia and eia.get("vs_avg") is not None:
         if eia["vs_avg"]<-5: score+=12
         elif eia["vs_avg"]>5: score-=10
@@ -1645,7 +1646,7 @@ def run():
                f"CPI YoY:{fred_d.get('cpi_yoy','N/A')}% "
                f"Yield10Y-2Y:{fred_d.get('yield_curve_spread','N/A')}bps "
                f"DXY:{fred_d.get('dxy_index','N/A')} "
-               f"EUR/USD:{fx_rates.get('EUR','N/A')} "
+               f"EUR/USD:{round(1/fx_rates['EUR'],4) if fx_rates.get('EUR') else 'N/A'} "
                f"Inv.crudos:{eia.get('vs_avg','N/A') if eia else 'N/A'}%")
 
     trading_results=run_trading_module(fx_rates,eia,macro_ctx)
