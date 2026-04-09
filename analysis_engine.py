@@ -23,6 +23,8 @@ FRED_KEY         = os.environ.get("FRED_API_KEY", "")
 NEWS_KEY         = os.environ.get("NEWS_API_KEY", "")
 TELEGRAM_TOKEN   = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "")
+GIST_TOKEN    = os.environ.get("GIST_TOKEN", "")
+GIST_ID       = os.environ.get("GIST_ID", "")  # se rellena tras crear el gist por primera vez
 
 PORTFOLIO_EUR = float(os.environ.get("PORTFOLIO_VALUE_EUR", "6601.14"))
 UNITS_BTC     = float(os.environ.get("UNITS_BTC",   "0.019975"))
@@ -1614,6 +1616,121 @@ def run_geo_intelligence_module(macro_ctx, trading_results):
     }
 
 
+
+# ── AUDITORÍA PÚBLICA VÍA GIST PRIVADO ───────────────────────────────────────
+
+def publish_audit_gist(results):
+    """
+    Publica un resumen mínimo de auditoría en un Gist secreto de GitHub.
+    Solo expone métricas agregadas — sin datos personales, sin valores de cartera,
+    sin API keys ni tokens.
+    Crea el Gist la primera vez; actualiza en ejecuciones posteriores.
+    """
+    if not GIST_TOKEN:
+        print("  WARN Gist: GIST_TOKEN no disponible")
+        return None
+
+    fred = results.get("macro", {}).get("fred", {})
+    paper = results.get("paper_trading", {}).get("stats", {})
+    geo = results.get("geo_intelligence", {})
+    alerts = results.get("alerts", [])
+    high_alerts = [a for a in alerts if a.get("severity") == "high"]
+
+    # Solo métricas agregadas — sin datos personales
+    audit_data = {
+        "timestamp":         results.get("generated_at", ""),
+        "pipeline_ok":       True,
+        "fred": {
+            "fed_funds_rate":    fred.get("fed_funds_rate"),
+            "yield_curve":       fred.get("yield_curve_spread"),
+            "dxy_index":         fred.get("dxy_index"),
+            "cpi_yoy":           fred.get("cpi_yoy"),
+            "complete":          all([
+                fred.get("fed_funds_rate"),
+                fred.get("yield_curve_spread"),
+                fred.get("dxy_index"),
+                fred.get("cpi_yoy"),
+            ]),
+        },
+        "geo_intelligence": {
+            "executed":      True,
+            "events_found":  len(geo.get("events", [])),
+            "high_alerts":   geo.get("high_count", 0),
+        },
+        "paper_trading": {
+            "total":         paper.get("total_signals", 0),
+            "open":          paper.get("open", 0),
+            "closed":        paper.get("closed", 0),
+            "win_rate_pct":  paper.get("win_rate_pct"),
+        },
+        "alerts_high_count": len(high_alerts),
+        "alerts_high":       [a.get("message", "")[:80] for a in high_alerts[:5]],
+        "modules": {
+            "trading":    len(results.get("trading", [])),
+            "regions":    len(results.get("regions", [])),
+            "backtesting": len(results.get("backtesting", [])),
+        }
+    }
+
+    content = json.dumps(audit_data, ensure_ascii=False, indent=2)
+    headers = {
+        "Authorization": f"token {GIST_TOKEN}",
+        "Content-Type":  "application/json",
+        "User-Agent":    "GeoMacroIntel/8.0",
+    }
+
+    gist_id = GIST_ID
+
+    # Si ya existe el Gist, actualizarlo (PATCH)
+    if gist_id:
+        payload = {"files": {"geomacro_audit.json": {"content": content}}}
+        url = f"https://api.github.com/gists/{gist_id}"
+        req = urllib.request.Request(
+            url,
+            data=json.dumps(payload).encode(),
+            headers=headers,
+            method="PATCH"
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=14) as r:
+                resp = json.loads(r.read().decode())
+            print(f"  OK Gist actualizado: {resp.get('html_url','')}")
+            return resp.get("id")
+        except Exception as e:
+            print(f"  WARN Gist PATCH: {e}")
+            return None
+
+    # Primera vez: crear el Gist
+    payload = {
+        "description": "GeoMacro Intel — Auditoría del sistema (datos agregados)",
+        "public": False,
+        "files": {"geomacro_audit.json": {"content": content}}
+    }
+    req = urllib.request.Request(
+        "https://api.github.com/gists",
+        data=json.dumps(payload).encode(),
+        headers=headers,
+        method="POST"
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=14) as r:
+            resp = json.loads(r.read().decode())
+        gist_id = resp.get("id", "")
+        url = resp.get("html_url", "")
+        print(f"  OK Gist creado: {url}")
+        print(f"  IMPORTANTE: añade GIST_ID={gist_id} como secret en GitHub Actions")
+        # Intentar guardar el ID en un archivo local para el siguiente commit
+        try:
+            id_file = os.path.join(os.path.dirname(__file__), ".gist_id")
+            with open(id_file, "w") as f:
+                f.write(gist_id)
+        except Exception:
+            pass
+        return gist_id
+    except Exception as e:
+        print(f"  WARN Gist POST: {e}")
+        return None
+
 # ── PIPELINE PRINCIPAL ────────────────────────────────
 
 def run():
@@ -1735,6 +1852,9 @@ def run():
     with open(out,"w",encoding="utf-8") as f:
         json.dump(results,f,ensure_ascii=False,indent=2)
     print(f"Guardado: {out}")
+
+    print("\n-> Publicando auditoría en Gist...")
+    publish_audit_gist(results)
 
     print("\n-> Alertas Telegram...")
     build_telegram_summary(results)
