@@ -1,5 +1,5 @@
 {
-  "generated_at": "15/04/2026 20:31 UTC",
+  "generated_at": "16/04/2026 06:23 UTC",
   "quarter": "Q2 2026",
   "version": "8.0",
   "is_quarterly": false,
@@ -13,33 +13,33 @@
         "unit": "USD/oz"
       },
       "quant": {
-        "price": 4817.0,
-        "momentum_1m": -3.68,
-        "momentum_3m": 4.12,
-        "rsi": 63.43,
-        "macd_histogram": 35.5548,
-        "sma20": 4644.595,
-        "sma50": 4897.288,
-        "sma200": 4172.7285,
-        "bollinger_low": 4339.4381,
-        "bollinger_high": 4949.7519,
-        "atr": 71.0572,
-        "volatility": 34.44,
-        "sharpe": 1.308,
+        "price": 4846.2998,
+        "momentum_1m": -0.89,
+        "momentum_3m": 4.98,
+        "rsi": 76.63,
+        "macd_histogram": 36.0363,
+        "sma20": 4641.565,
+        "sma50": 4895.8,
+        "sma200": 4180.1915,
+        "bollinger_low": 4345.2446,
+        "bollinger_high": 4937.8854,
+        "atr": 63.1286,
+        "volatility": 34.45,
+        "sharpe": 1.219,
         "max_drawdown_6m": 17.73,
-        "var_95_daily": 2.526,
-        "technical_score": 54,
+        "var_95_daily": 2.525,
+        "technical_score": 36,
         "fundamental_score": 70,
-        "composite_score": 64,
+        "composite_score": 56,
         "levels": {
-          "entry": 4817.0,
-          "stop": 4674.8856,
-          "target": 5101.2288,
+          "entry": 4846.2998,
+          "stop": 4720.0426,
+          "target": 5098.8142,
           "rr": 2.0,
-          "stop_pct": 2.95,
-          "target_pct": 5.9
+          "stop_pct": 2.61,
+          "target_pct": 5.21
         },
-        "kelly": 0.23
+        "kelly": 0.1698
       },
       "analysis": {
         "thesis": "",
@@ -70,7 +70,7 @@
             },
             {
               "check": "scores_consistentes",
-              "ok": true
+              "ok": false
             },
             {
               "check": "precio_valido",
@@ -81,15 +81,17 @@
               "ok": true
             }
           ],
-          "warnings": [],
-          "score": 100
+          "warnings": [
+            "Oro: divergencia tech/fund (36 vs 70)"
+          ],
+          "score": 88
         }
       },
       "log": {
         "module": "trading",
         "asset": "Oro",
         "ticker": "GC=F",
-        "timestamp": "15/04/2026 20:31 UTC",
+        "timestamp": "16/04/2026 06:23 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -115,7 +117,7 @@
             },
             {
               "check": "scores_consistentes",
-              "ok": true
+              "ok": false
             },
             {
               "check": "precio_valido",
@@ -126,14 +128,16 @@
               "ok": true
             }
           ],
-          "warnings": [],
-          "score": 100
+          "warnings": [
+            "Oro: divergencia tech/fund (36 vs 70)"
+          ],
+          "score": 88
         },
         "claude_calls": 3,
         "scores": {
-          "tech": 54,
+          "tech": 36,
           "fund": 70,
-          "composite": 64
+          "composite": 56
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -148,33 +152,33 @@
         "unit": "USD/oz"
       },
       "quant": {
-        "price": 79.305,
-        "momentum_1m": -0.28,
-        "momentum_3m": -12.73,
-        "rsi": 63.26,
-        "macd_histogram": 1.171,
-        "sma20": 73.2773,
-        "sma50": 78.8751,
-        "sma200": 59.4419,
-        "bollinger_low": 66.2017,
-        "bollinger_high": 80.353,
-        "atr": 1.87,
+        "price": 80.65,
+        "momentum_1m": 4.42,
+        "momentum_3m": -12.22,
+        "rsi": 78.63,
+        "macd_histogram": 1.2791,
+        "sma20": 73.4572,
+        "sma50": 78.831,
+        "sma200": 59.6657,
+        "bollinger_low": 65.8055,
+        "bollinger_high": 81.109,
+        "atr": 1.6188,
         "volatility": 87.53,
-        "sharpe": 1.35,
+        "sharpe": 1.343,
         "max_drawdown_6m": 41.2,
-        "var_95_daily": 5.521,
-        "technical_score": 41,
+        "var_95_daily": 5.527,
+        "technical_score": 31,
         "fundamental_score": 70,
-        "composite_score": 58,
+        "composite_score": 54,
         "levels": {
-          "entry": 79.305,
-          "stop": 75.565,
-          "target": 86.785,
+          "entry": 80.65,
+          "stop": 77.4124,
+          "target": 87.1252,
           "rr": 2.0,
-          "stop_pct": 4.72,
-          "target_pct": 9.43
+          "stop_pct": 4.01,
+          "target_pct": 8.03
         },
-        "kelly": 0.1849
+        "kelly": 0.1551
       },
       "analysis": {
         "thesis": "",
@@ -205,7 +209,7 @@
             },
             {
               "check": "scores_consistentes",
-              "ok": true
+              "ok": false
             },
             {
               "check": "precio_valido",
@@ -216,15 +220,17 @@
               "ok": true
             }
           ],
-          "warnings": [],
-          "score": 100
+          "warnings": [
+            "Plata: divergencia tech/fund (31 vs 70)"
+          ],
+          "score": 88
         }
       },
       "log": {
         "module": "trading",
         "asset": "Plata",
         "ticker": "SI=F",
-        "timestamp": "15/04/2026 20:31 UTC",
+        "timestamp": "16/04/2026 06:23 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -250,7 +256,7 @@
             },
             {
               "check": "scores_consistentes",
-              "ok": true
+              "ok": false
             },
             {
               "check": "precio_valido",
@@ -261,14 +267,16 @@
               "ok": true
             }
           ],
-          "warnings": [],
-          "score": 100
+          "warnings": [
+            "Plata: divergencia tech/fund (31 vs 70)"
+          ],
+          "score": 88
         },
         "claude_calls": 3,
         "scores": {
-          "tech": 41,
+          "tech": 31,
           "fund": 70,
-          "composite": 58
+          "composite": 54
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -283,31 +291,31 @@
         "unit": "USD/bbl"
       },
       "quant": {
-        "price": 91.17,
-        "momentum_1m": -5.24,
-        "momentum_3m": 47.0,
-        "rsi": 50.69,
-        "macd_histogram": -2.3323,
-        "sma20": 98.368,
-        "sma50": 83.4628,
-        "sma200": 67.2485,
-        "bollinger_low": 84.0835,
-        "bollinger_high": 112.6525,
-        "atr": 4.4193,
-        "volatility": 57.52,
-        "sharpe": 0.769,
-        "max_drawdown_6m": 19.28,
+        "price": 91.47,
+        "momentum_1m": -5.04,
+        "momentum_3m": 54.54,
+        "rsi": 47.4,
+        "macd_histogram": -2.431,
+        "sma20": 98.1315,
+        "sma50": 84.0304,
+        "sma200": 67.3792,
+        "bollinger_low": 83.5512,
+        "bollinger_high": 112.7118,
+        "atr": 4.1279,
+        "volatility": 57.5,
+        "sharpe": 0.737,
+        "max_drawdown_6m": 19.19,
         "var_95_daily": 4.141,
         "technical_score": 60,
         "fundamental_score": 70,
         "composite_score": 66,
         "levels": {
-          "entry": 91.17,
-          "stop": 82.3314,
-          "target": 108.8472,
+          "entry": 91.47,
+          "stop": 83.2142,
+          "target": 107.9816,
           "rr": 2.0,
-          "stop_pct": 9.69,
-          "target_pct": 19.39
+          "stop_pct": 9.03,
+          "target_pct": 18.05
         },
         "kelly": 0.245
       },
@@ -359,7 +367,7 @@
         "module": "trading",
         "asset": "Crudo WTI",
         "ticker": "CL=F",
-        "timestamp": "15/04/2026 20:31 UTC",
+        "timestamp": "16/04/2026 06:23 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -418,31 +426,31 @@
         "unit": "USD/MMBtu"
       },
       "quant": {
-        "price": 2.61,
-        "momentum_1m": -13.95,
-        "momentum_3m": -16.35,
-        "rsi": 28.35,
-        "macd_histogram": -0.015,
-        "sma20": 2.8578,
-        "sma50": 3.0053,
-        "sma200": 3.4872,
-        "bollinger_low": 2.5098,
-        "bollinger_high": 3.2057,
-        "atr": 0.0564,
+        "price": 2.592,
+        "momentum_1m": -15.43,
+        "momentum_3m": -17.14,
+        "rsi": 23.26,
+        "macd_histogram": -0.0129,
+        "sma20": 2.8341,
+        "sma50": 2.9909,
+        "sma200": 3.4831,
+        "bollinger_low": 2.4812,
+        "bollinger_high": 3.187,
+        "atr": 0.0544,
         "volatility": 135.99,
-        "sharpe": -0.267,
-        "max_drawdown_6m": 65.16,
-        "var_95_daily": 9.578,
+        "sharpe": -0.25,
+        "max_drawdown_6m": 65.25,
+        "var_95_daily": 9.57,
         "technical_score": 43,
         "fundamental_score": 70,
         "composite_score": 59,
         "levels": {
-          "entry": 2.61,
-          "stop": 2.4972,
-          "target": 2.8356,
+          "entry": 2.592,
+          "stop": 2.4832,
+          "target": 2.8096,
           "rr": 2.0,
-          "stop_pct": 4.32,
-          "target_pct": 8.64
+          "stop_pct": 4.2,
+          "target_pct": 8.4
         },
         "kelly": 0.1925
       },
@@ -494,7 +502,7 @@
         "module": "trading",
         "asset": "Gas Natural",
         "ticker": "NG=F",
-        "timestamp": "15/04/2026 20:31 UTC",
+        "timestamp": "16/04/2026 06:23 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -553,31 +561,31 @@
         "unit": "USD/lb"
       },
       "quant": {
-        "price": 6.078,
-        "momentum_1m": 6.14,
-        "momentum_3m": 1.15,
-        "rsi": 79.3,
-        "macd_histogram": 0.0713,
-        "sma20": 5.6257,
-        "sma50": 5.7535,
-        "sma200": 5.2779,
-        "bollinger_low": 5.1858,
-        "bollinger_high": 6.0657,
-        "atr": 0.0669,
-        "volatility": 29.9,
-        "sharpe": 0.615,
+        "price": 6.119,
+        "momentum_1m": 10.17,
+        "momentum_3m": 2.87,
+        "rsi": 87.55,
+        "macd_histogram": 0.0723,
+        "sma20": 5.6537,
+        "sma50": 5.7545,
+        "sma200": 5.2832,
+        "bollinger_low": 5.1646,
+        "bollinger_high": 6.1428,
+        "atr": 0.064,
+        "volatility": 29.91,
+        "sharpe": 0.598,
         "max_drawdown_6m": 13.49,
-        "var_95_daily": 3.556,
+        "var_95_daily": 3.558,
         "technical_score": 36,
         "fundamental_score": 70,
         "composite_score": 56,
         "levels": {
-          "entry": 6.078,
-          "stop": 5.9442,
-          "target": 6.3456,
+          "entry": 6.119,
+          "stop": 5.991,
+          "target": 6.375,
           "rr": 2.0,
-          "stop_pct": 2.2,
-          "target_pct": 4.4
+          "stop_pct": 2.09,
+          "target_pct": 4.18
         },
         "kelly": 0.17
       },
@@ -631,7 +639,7 @@
         "module": "trading",
         "asset": "Cobre",
         "ticker": "HG=F",
-        "timestamp": "15/04/2026 20:31 UTC",
+        "timestamp": "16/04/2026 06:23 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -692,31 +700,31 @@
         "unit": "USD/t"
       },
       "quant": {
-        "price": 3576.25,
-        "momentum_1m": 8.65,
-        "momentum_3m": 15.86,
+        "price": 3611.75,
+        "momentum_1m": 10.04,
+        "momentum_3m": 17.67,
         "rsi": 84.54,
-        "macd_histogram": 22.0889,
-        "sma20": 3326.725,
-        "sma50": 3205.86,
-        "sma200": 2824.8488,
-        "bollinger_low": 2994.772,
-        "bollinger_high": 3658.678,
-        "atr": 45.625,
-        "volatility": 24.65,
-        "sharpe": 1.86,
+        "macd_histogram": 24.3189,
+        "sma20": 3345.075,
+        "sma50": 3218.545,
+        "sma200": 2830.5188,
+        "bollinger_low": 2984.9396,
+        "bollinger_high": 3705.2104,
+        "atr": 46.5536,
+        "volatility": 24.68,
+        "sharpe": 1.883,
         "max_drawdown_6m": 11.2,
-        "var_95_daily": 2.418,
+        "var_95_daily": 2.422,
         "technical_score": 57,
         "fundamental_score": 70,
         "composite_score": 65,
         "levels": {
-          "entry": 3576.25,
-          "stop": 3485.0,
-          "target": 3758.75,
+          "entry": 3611.75,
+          "stop": 3518.6428,
+          "target": 3797.9644,
           "rr": 2.0,
-          "stop_pct": 2.55,
-          "target_pct": 5.1
+          "stop_pct": 2.58,
+          "target_pct": 5.16
         },
         "kelly": 0.2375
       },
@@ -768,7 +776,7 @@
         "module": "trading",
         "asset": "Aluminio",
         "ticker": "ALI=F",
-        "timestamp": "15/04/2026 20:31 UTC",
+        "timestamp": "16/04/2026 06:23 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -841,7 +849,7 @@
         "volatility": 31.11,
         "sharpe": 2.415,
         "max_drawdown_6m": 13.11,
-        "var_95_daily": 3.496,
+        "var_95_daily": 3.498,
         "technical_score": 57,
         "fundamental_score": 80,
         "composite_score": 71,
@@ -903,7 +911,7 @@
         "module": "trading",
         "asset": "ETF Litio",
         "ticker": "LIT",
-        "timestamp": "15/04/2026 20:31 UTC",
+        "timestamp": "16/04/2026 06:23 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -976,7 +984,7 @@
         "volatility": 47.11,
         "sharpe": 2.16,
         "max_drawdown_6m": 27.82,
-        "var_95_daily": 4.158,
+        "var_95_daily": 4.163,
         "technical_score": 46,
         "fundamental_score": 70,
         "composite_score": 60,
@@ -1038,7 +1046,7 @@
         "module": "trading",
         "asset": "ETF Cobre",
         "ticker": "COPX",
-        "timestamp": "15/04/2026 20:31 UTC",
+        "timestamp": "16/04/2026 06:23 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1254,14 +1262,14 @@
         "units": 33.142387,
         "price_eur": 114.635,
         "value_eur": 3799.28,
-        "weight_pct": 52.11,
+        "weight_pct": 52.09,
         "target_pct": 0.7,
-        "drift_pct": -17.89,
+        "drift_pct": -17.91,
         "sharpe": 1.68,
         "max_drawdown": 15.39,
         "return_1y": 27.2,
         "volatility": 11.95,
-        "var_95": 1.722
+        "var_95": 1.719
       },
       {
         "id": "NVDA",
@@ -1269,32 +1277,32 @@
         "units": 13.167854,
         "price_eur": 168.8207,
         "value_eur": 2223.01,
-        "weight_pct": 30.49,
+        "weight_pct": 30.48,
         "target_pct": 0.1,
-        "drift_pct": 20.49,
+        "drift_pct": 20.48,
         "sharpe": 1.584,
         "max_drawdown": 22.49,
         "return_1y": 79.63,
         "volatility": 35.61,
-        "var_95": 4.464
+        "var_95": 4.408
       },
       {
         "id": "BTC",
         "name": "Bitcoin",
         "units": 0.019975,
-        "price_eur": 63484.5586,
-        "value_eur": 1268.1,
-        "weight_pct": 17.39,
+        "price_eur": 63617.9492,
+        "value_eur": 1270.77,
+        "weight_pct": 17.42,
         "target_pct": 0.05,
-        "drift_pct": 12.39,
-        "sharpe": -1.295,
+        "drift_pct": 12.42,
+        "sharpe": -1.289,
         "max_drawdown": 50.02,
-        "return_1y": -36.91,
-        "volatility": 43.93,
-        "var_95": 3.79
+        "return_1y": -36.78,
+        "volatility": 43.94,
+        "var_95": 3.791
       }
     ],
-    "total_eur": 7290.39,
+    "total_eur": 7293.05,
     "performance": {
       "MSCI": {
         "sharpe": 1.68,
@@ -1302,7 +1310,7 @@
         "max_drawdown": 15.39,
         "volatility": 11.95,
         "return_1y": 27.2,
-        "var_95": 1.722
+        "var_95": 1.719
       },
       "NVDA": {
         "sharpe": 1.584,
@@ -1310,25 +1318,25 @@
         "max_drawdown": 22.49,
         "volatility": 35.61,
         "return_1y": 79.63,
-        "var_95": 4.464
+        "var_95": 4.408
       },
       "BTC": {
-        "sharpe": -1.295,
-        "calmar": -0.738,
+        "sharpe": -1.289,
+        "calmar": -0.735,
         "max_drawdown": 50.02,
-        "volatility": 43.93,
-        "return_1y": -36.91,
-        "var_95": 3.79
+        "volatility": 43.94,
+        "return_1y": -36.78,
+        "var_95": 3.791
       },
       "correlations": {
-        "msci_nvda": 0.032,
-        "msci_btc": 0.032,
-        "nvda_btc": 0.034
+        "msci_nvda": 0.024,
+        "msci_btc": 0.029,
+        "nvda_btc": 0.038
       },
       "portfolio": {
-        "sharpe_ann": 0.861,
-        "vol_ann": 12.28,
-        "return_ann": 14.22
+        "sharpe_ann": 0.768,
+        "vol_ann": 12.24,
+        "return_ann": 13.05
       }
     },
     "alerts": [
@@ -1359,7 +1367,7 @@
       {
         "type": "NEGATIVE_SHARPE",
         "asset": "Bitcoin",
-        "message": "Bitcoin: Sharpe negativo (-1.295)",
+        "message": "Bitcoin: Sharpe negativo (-1.289)",
         "severity": "important"
       }
     ],
@@ -1370,14 +1378,14 @@
       "next_review": "Primer lunes de trimestre"
     },
     "is_quarterly": false,
-    "timestamp": "15/04/2026 20:31 UTC"
+    "timestamp": "16/04/2026 06:23 UTC"
   },
   "geo_intelligence": {
     "events": [],
     "high_count": 0,
     "medium_count": 0,
     "circuit_breaker": false,
-    "timestamp": "15/04/2026 20:31 UTC"
+    "timestamp": "16/04/2026 06:23 UTC"
   },
   "backtesting": [],
   "macro": {
@@ -1392,11 +1400,13 @@
       "PLN": 3.6004
     },
     "fred": {
-      "yield_curve_spread": 0.5,
+      "fed_funds_rate": 3.64,
+      "yield_curve_spread": 0.53,
+      "dxy_index": 90.822,
       "cpi_yoy": 3.32
     },
     "eia_crude": null,
-    "timestamp": "15/04/2026 20:31 UTC"
+    "timestamp": "16/04/2026 06:23 UTC"
   },
   "ranking": [
     {
@@ -1445,9 +1455,9 @@
       "prob": null,
       "prob_interval": null,
       "kelly": 0.245,
-      "vol": 57.52,
-      "sharpe": 0.769,
-      "price": 91.17,
+      "vol": 57.5,
+      "sharpe": 0.737,
+      "price": 91.47,
       "summary": "",
       "conviction": "",
       "audit_passed": true
@@ -1462,9 +1472,9 @@
       "prob": null,
       "prob_interval": null,
       "kelly": 0.2375,
-      "vol": 24.65,
-      "sharpe": 1.86,
-      "price": 3576.25,
+      "vol": 24.68,
+      "sharpe": 1.883,
+      "price": 3611.75,
       "summary": "",
       "conviction": "",
       "audit_passed": true
@@ -1509,23 +1519,6 @@
     },
     {
       "rank": 7,
-      "name": "Oro",
-      "type": "precious",
-      "category": "commodity",
-      "score": 64,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
-      "kelly": 0.23,
-      "vol": 34.44,
-      "sharpe": 1.308,
-      "price": 4817.0,
-      "summary": "",
-      "conviction": "",
-      "audit_passed": true
-    },
-    {
-      "rank": 8,
       "name": "Polonia",
       "type": "CEE Europa",
       "category": "region",
@@ -1544,7 +1537,7 @@
       "audit_passed": true
     },
     {
-      "rank": 9,
+      "rank": 8,
       "name": "Brasil",
       "type": "LATAM",
       "category": "region",
@@ -1563,7 +1556,7 @@
       "audit_passed": true
     },
     {
-      "rank": 10,
+      "rank": 9,
       "name": "ETF Cobre",
       "type": "industrial",
       "category": "commodity",
@@ -1580,7 +1573,7 @@
       "audit_passed": true
     },
     {
-      "rank": 11,
+      "rank": 10,
       "name": "Gas Natural",
       "type": "energy",
       "category": "commodity",
@@ -1590,31 +1583,14 @@
       "prob_interval": null,
       "kelly": 0.1925,
       "vol": 135.99,
-      "sharpe": -0.267,
-      "price": 2.61,
+      "sharpe": -0.25,
+      "price": 2.592,
       "summary": "",
       "conviction": "",
       "audit_passed": true
     },
     {
-      "rank": 12,
-      "name": "Plata",
-      "type": "precious",
-      "category": "commodity",
-      "score": 58,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
-      "kelly": 0.1849,
-      "vol": 87.53,
-      "sharpe": 1.35,
-      "price": 79.305,
-      "summary": "",
-      "conviction": "",
-      "audit_passed": true
-    },
-    {
-      "rank": 13,
+      "rank": 11,
       "name": "China",
       "type": "East Asia",
       "category": "region",
@@ -1633,7 +1609,24 @@
       "audit_passed": true
     },
     {
-      "rank": 14,
+      "rank": 12,
+      "name": "Oro",
+      "type": "precious",
+      "category": "commodity",
+      "score": 56,
+      "signal": "—",
+      "prob": null,
+      "prob_interval": null,
+      "kelly": 0.1698,
+      "vol": 34.45,
+      "sharpe": 1.219,
+      "price": 4846.2998,
+      "summary": "",
+      "conviction": "",
+      "audit_passed": true
+    },
+    {
+      "rank": 13,
       "name": "Cobre",
       "type": "industrial",
       "category": "commodity",
@@ -1642,15 +1635,15 @@
       "prob": null,
       "prob_interval": null,
       "kelly": 0.17,
-      "vol": 29.9,
-      "sharpe": 0.615,
-      "price": 6.078,
+      "vol": 29.91,
+      "sharpe": 0.598,
+      "price": 6.119,
       "summary": "",
       "conviction": "",
       "audit_passed": true
     },
     {
-      "rank": 15,
+      "rank": 14,
       "name": "Arabia S.",
       "type": "MENA",
       "category": "region",
@@ -1666,6 +1659,23 @@
       "conviction": "",
       "gdp": 2.0,
       "sector": "energia diversif",
+      "audit_passed": true
+    },
+    {
+      "rank": 15,
+      "name": "Plata",
+      "type": "precious",
+      "category": "commodity",
+      "score": 54,
+      "signal": "—",
+      "prob": null,
+      "prob_interval": null,
+      "kelly": 0.1551,
+      "vol": 87.53,
+      "sharpe": 1.343,
+      "price": 80.65,
+      "summary": "",
+      "conviction": "",
       "audit_passed": true
     },
     {
@@ -1720,16 +1730,16 @@
       "type": "RSI_OVERSOLD",
       "module": "trading",
       "asset": "Gas Natural",
-      "value": 28.35,
-      "message": "Gas Natural: RSI=28.35 sobreventa extrema",
+      "value": 23.26,
+      "message": "Gas Natural: RSI=23.26 sobreventa extrema",
       "severity": "high"
     },
     {
       "type": "HIGH_DRAWDOWN",
       "module": "trading",
       "asset": "Gas Natural",
-      "value": 65.16,
-      "message": "Gas Natural: drawdown 6M=65.16%",
+      "value": 65.25,
+      "message": "Gas Natural: drawdown 6M=65.25%",
       "severity": "medium"
     },
     {
@@ -1767,7 +1777,7 @@
     {
       "type": "NEGATIVE_SHARPE",
       "asset": "Bitcoin",
-      "message": "Bitcoin: Sharpe negativo (-1.295)",
+      "message": "Bitcoin: Sharpe negativo (-1.289)",
       "severity": "important"
     }
   ],
@@ -1776,7 +1786,7 @@
       "module": "trading",
       "asset": "Oro",
       "ticker": "GC=F",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1802,7 +1812,7 @@
           },
           {
             "check": "scores_consistentes",
-            "ok": true
+            "ok": false
           },
           {
             "check": "precio_valido",
@@ -1813,14 +1823,16 @@
             "ok": true
           }
         ],
-        "warnings": [],
-        "score": 100
+        "warnings": [
+          "Oro: divergencia tech/fund (36 vs 70)"
+        ],
+        "score": 88
       },
       "claude_calls": 3,
       "scores": {
-        "tech": 54,
+        "tech": 36,
         "fund": 70,
-        "composite": 64
+        "composite": 56
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -1830,7 +1842,7 @@
       "module": "trading",
       "asset": "Plata",
       "ticker": "SI=F",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1856,7 +1868,7 @@
           },
           {
             "check": "scores_consistentes",
-            "ok": true
+            "ok": false
           },
           {
             "check": "precio_valido",
@@ -1867,14 +1879,16 @@
             "ok": true
           }
         ],
-        "warnings": [],
-        "score": 100
+        "warnings": [
+          "Plata: divergencia tech/fund (31 vs 70)"
+        ],
+        "score": 88
       },
       "claude_calls": 3,
       "scores": {
-        "tech": 41,
+        "tech": 31,
         "fund": 70,
-        "composite": 58
+        "composite": 54
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -1884,7 +1898,7 @@
       "module": "trading",
       "asset": "Crudo WTI",
       "ticker": "CL=F",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1938,7 +1952,7 @@
       "module": "trading",
       "asset": "Gas Natural",
       "ticker": "NG=F",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1992,7 +2006,7 @@
       "module": "trading",
       "asset": "Cobre",
       "ticker": "HG=F",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2048,7 +2062,7 @@
       "module": "trading",
       "asset": "Aluminio",
       "ticker": "ALI=F",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2102,7 +2116,7 @@
       "module": "trading",
       "asset": "ETF Litio",
       "ticker": "LIT",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2156,7 +2170,7 @@
       "module": "trading",
       "asset": "ETF Cobre",
       "ticker": "COPX",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2209,7 +2223,7 @@
     {
       "module": "geo",
       "asset": "Vietnam",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "scores": {
         "composite": 70
       },
@@ -2220,7 +2234,7 @@
     {
       "module": "geo",
       "asset": "India",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "scores": {
         "composite": 65
       },
@@ -2231,7 +2245,7 @@
     {
       "module": "geo",
       "asset": "Polonia",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "scores": {
         "composite": 63
       },
@@ -2242,7 +2256,7 @@
     {
       "module": "geo",
       "asset": "Brasil",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "scores": {
         "composite": 63
       },
@@ -2253,7 +2267,7 @@
     {
       "module": "geo",
       "asset": "Arabia S.",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "scores": {
         "composite": 55
       },
@@ -2264,7 +2278,7 @@
     {
       "module": "geo",
       "asset": "Argentina",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "scores": {
         "composite": 45
       },
@@ -2275,7 +2289,7 @@
     {
       "module": "geo",
       "asset": "Indonesia",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "scores": {
         "composite": 65
       },
@@ -2286,7 +2300,7 @@
     {
       "module": "geo",
       "asset": "México",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "scores": {
         "composite": 50
       },
@@ -2297,7 +2311,7 @@
     {
       "module": "geo",
       "asset": "China",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "scores": {
         "composite": 58
       },
@@ -2308,7 +2322,7 @@
     {
       "module": "core",
       "asset": "Cartera Core",
-      "timestamp": "15/04/2026 20:31 UTC",
+      "timestamp": "16/04/2026 06:23 UTC",
       "scores": {
         "composite": null
       },
@@ -2492,8 +2506,8 @@
         "conviction": "media",
         "score": 66,
         "kelly": 0.245,
-        "current_price": 4817.0,
-        "current_pnl_pct": 0.65,
+        "current_price": 4846.2998,
+        "current_pnl_pct": 1.26,
         "status": "open",
         "exit_price": null,
         "exit_date": null,
@@ -2518,8 +2532,8 @@
         "conviction": "media",
         "score": 64,
         "kelly": 0.23,
-        "current_price": 79.305,
-        "current_pnl_pct": 4.45,
+        "current_price": 80.65,
+        "current_pnl_pct": 6.22,
         "status": "open",
         "exit_price": null,
         "exit_date": null,
@@ -2570,8 +2584,8 @@
         "conviction": "media",
         "score": 64,
         "kelly": 0.23,
-        "current_price": 79.305,
-        "current_pnl_pct": 3.91,
+        "current_price": 80.65,
+        "current_pnl_pct": 5.67,
         "status": "open",
         "exit_price": null,
         "exit_date": null,
@@ -2596,8 +2610,8 @@
         "conviction": "media",
         "score": 66,
         "kelly": 0.245,
-        "current_price": 4817.0,
-        "current_pnl_pct": 1.16,
+        "current_price": 4846.2998,
+        "current_pnl_pct": 1.77,
         "status": "open",
         "exit_price": null,
         "exit_date": null,
@@ -2622,8 +2636,8 @@
         "conviction": "media",
         "score": 66,
         "kelly": 0.2451,
-        "current_price": 4817.0,
-        "current_pnl_pct": 0.62,
+        "current_price": 4846.2998,
+        "current_pnl_pct": 1.23,
         "status": "open",
         "exit_price": null,
         "exit_date": null,
@@ -2643,7 +2657,7 @@
       "avg_loss_pct": 3.35,
       "expectancy_pct": 4.3,
       "new_this_run": 0,
-      "last_updated": "15/04/2026 20:31 UTC"
+      "last_updated": "16/04/2026 06:23 UTC"
     }
   }
 }
