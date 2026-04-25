@@ -1,5 +1,5 @@
 {
-  "generated_at": "25/04/2026 14:29 UTC",
+  "generated_at": "25/04/2026 19:56 UTC",
   "quarter": "Q2 2026",
   "version": "8.0",
   "is_quarterly": false,
@@ -89,7 +89,7 @@
         "module": "trading",
         "asset": "Oro",
         "ticker": "GC=F",
-        "timestamp": "25/04/2026 14:29 UTC",
+        "timestamp": "25/04/2026 19:56 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -224,7 +224,7 @@
         "module": "trading",
         "asset": "Plata",
         "ticker": "SI=F",
-        "timestamp": "25/04/2026 14:29 UTC",
+        "timestamp": "25/04/2026 19:56 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -359,7 +359,7 @@
         "module": "trading",
         "asset": "Crudo WTI",
         "ticker": "CL=F",
-        "timestamp": "25/04/2026 14:29 UTC",
+        "timestamp": "25/04/2026 19:56 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -494,7 +494,7 @@
         "module": "trading",
         "asset": "Gas Natural",
         "ticker": "NG=F",
-        "timestamp": "25/04/2026 14:29 UTC",
+        "timestamp": "25/04/2026 19:56 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -629,7 +629,7 @@
         "module": "trading",
         "asset": "Cobre",
         "ticker": "HG=F",
-        "timestamp": "25/04/2026 14:29 UTC",
+        "timestamp": "25/04/2026 19:56 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -764,7 +764,7 @@
         "module": "trading",
         "asset": "Aluminio",
         "ticker": "ALI=F",
-        "timestamp": "25/04/2026 14:29 UTC",
+        "timestamp": "25/04/2026 19:56 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -899,7 +899,7 @@
         "module": "trading",
         "asset": "ETF Litio",
         "ticker": "LIT",
-        "timestamp": "25/04/2026 14:29 UTC",
+        "timestamp": "25/04/2026 19:56 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1034,7 +1034,7 @@
         "module": "trading",
         "asset": "ETF Cobre",
         "ticker": "COPX",
-        "timestamp": "25/04/2026 14:29 UTC",
+        "timestamp": "25/04/2026 19:56 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1250,9 +1250,9 @@
         "units": 33.142387,
         "price_eur": 116.73,
         "value_eur": 3868.71,
-        "weight_pct": 51.33,
+        "weight_pct": 51.38,
         "target_pct": 0.7,
-        "drift_pct": -18.67,
+        "drift_pct": -18.62,
         "sharpe": 1.624,
         "max_drawdown": 15.39,
         "return_1y": 25.53,
@@ -1265,9 +1265,9 @@
         "units": 13.167854,
         "price_eur": 177.8272,
         "value_eur": 2341.6,
-        "weight_pct": 31.07,
+        "weight_pct": 31.1,
         "target_pct": 0.1,
-        "drift_pct": 21.07,
+        "drift_pct": 21.1,
         "sharpe": 1.905,
         "max_drawdown": 22.32,
         "return_1y": 95.69,
@@ -1278,19 +1278,19 @@
         "id": "BTC",
         "name": "Bitcoin",
         "units": 0.019975,
-        "price_eur": 66380.0078,
-        "value_eur": 1325.94,
-        "weight_pct": 17.59,
+        "price_eur": 66012.0391,
+        "value_eur": 1318.59,
+        "weight_pct": 17.51,
         "target_pct": 0.05,
-        "drift_pct": 12.59,
-        "sharpe": -1.168,
+        "drift_pct": 12.51,
+        "sharpe": -1.183,
         "max_drawdown": 50.02,
-        "return_1y": -33.84,
+        "return_1y": -34.21,
         "volatility": 43.93,
-        "var_95": 3.771
+        "var_95": 3.769
       }
     ],
-    "total_eur": 7536.25,
+    "total_eur": 7528.9,
     "performance": {
       "MSCI": {
         "sharpe": 1.624,
@@ -1309,29 +1309,29 @@
         "var_95": 4.393
       },
       "BTC": {
-        "sharpe": -1.168,
-        "calmar": -0.677,
+        "sharpe": -1.183,
+        "calmar": -0.684,
         "max_drawdown": 50.02,
         "volatility": 43.93,
-        "return_1y": -33.84,
-        "var_95": 3.771
+        "return_1y": -34.21,
+        "var_95": 3.769
       },
       "correlations": {
         "msci_nvda": 0.031,
         "msci_btc": 0.062,
-        "nvda_btc": 0.059
+        "nvda_btc": 0.058
       },
       "portfolio": {
-        "sharpe_ann": 0.743,
+        "sharpe_ann": 0.741,
         "vol_ann": 12.29,
-        "return_ann": 12.78
+        "return_ann": 12.75
       }
     },
     "alerts": [
       {
         "type": "DRIFT_ALERT",
         "asset": "MSCI World",
-        "message": "MSCI World: 51.3% vs target 70% (drift -18.7%)",
+        "message": "MSCI World: 51.4% vs target 70% (drift -18.6%)",
         "severity": "high"
       },
       {
@@ -1349,13 +1349,13 @@
       {
         "type": "DRIFT_ALERT",
         "asset": "Bitcoin",
-        "message": "Bitcoin: 17.6% vs target 5% (drift +12.6%)",
+        "message": "Bitcoin: 17.5% vs target 5% (drift +12.5%)",
         "severity": "medium"
       },
       {
         "type": "NEGATIVE_SHARPE",
         "asset": "Bitcoin",
-        "message": "Bitcoin: Sharpe negativo (-1.168)",
+        "message": "Bitcoin: Sharpe negativo (-1.183)",
         "severity": "important"
       }
     ],
@@ -1366,14 +1366,14 @@
       "next_review": "Primer lunes de trimestre"
     },
     "is_quarterly": false,
-    "timestamp": "25/04/2026 14:29 UTC"
+    "timestamp": "25/04/2026 19:56 UTC"
   },
   "geo_intelligence": {
     "events": [],
     "high_count": 0,
     "medium_count": 0,
     "circuit_breaker": false,
-    "timestamp": "25/04/2026 14:29 UTC"
+    "timestamp": "25/04/2026 19:56 UTC"
   },
   "backtesting": [],
   "macro": {
@@ -1394,7 +1394,7 @@
       "cpi_yoy": 3.32
     },
     "eia_crude": null,
-    "timestamp": "25/04/2026 14:29 UTC"
+    "timestamp": "25/04/2026 19:56 UTC"
   },
   "ranking": [
     {
@@ -1749,7 +1749,7 @@
     {
       "type": "DRIFT_ALERT",
       "asset": "MSCI World",
-      "message": "MSCI World: 51.3% vs target 70% (drift -18.7%)",
+      "message": "MSCI World: 51.4% vs target 70% (drift -18.6%)",
       "severity": "high"
     },
     {
@@ -1767,13 +1767,13 @@
     {
       "type": "DRIFT_ALERT",
       "asset": "Bitcoin",
-      "message": "Bitcoin: 17.6% vs target 5% (drift +12.6%)",
+      "message": "Bitcoin: 17.5% vs target 5% (drift +12.5%)",
       "severity": "medium"
     },
     {
       "type": "NEGATIVE_SHARPE",
       "asset": "Bitcoin",
-      "message": "Bitcoin: Sharpe negativo (-1.168)",
+      "message": "Bitcoin: Sharpe negativo (-1.183)",
       "severity": "important"
     }
   ],
@@ -1782,7 +1782,7 @@
       "module": "trading",
       "asset": "Oro",
       "ticker": "GC=F",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1836,7 +1836,7 @@
       "module": "trading",
       "asset": "Plata",
       "ticker": "SI=F",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1890,7 +1890,7 @@
       "module": "trading",
       "asset": "Crudo WTI",
       "ticker": "CL=F",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1944,7 +1944,7 @@
       "module": "trading",
       "asset": "Gas Natural",
       "ticker": "NG=F",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1998,7 +1998,7 @@
       "module": "trading",
       "asset": "Cobre",
       "ticker": "HG=F",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2052,7 +2052,7 @@
       "module": "trading",
       "asset": "Aluminio",
       "ticker": "ALI=F",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2106,7 +2106,7 @@
       "module": "trading",
       "asset": "ETF Litio",
       "ticker": "LIT",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2160,7 +2160,7 @@
       "module": "trading",
       "asset": "ETF Cobre",
       "ticker": "COPX",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2213,7 +2213,7 @@
     {
       "module": "geo",
       "asset": "Vietnam",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "scores": {
         "composite": 70
       },
@@ -2224,7 +2224,7 @@
     {
       "module": "geo",
       "asset": "India",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "scores": {
         "composite": 65
       },
@@ -2235,7 +2235,7 @@
     {
       "module": "geo",
       "asset": "Polonia",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "scores": {
         "composite": 63
       },
@@ -2246,7 +2246,7 @@
     {
       "module": "geo",
       "asset": "Brasil",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "scores": {
         "composite": 63
       },
@@ -2257,7 +2257,7 @@
     {
       "module": "geo",
       "asset": "Arabia S.",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "scores": {
         "composite": 55
       },
@@ -2268,7 +2268,7 @@
     {
       "module": "geo",
       "asset": "Argentina",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "scores": {
         "composite": 45
       },
@@ -2279,7 +2279,7 @@
     {
       "module": "geo",
       "asset": "Indonesia",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "scores": {
         "composite": 65
       },
@@ -2290,7 +2290,7 @@
     {
       "module": "geo",
       "asset": "México",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "scores": {
         "composite": 50
       },
@@ -2301,7 +2301,7 @@
     {
       "module": "geo",
       "asset": "China",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "scores": {
         "composite": 58
       },
@@ -2312,7 +2312,7 @@
     {
       "module": "core",
       "asset": "Cartera Core",
-      "timestamp": "25/04/2026 14:29 UTC",
+      "timestamp": "25/04/2026 19:56 UTC",
       "scores": {
         "composite": null
       },
@@ -2647,7 +2647,7 @@
       "avg_loss_pct": 3.35,
       "expectancy_pct": 4.3,
       "new_this_run": 0,
-      "last_updated": "25/04/2026 14:29 UTC"
+      "last_updated": "25/04/2026 19:56 UTC"
     }
   }
 }
