@@ -198,8 +198,19 @@ def fetch_fx():
 
 def fetch_eia():
     if not FRED_KEY: return None
-    obs = fetch_fred("WCRSTUS1")
-    if not obs or len(obs)<2: return None
+    # WCRSTUS1 = Weekly Ending Stocks of Crude Oil (puede dar 400 si serie retirada)
+    # Alternativa: WTESTUS1 o datos EIA directos
+    obs = None
+    for sid in ["WCRSTUS1", "WTESTUS1", "WTOTUSA1"]:
+        obs = fetch_fred(sid)
+        if obs and len(obs) >= 2:
+            print(f"   EIA OK via serie {sid}: {obs[0][1]:.1f}")
+            break
+        else:
+            print(f"   EIA serie {sid}: sin datos, probando siguiente...")
+    if not obs or len(obs)<2: 
+        print("   EIA: todas las series fallaron, continuando sin datos EIA")
+        return None
     l,p = obs[0][1],obs[1][1]
     avg5y = statistics.mean([o[1] for o in obs[:260]]) if len(obs)>=260 else None
     return {"latest":l,"prev":p,
@@ -467,7 +478,9 @@ def claude(prompt, max_tokens=800):
             print(f"    [Claude] OK (SDK): {len(text)} chars")
             return text
         except Exception as e:
-            print(f"    [Claude] ERROR SDK: {e}")
+            import traceback
+            print(f"    [Claude] ERROR SDK tipo={type(e).__name__}: {e}")
+            print(f"    [Claude] ERROR SDK detalle: {traceback.format_exc()[:300]}")
             return None
     # Fallback: urllib manual
     payload = {
@@ -483,10 +496,11 @@ def claude(prompt, max_tokens=800):
     }
     r = post_json("https://api.anthropic.com/v1/messages", payload, headers)
     if not r:
-        print("    [Claude] ERROR: respuesta nula")
+        print("    [Claude] ERROR: respuesta nula del servidor")
         return None
     if r.get("error"):
-        print(f"    [Claude] ERROR API: {r['error']}")
+        err = r["error"]
+        print(f"    [Claude] ERROR API: type={err.get('type')} message={err.get('message')}")
         return None
     cnt = r.get("content", [])
     if not cnt:
@@ -865,6 +879,104 @@ def run_core_module(fx_rates,macro_ctx):
             "alerts":alerts,"review":review_data,"is_quarterly":IS_QUARTERLY,
             "timestamp":DATE_ES}
 
+
+# ── TRADING AUTODIDACTA — Bucle de feedback sobre resultados reales ──────────
+
+def get_asset_reputation(asset_id, paper_data):
+    """
+    Calcula el track record de un activo basado en paper_trades.json.
+    Returns: {wr, consecutive_losses, total_closed, silenced, silence_reason}
+    
+    Lógica Bayesiana: el umbral de señal se ajusta según el historial real.
+    - WR < 35%: umbral +15 (mucho más difícil señalizar)
+    - WR 35-45%: umbral +10
+    - WR 45-55%: umbral +5  
+    - WR > 65%: umbral -5 (ligera ventaja comprobada)
+    - 3 stops consecutivos: silencio 14 días
+    - 5+ stops consecutivos: silencio 30 días
+    """
+    import datetime
+    trades = [t for t in paper_data.get('trades', [])
+              if t.get('asset_id') == asset_id
+              and t.get('status') in ('stopped', 'target_hit')
+              and t.get('result') in ('win', 'loss')]
+
+    total_closed = len(trades)
+    if total_closed < 3:
+        return {'wr': None, 'consecutive_losses': 0,
+                'total_closed': total_closed, 'silenced': False,
+                'silence_reason': None, 'threshold_adj': 0}
+
+    # WR últimos 10 trades cerrados
+    recent = sorted(trades, key=lambda x: x.get('exit_date', ''))[-10:]
+    wins = sum(1 for t in recent if t['result'] == 'win')
+    wr = wins / len(recent)
+
+    # Stops consecutivos desde el más reciente
+    sorted_all = sorted(trades, key=lambda x: x.get('exit_date', ''))
+    consecutive_losses = 0
+    for t in reversed(sorted_all):
+        if t['result'] == 'loss':
+            consecutive_losses += 1
+        else:
+            break
+
+    # Período de silencio
+    silenced = False
+    silence_reason = None
+    if consecutive_losses >= 3:
+        last_trade = sorted_all[-1]
+        last_exit = last_trade.get('exit_date', '')
+        try:
+            dt = datetime.datetime.strptime(last_exit[:16], '%d/%m/%Y %H:%M')
+            days_since = (datetime.datetime.utcnow() - dt).days
+            silence_days = 30 if consecutive_losses >= 5 else 14
+            if days_since < silence_days:
+                silenced = True
+                silence_reason = (f"{consecutive_losses} stops consecutivos. "
+                                  f"Silencio {silence_days}d. "
+                                  f"{silence_days - days_since}d restantes.")
+        except Exception:
+            pass
+
+    # Ajuste de umbral basado en WR
+    if wr < 0.35:   threshold_adj = +15
+    elif wr < 0.45: threshold_adj = +10
+    elif wr < 0.55: threshold_adj = +5
+    elif wr > 0.65: threshold_adj = -5
+    else:           threshold_adj = 0
+
+    return {
+        'wr': round(wr, 3),
+        'consecutive_losses': consecutive_losses,
+        'total_closed': total_closed,
+        'recent_n': len(recent),
+        'silenced': silenced,
+        'silence_reason': silence_reason,
+        'threshold_adj': threshold_adj
+    }
+
+def get_effective_threshold(base_threshold, reputation):
+    """Umbral efectivo = base + ajuste por track record."""
+    if reputation['wr'] is None:
+        return base_threshold  # Sin historial, umbral base
+    adj = reputation['threshold_adj']
+    effective = base_threshold + adj
+    # Límites: no bajar de 55 ni subir de 85
+    return max(55, min(85, effective))
+
+def format_reputation_log(asset_name, reputation, base_threshold, effective_threshold):
+    """Log claro del estado autodidacta para el pipeline."""
+    if reputation['wr'] is None:
+        return f"     [{asset_name}] Sin historial — umbral base: {base_threshold}"
+    wr_pct = round(reputation['wr'] * 100, 1)
+    adj = reputation['threshold_adj']
+    sign = '+' if adj > 0 else ''
+    status = '🔴 SILENCIADO' if reputation['silenced'] else ('🟡' if wr_pct < 50 else '🟢')
+    return (f"     [{asset_name}] {status} WR={wr_pct}% ({reputation['recent_n']} trades) | "
+            f"Stops consec={reputation['consecutive_losses']} | "
+            f"Umbral: {base_threshold}{sign}{adj}={effective_threshold}")
+
 # ── MODULO 1: TRADING ─────────────────────────────────
 
 def run_trading_module(fx_rates,eia,macro_ctx):
@@ -910,15 +1022,50 @@ def run_trading_module(fx_rates,eia,macro_ctx):
         audit=auto_audit(asset["name"],closes,qdata)
         log["audit"]=audit
 
-        analysis={"thesis":"","premortem":"","calibration":{},"audit":audit}
-        if ANTHROPIC_KEY:
-            print(f"     -> Kahneman v8 (audit:{audit['score']}/100)...")
+        # ── AUTODIDACTA: leer track record antes de señalizar ──
+        paper_data_current = load_paper_trades()
+        reputation = get_asset_reputation(asset["id"], paper_data_current)
+        BASE_THRESHOLD = 65  # umbral base composite_score
+        effective_threshold = get_effective_threshold(BASE_THRESHOLD, reputation)
+        print(format_reputation_log(asset["name"], reputation, BASE_THRESHOLD, effective_threshold))
+
+        analysis={"thesis":"","premortem":"","calibration":{},"audit":audit,
+                  "reputation":reputation,"effective_threshold":effective_threshold}
+
+        if reputation["silenced"]:
+            print(f"     -> {asset['name']}: SILENCIADO — {reputation['silence_reason']}")
+            analysis["thesis"] = f"AUTODIDACTA: Activo silenciado. {reputation['silence_reason']}"
+            analysis["calibration"] = {
+                "signal": "ESPERAR", "prob": 50, "prob_interval": 0,
+                "summary": f"Silenciado: {reputation['consecutive_losses']} stops consecutivos",
+                "conviction": "nula", "silenced": True,
+                "wr_historial": reputation["wr"]}
+            log["signal"] = "ESPERAR"
+            log["autodidacta"] = reputation
+            log["status"] = "silenced"
+            results.append({"meta":asset,"quant":qdata,"analysis":analysis,"log":log})
+            time.sleep(1)
+            continue
+
+        # Solo llamar a Kahneman si el score supera el umbral efectivo
+        if ANTHROPIC_KEY and comp >= effective_threshold:
+            print(f"     -> Kahneman v8 (audit:{audit['score']}/100, score {comp}>={effective_threshold})...")
             analysis=kahneman_trading(asset,qdata,macro_ctx,audit)
+            analysis["reputation"] = reputation
+            analysis["effective_threshold"] = effective_threshold
             log["claude_calls"]=3 if audit["passed"] else 1
+        elif comp < effective_threshold:
+            print(f"     -> Score {comp} < umbral {effective_threshold} — sin análisis Kahneman")
+            analysis["calibration"] = {
+                "signal": "ESPERAR", "prob": 50, "prob_interval": 10,
+                "summary": f"Score {comp} por debajo del umbral ajustado {effective_threshold}",
+                "conviction": "baja"}
 
         log["scores"]={"tech":tech,"fund":fund,"composite":comp}
         log["signal"]=analysis["calibration"].get("signal","ESPERAR")
         log["audit_passed"]=audit["passed"]
+        log["autodidacta"]={"wr":reputation["wr"],"consecutive_losses":reputation["consecutive_losses"],
+                              "effective_threshold":effective_threshold,"silenced":False}
         log["status"]="complete"
         results.append({"meta":asset,"quant":qdata,"analysis":analysis,"log":log})
         time.sleep(1)
@@ -1365,6 +1512,8 @@ def fetch_geo_news(keywords, max_records=8):
                         }
                         for a in articles if a.get("title")
                     ]
+            elif d:
+                print(f"  WARN NewsAPI status={d.get('status')} code={d.get('code')} msg={d.get('message','')[:80]}")
         except Exception as e:
             print(f"  WARN NewsAPI geo ({query[:30]}): {e}")
 
@@ -1738,9 +1887,22 @@ def run():
     print(f"Modelo Claude: {CLAUDE_MODEL}")
     print(f"Core trimestral: {'SI' if IS_QUARTERLY else 'NO'} | Backtest: {'SI' if IS_WEEKLY else 'NO'}\n")
 
+    # ── Test de conectividad API al arranque ──
+    if ANTHROPIC_KEY:
+        print("-> Test API Anthropic...")
+        test_result = claude("Di solo: OK", max_tokens=10)
+        if test_result:
+            print(f"   API OK: respuesta='{test_result[:20]}'")
+        else:
+            print("   API FALLO: todas las llamadas Kahneman fallarán. Verificar ANTHROPIC_API_KEY y créditos.")
+    else:
+        print("-> WARN: ANTHROPIC_API_KEY no configurada — modo sin IA")
+
+    LIVE_MODE = os.environ.get("LIVE_MODE", "false").lower() == "true"
     results={
         "generated_at":DATE_ES,"quarter":QUARTER,"version":"8.0",
         "is_quarterly":IS_QUARTERLY,"is_weekly":IS_WEEKLY,
+        "live_mode":LIVE_MODE,
         "trading":[],"regions":[],"global_risks":[],"core":{},"geo_intelligence":{},
         "backtesting":[],"macro":{},"ranking":[],"alerts":[],"audit_log":[],
     }
