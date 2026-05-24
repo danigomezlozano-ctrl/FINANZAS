@@ -1,5 +1,5 @@
 {
-  "generated_at": "24/05/2026 08:21 UTC",
+  "generated_at": "24/05/2026 13:10 UTC",
   "quarter": "Q2 2026",
   "version": "8.0",
   "is_quarterly": false,
@@ -108,7 +108,7 @@
         "module": "trading",
         "asset": "Oro",
         "ticker": "GC=F",
-        "timestamp": "24/05/2026 08:21 UTC",
+        "timestamp": "24/05/2026 13:10 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -265,7 +265,7 @@
         "module": "trading",
         "asset": "Plata",
         "ticker": "SI=F",
-        "timestamp": "24/05/2026 08:21 UTC",
+        "timestamp": "24/05/2026 13:10 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -414,7 +414,7 @@
         "module": "trading",
         "asset": "Crudo WTI",
         "ticker": "CL=F",
-        "timestamp": "24/05/2026 08:21 UTC",
+        "timestamp": "24/05/2026 13:10 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -570,7 +570,7 @@
         "module": "trading",
         "asset": "Gas Natural",
         "ticker": "NG=F",
-        "timestamp": "24/05/2026 08:21 UTC",
+        "timestamp": "24/05/2026 13:10 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -726,7 +726,7 @@
         "module": "trading",
         "asset": "Cobre",
         "ticker": "HG=F",
-        "timestamp": "24/05/2026 08:21 UTC",
+        "timestamp": "24/05/2026 13:10 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -876,7 +876,7 @@
         "module": "trading",
         "asset": "Aluminio",
         "ticker": "ALI=F",
-        "timestamp": "24/05/2026 08:21 UTC",
+        "timestamp": "24/05/2026 13:10 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1026,7 +1026,7 @@
         "module": "trading",
         "asset": "ETF Litio",
         "ticker": "LIT",
-        "timestamp": "24/05/2026 08:21 UTC",
+        "timestamp": "24/05/2026 13:10 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1182,7 +1182,7 @@
         "module": "trading",
         "asset": "ETF Cobre",
         "ticker": "COPX",
-        "timestamp": "24/05/2026 08:21 UTC",
+        "timestamp": "24/05/2026 13:10 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1264,9 +1264,9 @@
       "sector": "servicios digitales",
       "currency": "INR",
       "fx_usd": 95.7,
-      "gdp_latest": 6.49,
-      "gdp_trend": "desacelerando",
-      "score": 65,
+      "gdp_latest": null,
+      "gdp_trend": "sin datos",
+      "score": 50,
       "news": [],
       "analysis": {
         "thesis": "",
@@ -1403,9 +1403,9 @@
         "units": 33.142387,
         "price_eur": 122.83,
         "value_eur": 4070.88,
-        "weight_pct": 51.94,
+        "weight_pct": 51.92,
         "target_pct": 0.7,
-        "drift_pct": -18.06,
+        "drift_pct": -18.08,
         "sharpe": 1.564,
         "max_drawdown": 6.45,
         "return_1y": 23.29,
@@ -1418,9 +1418,9 @@
         "units": 13.167854,
         "price_eur": 185.7092,
         "value_eur": 2445.39,
-        "weight_pct": 31.2,
+        "weight_pct": 31.19,
         "target_pct": 0.1,
-        "drift_pct": 21.2,
+        "drift_pct": 21.19,
         "sharpe": 1.325,
         "max_drawdown": 20.22,
         "return_1y": 62.11,
@@ -1431,19 +1431,19 @@
         "id": "BTC",
         "name": "Bitcoin",
         "units": 0.019975,
-        "price_eur": 66123.7812,
-        "value_eur": 1320.82,
-        "weight_pct": 16.85,
+        "price_eur": 66313.9219,
+        "value_eur": 1324.62,
+        "weight_pct": 16.89,
         "target_pct": 0.05,
-        "drift_pct": 11.85,
-        "sharpe": -1.123,
+        "drift_pct": 11.89,
+        "sharpe": -1.116,
         "max_drawdown": 50.02,
-        "return_1y": -32.63,
+        "return_1y": -32.43,
         "volatility": 43.83,
         "var_95": 3.583
       }
     ],
-    "total_eur": 7837.09,
+    "total_eur": 7840.89,
     "performance": {
       "MSCI": {
         "sharpe": 1.564,
@@ -1462,11 +1462,11 @@
         "var_95": 3.852
       },
       "BTC": {
-        "sharpe": -1.123,
-        "calmar": -0.652,
+        "sharpe": -1.116,
+        "calmar": -0.648,
         "max_drawdown": 50.02,
         "volatility": 43.83,
-        "return_1y": -32.63,
+        "return_1y": -32.43,
         "var_95": 3.583
       },
       "correlations": {
@@ -1475,9 +1475,9 @@
         "nvda_btc": -0.015
       },
       "portfolio": {
-        "sharpe_ann": 2.344,
+        "sharpe_ann": 2.345,
         "vol_ann": 8.96,
-        "return_ann": 24.64
+        "return_ann": 24.66
       }
     },
     "alerts": [
@@ -1502,13 +1502,13 @@
       {
         "type": "DRIFT_ALERT",
         "asset": "Bitcoin",
-        "message": "Bitcoin: 16.9% vs target 5% (drift +11.8%)",
+        "message": "Bitcoin: 16.9% vs target 5% (drift +11.9%)",
         "severity": "medium"
       },
       {
         "type": "NEGATIVE_SHARPE",
         "asset": "Bitcoin",
-        "message": "Bitcoin: Sharpe negativo (-1.123)",
+        "message": "Bitcoin: Sharpe negativo (-1.116)",
         "severity": "important"
       }
     ],
@@ -1519,14 +1519,14 @@
       "next_review": "Primer lunes de trimestre"
     },
     "is_quarterly": false,
-    "timestamp": "24/05/2026 08:21 UTC"
+    "timestamp": "24/05/2026 13:10 UTC"
   },
   "geo_intelligence": {
     "events": [],
     "high_count": 0,
     "medium_count": 0,
     "circuit_breaker": false,
-    "timestamp": "24/05/2026 08:21 UTC"
+    "timestamp": "24/05/2026 13:10 UTC"
   },
   "backtesting": [],
   "macro": {
@@ -1547,7 +1547,7 @@
       "cpi_yoy": 3.95
     },
     "eia_crude": null,
-    "timestamp": "24/05/2026 08:21 UTC"
+    "timestamp": "24/05/2026 13:10 UTC"
   },
   "ranking": [
     {
@@ -1622,25 +1622,6 @@
     },
     {
       "rank": 5,
-      "name": "India",
-      "type": "South Asia",
-      "category": "region",
-      "score": 65,
-      "signal": "—",
-      "prob": null,
-      "prob_interval": null,
-      "kelly": null,
-      "vol": null,
-      "sharpe": null,
-      "price": null,
-      "summary": "",
-      "conviction": "",
-      "gdp": 6.49,
-      "sector": "servicios digitales",
-      "audit_passed": true
-    },
-    {
-      "rank": 6,
       "name": "Indonesia",
       "type": "SE Asia",
       "category": "region",
@@ -1659,7 +1640,7 @@
       "audit_passed": true
     },
     {
-      "rank": 7,
+      "rank": 6,
       "name": "Gas Natural",
       "type": "energy",
       "category": "commodity",
@@ -1676,7 +1657,7 @@
       "audit_passed": true
     },
     {
-      "rank": 8,
+      "rank": 7,
       "name": "Cobre",
       "type": "industrial",
       "category": "commodity",
@@ -1693,7 +1674,7 @@
       "audit_passed": true
     },
     {
-      "rank": 9,
+      "rank": 8,
       "name": "Polonia",
       "type": "CEE Europa",
       "category": "region",
@@ -1712,7 +1693,7 @@
       "audit_passed": true
     },
     {
-      "rank": 10,
+      "rank": 9,
       "name": "Brasil",
       "type": "LATAM",
       "category": "region",
@@ -1731,7 +1712,7 @@
       "audit_passed": true
     },
     {
-      "rank": 11,
+      "rank": 10,
       "name": "Plata",
       "type": "precious",
       "category": "commodity",
@@ -1748,7 +1729,7 @@
       "audit_passed": true
     },
     {
-      "rank": 12,
+      "rank": 11,
       "name": "ETF Cobre",
       "type": "industrial",
       "category": "commodity",
@@ -1765,7 +1746,7 @@
       "audit_passed": true
     },
     {
-      "rank": 13,
+      "rank": 12,
       "name": "China",
       "type": "East Asia",
       "category": "region",
@@ -1784,7 +1765,7 @@
       "audit_passed": true
     },
     {
-      "rank": 14,
+      "rank": 13,
       "name": "Oro",
       "type": "precious",
       "category": "commodity",
@@ -1801,7 +1782,7 @@
       "audit_passed": true
     },
     {
-      "rank": 15,
+      "rank": 14,
       "name": "Arabia S.",
       "type": "MENA",
       "category": "region",
@@ -1817,6 +1798,25 @@
       "conviction": "",
       "gdp": 2.0,
       "sector": "energia diversif",
+      "audit_passed": true
+    },
+    {
+      "rank": 15,
+      "name": "India",
+      "type": "South Asia",
+      "category": "region",
+      "score": 50,
+      "signal": "—",
+      "prob": null,
+      "prob_interval": null,
+      "kelly": null,
+      "vol": null,
+      "sharpe": null,
+      "price": null,
+      "summary": "",
+      "conviction": "",
+      "gdp": null,
+      "sector": "servicios digitales",
       "audit_passed": true
     },
     {
@@ -1912,13 +1912,13 @@
     {
       "type": "DRIFT_ALERT",
       "asset": "Bitcoin",
-      "message": "Bitcoin: 16.9% vs target 5% (drift +11.8%)",
+      "message": "Bitcoin: 16.9% vs target 5% (drift +11.9%)",
       "severity": "medium"
     },
     {
       "type": "NEGATIVE_SHARPE",
       "asset": "Bitcoin",
-      "message": "Bitcoin: Sharpe negativo (-1.123)",
+      "message": "Bitcoin: Sharpe negativo (-1.116)",
       "severity": "important"
     }
   ],
@@ -1927,7 +1927,7 @@
       "module": "trading",
       "asset": "Oro",
       "ticker": "GC=F",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1988,7 +1988,7 @@
       "module": "trading",
       "asset": "Plata",
       "ticker": "SI=F",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2047,7 +2047,7 @@
       "module": "trading",
       "asset": "Crudo WTI",
       "ticker": "CL=F",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2107,7 +2107,7 @@
       "module": "trading",
       "asset": "Gas Natural",
       "ticker": "NG=F",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2166,7 +2166,7 @@
       "module": "trading",
       "asset": "Cobre",
       "ticker": "HG=F",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2225,7 +2225,7 @@
       "module": "trading",
       "asset": "Aluminio",
       "ticker": "ALI=F",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2285,7 +2285,7 @@
       "module": "trading",
       "asset": "ETF Litio",
       "ticker": "LIT",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2345,7 +2345,7 @@
       "module": "trading",
       "asset": "ETF Cobre",
       "ticker": "COPX",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2403,7 +2403,7 @@
     {
       "module": "geo",
       "asset": "Vietnam",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "scores": {
         "composite": 70
       },
@@ -2414,9 +2414,9 @@
     {
       "module": "geo",
       "asset": "India",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "scores": {
-        "composite": 65
+        "composite": 50
       },
       "signal": "—",
       "claude_calls": 3,
@@ -2425,7 +2425,7 @@
     {
       "module": "geo",
       "asset": "Polonia",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "scores": {
         "composite": 63
       },
@@ -2436,7 +2436,7 @@
     {
       "module": "geo",
       "asset": "Brasil",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "scores": {
         "composite": 63
       },
@@ -2447,7 +2447,7 @@
     {
       "module": "geo",
       "asset": "Arabia S.",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "scores": {
         "composite": 55
       },
@@ -2458,7 +2458,7 @@
     {
       "module": "geo",
       "asset": "Argentina",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "scores": {
         "composite": 45
       },
@@ -2469,7 +2469,7 @@
     {
       "module": "geo",
       "asset": "Indonesia",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "scores": {
         "composite": 65
       },
@@ -2480,7 +2480,7 @@
     {
       "module": "geo",
       "asset": "México",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "scores": {
         "composite": 50
       },
@@ -2491,7 +2491,7 @@
     {
       "module": "geo",
       "asset": "China",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "scores": {
         "composite": 58
       },
@@ -2502,7 +2502,7 @@
     {
       "module": "core",
       "asset": "Cartera Core",
-      "timestamp": "24/05/2026 08:21 UTC",
+      "timestamp": "24/05/2026 13:10 UTC",
       "scores": {
         "composite": null
       },
@@ -3123,7 +3123,7 @@
       "avg_loss_pct": -2.13,
       "expectancy_pct": 2.08,
       "new_this_run": 0,
-      "last_updated": "24/05/2026 08:21 UTC"
+      "last_updated": "24/05/2026 13:10 UTC"
     }
   }
 }
