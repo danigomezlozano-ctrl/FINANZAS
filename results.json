@@ -1,5 +1,5 @@
 {
-  "generated_at": "30/05/2026 08:21 UTC",
+  "generated_at": "30/05/2026 13:14 UTC",
   "quarter": "Q2 2026",
   "version": "8.0",
   "is_quarterly": false,
@@ -106,7 +106,7 @@
         "module": "trading",
         "asset": "Oro",
         "ticker": "GC=F",
-        "timestamp": "30/05/2026 08:21 UTC",
+        "timestamp": "30/05/2026 13:14 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -255,7 +255,7 @@
         "module": "trading",
         "asset": "Plata",
         "ticker": "SI=F",
-        "timestamp": "30/05/2026 08:21 UTC",
+        "timestamp": "30/05/2026 13:14 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -405,7 +405,7 @@
         "module": "trading",
         "asset": "Crudo WTI",
         "ticker": "CL=F",
-        "timestamp": "30/05/2026 08:21 UTC",
+        "timestamp": "30/05/2026 13:14 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -561,7 +561,7 @@
         "module": "trading",
         "asset": "Gas Natural",
         "ticker": "NG=F",
-        "timestamp": "30/05/2026 08:21 UTC",
+        "timestamp": "30/05/2026 13:14 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -717,7 +717,7 @@
         "module": "trading",
         "asset": "Cobre",
         "ticker": "HG=F",
-        "timestamp": "30/05/2026 08:21 UTC",
+        "timestamp": "30/05/2026 13:14 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -867,7 +867,7 @@
         "module": "trading",
         "asset": "Aluminio",
         "ticker": "ALI=F",
-        "timestamp": "30/05/2026 08:21 UTC",
+        "timestamp": "30/05/2026 13:14 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1017,7 +1017,7 @@
         "module": "trading",
         "asset": "ETF Litio",
         "ticker": "LIT",
-        "timestamp": "30/05/2026 08:21 UTC",
+        "timestamp": "30/05/2026 13:14 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1167,7 +1167,7 @@
         "module": "trading",
         "asset": "ETF Cobre",
         "ticker": "COPX",
-        "timestamp": "30/05/2026 08:21 UTC",
+        "timestamp": "30/05/2026 13:14 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1389,9 +1389,9 @@
         "units": 33.142387,
         "price_eur": 123.38,
         "value_eur": 4089.11,
-        "weight_pct": 52.86,
+        "weight_pct": 52.84,
         "target_pct": 0.7,
-        "drift_pct": -17.14,
+        "drift_pct": -17.16,
         "sharpe": 1.575,
         "max_drawdown": 6.45,
         "return_1y": 23.31,
@@ -1404,9 +1404,9 @@
         "units": 13.167854,
         "price_eur": 181.3291,
         "value_eur": 2387.72,
-        "weight_pct": 30.87,
+        "weight_pct": 30.86,
         "target_pct": 0.1,
-        "drift_pct": 20.87,
+        "drift_pct": 20.86,
         "sharpe": 1.136,
         "max_drawdown": 20.22,
         "return_1y": 51.69,
@@ -1417,19 +1417,19 @@
         "id": "BTC",
         "name": "Bitcoin",
         "units": 0.019975,
-        "price_eur": 62995.9609,
-        "value_eur": 1258.34,
-        "weight_pct": 16.27,
+        "price_eur": 63161.4102,
+        "value_eur": 1261.65,
+        "weight_pct": 16.3,
         "target_pct": 0.05,
-        "drift_pct": 11.27,
-        "sharpe": -1.25,
+        "drift_pct": 11.3,
+        "sharpe": -1.243,
         "max_drawdown": 50.02,
-        "return_1y": -35.88,
-        "volatility": 43.05,
-        "var_95": 3.486
+        "return_1y": -35.71,
+        "volatility": 43.06,
+        "var_95": 3.487
       }
     ],
-    "total_eur": 7735.17,
+    "total_eur": 7738.47,
     "performance": {
       "MSCI": {
         "sharpe": 1.575,
@@ -1448,12 +1448,12 @@
         "var_95": 3.744
       },
       "BTC": {
-        "sharpe": -1.25,
-        "calmar": -0.717,
+        "sharpe": -1.243,
+        "calmar": -0.714,
         "max_drawdown": 50.02,
-        "volatility": 43.05,
-        "return_1y": -35.88,
-        "var_95": 3.486
+        "volatility": 43.06,
+        "return_1y": -35.71,
+        "var_95": 3.487
       },
       "correlations": {
         "msci_nvda": 0.16,
@@ -1461,16 +1461,16 @@
         "nvda_btc": 0.124
       },
       "portfolio": {
-        "sharpe_ann": 1.905,
+        "sharpe_ann": 1.907,
         "vol_ann": 9.69,
-        "return_ann": 22.1
+        "return_ann": 22.11
       }
     },
     "alerts": [
       {
         "type": "DRIFT_ALERT",
         "asset": "MSCI World",
-        "message": "MSCI World: 52.9% vs target 70% (drift -17.1%)",
+        "message": "MSCI World: 52.8% vs target 70% (drift -17.2%)",
         "severity": "high"
       },
       {
@@ -1494,7 +1494,7 @@
       {
         "type": "NEGATIVE_SHARPE",
         "asset": "Bitcoin",
-        "message": "Bitcoin: Sharpe negativo (-1.25)",
+        "message": "Bitcoin: Sharpe negativo (-1.243)",
         "severity": "important"
       }
     ],
@@ -1505,14 +1505,14 @@
       "next_review": "Primer lunes de trimestre"
     },
     "is_quarterly": false,
-    "timestamp": "30/05/2026 08:21 UTC"
+    "timestamp": "30/05/2026 13:14 UTC"
   },
   "geo_intelligence": {
     "events": [],
     "high_count": 0,
     "medium_count": 0,
     "circuit_breaker": false,
-    "timestamp": "30/05/2026 08:21 UTC"
+    "timestamp": "30/05/2026 13:14 UTC"
   },
   "backtesting": [],
   "macro": {
@@ -1533,7 +1533,7 @@
       "cpi_yoy": 3.95
     },
     "eia_crude": null,
-    "timestamp": "30/05/2026 08:21 UTC"
+    "timestamp": "30/05/2026 13:14 UTC"
   },
   "ranking": [
     {
@@ -1880,7 +1880,7 @@
     {
       "type": "DRIFT_ALERT",
       "asset": "MSCI World",
-      "message": "MSCI World: 52.9% vs target 70% (drift -17.1%)",
+      "message": "MSCI World: 52.8% vs target 70% (drift -17.2%)",
       "severity": "high"
     },
     {
@@ -1904,7 +1904,7 @@
     {
       "type": "NEGATIVE_SHARPE",
       "asset": "Bitcoin",
-      "message": "Bitcoin: Sharpe negativo (-1.25)",
+      "message": "Bitcoin: Sharpe negativo (-1.243)",
       "severity": "important"
     }
   ],
@@ -1913,7 +1913,7 @@
       "module": "trading",
       "asset": "Oro",
       "ticker": "GC=F",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -1972,7 +1972,7 @@
       "module": "trading",
       "asset": "Plata",
       "ticker": "SI=F",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2032,7 +2032,7 @@
       "module": "trading",
       "asset": "Crudo WTI",
       "ticker": "CL=F",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2092,7 +2092,7 @@
       "module": "trading",
       "asset": "Gas Natural",
       "ticker": "NG=F",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2151,7 +2151,7 @@
       "module": "trading",
       "asset": "Cobre",
       "ticker": "HG=F",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2210,7 +2210,7 @@
       "module": "trading",
       "asset": "Aluminio",
       "ticker": "ALI=F",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2270,7 +2270,7 @@
       "module": "trading",
       "asset": "ETF Litio",
       "ticker": "LIT",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2330,7 +2330,7 @@
       "module": "trading",
       "asset": "ETF Cobre",
       "ticker": "COPX",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -2389,7 +2389,7 @@
     {
       "module": "geo",
       "asset": "Vietnam",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "scores": {
         "composite": 70
       },
@@ -2400,7 +2400,7 @@
     {
       "module": "geo",
       "asset": "India",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "scores": {
         "composite": 65
       },
@@ -2411,7 +2411,7 @@
     {
       "module": "geo",
       "asset": "Polonia",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "scores": {
         "composite": 63
       },
@@ -2422,7 +2422,7 @@
     {
       "module": "geo",
       "asset": "Brasil",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "scores": {
         "composite": 63
       },
@@ -2433,7 +2433,7 @@
     {
       "module": "geo",
       "asset": "Arabia S.",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "scores": {
         "composite": 55
       },
@@ -2444,7 +2444,7 @@
     {
       "module": "geo",
       "asset": "Argentina",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "scores": {
         "composite": 45
       },
@@ -2455,7 +2455,7 @@
     {
       "module": "geo",
       "asset": "Indonesia",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "scores": {
         "composite": 65
       },
@@ -2466,7 +2466,7 @@
     {
       "module": "geo",
       "asset": "México",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "scores": {
         "composite": 50
       },
@@ -2477,7 +2477,7 @@
     {
       "module": "geo",
       "asset": "China",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "scores": {
         "composite": 58
       },
@@ -2488,7 +2488,7 @@
     {
       "module": "core",
       "asset": "Cartera Core",
-      "timestamp": "30/05/2026 08:21 UTC",
+      "timestamp": "30/05/2026 13:14 UTC",
       "scores": {
         "composite": null
       },
@@ -3109,7 +3109,7 @@
       "avg_loss_pct": -2.13,
       "expectancy_pct": 2.08,
       "new_this_run": 0,
-      "last_updated": "30/05/2026 08:21 UTC"
+      "last_updated": "30/05/2026 13:14 UTC"
     }
   }
 }
