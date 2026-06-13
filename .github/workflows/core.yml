@@ -1,0 +1,56 @@
+name: Auditor Core — Cartera Largo Plazo
+
+on:
+  schedule:
+    # Diario a las 06:30 UTC: self-check de salud continuo.
+    # El informe completo solo se manda los lunes (lo decide el propio script).
+    - cron: '30 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+
+      - name: Setup Python
+        uses: actions/setup-python@v5.6.0
+        with:
+          python-version: '3.11'
+
+      - name: Run Core Auditor
+        env:
+          FMP_API_KEY:        ${{ secrets.FMP_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python core_auditor.py
+
+      - name: Watchdog — verificar que el módulo corrió
+        if: always()
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:   ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          if [ ! -f core_health.json ]; then
+            curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+              -d chat_id="${TELEGRAM_CHAT_ID}" \
+              -d text="🚨 WATCHDOG: el auditor core NO generó health.json. El script falló por completo. Revisa GitHub Actions." || true
+          fi
+
+      - name: Commit resultados
+        if: always()
+        run: |
+          git config user.name  "Core Auditor Bot"
+          git config user.email "bot@geomacro.local"
+          git pull --rebase origin main || true
+          git add core_audit.json core_health.json || true
+          git diff --staged --quiet || git commit -m "auditor core $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push || true
