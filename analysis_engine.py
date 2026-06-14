@@ -1102,6 +1102,23 @@ def update_paper_trades(trading_results, paper_data):
         wr = win_rate/100
         expectancy = round(wr*avg_win + (1-wr)*avg_loss, 2)
 
+    # ── Métricas SOLO de la estrategia validada (momentum_pullback) ──
+    # Separar trades nuevos (estrategia con ventaja) de los viejos (lógica rota).
+    def is_new_strategy(t):
+        s = (t.get("summary","") or "")
+        return ("Pullback" in s or t.get("strategy")=="mp_strong_trend"
+                or t.get("source")=="momentum_pullback")
+    new_closed = [t for t in closed if is_new_strategy(t)]
+    new_wins = [t for t in new_closed if t["result"]=="win"]
+    new_losses = [t for t in new_closed if t["result"]=="loss"]
+    new_wr = round(len(new_wins)/len(new_closed)*100, 1) if new_closed else None
+    new_aw = round(sum(t["pnl_pct"] for t in new_wins)/len(new_wins), 2) if new_wins else None
+    new_al = round(sum(t["pnl_pct"] for t in new_losses)/len(new_losses), 2) if new_losses else None
+    new_exp = None
+    if new_wr is not None and new_aw is not None and new_al is not None:
+        wr2 = new_wr/100
+        new_exp = round(wr2*new_aw + (1-wr2)*new_al, 2)
+
     stats = {
         "total_signals":  len(trades),
         "open":           len(open_t),
@@ -1114,6 +1131,18 @@ def update_paper_trades(trading_results, paper_data):
         "expectancy_pct": expectancy,
         "new_this_run":   new_count,
         "last_updated":   DATE_ES,
+        # Estrategia validada por separado (lo que de verdad mide el sistema actual)
+        "strategy_validated": {
+            "name": "momentum_pullback (mp_strong_trend)",
+            "closed": len(new_closed),
+            "wins": len(new_wins),
+            "losses": len(new_losses),
+            "win_rate_pct": new_wr,
+            "avg_win_pct": new_aw,
+            "avg_loss_pct": new_al,
+            "expectancy_pct": new_exp,
+            "note": "Metricas solo de la estrategia validada. Ignora trades de la logica antigua.",
+        },
     }
 
     paper_data["trades"] = trades
