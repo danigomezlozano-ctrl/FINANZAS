@@ -19,6 +19,7 @@ except ImportError:
     ANTHROPIC_SDK = False
 
 ANTHROPIC_KEY    = os.environ.get("ANTHROPIC_API_KEY", "")
+KAHNEMAN_ENABLED = os.environ.get("KAHNEMAN_ENABLED", "false").lower() == "true"
 FRED_KEY         = os.environ.get("FRED_API_KEY", "")
 NEWS_KEY         = os.environ.get("NEWS_API_KEY", "")
 TELEGRAM_TOKEN   = os.environ.get("TELEGRAM_BOT_TOKEN", "")
