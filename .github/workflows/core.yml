@@ -48,7 +48,7 @@ jobs:
         run: |
           git config user.name  "Core Auditor Bot"
           git config user.email "bot@geomacro.local"
-          git add core_audit.json core_health.json radar_watchlist.json || true
+          git add core_audit.json core_health.json radar_watchlist.json core_thesis_state.json || true
           git diff --staged --quiet || git commit -m "auditor core $(date -u '+%Y-%m-%d %H:%M UTC')"
           git pull --no-rebase --strategy-option=ours origin main || true
           git push || true
