@@ -91,7 +91,15 @@ def fmp_fundamentals(symbol):
         return None, f"FMP {symbol}: datos insuficientes ({len(data) if isinstance(data,list) else 0} trim)"
     return data, None
 
-def analyze_fundamentals(quarters):
+# Umbrales de ruptura ESPECÍFICOS por activo, tomados de la tesis escrita de la cartera.
+# NVDA: la tesis dice "vender si crecimiento data-center cae sostenidamente <30% YoY
+# o márgenes bajan de los 70s altos". El detector genérico no captaba eso.
+ASSET_THESIS_THRESHOLDS = {
+    "NVDA": {"min_growth": 30, "min_gross_margin": 68},
+    "SEMI": {"min_growth": 30, "min_gross_margin": 68},  # tesis ligada a NVDA
+}
+
+def analyze_fundamentals(quarters, asset_id=None):
     """Semáforo de tesis basado en crecimiento de ingresos + márgenes."""
     q = list(reversed(quarters))  # cronológico
     revs = [x["revenue"] for x in q if x.get("revenue")]
@@ -106,9 +114,19 @@ def analyze_fundamentals(quarters):
     margin_stable = len(gms) >= 2 and gms[-1] >= gms[0] - 1.5
     margin_eroding = len(gms) >= 2 and gms[-1] < gms[0] - 3
 
-    if not growing or margin_eroding:
+    # Umbral específico del activo (de la tesis escrita), si existe
+    thr = ASSET_THESIS_THRESHOLDS.get(asset_id or "", {})
+    below_thesis_growth = thr and growths[-1] < thr.get("min_growth", -999)
+    below_thesis_margin = thr and gms and gms[-1] < thr.get("min_gross_margin", -999)
+
+    if not growing or margin_eroding or below_thesis_growth or below_thesis_margin:
         status = "ROJO"
-        reason = f"Crecimiento {growths[-1]:+.0f}%, margen {gms[0]:.0f}%→{gms[-1]:.0f}% — tesis deteriorándose"
+        if below_thesis_growth:
+            reason = f"RUPTURA DE TESIS: crecimiento {growths[-1]:+.0f}% por debajo del umbral escrito ({thr['min_growth']}%)"
+        elif below_thesis_margin:
+            reason = f"RUPTURA DE TESIS: margen {gms[-1]:.0f}% por debajo del umbral escrito ({thr['min_gross_margin']}%)"
+        else:
+            reason = f"Crecimiento {growths[-1]:+.0f}%, margen {gms[0]:.0f}%→{gms[-1]:.0f}% — tesis deteriorándose"
     elif accelerating and margin_stable:
         status = "VERDE"
         reason = f"Ingresos acelerando {growths[0]:.0f}%→{growths[-1]:.0f}%, margen {gms[-1]:.0f}% sólido"
@@ -272,7 +290,7 @@ def run_thesis_detector():
     if err:
         failures.append(err); results["NVDA"] = {"status": "NO_DATA", "reason": err}
     else:
-        results["NVDA"] = analyze_fundamentals(q)
+        results["NVDA"] = analyze_fundamentals(q, asset_id="NVDA")
 
     # SEMI — proxy NVDA a nivel sector (el ETF está dominado por las mismas empresas)
     # Para el ETF usamos el agregado de sus mayores componentes vía NVDA + contexto
@@ -402,6 +420,24 @@ def _evaluate_thesis(symbol):
         return None
     return t
 
+def _price_strength(symbol):
+    """Fuerza de precio: distancia al máximo de 52 semanas (Yahoo, gratis).
+    Devuelve % desde el máximo (0 = en máximos, -20 = un 20% por debajo) o None."""
+    end = int(time.time()); start = end - 370*86400
+    url = (f"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}"
+           f"?interval=1d&period1={start}&period2={end}")
+    data, err = _get(url)
+    if err or not data:
+        return None
+    try:
+        res = data["chart"]["result"][0]
+        closes = [c for c in res["indicators"]["quote"][0]["close"] if c is not None]
+        if len(closes) < 60:
+            return None
+        return round((closes[-1]/max(closes) - 1) * 100, 1)
+    except Exception:
+        return None
+
 def run_discovery_radar():
     """
     Capa 2 — Radar de descubrimiento con memoria.
@@ -428,6 +464,9 @@ def run_discovery_radar():
 
     fmp_fail = 0
     new_found = 0
+    # Contadores de auditoría: saber POR QUÉ el radar rechaza (nunca más silencio opaco)
+    audit_ct = {"fmp_fail": 0, "fail_size": 0, "fail_sector": 0,
+                "fail_ipo": 0, "fail_other": 0, "structural_pass": 0, "thesis_fail": 0}
     for sym in batch:
         # Saltar si ya está en seguimiento o descartada reciente
         if sym in wl["candidates"]:
@@ -442,12 +481,27 @@ def run_discovery_radar():
                 pass
         prof, perr = fmp_profile(sym)
         if perr:
-            fmp_fail += 1
+            fmp_fail += 1; audit_ct["fmp_fail"] += 1
             time.sleep(0.15)
             continue
         if not _passes_structural_filter(prof):
+            # Clasificar el motivo del rechazo (auditoría)
+            mcap = prof.get("marketCap", 0) or 0
+            if not (1e9 <= mcap <= 50e9):
+                audit_ct["fail_size"] += 1
+            elif prof.get("sector", "") not in GROWTH_SECTORS_RADAR:
+                audit_ct["fail_sector"] += 1
+            else:
+                ipo = prof.get("ipoDate", "") or ""
+                try: iy = int(ipo[:4]) if ipo else 0
+                except Exception: iy = 0
+                if iy and iy < 2015:
+                    audit_ct["fail_ipo"] += 1
+                else:
+                    audit_ct["fail_other"] += 1
             time.sleep(0.15)
             continue
+        audit_ct["structural_pass"] += 1
         # Pasa filtro estructural -> evaluar tesis
         thesis = _evaluate_thesis(sym)
         time.sleep(0.15)
@@ -455,6 +509,7 @@ def run_discovery_radar():
             wl["candidates"][sym] = {
                 "name": prof.get("companyName", "")[:30],
                 "sector": prof.get("sector", ""),
+                "price_vs_52w_high": _price_strength(sym),
                 "first_seen": DATE_ES[:10],
                 "state": "OBSERVACION",
                 "quarters_confirmed": 1,
@@ -465,6 +520,8 @@ def run_discovery_radar():
                 "last_checked": DATE_ES[:10],
             }
             new_found += 1
+        else:
+            audit_ct["thesis_fail"] += 1
 
     # ── RE-EVALUAR candidatas en observación (solo si pasó >75 días del último check) ──
     promoted, discarded = [], []
@@ -481,9 +538,12 @@ def run_discovery_radar():
         if not thesis:
             continue
         c["last_checked"] = DATE_ES[:10]
+        strength = _price_strength(sym)   # % desde máximos 52s (el mercado asiente o no)
+        c["price_vs_52w_high"] = strength
         c["history"].append({"date": DATE_ES[:10],
                              "rev_growth": thesis.get("rev_growth_latest"),
                              "gross_margin": thesis.get("gross_margin"),
+                             "price_vs_52w_high": strength,
                              "thesis": thesis["status"]})
         if thesis["status"] == "ROJO":
             # Tesis rota -> descartar
@@ -504,9 +564,17 @@ def run_discovery_radar():
 
     save_watchlist(wl)
 
+    # Acumular auditoría histórica en el watchlist (visible en el repo)
+    hist = wl.get("audit_totals", {})
+    for k, v in audit_ct.items():
+        hist[k] = hist.get(k, 0) + v
+    wl["audit_totals"] = hist
+
     summary = {
         "scanned_batch": len(batch),
         "scan_position": f"{wl['scan_cursor']}/{len(symbols)}",
+        "batch_audit": audit_ct,
+        "audit_totals": hist,
         "new_in_observation": new_found,
         "total_observing": len([c for c in wl["candidates"].values() if c["state"] == "OBSERVACION"]),
         "confirmed_total": len(wl["confirmed"]),
@@ -684,6 +752,11 @@ def main():
           f"nuevas en observación: {discovery.get('new_in_observation',0)} | "
           f"total observando: {discovery.get('total_observing',0)} | "
           f"confirmadas: {discovery.get('confirmed_total',0)}")
+    ba = discovery.get("batch_audit", {})
+    if ba:
+        print(f"   Auditoría del lote: tamaño✗{ba.get('fail_size',0)} sector✗{ba.get('fail_sector',0)} "
+              f"ipo✗{ba.get('fail_ipo',0)} tesis✗{ba.get('thesis_fail',0)} "
+              f"estructural✓{ba.get('structural_pass',0)} fmp✗{ba.get('fmp_fail',0)}")
     if discovery.get("promoted_now"):
         print(f"   ⭐ ASCENDIDAS A CONFIRMADAS: {', '.join(discovery['promoted_now'])}")
     if discovery.get("discarded_now"):
