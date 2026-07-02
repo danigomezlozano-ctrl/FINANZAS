@@ -1,9 +1,9 @@
 {
-  "generated_at": "02/07/2026 09:41 UTC",
+  "generated_at": "02/07/2026 18:17 UTC",
   "thesis": {
     "NVDA": {
-      "status": "AMBAR",
-      "reason": "Crece +20% pero desacelera; margen 75% OK \u2014 vigilar",
+      "status": "ROJO",
+      "reason": "RUPTURA DE TESIS: crecimiento +20% por debajo del umbral escrito (30%)",
       "rev_growth_latest": 19.8,
       "rev_growth_trend": [
         22.0,
@@ -15,8 +15,8 @@
       "revenue_latest_b": 81615000.0
     },
     "SEMI": {
-      "status": "AMBAR",
-      "reason": "Sector semis (proxy l\u00edderes): Crece +20% pero desacelera; margen 75% OK \u2014 vigilar",
+      "status": "ROJO",
+      "reason": "Sector semis (proxy l\u00edderes): RUPTURA DE TESIS: crecimiento +20% por debajo del umbral escrito (30%)",
       "rev_growth_latest": 19.8,
       "rev_growth_trend": [
         22.0,
@@ -32,7 +32,7 @@
       "reason": "Mixto: direcciones +14%, hashrate -17%",
       "active_addr_trend_180d": 14.0,
       "hashrate_trend_180d": -16.7,
-      "price_vs_ath": -51.8,
+      "price_vs_ath": -51.0,
       "_errors": []
     },
     "MSCI": {
@@ -44,67 +44,85 @@
     {
       "symbol": "ETH",
       "name": "Ethereum",
-      "mcap_b": 198.6,
-      "change_1y": -32.8
+      "mcap_b": 205.1,
+      "change_1y": -33.6
     },
     {
       "symbol": "BNB",
       "name": "BNB",
-      "mcap_b": 74.7,
-      "change_1y": -15.7
+      "mcap_b": 75.6,
+      "change_1y": -15.6
     },
     {
       "symbol": "XRP",
       "name": "XRP",
-      "mcap_b": 67.1,
-      "change_1y": -50.8
+      "mcap_b": 67.8,
+      "change_1y": -51.8
     },
     {
       "symbol": "SOL",
       "name": "Solana",
-      "mcap_b": 46.1,
-      "change_1y": -46.8
+      "mcap_b": 47.0,
+      "change_1y": -47.2
     },
     {
       "symbol": "TRX",
       "name": "TRON",
-      "mcap_b": 30.0,
-      "change_1y": 12.8
+      "mcap_b": 30.1,
+      "change_1y": 12.6
     },
     {
       "symbol": "FIGR_HELOC",
       "name": "Figure Heloc",
-      "mcap_b": 20.1,
+      "mcap_b": 20.2,
       "change_1y": null
     },
     {
       "symbol": "HYPE",
       "name": "Hyperliquid",
-      "mcap_b": 14.2,
+      "mcap_b": 14.8,
       "change_1y": 67.3
     },
     {
       "symbol": "DOGE",
       "name": "Dogecoin",
-      "mcap_b": 11.4,
-      "change_1y": -54.4
+      "mcap_b": 11.5,
+      "change_1y": -56.7
     }
   ],
   "discovery": {
     "scanned_batch": 40,
-    "scan_position": "840/10413",
+    "scan_position": "880/10426",
+    "batch_audit": {
+      "fmp_fail": 1,
+      "fail_size": 0,
+      "fail_sector": 27,
+      "fail_ipo": 8,
+      "fail_other": 0,
+      "structural_pass": 4,
+      "thesis_fail": 4
+    },
+    "audit_totals": {
+      "fmp_fail": 1,
+      "fail_size": 0,
+      "fail_sector": 27,
+      "fail_ipo": 8,
+      "fail_other": 0,
+      "structural_pass": 4,
+      "thesis_fail": 4
+    },
     "new_in_observation": 0,
     "total_observing": 0,
     "confirmed_total": 0,
     "promoted_now": [],
     "discarded_now": [],
-    "fmp_failures": 3
+    "fmp_failures": 1
   },
   "confirmed_candidates": [],
   "observing_count": 0,
   "health": {
-    "last_run": "02/07/2026 09:41 UTC",
-    "last_run_ts": "2026-07-02T09:41:49.629842+00:00",
+    "last_run": "02/07/2026 18:17 UTC",
+    "last_run_ts": "2026-07-02T18:17:26.949986+00:00",
     "ok": true,
     "problems": []
   }
