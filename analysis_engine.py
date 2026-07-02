@@ -149,17 +149,40 @@ def build_telegram_summary(results):
     ranking = results.get("ranking", [])
     fred    = results.get("macro", {}).get("fred", {})
 
-    for a in [x for x in alerts if x.get("severity") == "high"]:
-        send_telegram(f"{a['asset']}\n{a['message']}", "critical")
+    # Alertas informativas (RSI/drawdown): un solo resumen compacto, no spam.
+    # Lo CRÍTICO queda reservado para señales de compra accionables.
+    high_alerts = [x for x in alerts if x.get("severity") == "high"
+                   and x.get("type") != "BUY_SIGNAL"]
+    if high_alerts:
+        lines = [f"• {a['asset']}: {a['message'][:60]}" for a in high_alerts[:8]]
+        extra = f"\n(+{len(high_alerts)-8} más)" if len(high_alerts) > 8 else ""
+        send_telegram("📊 Avisos técnicos del día:\n" + "\n".join(lines) + extra, "info")
         time.sleep(0.5)
 
-    buys = [r for r in ranking
-            if r.get("signal","").upper() in ("COMPRAR","BUY")
-            and r.get("prob",0) >= 60]
-    if buys:
-        msg = "Señales COMPRAR:\n" + "".join(
-            f"• {s['name']}: {s['score']}/100, p={s.get('prob','?')}%\n" for s in buys)
-        send_telegram(msg, "important")
+    # ── SEÑALES DE COMPRA ACCIONABLES: entrada, stop y target exactos ──
+    trading = results.get("trading", [])
+    for a in trading:
+        cal = a.get("analysis", {}).get("calibration", {})
+        if cal.get("signal") != "COMPRAR":
+            continue
+        q = a.get("quant", {}) or {}
+        lv = q.get("levels", {}) or {}
+        if not lv.get("entry"):
+            continue
+        entry, stop, target = lv["entry"], lv["stop"], lv["target"]
+        stop_pct = lv.get("stop_pct", abs(round((stop/entry-1)*100, 1)))
+        tgt_pct = lv.get("target_pct", abs(round((target/entry-1)*100, 1)))
+        msg = (
+            f"🟢 SEÑAL DE COMPRA — {a['meta']['name']} ({a['meta']['id']})\n"
+            f"\n"
+            f"📍 Comprar a: ${entry}\n"
+            f"🛑 Stop loss: ${stop}  (−{stop_pct}%)\n"
+            f"🎯 Take profit: ${target}  (+{tgt_pct}%)\n"
+            f"\n"
+            f"Ratio beneficio/riesgo 2:1 · Ruptura de máximos en tendencia\n"
+            f"{cal.get('summary','')[:80]}"
+        )
+        send_telegram(msg, "critical")
         time.sleep(0.5)
 
     positions = core.get("positions", [])
