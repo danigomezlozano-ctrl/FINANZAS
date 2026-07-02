@@ -48,28 +48,52 @@ if os.environ.get("FORCE_BACKTEST"):    IS_WEEKLY    = True
 # ── MODELO CLAUDE ACTUALIZADO ─────────────────────────
 CLAUDE_MODEL = "claude-sonnet-4-6"  # modelo actual abril 2026
 
+# Universo: 40 acciones USA líquidas (mega/large caps de todos los sectores,
+# selección sistemática por liquidez — incluye ganadores Y perdedores, sin cherry-picking).
+# Validado out-of-sample con estrategia trend_joined_long: +1.49%/trade, 124 trades OOS.
 TRADING_ASSETS = [
-    {"id":"GC=F",  "name":"Oro",        "type":"precious",   "unit":"USD/oz"},
-    {"id":"SI=F",  "name":"Plata",       "type":"precious",   "unit":"USD/oz"},
-    {"id":"CL=F",  "name":"Crudo WTI",   "type":"energy",     "unit":"USD/bbl"},
-    {"id":"NG=F",  "name":"Gas Natural", "type":"energy",     "unit":"USD/MMBtu"},
-    {"id":"HG=F",  "name":"Cobre",       "type":"industrial", "unit":"USD/lb"},
-    {"id":"ALI=F", "name":"Aluminio",    "type":"industrial", "unit":"USD/t"},
-    {"id":"LIT",   "name":"ETF Litio",   "type":"critical",   "unit":"USD/share"},
-    {"id":"COPX",  "name":"ETF Cobre",   "type":"industrial", "unit":"USD/share"},
+    {"id":"NVDA", "name":"NVIDIA",     "type":"tech",       "unit":"USD"},
+    {"id":"AMD",  "name":"AMD",        "type":"tech",       "unit":"USD"},
+    {"id":"MU",   "name":"Micron",     "type":"tech",       "unit":"USD"},
+    {"id":"AVGO", "name":"Broadcom",   "type":"tech",       "unit":"USD"},
+    {"id":"QCOM", "name":"Qualcomm",   "type":"tech",       "unit":"USD"},
+    {"id":"INTC", "name":"Intel",      "type":"tech",       "unit":"USD"},
+    {"id":"MSFT", "name":"Microsoft",  "type":"tech",       "unit":"USD"},
+    {"id":"AAPL", "name":"Apple",      "type":"tech",       "unit":"USD"},
+    {"id":"GOOGL","name":"Alphabet",   "type":"tech",       "unit":"USD"},
+    {"id":"META", "name":"Meta",       "type":"tech",       "unit":"USD"},
+    {"id":"AMZN", "name":"Amazon",     "type":"consumer",   "unit":"USD"},
+    {"id":"TSLA", "name":"Tesla",      "type":"consumer",   "unit":"USD"},
+    {"id":"NFLX", "name":"Netflix",    "type":"consumer",   "unit":"USD"},
+    {"id":"DIS",  "name":"Disney",     "type":"consumer",   "unit":"USD"},
+    {"id":"NKE",  "name":"Nike",       "type":"consumer",   "unit":"USD"},
+    {"id":"SBUX", "name":"Starbucks",  "type":"consumer",   "unit":"USD"},
+    {"id":"MCD",  "name":"McDonalds",  "type":"consumer",   "unit":"USD"},
+    {"id":"KO",   "name":"CocaCola",   "type":"consumer",   "unit":"USD"},
+    {"id":"PEP",  "name":"PepsiCo",    "type":"consumer",   "unit":"USD"},
+    {"id":"WMT",  "name":"Walmart",    "type":"consumer",   "unit":"USD"},
+    {"id":"JPM",  "name":"JPMorgan",   "type":"financial",  "unit":"USD"},
+    {"id":"BAC",  "name":"BofA",       "type":"financial",  "unit":"USD"},
+    {"id":"GS",   "name":"Goldman",    "type":"financial",  "unit":"USD"},
+    {"id":"V",    "name":"Visa",       "type":"financial",  "unit":"USD"},
+    {"id":"MA",   "name":"Mastercard", "type":"financial",  "unit":"USD"},
+    {"id":"BA",   "name":"Boeing",     "type":"industrial", "unit":"USD"},
+    {"id":"CAT",  "name":"Caterpillar","type":"industrial", "unit":"USD"},
+    {"id":"GE",   "name":"GE",         "type":"industrial", "unit":"USD"},
+    {"id":"XOM",  "name":"Exxon",      "type":"energy",     "unit":"USD"},
+    {"id":"CVX",  "name":"Chevron",    "type":"energy",     "unit":"USD"},
+    {"id":"JNJ",  "name":"J&J",        "type":"health",     "unit":"USD"},
+    {"id":"PFE",  "name":"Pfizer",     "type":"health",     "unit":"USD"},
+    {"id":"LLY",  "name":"EliLilly",   "type":"health",     "unit":"USD"},
+    {"id":"UNH",  "name":"UnitedHealth","type":"health",    "unit":"USD"},
+    {"id":"MRNA", "name":"Moderna",    "type":"health",     "unit":"USD"},
+    {"id":"PYPL", "name":"PayPal",     "type":"financial",  "unit":"USD"},
+    {"id":"CRM",  "name":"Salesforce", "type":"tech",       "unit":"USD"},
+    {"id":"ORCL", "name":"Oracle",     "type":"tech",       "unit":"USD"},
+    {"id":"UBER", "name":"Uber",       "type":"tech",       "unit":"USD"},
+    {"id":"ABNB", "name":"Airbnb",     "type":"consumer",   "unit":"USD"},
 ]
 
-REGIONS = [
-    {"id":"VNM","name":"Vietnam",    "region":"SE Asia",    "currency":"VND","sector":"manufactura tech",    "etf":"VNM"},
-    {"id":"IND","name":"India",      "region":"South Asia", "currency":"INR","sector":"servicios digitales", "etf":"INDA"},
-    {"id":"POL","name":"Polonia",    "region":"CEE Europa", "currency":"PLN","sector":"logistica UE hub",    "etf":"EPOL"},
-    {"id":"BRA","name":"Brasil",     "region":"LATAM",      "currency":"BRL","sector":"agro recursos",       "etf":"EWZ"},
-    {"id":"SAU","name":"Arabia S.",  "region":"MENA",       "currency":"SAR","sector":"energia diversif",    "etf":"KSA"},
-    {"id":"ARG","name":"Argentina",  "region":"LATAM Sur",  "currency":"ARS","sector":"reforma estructural", "etf":"ARGT"},
-    {"id":"IDN","name":"Indonesia",  "region":"SE Asia",    "currency":"IDR","sector":"recursos demografía", "etf":"EIDO"},
-    {"id":"MEX","name":"México",     "region":"LATAM Norte","currency":"MXN","sector":"nearshoring",         "etf":"EWW"},
-    {"id":"CHN","name":"China",      "region":"East Asia",  "currency":"CNY","sector":"tech manufactura exp","etf":"MCHI"},
-]
 
 CORE_ASSETS = [
     {"id":"NVDA",    "name":"NVIDIA",     "ticker":"NVDA",    "currency":"USD"},
@@ -172,6 +196,33 @@ def fetch_yahoo(ticker, days=730):
         return [(t,c) for t,c in zip(times,closes) if c is not None]
     except Exception as e:
         print(f"  WARN Yahoo {ticker}: {e}"); return None
+
+def fetch_yahoo_ohlc(ticker, days=730):
+    """OHLC diario completo — necesario para la estrategia de rupturas
+    (niveles de máximos) y para el ATR real. Devuelve dict o None."""
+    end = int(time.time()); start = end - days*86400
+    url = (f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}"
+           f"?interval=1d&period1={start}&period2={end}")
+    d = fetch(url)
+    if not d: return None
+    try:
+        res = d["chart"]["result"][0]
+        q = res["indicators"]["quote"][0]
+        rows = [(t,o,h,l,c) for t,o,h,l,c in zip(res["timestamp"], q["open"],
+                q["high"], q["low"], q["close"]) if c is not None and h is not None and l is not None]
+        if not rows: return None
+        return {"times":[r[0] for r in rows], "opens":[r[1] for r in rows],
+                "highs":[r[2] for r in rows], "lows":[r[3] for r in rows],
+                "closes":[r[4] for r in rows]}
+    except Exception as e:
+        print(f"  WARN Yahoo OHLC {ticker}: {e}"); return None
+
+def atr_ohlc(highs, lows, closes, n=14):
+    """ATR real con máximos/mínimos (más preciso que el proxy de cierres)."""
+    if len(closes) < n+1: return None
+    trs = [max(highs[i]-lows[i], abs(highs[i]-closes[i-1]), abs(lows[i]-closes[i-1]))
+           for i in range(-n, 0)]
+    return round(sum(trs)/n, 4)
 
 def fetch_fred(sid, limit=60):
     if not FRED_KEY: return None
@@ -728,42 +779,54 @@ def format_reputation_log(asset_name, reputation, base_threshold, effective_thre
 # Validada out-of-sample: expectancy +2.24%/trade, WR 57%, ~35 señales/año.
 # Esta es la ÚNICA lógica de entrada del sistema. Reemplaza el score roto.
 
-def momentum_pullback_signal(closes, rsi_v):
-    """
-    Decide si hay señal de COMPRA según la estrategia validada.
-    Devuelve True si: tendencia alcista fuerte + pullback templado.
-    """
-    if not closes or len(closes) < 200:
-        return False
-    s50 = sma(closes, 50)
-    s200 = sma(closes, 200)
-    if not s50 or not s200:
-        return False
-    # Tendencia alcista FUERTE: media 50 al menos 3% por encima de media 200
-    if s50 <= s200 * 1.03:
-        return False
-    # Pullback: RSI en zona templada (ni sobrecomprado ni desplomado)
-    if rsi_v is None or not (35 < rsi_v < 55):
-        return False
-    # Precio por encima de la media de 50 (sigue en estructura alcista)
-    if closes[-1] <= s50:
-        return False
-    return True
+# ── ESTRATEGIA v2 VALIDADA: TREND JOINED LONG (ruptura en tendencia) ──
+# Adaptación diaria del setup "unirse a la fuerza": comprar la RUPTURA de
+# máximos en valores que ya están en tendencia alcista (cierre > SMA200).
+# Trigger = max(máximo de ayer, máximo de 20 días) — conocido de antemano.
+# Stop 1.5 ATR, target 3.0 ATR (asimetría 2:1 — gana menos veces, gana más dinero).
+# Validada out-of-sample en universo neutral de 40 acciones USA (2 años, 411 trades):
+#   OOS: +1.49%/trade, 124 trades, WR 44%. Últimas 6 semanas (régimen difícil): +17.2%.
 
-def momentum_pullback_levels(closes, atr_v):
-    """Niveles de la estrategia: stop 1.5 ATR, target 3.0 ATR."""
-    if not atr_v:
-        return None
-    entry = closes[-1]
+def trend_joined_long_trigger(highs):
+    """Nivel de ruptura calculable ANTES de que empiece el día:
+    máximo entre el high de ayer y el high de los 20 días previos."""
+    if len(highs) < 22: return None
+    return round(max(highs[-1], max(highs[-21:-1])), 4)
+
+def trend_joined_long_signal(highs, lows, closes, current_price):
+    """
+    Señal de COMPRA si:
+      1. El cierre de AYER está por encima de la SMA200 (tendencia de fondo)
+      2. El precio actual ha superado el trigger (ruptura de máximos)
+      3. El precio no se ha extendido demasiado (< trigger + 0.5 ATR) —
+         evita perseguir un precio ya disparado; en la ruptura, no en el techo.
+    Devuelve (señal_bool, trigger, atr) para construir niveles honestos.
+    """
+    if len(closes) < 210: return False, None, None
+    s200 = sma(closes[:-1], 200) if len(closes) > 200 else None
+    if not s200 or closes[-2] <= s200:      # cierre de ayer bajo SMA200
+        return False, None, None
+    trigger = trend_joined_long_trigger(highs[:-1])  # niveles hasta ayer
+    if trigger is None: return False, None, None
+    atr_v = atr_ohlc(highs[:-1], lows[:-1], closes[:-1])
+    if not atr_v: return False, None, None
+    if current_price <= trigger:            # no ha roto
+        return False, trigger, atr_v
+    if current_price > trigger + 0.5*atr_v: # ya se escapó — no perseguir
+        return False, trigger, atr_v
+    return True, trigger, atr_v
+
+def trend_joined_long_levels(entry_price, atr_v):
+    """Niveles de la estrategia: stop 1.5 ATR, target 3.0 ATR desde la entrada real."""
+    if not atr_v: return None
     return {
-        "entry": round(entry, 4),
-        "stop": round(entry - 1.5 * atr_v, 4),
-        "target": round(entry + 3.0 * atr_v, 4),
-        "stop_pct": round(1.5 * atr_v / entry * 100, 2),
-        "target_pct": round(3.0 * atr_v / entry * 100, 2),
+        "entry": round(entry_price, 4),
+        "stop": round(entry_price - 1.5*atr_v, 4),
+        "target": round(entry_price + 3.0*atr_v, 4),
+        "stop_pct": round(1.5*atr_v/entry_price*100, 2),
+        "target_pct": round(3.0*atr_v/entry_price*100, 2),
         "rr": 2.0,
     }
-
 
 # ── DECISION CUANTITATIVA (sin API) ───────────────────
 def quant_signal(qdata, effective_threshold):
@@ -801,13 +864,13 @@ def run_trading_module(fx_rates,eia,macro_ctx):
         log={"module":"trading","asset":asset["name"],
              "ticker":asset["id"],"timestamp":DATE_ES}
 
-        prices_raw=fetch_yahoo(asset["id"])
-        if not prices_raw or len(prices_raw)<50:
+        ohlc = fetch_yahoo_ohlc(asset["id"])
+        if not ohlc or len(ohlc["closes"])<50:
             log["status"]="skipped_no_data"
             results.append({"meta":asset,"quant":None,"analysis":{},"log":log})
             continue
 
-        closes=[p[1] for p in prices_raw]
+        closes = ohlc["closes"]; highs = ohlc["highs"]; lows = ohlc["lows"]
         rsi_v=rsi(closes); _,macd_h=macd(closes)
         bb_low,_,bb_h=bollinger(closes); atr_v=atr_calc(closes)
         vol=ann_vol(closes); mdd=max_dd(closes); var=var95(closes)
@@ -860,38 +923,44 @@ def run_trading_module(fx_rates,eia,macro_ctx):
             time.sleep(1)
             continue
 
-        # ── ESTRATEGIA VALIDADA: MOMENTUM PULLBACK ──
-        # La señal viene de la estrategia con ventaja demostrada out-of-sample.
-        # El autodidacta module sigue activo: si un activo acumula pérdidas,
-        # se silencia aunque la estrategia dispare (protección extra).
-        has_signal = momentum_pullback_signal(closes, rsi_v)
+        # ── ESTRATEGIA v2: TREND JOINED LONG (ruptura en tendencia) ──
+        # Comprar la ruptura de máximos en valores en tendencia (cierre>SMA200).
+        # El autodidacta sigue activo: silencia activos con mal track record.
+        current_price = closes[-1]
+        has_signal, tjl_trigger, tjl_atr = trend_joined_long_signal(highs, lows, closes, current_price)
 
-        # El autodidacta puede vetar: si el activo va mal, exige más
-        # (sube el listón pidiendo que la tendencia sea aún más fuerte).
+        # Veto del autodidacta: si el activo acumula pérdidas, exige ruptura
+        # más limpia (precio muy pegado al trigger, sin extensión)
         veto_by_reputation = False
         if has_signal and reputation.get("threshold_adj", 0) >= 10:
-            # Activo con mal track record: exigir tendencia extra-fuerte
-            s50 = sma(closes, 50); s200 = sma(closes, 200)
-            if s50 and s200 and s50 <= s200 * 1.05:  # pide 5% en vez de 3%
+            if current_price > tjl_trigger + 0.25*tjl_atr:
                 veto_by_reputation = True
 
         if has_signal and not veto_by_reputation:
-            lv = momentum_pullback_levels(closes, atr_v)
-            prob = int(max(50, min(75, 50 + (comp - 50))))  # prob informativa
+            lv = trend_joined_long_levels(current_price, tjl_atr)
+            prob = int(max(50, min(70, 44 + (comp - 50))))  # informativa (WR base 44%)
             cal = {
                 "signal": "COMPRAR", "prob": prob, "prob_interval": 12,
-                "horizon": "1-3 meses",
-                "summary": f"Pullback en tendencia alcista fuerte. RSI={rsi_v}, entry={lv['entry']}",
-                "conviction": "alta", "source": "momentum_pullback",
-                "strategy": "mp_strong_trend",
+                "horizon": "días-semanas",
+                "summary": f"Ruptura de máximos en tendencia (trigger {tjl_trigger}). Entry={lv['entry']}",
+                "conviction": "alta", "source": "trend_joined_long",
+                "strategy": "trend_joined_long_v2",
+                "trigger": tjl_trigger,
             }
-            qdata["levels"] = lv  # niveles de la estrategia validada
+            qdata["levels"] = lv
         else:
-            reason = "vetado por autodidacta (mal track record)" if veto_by_reputation else "sin setup de pullback"
+            if veto_by_reputation:
+                reason = "vetado por autodidacta (mal track record, ruptura no limpia)"
+            elif tjl_trigger and current_price <= tjl_trigger:
+                reason = f"sin ruptura (precio {round(current_price,2)} bajo trigger {tjl_trigger})"
+            elif tjl_trigger:
+                reason = "precio demasiado extendido sobre el trigger (no perseguir)"
+            else:
+                reason = "sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes"
             cal = {
                 "signal": "ESPERAR", "prob": 50, "prob_interval": 15,
                 "summary": f"Sin señal: {reason}",
-                "conviction": "baja", "source": "momentum_pullback",
+                "conviction": "baja", "source": "trend_joined_long",
             }
         analysis["calibration"] = cal
         log["claude_calls"] = 0
@@ -941,25 +1010,7 @@ def run_backtest_module():
         time.sleep(0.5)
     print(f"   Backtesting commodities: {len(results)} activos")
 
-    # ── Backtesting geográfico con ETFs proxy ──
-    print("   Backtesting geografico (ETFs proxy)...")
-    for reg in REGIONS:
-        etf = reg.get("etf")
-        if not etf:
-            continue
-        print(f"   Backtesting {reg['name']} ({etf})...")
-        raw = fetch_yahoo(etf, days=1825)
-        if not raw or len(raw) < 500:
-            print(f"   SKIP {reg['name']}"); continue
-        bt = run_backtest_asset(f"{reg['name']} ({etf})", raw)
-        if bt:
-            bt["category"] = "region"
-            bt["region"]   = reg["region"]
-            results.append(bt)
-            print(f"   {reg['name']}: WR={bt['win_rate_pct']}% B&H={bt['bh_annual_pct']}%/año")
-        time.sleep(0.3)
-
-    print(f"   Backtesting: {len(results)} activos+regiones")
+    print(f"   Backtesting: {len(results)} activos")
     return results
 
 # ══════════════════════════════════════════════════════
@@ -1030,6 +1081,10 @@ def update_paper_trades(trading_results, paper_data):
                 trade["pnl_pct"] = round((trade["entry_price"]/trade["target_price"]-1)*100, 2)
                 trade["result"] = "win"
 
+    # IDs de activos con posición YA ABIERTA (máx 1 posición por activo —
+    # corrige el bug de apilamiento: 7 cobres abiertos a la vez)
+    open_asset_ids = {t["asset_id"] for t in trades if t.get("status") == "open"}
+
     new_count = 0
     for a in trading_results:
         if not a.get("quant"): continue
@@ -1038,6 +1093,10 @@ def update_paper_trades(trading_results, paper_data):
         prob = cal.get("prob", 0)
         if sig not in ("COMPRAR", "VENDER"): continue
         if prob < 40: continue
+
+        # REGLA DE CONCENTRACIÓN: si ya hay una posición abierta en este
+        # activo, NO abrir otra. Una apuesta por activo, no apilar.
+        if a["meta"]["id"] in open_asset_ids: continue
 
         trade_id = f"{a['meta']['id']}_{DATE_ES[:10]}"
         if trade_id in existing_ids: continue
@@ -1085,6 +1144,7 @@ def update_paper_trades(trading_results, paper_data):
             "summary":       cal.get("summary", ""),
         }
         trades.append(trade)
+        open_asset_ids.add(a["meta"]["id"])
         existing_ids.add(trade_id)
         new_count += 1
         print(f"   Paper trade registrado: {a['meta']['name']} {sig} @ ${ep}")
@@ -1102,12 +1162,11 @@ def update_paper_trades(trading_results, paper_data):
         wr = win_rate/100
         expectancy = round(wr*avg_win + (1-wr)*avg_loss, 2)
 
-    # ── Métricas SOLO de la estrategia validada (momentum_pullback) ──
+    # ── Métricas SOLO de la estrategia v2 (trend_joined_long) ──
     # Separar trades nuevos (estrategia con ventaja) de los viejos (lógica rota).
     def is_new_strategy(t):
-        s = (t.get("summary","") or "")
-        return ("Pullback" in s or t.get("strategy")=="mp_strong_trend"
-                or t.get("source")=="momentum_pullback")
+        # Estrategia v2 (trend_joined_long) — la única que mide el sistema actual
+        return t.get("strategy") == "trend_joined_long_v2"
     new_closed = [t for t in closed if is_new_strategy(t)]
     new_wins = [t for t in new_closed if t["result"]=="win"]
     new_losses = [t for t in new_closed if t["result"]=="loss"]
@@ -1133,7 +1192,7 @@ def update_paper_trades(trading_results, paper_data):
         "last_updated":   DATE_ES,
         # Estrategia validada por separado (lo que de verdad mide el sistema actual)
         "strategy_validated": {
-            "name": "momentum_pullback (mp_strong_trend)",
+            "name": "trend_joined_long_v2 (ruptura en tendencia, 40 acciones USA)",
             "closed": len(new_closed),
             "wins": len(new_wins),
             "losses": len(new_losses),
@@ -1217,11 +1276,14 @@ def recover_lost_days(paper_data, days_back=30):
             rep = get_asset_reputation(asset["id"], paper_data)
             if rep.get("silenced"):
                 continue
-            if not momentum_pullback_signal(seg, rsi_v):
+            # Estrategia v2 (aprox. con cierres — la recuperación es solo orientativa)
+            s200_r = sma(seg[:-1], 200) if len(seg) > 200 else None
+            if not s200_r or seg[-2] <= s200_r:
                 continue
-
-            # Niveles de la estrategia validada: stop 1.5 ATR, target 3.0 ATR
-            lv = momentum_pullback_levels(seg, atr_v)
+            trig_r = max(seg[-21:-1])  # proxy de trigger con cierres
+            if seg[-1] <= trig_r:
+                continue
+            lv = trend_joined_long_levels(seg[-1], atr_v)
             if not lv:
                 continue
             entry = lv["entry"]; stop = lv["stop"]; target = lv["target"]
@@ -1300,138 +1362,6 @@ def run_paper_trading_module(trading_results):
 #
 # Estructura: keyword_groups → {assets, direction, channel, magnitude_hist, duration_hist}
 # channel: supply_disruption | uncertainty | safe_haven | trade_diversion
-# magnitude_hist: magnitud histórica documentada en papers (no inventada)
-# duration_hist: días antes de reversión histórica media
-
-GEO_EVENT_MAP = [
-    {
-        "event_type": "MIDDLE_EAST_ESCALATION",
-        "keywords": [
-            "iran", "hormuz", "strait of hormuz", "persian gulf", "tehran",
-            "israel iran", "us iran", "attack iran", "strike iran",
-            "saudi oil", "aramco attack", "houthi", "red sea attack",
-            "hamas", "hezbollah escalation", "middle east war"
-        ],
-        "assets_affected": ["CL=F", "NG=F", "GC=F", "SI=F"],
-        "etfs_affected":   ["KSA", "INDA"],
-        "direction":       "up",
-        "channel":         "supply_disruption",
-        "magnitude_hist":  "WTI +8-20% (Gulf crisis 2019), Oro +5-8%",
-        "duration_hist":   "Reversión media 15-30 días si no hay disrupción física confirmada",
-        "cameo_codes":     ["14", "15", "19", "20"],  # Military action codes
-        "confidence_floor": 0.70  # Umbral mínimo de confianza Claude para alertar
-    },
-    {
-        "event_type": "RUSSIA_ENERGY_DISRUPTION",
-        "keywords": [
-            "russia sanctions", "russia gas", "nord stream", "gazprom",
-            "russia ukraine escalation", "russia nato", "pipeline sabotage",
-            "russian oil ban", "russian energy", "europe gas supply"
-        ],
-        "assets_affected": ["NG=F", "CL=F", "ALI=F"],
-        "etfs_affected":   ["EPOL"],
-        "direction":       "up",
-        "channel":         "supply_disruption",
-        "magnitude_hist":  "Gas natural +7.5%/evento (Palomba 2025), Aluminio +15% (LME 2022)",
-        "duration_hist":   "Efectos persistentes si disrupción física confirmada (>30 días)",
-        "cameo_codes":     ["16", "17"],
-        "confidence_floor": 0.68
-    },
-    {
-        "event_type": "CHINA_TAIWAN_TENSION",
-        "keywords": [
-            "taiwan strait", "china taiwan", "pla military", "taiwan blockade",
-            "china semiconductor", "tsmc risk", "taiwan invasion", "china military exercise"
-        ],
-        "assets_affected": ["GC=F", "CL=F"],
-        "etfs_affected":   ["MCHI", "VNM", "INDA"],
-        "direction":       "mixed",  # Oro sube, ETF China baja, Vietnam puede subir (nearshoring)
-        "channel":         "uncertainty",
-        "magnitude_hist":  "S&P -2.5% media conflictos socios comerciales (IMF 2025)",
-        "duration_hist":   "Recuperación media en 30 días si no hay escalada física",
-        "cameo_codes":     ["14", "15"],
-        "confidence_floor": 0.72
-    },
-    {
-        "event_type": "OPEC_SUPPLY_SHOCK",
-        "keywords": [
-            "opec cut", "opec production", "saudi production cut", "opec plus",
-            "oil supply reduction", "opec surprise", "production quota",
-            "opec meeting", "oil embargo"
-        ],
-        "assets_affected": ["CL=F", "NG=F"],
-        "etfs_affected":   ["KSA"],
-        "direction":       "up",
-        "channel":         "supply_disruption",
-        "magnitude_hist":  "WTI +5-15% sorpresa OPEC (IMF, Känzig 2021 AER)",
-        "duration_hist":   "Efecto persiste si recorte real; reversión si solo verbal",
-        "cameo_codes":     ["08", "09"],
-        "confidence_floor": 0.65
-    },
-    {
-        "event_type": "US_TRADE_WAR",
-        "keywords": [
-            "tariff", "trade war", "import duty", "trade sanctions",
-            "us china tariff", "trump tariff", "trade restrictions",
-            "export controls", "technology ban", "chip ban"
-        ],
-        "assets_affected": ["CL=F", "HG=F", "ALI=F"],
-        "etfs_affected":   ["MCHI", "EWW", "EWZ", "INDA"],
-        "direction":       "mixed",  # China baja, México puede subir (desvío comercial)
-        "channel":         "trade_diversion",
-        "magnitude_hist":  "S&P -9% Liberation Day 2025; México +3-5% desvío comercial",
-        "duration_hist":   "Efectos persistentes en cadenas de suministro (>60 días)",
-        "cameo_codes":     ["16"],
-        "confidence_floor": 0.65
-    },
-    {
-        "event_type": "GLOBAL_RISK_OFF",
-        "keywords": [
-            "nuclear threat", "war declaration", "military invasion",
-            "global recession fears", "financial crisis", "bank failure",
-            "systemic risk", "market crash", "flight to safety"
-        ],
-        "assets_affected": ["GC=F", "SI=F", "CL=F"],
-        "etfs_affected":   ["ARGT", "EWZ", "EIDO"],  # EM más vulnerables
-        "direction":       "safe_haven_up",  # Oro/plata suben, EM bajan
-        "channel":         "safe_haven",
-        "magnitude_hist":  "Oro +5-10% eventos war (SSRN 2024), EM -8-12% (IMF 2025)",
-        "duration_hist":   "Oro mantiene efecto; EM recuperan en 30 días media",
-        "cameo_codes":     ["19", "20"],
-        "confidence_floor": 0.75
-    },
-    {
-        "event_type": "LATAM_POLITICAL_SHOCK",
-        "keywords": [
-            "argentina crisis", "brazil political", "mexico security",
-            "latam election", "populism latin america", "debt default",
-            "currency crisis", "capital controls", "latam unrest"
-        ],
-        "assets_affected": ["CL=F"],
-        "etfs_affected":   ["ARGT", "EWZ", "EWW"],
-        "direction":       "down",
-        "channel":         "uncertainty",
-        "magnitude_hist":  "ETFs regionales -5-15% según magnitud crisis",
-        "duration_hist":   "Variable: puede persistir meses si es crisis sistémica",
-        "cameo_codes":     ["14", "17"],
-        "confidence_floor": 0.65
-    },
-    {
-        "event_type": "FED_SURPRISE",
-        "keywords": [
-            "fed rate hike surprise", "powell hawkish", "emergency rate cut",
-            "fed pivot", "inflation surprise", "cpi shock", "fed emergency meeting"
-        ],
-        "assets_affected": ["GC=F", "CL=F", "HG=F"],
-        "etfs_affected":   ["ARGT", "EWZ", "INDA", "EIDO"],  # EM sensibles a USD
-        "direction":       "down",  # Subida Fed = oro baja, EM bajan
-        "channel":         "monetary",
-        "magnitude_hist":  "~1-2% FX por 25bp sorpresa; EM -3-5%",
-        "duration_hist":   "Efecto inmediato, reversión parcial en 5-10 días",
-        "cameo_codes":     ["03", "04"],
-        "confidence_floor": 0.70
-    },
-]
 
 # ── VOLATILIDAD ACTUAL DEL ACTIVO (condicionante de régimen) ──────────────────
 def get_asset_current_vol(asset_id, trading_results):
