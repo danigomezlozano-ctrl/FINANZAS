@@ -464,6 +464,7 @@ def run_discovery_radar():
 
     fmp_fail = 0
     new_found = 0
+    quota_exhausted = False
     # Contadores de auditoría: saber POR QUÉ el radar rechaza (nunca más silencio opaco)
     audit_ct = {"fmp_fail": 0, "fail_size": 0, "fail_sector": 0,
                 "fail_ipo": 0, "fail_other": 0, "structural_pass": 0, "thesis_fail": 0}
@@ -482,7 +483,13 @@ def run_discovery_radar():
         prof, perr = fmp_profile(sym)
         if perr:
             fmp_fail += 1; audit_ct["fmp_fail"] += 1
-            time.sleep(0.15)
+            if "429" in str(perr):
+                # Cuota FMP agotada: parar el lote y retroceder el cursor para
+                # NO saltarse empresas sin analizar. Mañana sigue donde tocaba.
+                wl["scan_cursor"] = cursor
+                quota_exhausted = True
+                break
+            time.sleep(0.4)
             continue
         if not _passes_structural_filter(prof):
             # Clasificar el motivo del rechazo (auditoría)
@@ -499,12 +506,12 @@ def run_discovery_radar():
                     audit_ct["fail_ipo"] += 1
                 else:
                     audit_ct["fail_other"] += 1
-            time.sleep(0.15)
+            time.sleep(0.4)
             continue
         audit_ct["structural_pass"] += 1
         # Pasa filtro estructural -> evaluar tesis
         thesis = _evaluate_thesis(sym)
-        time.sleep(0.15)
+        time.sleep(0.4)
         if thesis and thesis.get("status") in ("VERDE", "AMBAR"):
             wl["candidates"][sym] = {
                 "name": prof.get("companyName", "")[:30],
@@ -534,7 +541,7 @@ def run_discovery_radar():
         if days < 75:   # ~1 trimestre entre re-evaluaciones
             continue
         thesis = _evaluate_thesis(sym)
-        time.sleep(0.15)
+        time.sleep(0.4)
         if not thesis:
             continue
         c["last_checked"] = DATE_ES[:10]
@@ -562,13 +569,15 @@ def run_discovery_radar():
                                             "quarters": c["quarters_confirmed"]})
                 promoted.append(sym)
 
-    save_watchlist(wl)
-
     # Acumular auditoría histórica en el watchlist (visible en el repo)
     hist = wl.get("audit_totals", {})
     for k, v in audit_ct.items():
         hist[k] = hist.get(k, 0) + v
     wl["audit_totals"] = hist
+    if quota_exhausted:
+        wl["last_quota_stop"] = DATE_ES[:10]
+
+    save_watchlist(wl)
 
     summary = {
         "scanned_batch": len(batch),
@@ -583,7 +592,9 @@ def run_discovery_radar():
         "fmp_failures": fmp_fail,
     }
     err_out = None
-    if fmp_fail >= len(batch) and len(batch) > 0:
+    if quota_exhausted:
+        err_out = "radar: cuota diaria FMP agotada — lote pospuesto a mañana (cursor intacto)"
+    elif fmp_fail >= len(batch) and len(batch) > 0:
         err_out = f"radar: FMP falló en todo el lote ({fmp_fail})"
     return summary, err_out, wl
 
