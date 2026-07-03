@@ -83,7 +83,7 @@ def fmp_fundamentals(symbol):
     if not FMP_KEY:
         return None, "FMP_API_KEY no configurada"
     url = (f"https://financialmodelingprep.com/stable/income-statement"
-           f"?symbol={symbol}&period=quarter&limit=4&apikey={FMP_KEY}")
+           f"?symbol={symbol}&period=quarter&limit=6&apikey={FMP_KEY}")
     data, err = _get(url)
     if err:
         return None, f"FMP {symbol}: {err}"
@@ -108,9 +108,19 @@ def analyze_fundamentals(quarters, asset_id=None):
     gms = [q[i]["grossProfit"]/q[i]["revenue"]*100 for i in range(len(q)) if q[i].get("grossProfit") and q[i].get("revenue")]
     nms = [q[i]["netIncome"]/q[i]["revenue"]*100 for i in range(len(q)) if q[i].get("netIncome") and q[i].get("revenue")]
 
-    growths = [(revs[i]/revs[i-1]-1)*100 for i in range(1, len(revs))]
-    accelerating = growths[-1] > growths[0]
-    growing = growths[-1] > 0
+    # Crecimiento INTERANUAL (mismo trimestre del año anterior): inmune a estacionalidad
+    # y en las mismas unidades que los umbrales de la tesis escrita (YoY).
+    if len(revs) >= 5:
+        yoy_now = (revs[-1]/revs[-5]-1)*100
+        yoy_prev = (revs[-2]/revs[-6]-1)*100 if len(revs) >= 6 else None
+        growths = [yoy_prev, yoy_now] if yoy_prev is not None else [yoy_now]
+        accelerating = yoy_prev is not None and yoy_now > yoy_prev
+        growing = yoy_now > 0
+    else:
+        # Sin 5 trimestres (IPO reciente): usar secuencial como aproximación
+        growths = [(revs[i]/revs[i-1]-1)*100 for i in range(1, len(revs))]
+        accelerating = growths[-1] > growths[0]
+        growing = growths[-1] > 0
     margin_stable = len(gms) >= 2 and gms[-1] >= gms[0] - 1.5
     margin_eroding = len(gms) >= 2 and gms[-1] < gms[0] - 3
 
@@ -346,7 +356,7 @@ def radar_convex_crypto():
 # Barrido continuo por lotes (no agota la API). Memoria en radar_watchlist.json.
 
 WATCHLIST_FILE = "radar_watchlist.json"
-SCAN_BATCH = 40           # símbolos analizados por ejecución
+SCAN_BATCH = 50           # símbolos analizados por ejecución
 QUARTERS_TO_CONFIRM = 4   # trimestres manteniendo tesis para confirmarse
 GROWTH_SECTORS_RADAR = {"Technology", "Healthcare", "Energy", "Communication Services"}
 DISCARD_COOLDOWN_DAYS = 180  # no re-analizar una descartada hasta pasado este tiempo
@@ -454,13 +464,32 @@ def run_discovery_radar():
     if err:
         return wl, f"radar: {err}"  # devuelve watchlist previa, avisa del fallo
 
-    # ── BARRIDO: analizar el siguiente lote ──
-    cursor = wl.get("scan_cursor", 0)
-    if cursor >= len(symbols):
-        cursor = 0
-        wl["last_scan_reset"] = DATE_ES[:10]  # vuelta completa al universo
-    batch = symbols[cursor:cursor + SCAN_BATCH]
-    wl["scan_cursor"] = cursor + SCAN_BATCH
+    # ── COLA PRIORITARIA: candidatas pre-cribadas (radar_priority.json) ──
+    # Lista precomputada de ~610 empresas que pasan el filtro estructural
+    # (generada offline con el screener completo del mercado). El radar las
+    # analiza PRIMERO — zona fértil directa, sin barrer gigantes durante meses.
+    priority_syms = []
+    try:
+        with open("radar_priority.json") as f:
+            priority_syms = json.load(f).get("symbols", [])
+    except Exception:
+        pass
+
+    pcursor = wl.get("priority_cursor", 0)
+    using_priority = bool(priority_syms) and pcursor < len(priority_syms)
+
+    if using_priority:
+        batch = priority_syms[pcursor:pcursor + SCAN_BATCH]
+        cursor = pcursor                      # para el rollback si la cuota se agota
+        wl["priority_cursor"] = pcursor + SCAN_BATCH
+    else:
+        # Cola prioritaria agotada -> barrido SEC clásico (captura lo que falte)
+        cursor = wl.get("scan_cursor", 0)
+        if cursor >= len(symbols):
+            cursor = 0
+            wl["last_scan_reset"] = DATE_ES[:10]
+        batch = symbols[cursor:cursor + SCAN_BATCH]
+        wl["scan_cursor"] = cursor + SCAN_BATCH
 
     fmp_fail = 0
     new_found = 0
@@ -486,7 +515,10 @@ def run_discovery_radar():
             if "429" in str(perr):
                 # Cuota FMP agotada: parar el lote y retroceder el cursor para
                 # NO saltarse empresas sin analizar. Mañana sigue donde tocaba.
-                wl["scan_cursor"] = cursor
+                if using_priority:
+                    wl["priority_cursor"] = cursor
+                else:
+                    wl["scan_cursor"] = cursor
                 quota_exhausted = True
                 break
             time.sleep(0.4)
@@ -512,7 +544,11 @@ def run_discovery_radar():
         # Pasa filtro estructural -> evaluar tesis
         thesis = _evaluate_thesis(sym)
         time.sleep(0.4)
-        if thesis and thesis.get("status") in ("VERDE", "AMBAR"):
+        high_growth_quality = (thesis
+            and thesis.get("status") in ("VERDE", "AMBAR")
+            and (thesis.get("rev_growth_latest") or 0) >= 20
+            and (thesis.get("gross_margin") or 0) >= 35)
+        if high_growth_quality:
             wl["candidates"][sym] = {
                 "name": prof.get("companyName", "")[:30],
                 "sector": prof.get("sector", ""),
@@ -581,7 +617,8 @@ def run_discovery_radar():
 
     summary = {
         "scanned_batch": len(batch),
-        "scan_position": f"{wl['scan_cursor']}/{len(symbols)}",
+        "scan_position": (f"prioridad {wl.get('priority_cursor',0)}/{len(priority_syms)}"
+                          if using_priority else f"{wl['scan_cursor']}/{len(symbols)}"),
         "batch_audit": audit_ct,
         "audit_totals": hist,
         "new_in_observation": new_found,
@@ -595,7 +632,13 @@ def run_discovery_radar():
     if quota_exhausted:
         err_out = "radar: cuota diaria FMP agotada — lote pospuesto a mañana (cursor intacto)"
     elif fmp_fail >= len(batch) and len(batch) > 0:
-        err_out = f"radar: FMP falló en todo el lote ({fmp_fail})"
+        # Fallo total (key mal, FMP caído): tampoco avanzar — no quemar la cola en vacío
+        if using_priority:
+            wl["priority_cursor"] = cursor
+        else:
+            wl["scan_cursor"] = cursor
+        save_watchlist(wl)
+        err_out = f"radar: FMP falló en todo el lote ({fmp_fail}) — cursor sin avanzar"
     return summary, err_out, wl
 
 
