@@ -1,38 +1,20 @@
 {
-  "generated_at": "02/07/2026 18:17 UTC",
+  "generated_at": "03/07/2026 08:41 UTC",
   "thesis": {
     "NVDA": {
-      "status": "ROJO",
-      "reason": "RUPTURA DE TESIS: crecimiento +20% por debajo del umbral escrito (30%)",
-      "rev_growth_latest": 19.8,
-      "rev_growth_trend": [
-        22.0,
-        19.5,
-        19.8
-      ],
-      "gross_margin": 74.9,
-      "net_margin": 71.5,
-      "revenue_latest_b": 81615000.0
+      "status": "NO_DATA",
+      "reason": "FMP NVDA: HTTP 429"
     },
     "SEMI": {
-      "status": "ROJO",
-      "reason": "Sector semis (proxy l\u00edderes): RUPTURA DE TESIS: crecimiento +20% por debajo del umbral escrito (30%)",
-      "rev_growth_latest": 19.8,
-      "rev_growth_trend": [
-        22.0,
-        19.5,
-        19.8
-      ],
-      "gross_margin": 74.9,
-      "net_margin": 71.5,
-      "revenue_latest_b": 81615000.0
+      "status": "NO_DATA",
+      "reason": "FMP NVDA: HTTP 429"
     },
     "BTC": {
       "status": "AMBAR",
-      "reason": "Mixto: direcciones +14%, hashrate -17%",
-      "active_addr_trend_180d": 14.0,
-      "hashrate_trend_180d": -16.7,
-      "price_vs_ath": -51.0,
+      "reason": "Mixto: direcciones +15%, hashrate -18%",
+      "active_addr_trend_180d": 14.6,
+      "hashrate_trend_180d": -18.4,
+      "price_vs_ath": -51.1,
       "_errors": []
     },
     "MSCI": {
@@ -44,86 +26,91 @@
     {
       "symbol": "ETH",
       "name": "Ethereum",
-      "mcap_b": 205.1,
-      "change_1y": -33.6
+      "mcap_b": 207.5,
+      "change_1y": -33.9
     },
     {
       "symbol": "BNB",
       "name": "BNB",
-      "mcap_b": 75.6,
-      "change_1y": -15.6
+      "mcap_b": 75.7,
+      "change_1y": -15.1
     },
     {
       "symbol": "XRP",
       "name": "XRP",
-      "mcap_b": 67.8,
-      "change_1y": -51.8
+      "mcap_b": 68.5,
+      "change_1y": -51.6
     },
     {
       "symbol": "SOL",
       "name": "Solana",
-      "mcap_b": 47.0,
-      "change_1y": -47.2
+      "mcap_b": 47.1,
+      "change_1y": -47.9
     },
     {
       "symbol": "TRX",
       "name": "TRON",
-      "mcap_b": 30.1,
-      "change_1y": 12.6
+      "mcap_b": 30.3,
+      "change_1y": 12.5
     },
     {
       "symbol": "FIGR_HELOC",
       "name": "Figure Heloc",
-      "mcap_b": 20.2,
+      "mcap_b": 20.3,
       "change_1y": null
     },
     {
       "symbol": "HYPE",
       "name": "Hyperliquid",
-      "mcap_b": 14.8,
-      "change_1y": 67.3
+      "mcap_b": 15.0,
+      "change_1y": 66.1
     },
     {
       "symbol": "DOGE",
       "name": "Dogecoin",
-      "mcap_b": 11.5,
-      "change_1y": -56.7
+      "mcap_b": 11.6,
+      "change_1y": -56.9
     }
   ],
   "discovery": {
     "scanned_batch": 40,
-    "scan_position": "880/10426",
+    "scan_position": "920/10415",
     "batch_audit": {
-      "fmp_fail": 1,
+      "fmp_fail": 40,
       "fail_size": 0,
-      "fail_sector": 27,
-      "fail_ipo": 8,
+      "fail_sector": 0,
+      "fail_ipo": 0,
       "fail_other": 0,
-      "structural_pass": 4,
-      "thesis_fail": 4
+      "structural_pass": 0,
+      "thesis_fail": 0
     },
     "audit_totals": {
-      "fmp_fail": 1,
+      "fmp_fail": 40,
       "fail_size": 0,
-      "fail_sector": 27,
-      "fail_ipo": 8,
+      "fail_sector": 0,
+      "fail_ipo": 0,
       "fail_other": 0,
-      "structural_pass": 4,
-      "thesis_fail": 4
+      "structural_pass": 0,
+      "thesis_fail": 0
     },
     "new_in_observation": 0,
     "total_observing": 0,
     "confirmed_total": 0,
     "promoted_now": [],
     "discarded_now": [],
-    "fmp_failures": 1
+    "fmp_failures": 40
   },
   "confirmed_candidates": [],
   "observing_count": 0,
   "health": {
-    "last_run": "02/07/2026 18:17 UTC",
-    "last_run_ts": "2026-07-02T18:17:26.949986+00:00",
-    "ok": true,
-    "problems": []
+    "last_run": "03/07/2026 08:41 UTC",
+    "last_run_ts": "2026-07-03T08:41:41.953171+00:00",
+    "ok": false,
+    "problems": [
+      "Sin datos para: NVDA, SEMI",
+      "Fallo de fetch: FMP NVDA: HTTP 429",
+      "Fallo de fetch: radar: FMP fall\u00f3 en todo el lote (40)",
+      "CR\u00cdTICO: detector NVDA sin datos \u2014 revisar FMP key/cr\u00e9ditos"
+    ]
   }
 }
