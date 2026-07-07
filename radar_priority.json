@@ -1,617 +1,4277 @@
 {
- "generated": "2026-07-03",
- "source": "nasdaq screener (precomputado)",
- "note": "Candidatas que pasan el filtro estructural. El radar las analiza PRIMERO (perfil FMP confirma + tesis). Al agotarse, vuelve al barrido SEC completo.",
+ "generated": "2026-07-05",
+ "source": "nasdaq screener (precomputado, con perfil embebido)",
+ "note": "Pre-cribadas estructuralmente (1-50B, sector growth, IPO 2015+). El radar solo necesita evaluar la tesis (Yahoo). Regenerar la lista pidi\u00e9ndosela a Claude cuando se agote.",
  "symbols": [
-  "CRWD",
-  "OXY",
-  "HUM",
-  "XYZ",
-  "CVE",
-  "CBRS",
-  "INFY",
-  "CRDO",
-  "CRWV",
-  "BTSGU",
-  "ADSK",
-  "BDX",
-  "VIV",
-  "TEVA",
-  "RVMD",
-  "NTRA",
-  "RBLX",
-  "GFS",
-  "MCHPP",
-  "RDDT",
-  "WDS",
-  "ERIC",
-  "ON",
-  "ALC",
-  "CHT",
-  "CNC",
-  "STRF",
-  "WDAY",
-  "RPRX",
-  "ONC",
-  "EQT",
-  "BIIB",
-  "TWLO",
-  "UI",
-  "MRNA",
-  "VOD",
-  "STRC",
-  "RMD",
-  "EC",
-  "GEHC",
-  "Q",
-  "SMCIP",
-  "MDB",
-  "CW",
-  "OTIS",
-  "TPL",
-  "HAL",
-  "PHG",
-  "PBA",
-  "WST",
-  "HUBB",
-  "ZM",
-  "ROIV",
-  "WWD",
-  "OKTA",
-  "BNTX",
-  "BSP",
-  "INSM",
-  "P",
-  "DGX",
-  "ZS",
-  "LH",
-  "INCY",
-  "GH",
-  "BDRX",
-  "EXE",
-  "STRK",
-  "STRD",
-  "STE",
-  "TEAM",
-  "ROKU",
-  "IOT",
-  "HPQ",
-  "BCE",
-  "WIT",
-  "QNT",
-  "ULS",
-  "VTRS",
-  "CHTR",
-  "LSCC",
-  "FLUT",
-  "GMAB",
-  "IONQ",
-  "THC",
-  "RBRK",
-  "RCI",
-  "ASND",
-  "ZBH",
-  "TOST",
-  "SMCI",
-  "GEN",
-  "MEDP",
-  "SITM",
-  "TU",
-  "TIGO",
-  "PR",
-  "BBIO",
-  "DVA",
-  "OVV",
-  "COO",
-  "PTC",
-  "FPS",
-  "IREN",
-  "NTNX",
-  "TLK",
-  "LDOS",
-  "BTSG",
-  "DOCN",
-  "SOLV",
-  "IONS",
-  "TYL",
-  "FMS",
-  "AUR",
-  "DT",
-  "SNN",
-  "VICR",
-  "U",
-  "AXSM",
-  "SMTC",
-  "ELAN",
-  "PEN",
-  "PINS",
-  "SKM",
-  "RDY",
-  "SMMT",
-  "ARWR",
-  "BAX",
-  "GDDY",
-  "ABVX",
-  "FROG",
-  "APA",
-  "FIG",
-  "PL",
-  "CACI",
-  "KRYS",
-  "TECH",
-  "TEM",
-  "EHC",
-  "LFUS",
-  "WULF",
-  "TIMB",
-  "ALGM",
-  "ARW",
-  "APGE",
-  "IBRX",
-  "BSY",
-  "NUVL",
-  "OSCR",
-  "VIAV",
-  "UHS",
-  "APLD",
-  "COMP",
-  "HALO",
-  "SWKS",
-  "KYMR",
-  "POWL",
-  "TTD",
-  "PRAX",
-  "RRC",
-  "MTCH",
-  "GKOS",
-  "SAIL",
-  "YMM",
-  "ESE",
-  "HIMS",
-  "KT",
-  "PTGX",
-  "PCVX",
-  "QBTS",
-  "QGEN",
-  "TGTX",
-  "MBLY",
-  "IMVT",
-  "SNAP",
-  "RYTM",
-  "MIRM",
-  "QRVO",
-  "SYRE",
-  "TTAN",
-  "MQ",
-  "PLXS",
-  "LNTH",
-  "SOBO",
-  "YOU",
-  "BILI",
-  "LQDA",
-  "PACS",
-  "DPC",
-  "AVT",
-  "BB",
-  "DBX",
-  "COGT",
-  "LUMN",
-  "PCOR",
-  "RIG",
-  "SRRK",
-  "ACMR",
-  "CHE",
-  "HNGE",
-  "NAVN",
-  "CHRD",
-  "LGND",
-  "SM",
-  "KLIC",
-  "SSL",
-  "VIST",
-  "VSH",
-  "CGON",
-  "DSGX",
-  "GLBE",
-  "TWST",
-  "BLCO",
-  "NE",
-  "PATH",
-  "APPF",
-  "BZ",
-  "ESTC",
-  "GDS",
-  "PSN",
-  "RGTI",
-  "S",
-  "DUOL",
-  "INGM",
-  "TFX",
-  "BLTE",
-  "CRSP",
-  "STVN",
-  "ERAS",
-  "IRDM",
-  "LB",
-  "NICE",
-  "ACIW",
-  "DOX",
-  "LEGN",
-  "AMRX",
-  "BLLN",
-  "GTLB",
-  "MANE",
-  "RDNT",
-  "TEO",
-  "CELC",
-  "TVTX",
-  "CAI",
-  "DNTH",
-  "VAL",
-  "ZETA",
-  "KVYO",
-  "ORKA",
-  "SHC",
-  "TKC",
-  "INDV",
-  "KNSA",
-  "ALHC",
-  "GRFS",
-  "HESM",
-  "DFTX",
-  "PAGP",
-  "LIF",
-  "MARA",
-  "MGY",
-  "NTSK",
-  "OCTV",
-  "SAIC",
-  "SRAD",
-  "CRC",
-  "LBRDA",
-  "LBRDK",
-  "LIVN",
-  "MUR",
-  "CRNX",
-  "LBTYB",
-  "LILAP",
-  "NVST",
-  "WAY",
-  "DIOD",
-  "LFST",
-  "MMED",
-  "CRK",
-  "EWTX",
-  "HCC",
-  "PI",
-  "TENB",
-  "TNGX",
-  "VKTX",
-  "IRTC",
-  "LFTO",
-  "MMSI",
-  "CON",
-  "DNLI",
-  "NAMS",
-  "TDS",
-  "BILL",
-  "CNR",
-  "DOCS",
-  "TLX",
-  "BOX",
-  "CLBT",
-  "LBRT",
-  "ONDS",
-  "PHI",
-  "WBI",
-  "DYN",
-  "GPCR",
-  "LBTYA",
-  "OII",
-  "RCUS",
-  "VEON",
-  "LBTYK",
-  "MNDY",
-  "OLED",
-  "BEAM",
-  "KYIV",
-  "LASR",
-  "OGN",
-  "RLAY",
-  "WRBY",
-  "FA",
-  "NVTS",
-  "PBLS",
-  "PPLI",
-  "SUNC",
-  "XNDU",
-  "ADPT",
-  "ALMS",
-  "EROC",
-  "ICHR",
-  "OPCH",
-  "PRVA",
-  "SLBT",
-  "CARG",
-  "CCC",
-  "IDYA",
-  "TDC",
-  "ARQT",
-  "DK",
-  "ITGR",
-  "SEDG",
-  "AGYS",
-  "BHE",
-  "CRGY",
-  "HP",
-  "LBRDP",
-  "MGEE",
-  "PENG",
-  "RGC",
-  "BKV",
-  "CLDX",
-  "ELVN",
-  "GPOR",
-  "GRAL",
-  "PONY",
-  "RLX",
-  "VERA",
-  "ACHC",
-  "BRZE",
-  "BSM",
-  "BTE",
-  "FRSH",
-  "GRND",
-  "IRON",
-  "MGNI",
-  "NIQ",
-  "PARR",
-  "CLOV",
-  "FSLY",
-  "IHS",
-  "KLRA",
-  "MBX",
-  "NESR",
-  "SLS",
-  "SOUN",
-  "TARS",
-  "BTU",
-  "EROK",
-  "IMNM",
-  "INFQ",
-  "KC",
-  "KD",
-  "NAMSW",
-  "PAGS",
-  "RGTIW",
-  "RUM",
-  "STNE",
-  "ESTA",
-  "NYAX",
-  "ALRM",
-  "DSC",
-  "NRIX",
-  "NTLA",
-  "SDRL",
-  "TRVI",
-  "WTTR",
-  "ABCL",
-  "AVPT",
-  "AXGN",
-  "BHVN",
-  "CMCM",
-  "DJT",
-  "HTFL",
-  "KOD",
-  "NKTR",
-  "PGNY",
-  "PHVS",
-  "TAK",
-  "TMDX",
-  "VCEL",
-  "MLYS",
-  "RAMP",
-  "SGRY",
-  "TALO",
-  "GENB",
-  "HRMY",
-  "IMOS",
-  "MD",
-  "ADMA",
-  "ATEX",
-  "HAWK",
-  "INTA",
-  "KARD",
-  "MNR",
-  "PVLA",
-  "VERX",
-  "WOLF",
-  "ZLAB",
-  "ALKT",
-  "AMLX",
-  "AMR",
-  "AUPH",
-  "AVAH",
-  "BAND",
-  "BFLY",
-  "BRUN",
-  "GLUE",
-  "HCM",
-  "LKFT",
-  "NEO",
-  "NUVB",
-  "NVCR",
-  "PGEN",
-  "PLSE",
-  "QUBT",
-  "RVMDW",
-  "RXRX",
-  "SION",
-  "SNDA",
-  "SRPT",
-  "STOK",
-  "WGS",
-  "AGL",
-  "ANAB",
-  "ANIP",
-  "BCAX",
-  "FCEL",
-  "GHRS",
-  "IOVA",
-  "MESO",
-  "NBTX",
-  "NCNO",
-  "NOG",
-  "PRCH",
-  "RAPP",
-  "SNDX",
-  "TRLV",
-  "TSHA",
-  "URGN",
-  "WRD",
-  "ZD",
-  "ZYME",
-  "ABSI",
-  "AKTS",
-  "AMBQ",
-  "APPN",
-  "BHC",
-  "BL",
-  "CMPS",
-  "DMRA",
-  "DV",
-  "EPAC",
-  "EVCM",
-  "NNNN",
-  "OPRA",
-  "TYRA",
-  "AAPG",
-  "ASAN",
-  "BBAI",
-  "CLVT",
-  "CTS",
-  "KARO",
-  "LILA",
-  "LILAK",
-  "MAZE",
-  "MPLT",
-  "SHLS",
-  "SKYT",
-  "TDOC",
-  "TRIP",
-  "VIR",
-  "WKC",
-  "ZBIO",
-  "AIP",
-  "AVBP",
-  "DXC",
-  "EYE",
-  "FORTY",
-  "FTRE",
-  "HROW",
-  "IMCR",
-  "INNV",
-  "KMTS",
-  "KRP",
-  "LIME",
-  "MRVI",
-  "NVAX",
-  "SLNHP",
-  "UZD",
-  "VIA",
-  "VPG",
-  "AHCO",
-  "ARDT",
-  "IDT",
-  "PLTK",
-  "PRGO",
-  "PUMP",
-  "SEPN",
-  "UZE",
-  "AI",
-  "BLFS",
-  "BORR",
-  "CNXC",
-  "COAG",
-  "IART",
-  "INBX",
-  "INSP",
-  "KYIVW",
-  "LSPD",
-  "MLTX",
-  "NSSC",
-  "PSNL",
-  "RXT",
-  "STAA",
-  "TBLA",
-  "UZF",
-  "VET",
-  "XERS",
-  "AVLN",
-  "CAPR",
-  "CDRE",
-  "CRVS",
-  "CXM",
-  "ENOV",
-  "HLX",
-  "IMTX",
-  "MGTX",
-  "OMDA",
-  "PNTG",
-  "POET",
-  "RCAT",
-  "SDGR",
-  "SVRA",
-  "TTI",
-  "AMPL",
-  "AORT",
-  "AZTA",
-  "BRAI",
-  "BRUNW",
-  "COLL",
-  "DMLP",
-  "DRTS",
-  "ENRD",
-  "HQ",
-  "LMRI",
-  "LZ",
-  "ORIC",
-  "PBT",
-  "PRCT",
-  "QDEL",
-  "RES",
-  "TRUP",
-  "WVE",
-  "ALVO",
-  "BIOA",
-  "BLDP",
-  "CERT",
-  "CEVA",
-  "CGEM",
-  "CRON",
-  "EVLV",
-  "JBIO",
-  "KDK",
-  "LFMDP",
-  "MGRT",
-  "OLMA",
-  "OPK",
-  "RZLV",
-  "SANA",
-  "SBET",
-  "SBR",
-  "SHAZ",
-  "SIFY",
-  "SLDB",
-  "SPTX",
-  "TUYA",
-  "UMAC",
-  "UPWK",
-  "VOR",
-  "BKSY",
-  "ETON",
-  "GDRX",
-  "LXRX",
-  "SCSC"
+  {
+   "symbol": "OXY",
+   "name": "Occidental Petroleum Corporati",
+   "sector": "Energy",
+   "mcap_b": 49.7,
+   "ipo": null
+  },
+  {
+   "symbol": "HUM",
+   "name": "Humana Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 47.6,
+   "ipo": null
+  },
+  {
+   "symbol": "XYZ",
+   "name": "Block Inc. Class A Common Stoc",
+   "sector": "Technology",
+   "mcap_b": 46.7,
+   "ipo": 2015
+  },
+  {
+   "symbol": "CVE",
+   "name": "Cenovus Energy Inc Common Stoc",
+   "sector": "Energy",
+   "mcap_b": 46.4,
+   "ipo": null
+  },
+  {
+   "symbol": "CRDO",
+   "name": "Credo Technology Group Holding",
+   "sector": "Technology",
+   "mcap_b": 45.7,
+   "ipo": 2022
+  },
+  {
+   "symbol": "INFY",
+   "name": "Infosys Limited American Depos",
+   "sector": "Technology",
+   "mcap_b": 45.7,
+   "ipo": null
+  },
+  {
+   "symbol": "CRWV",
+   "name": "CoreWeave Inc. Class A Common ",
+   "sector": "Technology",
+   "mcap_b": 45.6,
+   "ipo": 2025
+  },
+  {
+   "symbol": "ADSK",
+   "name": "Autodesk Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 45.2,
+   "ipo": null
+  },
+  {
+   "symbol": "BTSGU",
+   "name": "BrightSpring Health Services I",
+   "sector": "Healthcare",
+   "mcap_b": 45.1,
+   "ipo": 2024
+  },
+  {
+   "symbol": "BDX",
+   "name": "Becton Dickinson and Company C",
+   "sector": "Healthcare",
+   "mcap_b": 43.4,
+   "ipo": null
+  },
+  {
+   "symbol": "VIV",
+   "name": "Telefonica Brasil S.A. America",
+   "sector": "Communication Services",
+   "mcap_b": 42.5,
+   "ipo": 2020
+  },
+  {
+   "symbol": "RBLX",
+   "name": "Roblox Corporation Class A Com",
+   "sector": "Technology",
+   "mcap_b": 40.8,
+   "ipo": 2021
+  },
+  {
+   "symbol": "RVMD",
+   "name": "Revolution Medicines Inc. Comm",
+   "sector": "Healthcare",
+   "mcap_b": 40.8,
+   "ipo": 2020
+  },
+  {
+   "symbol": "NTRA",
+   "name": "Natera Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 40.7,
+   "ipo": 2015
+  },
+  {
+   "symbol": "TEVA",
+   "name": "Teva Pharmaceutical Industries",
+   "sector": "Healthcare",
+   "mcap_b": 40.6,
+   "ipo": null
+  },
+  {
+   "symbol": "CBRS",
+   "name": "Cerebras Systems Inc. Class A ",
+   "sector": "Technology",
+   "mcap_b": 40.1,
+   "ipo": 2026
+  },
+  {
+   "symbol": "RDDT",
+   "name": "Reddit Inc. Class A Common Sto",
+   "sector": "Technology",
+   "mcap_b": 38.9,
+   "ipo": 2024
+  },
+  {
+   "symbol": "MCHPP",
+   "name": "Microchip Technology Incorpora",
+   "sector": "Technology",
+   "mcap_b": 38.7,
+   "ipo": null
+  },
+  {
+   "symbol": "WDS",
+   "name": "Woodside Energy Group Limited ",
+   "sector": "Energy",
+   "mcap_b": 37.1,
+   "ipo": 2022
+  },
+  {
+   "symbol": "GFS",
+   "name": "GlobalFoundries Inc. Ordinary ",
+   "sector": "Technology",
+   "mcap_b": 36.7,
+   "ipo": 2021
+  },
+  {
+   "symbol": "ERIC",
+   "name": "Ericsson American Depositary S",
+   "sector": "Technology",
+   "mcap_b": 36.6,
+   "ipo": null
+  },
+  {
+   "symbol": "ON",
+   "name": "ON Semiconductor Corporation C",
+   "sector": "Technology",
+   "mcap_b": 35.4,
+   "ipo": null
+  },
+  {
+   "symbol": "WDAY",
+   "name": "Workday Inc. Class A Common St",
+   "sector": "Technology",
+   "mcap_b": 35.4,
+   "ipo": null
+  },
+  {
+   "symbol": "CHT",
+   "name": "Chunghwa Telecom Co. Ltd.",
+   "sector": "Communication Services",
+   "mcap_b": 34.1,
+   "ipo": null
+  },
+  {
+   "symbol": "ONC",
+   "name": "BeOne Medicines Ltd. American ",
+   "sector": "Healthcare",
+   "mcap_b": 34.1,
+   "ipo": 2016
+  },
+  {
+   "symbol": "STRF",
+   "name": "Strategy Inc 10.00% Series A P",
+   "sector": "Technology",
+   "mcap_b": 34.0,
+   "ipo": null
+  },
+  {
+   "symbol": "ALC",
+   "name": "Alcon Inc. Ordinary Shares",
+   "sector": "Healthcare",
+   "mcap_b": 33.6,
+   "ipo": 2019
+  },
+  {
+   "symbol": "RPRX",
+   "name": "Royalty Pharma plc Class A Ord",
+   "sector": "Healthcare",
+   "mcap_b": 33.3,
+   "ipo": 2020
+  },
+  {
+   "symbol": "TWLO",
+   "name": "Twilio Inc. Class A Common Sto",
+   "sector": "Technology",
+   "mcap_b": 33.0,
+   "ipo": 2016
+  },
+  {
+   "symbol": "CNC",
+   "name": "Centene Corporation Common Sto",
+   "sector": "Healthcare",
+   "mcap_b": 32.7,
+   "ipo": null
+  },
+  {
+   "symbol": "EQT",
+   "name": "EQT Corporation Common Stock",
+   "sector": "Energy",
+   "mcap_b": 32.1,
+   "ipo": null
+  },
+  {
+   "symbol": "UI",
+   "name": "Ubiquiti Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 31.8,
+   "ipo": null
+  },
+  {
+   "symbol": "RMD",
+   "name": "ResMed Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 31.7,
+   "ipo": null
+  },
+  {
+   "symbol": "MRNA",
+   "name": "Moderna Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 31.5,
+   "ipo": 2018
+  },
+  {
+   "symbol": "VOD",
+   "name": "Vodafone Group Plc American De",
+   "sector": "Communication Services",
+   "mcap_b": 31.2,
+   "ipo": null
+  },
+  {
+   "symbol": "STRC",
+   "name": "Strategy Inc Variable Rate Ser",
+   "sector": "Technology",
+   "mcap_b": 31.0,
+   "ipo": null
+  },
+  {
+   "symbol": "BIIB",
+   "name": "Biogen Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 30.9,
+   "ipo": null
+  },
+  {
+   "symbol": "EC",
+   "name": "Ecopetrol S.A. American Deposi",
+   "sector": "Energy",
+   "mcap_b": 29.6,
+   "ipo": null
+  },
+  {
+   "symbol": "GEHC",
+   "name": "GE HealthCare Technologies Inc",
+   "sector": "Healthcare",
+   "mcap_b": 29.6,
+   "ipo": null
+  },
+  {
+   "symbol": "Q",
+   "name": "Qnity Electronics Inc. Common ",
+   "sector": "Technology",
+   "mcap_b": 29.6,
+   "ipo": 2025
+  },
+  {
+   "symbol": "MDB",
+   "name": "MongoDB Inc. Class A Common St",
+   "sector": "Technology",
+   "mcap_b": 29.5,
+   "ipo": 2017
+  },
+  {
+   "symbol": "CW",
+   "name": "Curtiss-Wright Corporation Com",
+   "sector": "Technology",
+   "mcap_b": 28.5,
+   "ipo": null
+  },
+  {
+   "symbol": "SMCIP",
+   "name": "Super Micro Computer Inc. Depo",
+   "sector": "Technology",
+   "mcap_b": 28.3,
+   "ipo": null
+  },
+  {
+   "symbol": "OTIS",
+   "name": "Otis Worldwide Corporation Com",
+   "sector": "Technology",
+   "mcap_b": 28.0,
+   "ipo": 2020
+  },
+  {
+   "symbol": "HAL",
+   "name": "Halliburton Company Common Sto",
+   "sector": "Energy",
+   "mcap_b": 27.9,
+   "ipo": null
+  },
+  {
+   "symbol": "PHG",
+   "name": "Koninklijke Philips N.V. NY Re",
+   "sector": "Healthcare",
+   "mcap_b": 27.7,
+   "ipo": null
+  },
+  {
+   "symbol": "TPL",
+   "name": "Texas Pacific Land Corporation",
+   "sector": "Energy",
+   "mcap_b": 27.5,
+   "ipo": null
+  },
+  {
+   "symbol": "PBA",
+   "name": "Pembina Pipeline Corp. Ordinar",
+   "sector": "Energy",
+   "mcap_b": 27.4,
+   "ipo": null
+  },
+  {
+   "symbol": "OKTA",
+   "name": "Okta Inc. Class A Common Stock",
+   "sector": "Technology",
+   "mcap_b": 26.4,
+   "ipo": 2017
+  },
+  {
+   "symbol": "P",
+   "name": "Everpure Inc. Class A common s",
+   "sector": "Technology",
+   "mcap_b": 25.9,
+   "ipo": 2015
+  },
+  {
+   "symbol": "ROIV",
+   "name": "Roivant Sciences Ltd. Common S",
+   "sector": "Healthcare",
+   "mcap_b": 25.9,
+   "ipo": null
+  },
+  {
+   "symbol": "ZM",
+   "name": "Zoom Communications Inc. Class",
+   "sector": "Technology",
+   "mcap_b": 25.4,
+   "ipo": 2019
+  },
+  {
+   "symbol": "HUBB",
+   "name": "Hubbell Inc Common Stock",
+   "sector": "Technology",
+   "mcap_b": 25.2,
+   "ipo": 2015
+  },
+  {
+   "symbol": "WST",
+   "name": "West Pharmaceutical Services I",
+   "sector": "Healthcare",
+   "mcap_b": 25.2,
+   "ipo": null
+  },
+  {
+   "symbol": "ZS",
+   "name": "Zscaler Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 24.9,
+   "ipo": 2018
+  },
+  {
+   "symbol": "BSP",
+   "name": "Bending Spoons S.p.A. Ordinary",
+   "sector": "Technology",
+   "mcap_b": 24.8,
+   "ipo": 2026
+  },
+  {
+   "symbol": "INSM",
+   "name": "Insmed Incorporated Common Sto",
+   "sector": "Healthcare",
+   "mcap_b": 24.6,
+   "ipo": null
+  },
+  {
+   "symbol": "WWD",
+   "name": "Woodward Inc. Common Stock",
+   "sector": "Energy",
+   "mcap_b": 24.2,
+   "ipo": null
+  },
+  {
+   "symbol": "DGX",
+   "name": "Quest Diagnostics Incorporated",
+   "sector": "Healthcare",
+   "mcap_b": 23.8,
+   "ipo": null
+  },
+  {
+   "symbol": "BNTX",
+   "name": "BioNTech SE American Depositar",
+   "sector": "Healthcare",
+   "mcap_b": 23.7,
+   "ipo": 2019
+  },
+  {
+   "symbol": "LH",
+   "name": "Labcorp Holdings Inc. Common S",
+   "sector": "Healthcare",
+   "mcap_b": 23.6,
+   "ipo": null
+  },
+  {
+   "symbol": "INCY",
+   "name": "Incyte Corp. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 23.5,
+   "ipo": null
+  },
+  {
+   "symbol": "TEAM",
+   "name": "Atlassian Corporation Class A ",
+   "sector": "Technology",
+   "mcap_b": 23.0,
+   "ipo": 2015
+  },
+  {
+   "symbol": "GH",
+   "name": "Guardant Health Inc. Common St",
+   "sector": "Healthcare",
+   "mcap_b": 22.2,
+   "ipo": 2018
+  },
+  {
+   "symbol": "STRK",
+   "name": "Strategy Inc 8.00% Series A Pe",
+   "sector": "Technology",
+   "mcap_b": 22.1,
+   "ipo": null
+  },
+  {
+   "symbol": "STRD",
+   "name": "Strategy Inc 10.00% Series A P",
+   "sector": "Technology",
+   "mcap_b": 21.8,
+   "ipo": null
+  },
+  {
+   "symbol": "IOT",
+   "name": "Samsara Inc. Class A Common St",
+   "sector": "Technology",
+   "mcap_b": 21.7,
+   "ipo": 2021
+  },
+  {
+   "symbol": "EXE",
+   "name": "Expand Energy Corporation Comm",
+   "sector": "Energy",
+   "mcap_b": 21.2,
+   "ipo": null
+  },
+  {
+   "symbol": "BDRX",
+   "name": "Biodexa Pharmaceuticals plc Am",
+   "sector": "Healthcare",
+   "mcap_b": 21.0,
+   "ipo": null
+  },
+  {
+   "symbol": "HPQ",
+   "name": "HP Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 21.0,
+   "ipo": null
+  },
+  {
+   "symbol": "ROKU",
+   "name": "Roku Inc. Class A Common Stock",
+   "sector": "Communication Services",
+   "mcap_b": 21.0,
+   "ipo": 2017
+  },
+  {
+   "symbol": "STE",
+   "name": "STERIS plc (Ireland) Ordinary ",
+   "sector": "Healthcare",
+   "mcap_b": 21.0,
+   "ipo": null
+  },
+  {
+   "symbol": "QNT",
+   "name": "Quantinuum Inc. Class A Common",
+   "sector": "Technology",
+   "mcap_b": 20.8,
+   "ipo": 2026
+  },
+  {
+   "symbol": "BCE",
+   "name": "BCE Inc. Common Stock",
+   "sector": "Communication Services",
+   "mcap_b": 19.9,
+   "ipo": null
+  },
+  {
+   "symbol": "VTRS",
+   "name": "Viatris Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 19.9,
+   "ipo": null
+  },
+  {
+   "symbol": "WIT",
+   "name": "Wipro Limited Common Stock",
+   "sector": "Technology",
+   "mcap_b": 19.6,
+   "ipo": null
+  },
+  {
+   "symbol": "CHTR",
+   "name": "Charter Communications Inc. Cl",
+   "sector": "Communication Services",
+   "mcap_b": 19.3,
+   "ipo": null
+  },
+  {
+   "symbol": "FLUT",
+   "name": "Flutter Entertainment plc Ordi",
+   "sector": "Technology",
+   "mcap_b": 19.0,
+   "ipo": 2024
+  },
+  {
+   "symbol": "GMAB",
+   "name": "Genmab A/S ADS",
+   "sector": "Healthcare",
+   "mcap_b": 18.6,
+   "ipo": 2019
+  },
+  {
+   "symbol": "RBRK",
+   "name": "Rubrik Inc. Class A Common Sto",
+   "sector": "Technology",
+   "mcap_b": 18.4,
+   "ipo": 2024
+  },
+  {
+   "symbol": "LSCC",
+   "name": "Lattice Semiconductor Corporat",
+   "sector": "Technology",
+   "mcap_b": 18.0,
+   "ipo": null
+  },
+  {
+   "symbol": "THC",
+   "name": "Tenet Healthcare Corporation C",
+   "sector": "Healthcare",
+   "mcap_b": 18.0,
+   "ipo": null
+  },
+  {
+   "symbol": "ULS",
+   "name": "UL Solutions Inc. Class A Comm",
+   "sector": "Healthcare",
+   "mcap_b": 18.0,
+   "ipo": 2024
+  },
+  {
+   "symbol": "SITM",
+   "name": "SiTime Corporation Common Stoc",
+   "sector": "Technology",
+   "mcap_b": 17.8,
+   "ipo": 2019
+  },
+  {
+   "symbol": "RCI",
+   "name": "Rogers Communication Inc. Comm",
+   "sector": "Communication Services",
+   "mcap_b": 17.5,
+   "ipo": null
+  },
+  {
+   "symbol": "TOST",
+   "name": "Toast Inc. Class A Common Stoc",
+   "sector": "Technology",
+   "mcap_b": 17.3,
+   "ipo": 2021
+  },
+  {
+   "symbol": "ZBH",
+   "name": "Zimmer Biomet Holdings Inc. Co",
+   "sector": "Healthcare",
+   "mcap_b": 17.3,
+   "ipo": null
+  },
+  {
+   "symbol": "IONQ",
+   "name": "IonQ Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 17.1,
+   "ipo": 2021
+  },
+  {
+   "symbol": "ASND",
+   "name": "Ascendis Pharma A/S Ordinary S",
+   "sector": "Healthcare",
+   "mcap_b": 16.9,
+   "ipo": 2015
+  },
+  {
+   "symbol": "TU",
+   "name": "Telus Corporation Ordinary Sha",
+   "sector": "Communication Services",
+   "mcap_b": 16.4,
+   "ipo": null
+  },
+  {
+   "symbol": "GEN",
+   "name": "Gen Digital Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 16.3,
+   "ipo": null
+  },
+  {
+   "symbol": "SMCI",
+   "name": "Super Micro Computer Inc. Comm",
+   "sector": "Technology",
+   "mcap_b": 15.8,
+   "ipo": 2020
+  },
+  {
+   "symbol": "TIGO",
+   "name": "Millicom International Cellula",
+   "sector": "Communication Services",
+   "mcap_b": 15.8,
+   "ipo": null
+  },
+  {
+   "symbol": "MEDP",
+   "name": "Medpace Holdings Inc. Common S",
+   "sector": "Healthcare",
+   "mcap_b": 15.7,
+   "ipo": 2016
+  },
+  {
+   "symbol": "PR",
+   "name": "Permian Resources Corporation ",
+   "sector": "Energy",
+   "mcap_b": 15.7,
+   "ipo": 2022
+  },
+  {
+   "symbol": "BBIO",
+   "name": "BridgeBio Pharma Inc. Common S",
+   "sector": "Healthcare",
+   "mcap_b": 15.4,
+   "ipo": 2019
+  },
+  {
+   "symbol": "DOCN",
+   "name": "DigitalOcean Holdings Inc. Com",
+   "sector": "Technology",
+   "mcap_b": 15.4,
+   "ipo": 2021
+  },
+  {
+   "symbol": "OVV",
+   "name": "Ovintiv Inc. (DE)",
+   "sector": "Energy",
+   "mcap_b": 15.3,
+   "ipo": null
+  },
+  {
+   "symbol": "DVA",
+   "name": "DaVita Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 15.2,
+   "ipo": null
+  },
+  {
+   "symbol": "NTNX",
+   "name": "Nutanix Inc. Class A Common St",
+   "sector": "Technology",
+   "mcap_b": 14.9,
+   "ipo": 2016
+  },
+  {
+   "symbol": "IREN",
+   "name": "IREN Limited Ordinary Shares",
+   "sector": "Technology",
+   "mcap_b": 14.7,
+   "ipo": 2021
+  },
+  {
+   "symbol": "PTC",
+   "name": "PTC Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 14.6,
+   "ipo": null
+  },
+  {
+   "symbol": "IONS",
+   "name": "Ionis Pharmaceuticals Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 14.3,
+   "ipo": null
+  },
+  {
+   "symbol": "COO",
+   "name": "The Cooper Companies Inc. Comm",
+   "sector": "Healthcare",
+   "mcap_b": 14.1,
+   "ipo": null
+  },
+  {
+   "symbol": "TLK",
+   "name": "PT Telekomunikasi Indonesia Tb",
+   "sector": "Communication Services",
+   "mcap_b": 13.9,
+   "ipo": null
+  },
+  {
+   "symbol": "LDOS",
+   "name": "Leidos Holdings Inc. Common St",
+   "sector": "Technology",
+   "mcap_b": 13.7,
+   "ipo": null
+  },
+  {
+   "symbol": "TYL",
+   "name": "Tyler Technologies Inc. Common",
+   "sector": "Technology",
+   "mcap_b": 13.7,
+   "ipo": null
+  },
+  {
+   "symbol": "BTSG",
+   "name": "BrightSpring Health Services I",
+   "sector": "Healthcare",
+   "mcap_b": 13.6,
+   "ipo": 2024
+  },
+  {
+   "symbol": "FPS",
+   "name": "Forgent Power Solutions Inc. C",
+   "sector": "Energy",
+   "mcap_b": 13.6,
+   "ipo": 2026
+  },
+  {
+   "symbol": "FMS",
+   "name": "Fresenius Medical Care AG Amer",
+   "sector": "Healthcare",
+   "mcap_b": 13.5,
+   "ipo": null
+  },
+  {
+   "symbol": "DT",
+   "name": "Dynatrace Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 13.3,
+   "ipo": 2019
+  },
+  {
+   "symbol": "SOLV",
+   "name": "Solventum Corporation Common S",
+   "sector": "Healthcare",
+   "mcap_b": 13.2,
+   "ipo": 2024
+  },
+  {
+   "symbol": "U",
+   "name": "Unity Software Inc. Common Sto",
+   "sector": "Technology",
+   "mcap_b": 13.1,
+   "ipo": 2020
+  },
+  {
+   "symbol": "AXSM",
+   "name": "Axsome Therapeutics Inc. Commo",
+   "sector": "Healthcare",
+   "mcap_b": 12.9,
+   "ipo": 2015
+  },
+  {
+   "symbol": "SNN",
+   "name": "Smith & Nephew SNATS Inc. Comm",
+   "sector": "Healthcare",
+   "mcap_b": 12.9,
+   "ipo": null
+  },
+  {
+   "symbol": "AUR",
+   "name": "Aurora Innovation Inc. Class A",
+   "sector": "Technology",
+   "mcap_b": 12.8,
+   "ipo": 2021
+  },
+  {
+   "symbol": "PEN",
+   "name": "Penumbra Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 12.5,
+   "ipo": 2015
+  },
+  {
+   "symbol": "PINS",
+   "name": "Pinterest Inc. Class A Common ",
+   "sector": "Technology",
+   "mcap_b": 12.5,
+   "ipo": 2019
+  },
+  {
+   "symbol": "ABVX",
+   "name": "Abivax SA American Depositary ",
+   "sector": "Healthcare",
+   "mcap_b": 12.4,
+   "ipo": 2023
+  },
+  {
+   "symbol": "ELAN",
+   "name": "Elanco Animal Health Incorpora",
+   "sector": "Healthcare",
+   "mcap_b": 12.3,
+   "ipo": 2018
+  },
+  {
+   "symbol": "SMMT",
+   "name": "Summit Therapeutics Inc. Commo",
+   "sector": "Healthcare",
+   "mcap_b": 12.3,
+   "ipo": 2015
+  },
+  {
+   "symbol": "ARWR",
+   "name": "Arrowhead Pharmaceuticals Inc.",
+   "sector": "Healthcare",
+   "mcap_b": 12.2,
+   "ipo": null
+  },
+  {
+   "symbol": "FIG",
+   "name": "Figma Inc. Class A Common Stoc",
+   "sector": "Technology",
+   "mcap_b": 12.2,
+   "ipo": 2025
+  },
+  {
+   "symbol": "RDY",
+   "name": "Dr. Reddy's Laboratories Ltd C",
+   "sector": "Healthcare",
+   "mcap_b": 12.2,
+   "ipo": null
+  },
+  {
+   "symbol": "BAX",
+   "name": "Baxter International Inc. Comm",
+   "sector": "Healthcare",
+   "mcap_b": 12.0,
+   "ipo": null
+  },
+  {
+   "symbol": "GDDY",
+   "name": "GoDaddy Inc. Class A Common St",
+   "sector": "Technology",
+   "mcap_b": 12.0,
+   "ipo": 2015
+  },
+  {
+   "symbol": "SKM",
+   "name": "SK Telecom Co. Ltd. Common Sto",
+   "sector": "Communication Services",
+   "mcap_b": 12.0,
+   "ipo": null
+  },
+  {
+   "symbol": "FROG",
+   "name": "JFrog Ltd. Ordinary Shares",
+   "sector": "Technology",
+   "mcap_b": 11.9,
+   "ipo": 2020
+  },
+  {
+   "symbol": "SMTC",
+   "name": "Semtech Corporation Common Sto",
+   "sector": "Technology",
+   "mcap_b": 11.9,
+   "ipo": null
+  },
+  {
+   "symbol": "APA",
+   "name": "APA Corporation Common Stock",
+   "sector": "Energy",
+   "mcap_b": 11.7,
+   "ipo": null
+  },
+  {
+   "symbol": "VICR",
+   "name": "Vicor Corporation Common Stock",
+   "sector": "Technology",
+   "mcap_b": 11.6,
+   "ipo": null
+  },
+  {
+   "symbol": "CACI",
+   "name": "CACI International Inc. Class ",
+   "sector": "Technology",
+   "mcap_b": 11.1,
+   "ipo": null
+  },
+  {
+   "symbol": "KRYS",
+   "name": "Krystal Biotech Inc. Common St",
+   "sector": "Healthcare",
+   "mcap_b": 11.1,
+   "ipo": 2017
+  },
+  {
+   "symbol": "TECH",
+   "name": "Bio-Techne Corp Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 11.1,
+   "ipo": null
+  },
+  {
+   "symbol": "TEM",
+   "name": "Tempus AI Inc. Class A Common ",
+   "sector": "Technology",
+   "mcap_b": 11.0,
+   "ipo": 2024
+  },
+  {
+   "symbol": "EHC",
+   "name": "Encompass Health Corporation C",
+   "sector": "Healthcare",
+   "mcap_b": 10.8,
+   "ipo": null
+  },
+  {
+   "symbol": "TIMB",
+   "name": "TIM S.A. American Depositary S",
+   "sector": "Communication Services",
+   "mcap_b": 10.5,
+   "ipo": 2020
+  },
+  {
+   "symbol": "PL",
+   "name": "Planet Labs PBC Class A Common",
+   "sector": "Technology",
+   "mcap_b": 10.4,
+   "ipo": 2021
+  },
+  {
+   "symbol": "LFUS",
+   "name": "Littelfuse Inc. Common Stock",
+   "sector": "Energy",
+   "mcap_b": 10.2,
+   "ipo": null
+  },
+  {
+   "symbol": "WULF",
+   "name": "TeraWulf Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 10.2,
+   "ipo": null
+  },
+  {
+   "symbol": "APGE",
+   "name": "Apogee Therapeutics Inc. Commo",
+   "sector": "Healthcare",
+   "mcap_b": 10.1,
+   "ipo": 2023
+  },
+  {
+   "symbol": "ARW",
+   "name": "Arrow Electronics Inc. Common ",
+   "sector": "Technology",
+   "mcap_b": 10.0,
+   "ipo": null
+  },
+  {
+   "symbol": "BSY",
+   "name": "Bentley Systems Incorporated C",
+   "sector": "Technology",
+   "mcap_b": 10.0,
+   "ipo": 2020
+  },
+  {
+   "symbol": "ALGM",
+   "name": "Allegro MicroSystems Inc. Comm",
+   "sector": "Technology",
+   "mcap_b": 9.9,
+   "ipo": 2020
+  },
+  {
+   "symbol": "KYMR",
+   "name": "Kymera Therapeutics Inc. Commo",
+   "sector": "Healthcare",
+   "mcap_b": 9.9,
+   "ipo": 2020
+  },
+  {
+   "symbol": "NUVL",
+   "name": "Nuvalent Inc. Class A Common S",
+   "sector": "Healthcare",
+   "mcap_b": 9.8,
+   "ipo": 2021
+  },
+  {
+   "symbol": "UHS",
+   "name": "Universal Health Services Inc.",
+   "sector": "Healthcare",
+   "mcap_b": 9.7,
+   "ipo": null
+  },
+  {
+   "symbol": "HALO",
+   "name": "Halozyme Therapeutics Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 9.6,
+   "ipo": null
+  },
+  {
+   "symbol": "OSCR",
+   "name": "Oscar Health Inc. Class A Comm",
+   "sector": "Healthcare",
+   "mcap_b": 9.6,
+   "ipo": 2021
+  },
+  {
+   "symbol": "VIAV",
+   "name": "Viavi Solutions Inc. Common St",
+   "sector": "Technology",
+   "mcap_b": 9.5,
+   "ipo": null
+  },
+  {
+   "symbol": "COMP",
+   "name": "Compass Inc. Class A Common St",
+   "sector": "Technology",
+   "mcap_b": 9.4,
+   "ipo": 2021
+  },
+  {
+   "symbol": "SAIL",
+   "name": "SailPoint Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 9.4,
+   "ipo": 2025
+  },
+  {
+   "symbol": "APLD",
+   "name": "Applied Digital Corporation Co",
+   "sector": "Healthcare",
+   "mcap_b": 9.1,
+   "ipo": 2022
+  },
+  {
+   "symbol": "IBRX",
+   "name": "ImmunityBio Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 9.1,
+   "ipo": 2015
+  },
+  {
+   "symbol": "MTCH",
+   "name": "Match Group Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 9.1,
+   "ipo": null
+  },
+  {
+   "symbol": "PRAX",
+   "name": "Praxis Precision Medicines Inc",
+   "sector": "Healthcare",
+   "mcap_b": 9.1,
+   "ipo": 2020
+  },
+  {
+   "symbol": "SWKS",
+   "name": "Skyworks Solutions Inc. Common",
+   "sector": "Technology",
+   "mcap_b": 9.1,
+   "ipo": null
+  },
+  {
+   "symbol": "TTD",
+   "name": "The Trade Desk Inc. Class A Co",
+   "sector": "Technology",
+   "mcap_b": 9.0,
+   "ipo": 2016
+  },
+  {
+   "symbol": "PTGX",
+   "name": "Protagonist Therapeutics Inc. ",
+   "sector": "Healthcare",
+   "mcap_b": 8.9,
+   "ipo": 2016
+  },
+  {
+   "symbol": "TGTX",
+   "name": "TG Therapeutics Inc. Common St",
+   "sector": "Healthcare",
+   "mcap_b": 8.9,
+   "ipo": null
+  },
+  {
+   "symbol": "CRNX",
+   "name": "Crinetics Pharmaceuticals Inc.",
+   "sector": "Healthcare",
+   "mcap_b": 8.8,
+   "ipo": 2018
+  },
+  {
+   "symbol": "GKOS",
+   "name": "Glaukos Corporation Common Sto",
+   "sector": "Healthcare",
+   "mcap_b": 8.8,
+   "ipo": 2015
+  },
+  {
+   "symbol": "KT",
+   "name": "KT Corporation Common Stock",
+   "sector": "Communication Services",
+   "mcap_b": 8.8,
+   "ipo": null
+  },
+  {
+   "symbol": "RRC",
+   "name": "Range Resources Corporation Co",
+   "sector": "Energy",
+   "mcap_b": 8.8,
+   "ipo": null
+  },
+  {
+   "symbol": "HIMS",
+   "name": "Hims & Hers Health Inc. Class ",
+   "sector": "Healthcare",
+   "mcap_b": 8.7,
+   "ipo": 2019
+  },
+  {
+   "symbol": "PCVX",
+   "name": "Vaxcyte Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 8.7,
+   "ipo": 2020
+  },
+  {
+   "symbol": "ESE",
+   "name": "ESCO Technologies Inc. Common ",
+   "sector": "Communication Services",
+   "mcap_b": 8.6,
+   "ipo": null
+  },
+  {
+   "symbol": "YMM",
+   "name": "Full Truck Alliance Co. Ltd. A",
+   "sector": "Technology",
+   "mcap_b": 8.6,
+   "ipo": 2021
+  },
+  {
+   "symbol": "POWL",
+   "name": "Powell Industries Inc. Common ",
+   "sector": "Energy",
+   "mcap_b": 8.4,
+   "ipo": null
+  },
+  {
+   "symbol": "IMVT",
+   "name": "Immunovant Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 8.3,
+   "ipo": 2019
+  },
+  {
+   "symbol": "MBLY",
+   "name": "Mobileye Global Inc. Class A C",
+   "sector": "Technology",
+   "mcap_b": 8.2,
+   "ipo": 2022
+  },
+  {
+   "symbol": "SYRE",
+   "name": "Spyre Therapeutics Inc. Common",
+   "sector": "Healthcare",
+   "mcap_b": 8.2,
+   "ipo": 2016
+  },
+  {
+   "symbol": "QGEN",
+   "name": "Qiagen N.V. Common Shares",
+   "sector": "Healthcare",
+   "mcap_b": 8.0,
+   "ipo": 2026
+  },
+  {
+   "symbol": "QBTS",
+   "name": "D-Wave Quantum Inc. Common Sha",
+   "sector": "Technology",
+   "mcap_b": 7.9,
+   "ipo": 2022
+  },
+  {
+   "symbol": "RYTM",
+   "name": "Rhythm Pharmaceuticals Inc. Co",
+   "sector": "Healthcare",
+   "mcap_b": 7.9,
+   "ipo": 2017
+  },
+  {
+   "symbol": "MIRM",
+   "name": "Mirum Pharmaceuticals Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 7.8,
+   "ipo": 2019
+  },
+  {
+   "symbol": "SNAP",
+   "name": "Snap Inc. Class A Common Stock",
+   "sector": "Technology",
+   "mcap_b": 7.8,
+   "ipo": 2017
+  },
+  {
+   "symbol": "TTAN",
+   "name": "ServiceTitan Inc. Class A Comm",
+   "sector": "Technology",
+   "mcap_b": 7.8,
+   "ipo": 2024
+  },
+  {
+   "symbol": "QRVO",
+   "name": "Qorvo Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 7.6,
+   "ipo": null
+  },
+  {
+   "symbol": "YOU",
+   "name": "Clear Secure Inc. Class A Comm",
+   "sector": "Technology",
+   "mcap_b": 7.6,
+   "ipo": 2021
+  },
+  {
+   "symbol": "SOBO",
+   "name": "South Bow Corporation Common S",
+   "sector": "Energy",
+   "mcap_b": 7.5,
+   "ipo": 2024
+  },
+  {
+   "symbol": "BILI",
+   "name": "Bilibili Inc. American Deposit",
+   "sector": "Technology",
+   "mcap_b": 7.3,
+   "ipo": 2018
+  },
+  {
+   "symbol": "LQDA",
+   "name": "Liquidia Corporation Common St",
+   "sector": "Healthcare",
+   "mcap_b": 7.2,
+   "ipo": 2018
+  },
+  {
+   "symbol": "NAVN",
+   "name": "Navan Inc. Class A Common Stoc",
+   "sector": "Technology",
+   "mcap_b": 7.1,
+   "ipo": 2025
+  },
+  {
+   "symbol": "SATA",
+   "name": "Strive Inc. Variable Rate Seri",
+   "sector": "Technology",
+   "mcap_b": 7.1,
+   "ipo": null
+  },
+  {
+   "symbol": "HNGE",
+   "name": "Hinge Health Inc. Class A Comm",
+   "sector": "Technology",
+   "mcap_b": 7.0,
+   "ipo": 2025
+  },
+  {
+   "symbol": "PACS",
+   "name": "PACS Group Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 7.0,
+   "ipo": 2024
+  },
+  {
+   "symbol": "COGT",
+   "name": "Cogent Biosciences Inc. Common",
+   "sector": "Healthcare",
+   "mcap_b": 6.9,
+   "ipo": 2018
+  },
+  {
+   "symbol": "DBX",
+   "name": "Dropbox Inc. Class A Common St",
+   "sector": "Technology",
+   "mcap_b": 6.9,
+   "ipo": 2018
+  },
+  {
+   "symbol": "MQ",
+   "name": "Marqeta Inc. Class A Common St",
+   "sector": "Technology",
+   "mcap_b": 6.9,
+   "ipo": 2021
+  },
+  {
+   "symbol": "PCOR",
+   "name": "Procore Technologies Inc. Comm",
+   "sector": "Technology",
+   "mcap_b": 6.9,
+   "ipo": 2021
+  },
+  {
+   "symbol": "PLXS",
+   "name": "Plexus Corp. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 6.9,
+   "ipo": null
+  },
+  {
+   "symbol": "SRRK",
+   "name": "Scholar Rock Holding Corporati",
+   "sector": "Healthcare",
+   "mcap_b": 6.8,
+   "ipo": 2018
+  },
+  {
+   "symbol": "AVT",
+   "name": "Avnet Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 6.7,
+   "ipo": null
+  },
+  {
+   "symbol": "BB",
+   "name": "BlackBerry Limited Common Stoc",
+   "sector": "Technology",
+   "mcap_b": 6.7,
+   "ipo": null
+  },
+  {
+   "symbol": "LNTH",
+   "name": "Lantheus Holdings Inc. Common ",
+   "sector": "Healthcare",
+   "mcap_b": 6.7,
+   "ipo": 2015
+  },
+  {
+   "symbol": "DPC",
+   "name": "DPC Holdings PLC Ordinary Shar",
+   "sector": "Communication Services",
+   "mcap_b": 6.6,
+   "ipo": 2026
+  },
+  {
+   "symbol": "APPF",
+   "name": "AppFolio Inc. Class A Common S",
+   "sector": "Technology",
+   "mcap_b": 6.5,
+   "ipo": 2015
+  },
+  {
+   "symbol": "BZ",
+   "name": "KANZHUN LIMITED American Depos",
+   "sector": "Technology",
+   "mcap_b": 6.5,
+   "ipo": 2021
+  },
+  {
+   "symbol": "LUMN",
+   "name": "Lumen Technologies Inc. Common",
+   "sector": "Communication Services",
+   "mcap_b": 6.5,
+   "ipo": null
+  },
+  {
+   "symbol": "SM",
+   "name": "SM Energy Company Common Stock",
+   "sector": "Energy",
+   "mcap_b": 6.5,
+   "ipo": null
+  },
+  {
+   "symbol": "VIST",
+   "name": "Vista Energy S.A.B. de C.V. Am",
+   "sector": "Energy",
+   "mcap_b": 6.5,
+   "ipo": 2019
+  },
+  {
+   "symbol": "VSH",
+   "name": "Vishay Intertechnology Inc. Co",
+   "sector": "Technology",
+   "mcap_b": 6.5,
+   "ipo": null
+  },
+  {
+   "symbol": "CHE",
+   "name": "Chemed Corp",
+   "sector": "Healthcare",
+   "mcap_b": 6.4,
+   "ipo": null
+  },
+  {
+   "symbol": "CHRD",
+   "name": "Chord Energy Corporation Commo",
+   "sector": "Energy",
+   "mcap_b": 6.4,
+   "ipo": null
+  },
+  {
+   "symbol": "LGND",
+   "name": "Ligand Pharmaceuticals Incorpo",
+   "sector": "Healthcare",
+   "mcap_b": 6.4,
+   "ipo": null
+  },
+  {
+   "symbol": "RIG",
+   "name": "Transocean Ltd (Switzerland) C",
+   "sector": "Energy",
+   "mcap_b": 6.4,
+   "ipo": null
+  },
+  {
+   "symbol": "SSL",
+   "name": "Sasol Ltd. American Depositary",
+   "sector": "Energy",
+   "mcap_b": 6.4,
+   "ipo": null
+  },
+  {
+   "symbol": "ESTC",
+   "name": "Elastic N.V. Ordinary Shares",
+   "sector": "Technology",
+   "mcap_b": 6.3,
+   "ipo": 2018
+  },
+  {
+   "symbol": "GLBE",
+   "name": "Global-E Online Ltd. Ordinary ",
+   "sector": "Technology",
+   "mcap_b": 6.3,
+   "ipo": 2021
+  },
+  {
+   "symbol": "S",
+   "name": "SentinelOne Inc. Class A Commo",
+   "sector": "Technology",
+   "mcap_b": 6.3,
+   "ipo": 2021
+  },
+  {
+   "symbol": "ACMR",
+   "name": "ACM Research Inc. Class A Comm",
+   "sector": "Technology",
+   "mcap_b": 6.2,
+   "ipo": 2017
+  },
+  {
+   "symbol": "BLTE",
+   "name": "Belite Bio Inc American Deposi",
+   "sector": "Healthcare",
+   "mcap_b": 6.2,
+   "ipo": 2022
+  },
+  {
+   "symbol": "CGON",
+   "name": "CG Oncology Inc. Common stock",
+   "sector": "Healthcare",
+   "mcap_b": 6.2,
+   "ipo": 2024
+  },
+  {
+   "symbol": "DSGX",
+   "name": "Descartes Systems Group Inc. (",
+   "sector": "Technology",
+   "mcap_b": 6.2,
+   "ipo": null
+  },
+  {
+   "symbol": "DUOL",
+   "name": "Duolingo Inc. Class A Common S",
+   "sector": "Technology",
+   "mcap_b": 6.2,
+   "ipo": 2021
+  },
+  {
+   "symbol": "GDS",
+   "name": "GDS Holdings Limited ADS",
+   "sector": "Technology",
+   "mcap_b": 6.2,
+   "ipo": 2016
+  },
+  {
+   "symbol": "INGM",
+   "name": "Ingram Micro Holding Corporati",
+   "sector": "Technology",
+   "mcap_b": 6.2,
+   "ipo": 2024
+  },
+  {
+   "symbol": "PATH",
+   "name": "UiPath Inc. Class A Common Sto",
+   "sector": "Technology",
+   "mcap_b": 6.2,
+   "ipo": 2021
+  },
+  {
+   "symbol": "BLCO",
+   "name": "Bausch + Lomb Corporation Comm",
+   "sector": "Healthcare",
+   "mcap_b": 6.1,
+   "ipo": 2022
+  },
+  {
+   "symbol": "PSN",
+   "name": "Parsons Corporation Common Sto",
+   "sector": "Technology",
+   "mcap_b": 6.1,
+   "ipo": 2019
+  },
+  {
+   "symbol": "LB",
+   "name": "LandBridge Company LLC Class A",
+   "sector": "Energy",
+   "mcap_b": 6.0,
+   "ipo": 2024
+  },
+  {
+   "symbol": "NE",
+   "name": "Noble Corporation plc A Ordina",
+   "sector": "Energy",
+   "mcap_b": 6.0,
+   "ipo": 2022
+  },
+  {
+   "symbol": "TFX",
+   "name": "Teleflex Incorporated Common S",
+   "sector": "Healthcare",
+   "mcap_b": 6.0,
+   "ipo": null
+  },
+  {
+   "symbol": "CRSP",
+   "name": "CRISPR Therapeutics AG Common ",
+   "sector": "Healthcare",
+   "mcap_b": 5.9,
+   "ipo": 2016
+  },
+  {
+   "symbol": "ERAS",
+   "name": "Erasca Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 5.9,
+   "ipo": 2021
+  },
+  {
+   "symbol": "NICE",
+   "name": "NICE Ltd American Depositary S",
+   "sector": "Technology",
+   "mcap_b": 5.9,
+   "ipo": null
+  },
+  {
+   "symbol": "STVN",
+   "name": "Stevanato Group S.p.A. Ordinar",
+   "sector": "Healthcare",
+   "mcap_b": 5.9,
+   "ipo": 2021
+  },
+  {
+   "symbol": "TWST",
+   "name": "Twist Bioscience Corporation C",
+   "sector": "Healthcare",
+   "mcap_b": 5.8,
+   "ipo": 2018
+  },
+  {
+   "symbol": "ACIW",
+   "name": "ACI Worldwide Inc. Common Stoc",
+   "sector": "Technology",
+   "mcap_b": 5.7,
+   "ipo": null
+  },
+  {
+   "symbol": "DOX",
+   "name": "Amdocs Limited Ordinary Shares",
+   "sector": "Technology",
+   "mcap_b": 5.7,
+   "ipo": null
+  },
+  {
+   "symbol": "GTLB",
+   "name": "GitLab Inc. Class A Common Sto",
+   "sector": "Technology",
+   "mcap_b": 5.7,
+   "ipo": 2021
+  },
+  {
+   "symbol": "BLLN",
+   "name": "BillionToOne Inc. Class A Comm",
+   "sector": "Healthcare",
+   "mcap_b": 5.6,
+   "ipo": 2025
+  },
+  {
+   "symbol": "CELC",
+   "name": "Celcuity Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 5.6,
+   "ipo": 2017
+  },
+  {
+   "symbol": "KLIC",
+   "name": "Kulicke and Soffa Industries I",
+   "sector": "Technology",
+   "mcap_b": 5.6,
+   "ipo": null
+  },
+  {
+   "symbol": "TEO",
+   "name": "Telecom Argentina SA",
+   "sector": "Communication Services",
+   "mcap_b": 5.6,
+   "ipo": null
+  },
+  {
+   "symbol": "AMRX",
+   "name": "Amneal Pharmaceuticals Inc. Cl",
+   "sector": "Healthcare",
+   "mcap_b": 5.5,
+   "ipo": null
+  },
+  {
+   "symbol": "RGTI",
+   "name": "Rigetti Computing Inc. Common ",
+   "sector": "Technology",
+   "mcap_b": 5.5,
+   "ipo": null
+  },
+  {
+   "symbol": "IRDM",
+   "name": "Iridium Communications Inc Com",
+   "sector": "Communication Services",
+   "mcap_b": 5.4,
+   "ipo": null
+  },
+  {
+   "symbol": "RDNT",
+   "name": "RadNet Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 5.4,
+   "ipo": null
+  },
+  {
+   "symbol": "TVTX",
+   "name": "Travere Therapeutics Inc. Comm",
+   "sector": "Healthcare",
+   "mcap_b": 5.4,
+   "ipo": null
+  },
+  {
+   "symbol": "ZETA",
+   "name": "Zeta Global Holdings Corp. Cla",
+   "sector": "Technology",
+   "mcap_b": 5.4,
+   "ipo": 2021
+  },
+  {
+   "symbol": "KVYO",
+   "name": "Klaviyo Inc. Series A Common S",
+   "sector": "Technology",
+   "mcap_b": 5.3,
+   "ipo": 2023
+  },
+  {
+   "symbol": "ORKA",
+   "name": "Oruka Therapeutics Inc. Common",
+   "sector": "Healthcare",
+   "mcap_b": 5.3,
+   "ipo": null
+  },
+  {
+   "symbol": "ALHC",
+   "name": "Alignment Healthcare Inc. Comm",
+   "sector": "Healthcare",
+   "mcap_b": 5.2,
+   "ipo": 2021
+  },
+  {
+   "symbol": "DNTH",
+   "name": "Dianthus Therapeutics Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 5.2,
+   "ipo": 2018
+  },
+  {
+   "symbol": "LEGN",
+   "name": "Legend Biotech Corporation Ame",
+   "sector": "Healthcare",
+   "mcap_b": 5.2,
+   "ipo": 2020
+  },
+  {
+   "symbol": "INDV",
+   "name": "Indivior Pharmaceuticals Inc. ",
+   "sector": "Healthcare",
+   "mcap_b": 5.1,
+   "ipo": null
+  },
+  {
+   "symbol": "SHC",
+   "name": "Sotera Health Company Common S",
+   "sector": "Healthcare",
+   "mcap_b": 5.1,
+   "ipo": 2020
+  },
+  {
+   "symbol": "TKC",
+   "name": "Turkcell Iletisim Hizmetleri A",
+   "sector": "Communication Services",
+   "mcap_b": 5.1,
+   "ipo": null
+  },
+  {
+   "symbol": "VAL",
+   "name": "Valaris Limited Common Shares",
+   "sector": "Energy",
+   "mcap_b": 5.1,
+   "ipo": 2021
+  },
+  {
+   "symbol": "CAI",
+   "name": "Caris Life Sciences Inc. Commo",
+   "sector": "Healthcare",
+   "mcap_b": 5.0,
+   "ipo": 2025
+  },
+  {
+   "symbol": "HESM",
+   "name": "Hess Midstream LP Class A Repr",
+   "sector": "Energy",
+   "mcap_b": 5.0,
+   "ipo": 2017
+  },
+  {
+   "symbol": "KNSA",
+   "name": "Kiniksa Pharmaceuticals Intern",
+   "sector": "Healthcare",
+   "mcap_b": 5.0,
+   "ipo": 2018
+  },
+  {
+   "symbol": "MANE",
+   "name": "Veradermics Incorporated Commo",
+   "sector": "Healthcare",
+   "mcap_b": 5.0,
+   "ipo": 2026
+  },
+  {
+   "symbol": "NTSK",
+   "name": "Netskope Inc. Class A Common S",
+   "sector": "Technology",
+   "mcap_b": 5.0,
+   "ipo": 2025
+  },
+  {
+   "symbol": "SRAD",
+   "name": "Sportradar Group AG Class A Or",
+   "sector": "Technology",
+   "mcap_b": 5.0,
+   "ipo": 2021
+  },
+  {
+   "symbol": "GRFS",
+   "name": "Grifols S.A. American Deposita",
+   "sector": "Healthcare",
+   "mcap_b": 4.9,
+   "ipo": null
+  },
+  {
+   "symbol": "PAGP",
+   "name": "Plains GP Holdings L.P. Class ",
+   "sector": "Energy",
+   "mcap_b": 4.9,
+   "ipo": null
+  },
+  {
+   "symbol": "SAIC",
+   "name": "Science Applications Internati",
+   "sector": "Technology",
+   "mcap_b": 4.9,
+   "ipo": null
+  },
+  {
+   "symbol": "DFTX",
+   "name": "Definium Therapeutics Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 4.8,
+   "ipo": null
+  },
+  {
+   "symbol": "VKTX",
+   "name": "Viking Therapeutics Inc. Commo",
+   "sector": "Healthcare",
+   "mcap_b": 4.8,
+   "ipo": 2015
+  },
+  {
+   "symbol": "LBRDK",
+   "name": "Liberty Broadband Corporation ",
+   "sector": "Communication Services",
+   "mcap_b": 4.7,
+   "ipo": null
+  },
+  {
+   "symbol": "MARA",
+   "name": "MARA Holdings Inc. Common Stoc",
+   "sector": "Technology",
+   "mcap_b": 4.7,
+   "ipo": null
+  },
+  {
+   "symbol": "MGY",
+   "name": "Magnolia Oil & Gas Corporation",
+   "sector": "Energy",
+   "mcap_b": 4.7,
+   "ipo": 2017
+  },
+  {
+   "symbol": "OCTV",
+   "name": "Octave Intelligence plc Class ",
+   "sector": "Technology",
+   "mcap_b": 4.7,
+   "ipo": null
+  },
+  {
+   "symbol": "TENB",
+   "name": "Tenable Holdings Inc. Common S",
+   "sector": "Technology",
+   "mcap_b": 4.7,
+   "ipo": 2018
+  },
+  {
+   "symbol": "EWTX",
+   "name": "Edgewise Therapeutics Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 4.6,
+   "ipo": 2021
+  },
+  {
+   "symbol": "LBRDA",
+   "name": "Liberty Broadband Corporation ",
+   "sector": "Communication Services",
+   "mcap_b": 4.6,
+   "ipo": null
+  },
+  {
+   "symbol": "LIVN",
+   "name": "LivaNova PLC Ordinary Shares",
+   "sector": "Healthcare",
+   "mcap_b": 4.6,
+   "ipo": null
+  },
+  {
+   "symbol": "MUR",
+   "name": "Murphy Oil Corporation Common ",
+   "sector": "Energy",
+   "mcap_b": 4.6,
+   "ipo": null
+  },
+  {
+   "symbol": "WAY",
+   "name": "Waystar Holding Corp. Common S",
+   "sector": "Technology",
+   "mcap_b": 4.6,
+   "ipo": 2024
+  },
+  {
+   "symbol": "CRC",
+   "name": "California Resources Corporati",
+   "sector": "Energy",
+   "mcap_b": 4.5,
+   "ipo": 2020
+  },
+  {
+   "symbol": "LIF",
+   "name": "Life360 Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 4.5,
+   "ipo": 2024
+  },
+  {
+   "symbol": "LILAP",
+   "name": "Liberty Latin America Ltd. 9.0",
+   "sector": "Communication Services",
+   "mcap_b": 4.4,
+   "ipo": null
+  },
+  {
+   "symbol": "NVST",
+   "name": "Envista Holdings Corporation C",
+   "sector": "Healthcare",
+   "mcap_b": 4.4,
+   "ipo": 2019
+  },
+  {
+   "symbol": "TNGX",
+   "name": "Tango Therapeutics Inc.",
+   "sector": "Healthcare",
+   "mcap_b": 4.4,
+   "ipo": 2020
+  },
+  {
+   "symbol": "LFST",
+   "name": "LifeStance Health Group Inc. C",
+   "sector": "Healthcare",
+   "mcap_b": 4.3,
+   "ipo": 2021
+  },
+  {
+   "symbol": "MMED",
+   "name": "MiniMed Group Inc. Common Stoc",
+   "sector": "Healthcare",
+   "mcap_b": 4.3,
+   "ipo": 2026
+  },
+  {
+   "symbol": "MMSI",
+   "name": "Merit Medical Systems Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 4.3,
+   "ipo": null
+  },
+  {
+   "symbol": "CLBT",
+   "name": "Cellebrite DI Ltd. Ordinary Sh",
+   "sector": "Technology",
+   "mcap_b": 4.2,
+   "ipo": null
+  },
+  {
+   "symbol": "CRK",
+   "name": "Comstock Resources Inc. Common",
+   "sector": "Energy",
+   "mcap_b": 4.2,
+   "ipo": null
+  },
+  {
+   "symbol": "DIOD",
+   "name": "Diodes Incorporated Common Sto",
+   "sector": "Technology",
+   "mcap_b": 4.2,
+   "ipo": null
+  },
+  {
+   "symbol": "DNLI",
+   "name": "Denali Therapeutics Inc. Commo",
+   "sector": "Healthcare",
+   "mcap_b": 4.2,
+   "ipo": 2017
+  },
+  {
+   "symbol": "DOCS",
+   "name": "Doximity Inc. Class A Common S",
+   "sector": "Technology",
+   "mcap_b": 4.2,
+   "ipo": 2021
+  },
+  {
+   "symbol": "NAMS",
+   "name": "NewAmsterdam Pharma Company N.",
+   "sector": "Healthcare",
+   "mcap_b": 4.2,
+   "ipo": null
+  },
+  {
+   "symbol": "PI",
+   "name": "Impinj Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 4.2,
+   "ipo": 2016
+  },
+  {
+   "symbol": "BILL",
+   "name": "BILL Holdings Inc. Common Stoc",
+   "sector": "Technology",
+   "mcap_b": 4.1,
+   "ipo": 2019
+  },
+  {
+   "symbol": "CON",
+   "name": "Concentra Group Holdings Paren",
+   "sector": "Healthcare",
+   "mcap_b": 4.1,
+   "ipo": 2024
+  },
+  {
+   "symbol": "HCC",
+   "name": "Warrior Met Coal Inc. Common S",
+   "sector": "Energy",
+   "mcap_b": 4.1,
+   "ipo": 2017
+  },
+  {
+   "symbol": "IRTC",
+   "name": "iRhythm Holdings Inc. Common S",
+   "sector": "Healthcare",
+   "mcap_b": 4.1,
+   "ipo": 2016
+  },
+  {
+   "symbol": "TDS",
+   "name": "Telephone and Data Systems Inc",
+   "sector": "Communication Services",
+   "mcap_b": 4.1,
+   "ipo": null
+  },
+  {
+   "symbol": "BOX",
+   "name": "Box Inc. Class A Common Stock",
+   "sector": "Technology",
+   "mcap_b": 4.0,
+   "ipo": 2015
+  },
+  {
+   "symbol": "GPCR",
+   "name": "Structure Therapeutics Inc. Am",
+   "sector": "Healthcare",
+   "mcap_b": 4.0,
+   "ipo": 2023
+  },
+  {
+   "symbol": "LBTYB",
+   "name": "Liberty Global Ltd. Class B Co",
+   "sector": "Communication Services",
+   "mcap_b": 4.0,
+   "ipo": null
+  },
+  {
+   "symbol": "LFTO",
+   "name": "Liftoff Mobile Inc. Common Sto",
+   "sector": "Technology",
+   "mcap_b": 4.0,
+   "ipo": 2026
+  },
+  {
+   "symbol": "ONDS",
+   "name": "Ondas Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 4.0,
+   "ipo": null
+  },
+  {
+   "symbol": "TLX",
+   "name": "Telix Pharmaceuticals Limited ",
+   "sector": "Healthcare",
+   "mcap_b": 4.0,
+   "ipo": null
+  },
+  {
+   "symbol": "VEON",
+   "name": "VEON Ltd. ADS",
+   "sector": "Communication Services",
+   "mcap_b": 4.0,
+   "ipo": null
+  },
+  {
+   "symbol": "WBI",
+   "name": "WaterBridge Infrastructure LLC",
+   "sector": "Energy",
+   "mcap_b": 4.0,
+   "ipo": 2025
+  },
+  {
+   "symbol": "BEAM",
+   "name": "Beam Therapeutics Inc. Common ",
+   "sector": "Healthcare",
+   "mcap_b": 3.9,
+   "ipo": 2020
+  },
+  {
+   "symbol": "CNR",
+   "name": "Core Natural Resources Inc. Co",
+   "sector": "Energy",
+   "mcap_b": 3.9,
+   "ipo": 2017
+  },
+  {
+   "symbol": "DYN",
+   "name": "Dyne Therapeutics Inc. Common ",
+   "sector": "Healthcare",
+   "mcap_b": 3.9,
+   "ipo": 2020
+  },
+  {
+   "symbol": "MNDY",
+   "name": "monday.com Ltd. Ordinary Share",
+   "sector": "Technology",
+   "mcap_b": 3.9,
+   "ipo": 2021
+  },
+  {
+   "symbol": "OII",
+   "name": "Oceaneering International Inc.",
+   "sector": "Energy",
+   "mcap_b": 3.9,
+   "ipo": null
+  },
+  {
+   "symbol": "PHI",
+   "name": "PLDT Inc. Sponsored ADR",
+   "sector": "Communication Services",
+   "mcap_b": 3.9,
+   "ipo": null
+  },
+  {
+   "symbol": "RLAY",
+   "name": "Relay Therapeutics Inc. Common",
+   "sector": "Healthcare",
+   "mcap_b": 3.9,
+   "ipo": 2020
+  },
+  {
+   "symbol": "LBRT",
+   "name": "Liberty Energy Inc. Class A co",
+   "sector": "Energy",
+   "mcap_b": 3.8,
+   "ipo": 2018
+  },
+  {
+   "symbol": "RCUS",
+   "name": "Arcus Biosciences Inc. Common ",
+   "sector": "Healthcare",
+   "mcap_b": 3.8,
+   "ipo": 2018
+  },
+  {
+   "symbol": "ALMS",
+   "name": "Alumis Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 3.7,
+   "ipo": 2024
+  },
+  {
+   "symbol": "KYIV",
+   "name": "Kyivstar Group Ltd. Common Sha",
+   "sector": "Communication Services",
+   "mcap_b": 3.7,
+   "ipo": null
+  },
+  {
+   "symbol": "LBTYA",
+   "name": "Liberty Global Ltd. Class A Co",
+   "sector": "Communication Services",
+   "mcap_b": 3.7,
+   "ipo": null
+  },
+  {
+   "symbol": "OLED",
+   "name": "Universal Display Corporation ",
+   "sector": "Technology",
+   "mcap_b": 3.7,
+   "ipo": null
+  },
+  {
+   "symbol": "PBLS",
+   "name": "Parabilis Medicines Inc. Commo",
+   "sector": "Healthcare",
+   "mcap_b": 3.7,
+   "ipo": 2026
+  },
+  {
+   "symbol": "LBTYK",
+   "name": "Liberty Global Ltd. Class C Co",
+   "sector": "Communication Services",
+   "mcap_b": 3.6,
+   "ipo": null
+  },
+  {
+   "symbol": "OGN",
+   "name": "Organon & Co. Common Stock ",
+   "sector": "Healthcare",
+   "mcap_b": 3.6,
+   "ipo": 2021
+  },
+  {
+   "symbol": "SUNC",
+   "name": "SunocoCorp LLC Common Units re",
+   "sector": "Energy",
+   "mcap_b": 3.6,
+   "ipo": 2025
+  },
+  {
+   "symbol": "FA",
+   "name": "First Advantage Corporation Co",
+   "sector": "Technology",
+   "mcap_b": 3.5,
+   "ipo": 2021
+  },
+  {
+   "symbol": "IDYA",
+   "name": "IDEAYA Biosciences Inc. Common",
+   "sector": "Healthcare",
+   "mcap_b": 3.5,
+   "ipo": 2019
+  },
+  {
+   "symbol": "PPLI",
+   "name": "People Incorporated Common Sto",
+   "sector": "Technology",
+   "mcap_b": 3.5,
+   "ipo": null
+  },
+  {
+   "symbol": "PRVA",
+   "name": "Privia Health Group Inc. Commo",
+   "sector": "Healthcare",
+   "mcap_b": 3.5,
+   "ipo": 2021
+  },
+  {
+   "symbol": "TDC",
+   "name": "Teradata Corporation Common St",
+   "sector": "Technology",
+   "mcap_b": 3.5,
+   "ipo": null
+  },
+  {
+   "symbol": "WRBY",
+   "name": "Warby Parker Inc. Class A Comm",
+   "sector": "Healthcare",
+   "mcap_b": 3.5,
+   "ipo": 2021
+  },
+  {
+   "symbol": "ADPT",
+   "name": "Adaptive Biotechnologies Corpo",
+   "sector": "Healthcare",
+   "mcap_b": 3.4,
+   "ipo": 2019
+  },
+  {
+   "symbol": "ARQT",
+   "name": "Arcutis Biotherapeutics Inc. C",
+   "sector": "Healthcare",
+   "mcap_b": 3.4,
+   "ipo": 2020
+  },
+  {
+   "symbol": "CCC",
+   "name": "CCC Intelligent Solutions Hold",
+   "sector": "Technology",
+   "mcap_b": 3.4,
+   "ipo": null
+  },
+  {
+   "symbol": "LASR",
+   "name": "nLIGHT Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 3.4,
+   "ipo": 2018
+  },
+  {
+   "symbol": "NVTS",
+   "name": "Navitas Semiconductor Corporat",
+   "sector": "Technology",
+   "mcap_b": 3.4,
+   "ipo": null
+  },
+  {
+   "symbol": "OPCH",
+   "name": "Option Care Health Inc. Common",
+   "sector": "Healthcare",
+   "mcap_b": 3.4,
+   "ipo": null
+  },
+  {
+   "symbol": "XNDU",
+   "name": "Xanadu Quantum Technologies Li",
+   "sector": "Technology",
+   "mcap_b": 3.4,
+   "ipo": null
+  },
+  {
+   "symbol": "CARG",
+   "name": "CarGurus Inc. Class A Common S",
+   "sector": "Technology",
+   "mcap_b": 3.3,
+   "ipo": 2017
+  },
+  {
+   "symbol": "PENG",
+   "name": "Penguin Solutions Inc. Common ",
+   "sector": "Technology",
+   "mcap_b": 3.3,
+   "ipo": 2017
+  },
+  {
+   "symbol": "AGYS",
+   "name": "Agilysys Inc. Common Stock (DE",
+   "sector": "Technology",
+   "mcap_b": 3.2,
+   "ipo": null
+  },
+  {
+   "symbol": "DK",
+   "name": "Delek US Holdings Inc. Common ",
+   "sector": "Energy",
+   "mcap_b": 3.2,
+   "ipo": 2017
+  },
+  {
+   "symbol": "LBRDP",
+   "name": "Liberty Broadband Corporation ",
+   "sector": "Communication Services",
+   "mcap_b": 3.2,
+   "ipo": null
+  },
+  {
+   "symbol": "SEDG",
+   "name": "SolarEdge Technologies Inc. Co",
+   "sector": "Technology",
+   "mcap_b": 3.2,
+   "ipo": 2015
+  },
+  {
+   "symbol": "BRZE",
+   "name": "Braze Inc. Class A Common Stoc",
+   "sector": "Technology",
+   "mcap_b": 3.1,
+   "ipo": 2021
+  },
+  {
+   "symbol": "CLDX",
+   "name": "Celldex Therapeutics Inc.",
+   "sector": "Healthcare",
+   "mcap_b": 3.1,
+   "ipo": null
+  },
+  {
+   "symbol": "CRGY",
+   "name": "Crescent Energy Company Class ",
+   "sector": "Energy",
+   "mcap_b": 3.1,
+   "ipo": 2021
+  },
+  {
+   "symbol": "ELVN",
+   "name": "Enliven Therapeutics Inc. Comm",
+   "sector": "Healthcare",
+   "mcap_b": 3.1,
+   "ipo": 2020
+  },
+  {
+   "symbol": "HP",
+   "name": "Helmerich & Payne Inc. Common ",
+   "sector": "Energy",
+   "mcap_b": 3.1,
+   "ipo": null
+  },
+  {
+   "symbol": "IRON",
+   "name": "Disc Medicine Inc. Common Stoc",
+   "sector": "Healthcare",
+   "mcap_b": 3.1,
+   "ipo": null
+  },
+  {
+   "symbol": "ITGR",
+   "name": "Integer Holdings Corporation C",
+   "sector": "Healthcare",
+   "mcap_b": 3.1,
+   "ipo": null
+  },
+  {
+   "symbol": "MGEE",
+   "name": "MGE Energy Inc",
+   "sector": "Energy",
+   "mcap_b": 3.1,
+   "ipo": null
+  },
+  {
+   "symbol": "NIQ",
+   "name": "NIQ Global Intelligence plc Or",
+   "sector": "Technology",
+   "mcap_b": 3.1,
+   "ipo": 2025
+  },
+  {
+   "symbol": "VERA",
+   "name": "Vera Therapeutics Inc. Class A",
+   "sector": "Healthcare",
+   "mcap_b": 3.1,
+   "ipo": 2021
+  },
+  {
+   "symbol": "FRSH",
+   "name": "Freshworks Inc. Class A Common",
+   "sector": "Technology",
+   "mcap_b": 3.0,
+   "ipo": 2021
+  },
+  {
+   "symbol": "FSLY",
+   "name": "Fastly Inc. Class A Common Sto",
+   "sector": "Technology",
+   "mcap_b": 3.0,
+   "ipo": null
+  },
+  {
+   "symbol": "GPOR",
+   "name": "Gulfport Energy Corporation Co",
+   "sector": "Energy",
+   "mcap_b": 3.0,
+   "ipo": 2021
+  },
+  {
+   "symbol": "GRAL",
+   "name": "GRAIL Inc. Common Stock ",
+   "sector": "Healthcare",
+   "mcap_b": 3.0,
+   "ipo": null
+  },
+  {
+   "symbol": "ICHR",
+   "name": "Ichor Holdings Ordinary Shares",
+   "sector": "Technology",
+   "mcap_b": 3.0,
+   "ipo": 2016
+  },
+  {
+   "symbol": "PARR",
+   "name": "Par Pacific Holdings Inc.  Com",
+   "sector": "Energy",
+   "mcap_b": 3.0,
+   "ipo": null
+  },
+  {
+   "symbol": "RLX",
+   "name": "RLX Technology Inc. American D",
+   "sector": "Healthcare",
+   "mcap_b": 3.0,
+   "ipo": 2021
+  },
+  {
+   "symbol": "SOUN",
+   "name": "SoundHound AI Inc Class A Comm",
+   "sector": "Technology",
+   "mcap_b": 3.0,
+   "ipo": null
+  },
+  {
+   "symbol": "TARS",
+   "name": "Tarsus Pharmaceuticals Inc. Co",
+   "sector": "Healthcare",
+   "mcap_b": 3.0,
+   "ipo": 2020
+  },
+  {
+   "symbol": "ACHC",
+   "name": "Acadia Healthcare Company Inc.",
+   "sector": "Healthcare",
+   "mcap_b": 2.9,
+   "ipo": null
+  },
+  {
+   "symbol": "BHE",
+   "name": "Benchmark Electronics Inc. Com",
+   "sector": "Technology",
+   "mcap_b": 2.9,
+   "ipo": null
+  },
+  {
+   "symbol": "BKV",
+   "name": "BKV Corporation Common Stock",
+   "sector": "Energy",
+   "mcap_b": 2.9,
+   "ipo": 2024
+  },
+  {
+   "symbol": "BSM",
+   "name": "Black Stone Minerals L.P. Comm",
+   "sector": "Energy",
+   "mcap_b": 2.9,
+   "ipo": 2015
+  },
+  {
+   "symbol": "BTE",
+   "name": "Baytex Energy Corp Common Shar",
+   "sector": "Energy",
+   "mcap_b": 2.9,
+   "ipo": 2023
+  },
+  {
+   "symbol": "DSC",
+   "name": "DSC Holdings Ltd. American Dep",
+   "sector": "Technology",
+   "mcap_b": 2.9,
+   "ipo": 2026
+  },
+  {
+   "symbol": "EROC",
+   "name": "ERock Inc. Class A Common Stoc",
+   "sector": "Energy",
+   "mcap_b": 2.9,
+   "ipo": 2026
+  },
+  {
+   "symbol": "GRND",
+   "name": "Grindr Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 2.9,
+   "ipo": 2021
+  },
+  {
+   "symbol": "KC",
+   "name": "Kingsoft Cloud Holdings Limite",
+   "sector": "Technology",
+   "mcap_b": 2.9,
+   "ipo": 2020
+  },
+  {
+   "symbol": "MGNI",
+   "name": "Magnite Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 2.9,
+   "ipo": null
+  },
+  {
+   "symbol": "NESR",
+   "name": "National Energy Services Reuni",
+   "sector": "Energy",
+   "mcap_b": 2.9,
+   "ipo": null
+  },
+  {
+   "symbol": "PONY",
+   "name": "Pony AI Inc. American Deposita",
+   "sector": "Technology",
+   "mcap_b": 2.9,
+   "ipo": 2024
+  },
+  {
+   "symbol": "BTU",
+   "name": "Peabody Energy Corporation Com",
+   "sector": "Energy",
+   "mcap_b": 2.8,
+   "ipo": 2017
+  },
+  {
+   "symbol": "IMNM",
+   "name": "Immunome Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 2.8,
+   "ipo": 2020
+  },
+  {
+   "symbol": "KD",
+   "name": "Kyndryl Holdings Inc. Common S",
+   "sector": "Technology",
+   "mcap_b": 2.8,
+   "ipo": 2021
+  },
+  {
+   "symbol": "KLRA",
+   "name": "Kailera Therapeutics Inc. Comm",
+   "sector": "Healthcare",
+   "mcap_b": 2.8,
+   "ipo": 2026
+  },
+  {
+   "symbol": "MBX",
+   "name": "MBX Biosciences Inc. Common St",
+   "sector": "Healthcare",
+   "mcap_b": 2.8,
+   "ipo": 2024
+  },
+  {
+   "symbol": "NAMSW",
+   "name": "NewAmsterdam Pharma Company N.",
+   "sector": "Healthcare",
+   "mcap_b": 2.8,
+   "ipo": null
+  },
+  {
+   "symbol": "RGC",
+   "name": "Regencell Bioscience Holdings ",
+   "sector": "Healthcare",
+   "mcap_b": 2.8,
+   "ipo": 2021
+  },
+  {
+   "symbol": "RUM",
+   "name": "RUM Group Inc. Class A Common ",
+   "sector": "Technology",
+   "mcap_b": 2.8,
+   "ipo": 2021
+  },
+  {
+   "symbol": "TRVI",
+   "name": "Trevi Therapeutics Inc. Common",
+   "sector": "Healthcare",
+   "mcap_b": 2.8,
+   "ipo": 2019
+  },
+  {
+   "symbol": "AVPT",
+   "name": "AvePoint Inc. Class A Common S",
+   "sector": "Technology",
+   "mcap_b": 2.7,
+   "ipo": 2019
+  },
+  {
+   "symbol": "CLOV",
+   "name": "Clover Health Investments Corp",
+   "sector": "Healthcare",
+   "mcap_b": 2.7,
+   "ipo": null
+  },
+  {
+   "symbol": "EROK",
+   "name": "EagleRock Land LLC Class A sha",
+   "sector": "Energy",
+   "mcap_b": 2.7,
+   "ipo": 2026
+  },
+  {
+   "symbol": "ESTA",
+   "name": "Establishment Labs Holdings In",
+   "sector": "Healthcare",
+   "mcap_b": 2.7,
+   "ipo": 2018
+  },
+  {
+   "symbol": "IHS",
+   "name": "IHS Holding Limited Ordinary S",
+   "sector": "Communication Services",
+   "mcap_b": 2.7,
+   "ipo": 2021
+  },
+  {
+   "symbol": "INFQ",
+   "name": "Infleqtion Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 2.6,
+   "ipo": 2026
+  },
+  {
+   "symbol": "NKTR",
+   "name": "Nektar Therapeutics  Common St",
+   "sector": "Healthcare",
+   "mcap_b": 2.6,
+   "ipo": null
+  },
+  {
+   "symbol": "NYAX",
+   "name": "Nayax Ltd. Ordinary Shares",
+   "sector": "Technology",
+   "mcap_b": 2.6,
+   "ipo": null
+  },
+  {
+   "symbol": "PAGS",
+   "name": "PagSeguro Digital Ltd. Class A",
+   "sector": "Technology",
+   "mcap_b": 2.6,
+   "ipo": 2018
+  },
+  {
+   "symbol": "SHAZ",
+   "name": "SharonAI Holdings Inc. Class A",
+   "sector": "Technology",
+   "mcap_b": 2.6,
+   "ipo": null
+  },
+  {
+   "symbol": "STNE",
+   "name": "StoneCo Ltd. Class A Common Sh",
+   "sector": "Technology",
+   "mcap_b": 2.6,
+   "ipo": 2018
+  },
+  {
+   "symbol": "ALRM",
+   "name": "Alarm.com Holdings Inc. Common",
+   "sector": "Technology",
+   "mcap_b": 2.5,
+   "ipo": 2015
+  },
+  {
+   "symbol": "AXGN",
+   "name": "Axogen Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 2.5,
+   "ipo": null
+  },
+  {
+   "symbol": "MLYS",
+   "name": "Mineralys Therapeutics Inc. Co",
+   "sector": "Healthcare",
+   "mcap_b": 2.5,
+   "ipo": 2023
+  },
+  {
+   "symbol": "NRIX",
+   "name": "Nurix Therapeutics Inc. Common",
+   "sector": "Healthcare",
+   "mcap_b": 2.5,
+   "ipo": 2020
+  },
+  {
+   "symbol": "RGTIW",
+   "name": "Rigetti Computing Inc. Warrant",
+   "sector": "Technology",
+   "mcap_b": 2.5,
+   "ipo": null
+  },
+  {
+   "symbol": "SLBT",
+   "name": "SL Science Holding Limited Ord",
+   "sector": "Healthcare",
+   "mcap_b": 2.5,
+   "ipo": null
+  },
+  {
+   "symbol": "SLS",
+   "name": "SELLAS Life Sciences Group Inc",
+   "sector": "Healthcare",
+   "mcap_b": 2.5,
+   "ipo": null
+  },
+  {
+   "symbol": "TMDX",
+   "name": "TransMedics Group Inc. Common ",
+   "sector": "Healthcare",
+   "mcap_b": 2.5,
+   "ipo": 2019
+  },
+  {
+   "symbol": "WTTR",
+   "name": "Select Water Solutions Inc. Cl",
+   "sector": "Energy",
+   "mcap_b": 2.5,
+   "ipo": 2017
+  },
+  {
+   "symbol": "CMCM",
+   "name": "Cheetah Mobile Inc. American D",
+   "sector": "Technology",
+   "mcap_b": 2.4,
+   "ipo": 2022
+  },
+  {
+   "symbol": "KOD",
+   "name": "Kodiak Sciences Inc Common Sto",
+   "sector": "Healthcare",
+   "mcap_b": 2.4,
+   "ipo": 2018
+  },
+  {
+   "symbol": "NTLA",
+   "name": "Intellia Therapeutics Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 2.4,
+   "ipo": 2016
+  },
+  {
+   "symbol": "PGNY",
+   "name": "Progyny Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 2.4,
+   "ipo": 2019
+  },
+  {
+   "symbol": "PHVS",
+   "name": "Pharvaris N.V. Ordinary Shares",
+   "sector": "Healthcare",
+   "mcap_b": 2.4,
+   "ipo": 2021
+  },
+  {
+   "symbol": "SDRL",
+   "name": "Seadrill Limited Common Shares",
+   "sector": "Energy",
+   "mcap_b": 2.4,
+   "ipo": 2022
+  },
+  {
+   "symbol": "TAK",
+   "name": "Takeda Pharmaceutical Company ",
+   "sector": "Healthcare",
+   "mcap_b": 2.4,
+   "ipo": 2018
+  },
+  {
+   "symbol": "VCEL",
+   "name": "Vericel Corporation Common Sto",
+   "sector": "Healthcare",
+   "mcap_b": 2.4,
+   "ipo": null
+  },
+  {
+   "symbol": "ABCL",
+   "name": "AbCellera Biologics Inc. Commo",
+   "sector": "Healthcare",
+   "mcap_b": 2.3,
+   "ipo": 2020
+  },
+  {
+   "symbol": "BHVN",
+   "name": "Biohaven Ltd. Common Shares ",
+   "sector": "Healthcare",
+   "mcap_b": 2.3,
+   "ipo": 2022
+  },
+  {
+   "symbol": "DJT",
+   "name": "Trump Media & Technology Group",
+   "sector": "Technology",
+   "mcap_b": 2.3,
+   "ipo": 2024
+  },
+  {
+   "symbol": "HTFL",
+   "name": "Heartflow Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 2.3,
+   "ipo": 2025
+  },
+  {
+   "symbol": "IMOS",
+   "name": "ChipMOS TECHNOLOGIES INC. Amer",
+   "sector": "Technology",
+   "mcap_b": 2.3,
+   "ipo": null
+  },
+  {
+   "symbol": "RAMP",
+   "name": "LiveRamp Holdings Inc. Common ",
+   "sector": "Technology",
+   "mcap_b": 2.3,
+   "ipo": 2018
+  },
+  {
+   "symbol": "SGRY",
+   "name": "Surgery Partners Inc. Common S",
+   "sector": "Healthcare",
+   "mcap_b": 2.3,
+   "ipo": 2015
+  },
+  {
+   "symbol": "GENB",
+   "name": "Generate Biomedicines Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 2.2,
+   "ipo": 2026
+  },
+  {
+   "symbol": "HRMY",
+   "name": "Harmony Biosciences Holdings I",
+   "sector": "Healthcare",
+   "mcap_b": 2.2,
+   "ipo": 2020
+  },
+  {
+   "symbol": "INTA",
+   "name": "Intapp Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 2.2,
+   "ipo": 2021
+  },
+  {
+   "symbol": "MD",
+   "name": "Pediatrix Medical Group Inc. C",
+   "sector": "Healthcare",
+   "mcap_b": 2.2,
+   "ipo": null
+  },
+  {
+   "symbol": "TALO",
+   "name": "Talos Energy Inc. Common Stock",
+   "sector": "Energy",
+   "mcap_b": 2.2,
+   "ipo": 2018
+  },
+  {
+   "symbol": "VERX",
+   "name": "Vertex Inc. Class A Common Sto",
+   "sector": "Technology",
+   "mcap_b": 2.2,
+   "ipo": 2020
+  },
+  {
+   "symbol": "ZLAB",
+   "name": "Zai Lab Limited American Depos",
+   "sector": "Healthcare",
+   "mcap_b": 2.2,
+   "ipo": 2017
+  },
+  {
+   "symbol": "ADMA",
+   "name": "ADMA Biologics Inc Common Stoc",
+   "sector": "Healthcare",
+   "mcap_b": 2.1,
+   "ipo": null
+  },
+  {
+   "symbol": "AMLX",
+   "name": "Amylyx Pharmaceuticals Inc. Co",
+   "sector": "Healthcare",
+   "mcap_b": 2.1,
+   "ipo": 2022
+  },
+  {
+   "symbol": "AUPH",
+   "name": "Aurinia Pharmaceuticals Inc Or",
+   "sector": "Healthcare",
+   "mcap_b": 2.1,
+   "ipo": null
+  },
+  {
+   "symbol": "AVAH",
+   "name": "Aveanna Healthcare Holdings In",
+   "sector": "Healthcare",
+   "mcap_b": 2.1,
+   "ipo": 2021
+  },
+  {
+   "symbol": "BAND",
+   "name": "Bandwidth Inc. Class A Common ",
+   "sector": "Technology",
+   "mcap_b": 2.1,
+   "ipo": 2017
+  },
+  {
+   "symbol": "BFLY",
+   "name": "Butterfly Network Inc. Class A",
+   "sector": "Healthcare",
+   "mcap_b": 2.1,
+   "ipo": 2020
+  },
+  {
+   "symbol": "GLUE",
+   "name": "Monte Rosa Therapeutics Inc. C",
+   "sector": "Healthcare",
+   "mcap_b": 2.1,
+   "ipo": 2021
+  },
+  {
+   "symbol": "MNR",
+   "name": "Mach Natural Resources LP Comm",
+   "sector": "Energy",
+   "mcap_b": 2.1,
+   "ipo": 2023
+  },
+  {
+   "symbol": "PVLA",
+   "name": "Palvella Therapeutics Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 2.1,
+   "ipo": null
+  },
+  {
+   "symbol": "RVMDW",
+   "name": "Revolution Medicines Inc. Warr",
+   "sector": "Healthcare",
+   "mcap_b": 2.1,
+   "ipo": null
+  },
+  {
+   "symbol": "RXRX",
+   "name": "Recursion Pharmaceuticals Inc.",
+   "sector": "Healthcare",
+   "mcap_b": 2.1,
+   "ipo": 2021
+  },
+  {
+   "symbol": "SRPT",
+   "name": "Sarepta Therapeutics Inc. Comm",
+   "sector": "Healthcare",
+   "mcap_b": 2.1,
+   "ipo": null
+  },
+  {
+   "symbol": "STOK",
+   "name": "Stoke Therapeutics Inc. Common",
+   "sector": "Healthcare",
+   "mcap_b": 2.1,
+   "ipo": 2019
+  },
+  {
+   "symbol": "ALKT",
+   "name": "Alkami Technology Inc. Common ",
+   "sector": "Technology",
+   "mcap_b": 2.0,
+   "ipo": 2021
+  },
+  {
+   "symbol": "ANAB",
+   "name": "AnaptysBio Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 2.0,
+   "ipo": 2017
+  },
+  {
+   "symbol": "ATEX",
+   "name": "Anterix Inc. Common Stock",
+   "sector": "Communication Services",
+   "mcap_b": 2.0,
+   "ipo": 2015
+  },
+  {
+   "symbol": "BCAX",
+   "name": "Bicara Therapeutics Inc. Commo",
+   "sector": "Healthcare",
+   "mcap_b": 2.0,
+   "ipo": 2024
+  },
+  {
+   "symbol": "HAWK",
+   "name": "HawkEye 360 Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 2.0,
+   "ipo": 2026
+  },
+  {
+   "symbol": "HCM",
+   "name": "HUTCHMED (China) Limited Ameri",
+   "sector": "Healthcare",
+   "mcap_b": 2.0,
+   "ipo": 2016
+  },
+  {
+   "symbol": "KARD",
+   "name": "Kardigan Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 2.0,
+   "ipo": 2026
+  },
+  {
+   "symbol": "LKFT",
+   "name": "Lakefront Biotherapeutics Amer",
+   "sector": "Healthcare",
+   "mcap_b": 2.0,
+   "ipo": 2015
+  },
+  {
+   "symbol": "NCNO",
+   "name": "nCino Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 2.0,
+   "ipo": 2020
+  },
+  {
+   "symbol": "NUVB",
+   "name": "Nuvation Bio Inc. Class A Comm",
+   "sector": "Healthcare",
+   "mcap_b": 2.0,
+   "ipo": 2020
+  },
+  {
+   "symbol": "NVCR",
+   "name": "NovoCure Limited Ordinary Shar",
+   "sector": "Healthcare",
+   "mcap_b": 2.0,
+   "ipo": 2015
+  },
+  {
+   "symbol": "PGEN",
+   "name": "Precigen Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 2.0,
+   "ipo": null
+  },
+  {
+   "symbol": "PLSE",
+   "name": "Pulse Biosciences Inc Common S",
+   "sector": "Healthcare",
+   "mcap_b": 2.0,
+   "ipo": 2016
+  },
+  {
+   "symbol": "QUBT",
+   "name": "Quantum Computing Inc. Common ",
+   "sector": "Technology",
+   "mcap_b": 2.0,
+   "ipo": null
+  },
+  {
+   "symbol": "RAPP",
+   "name": "Rapport Therapeutics Inc. Comm",
+   "sector": "Healthcare",
+   "mcap_b": 2.0,
+   "ipo": 2024
+  },
+  {
+   "symbol": "SION",
+   "name": "Sionna Therapeutics Inc. Commo",
+   "sector": "Healthcare",
+   "mcap_b": 2.0,
+   "ipo": 2025
+  },
+  {
+   "symbol": "SNDA",
+   "name": "Sonida Senior Living Inc. Comm",
+   "sector": "Healthcare",
+   "mcap_b": 2.0,
+   "ipo": null
+  },
+  {
+   "symbol": "SNDX",
+   "name": "Syndax Pharmaceuticals Inc. Co",
+   "sector": "Healthcare",
+   "mcap_b": 2.0,
+   "ipo": 2016
+  },
+  {
+   "symbol": "WGS",
+   "name": "GeneDx Holdings Corp. Class A ",
+   "sector": "Technology",
+   "mcap_b": 2.0,
+   "ipo": 2020
+  },
+  {
+   "symbol": "ZD",
+   "name": "Ziff Davis Inc. Common Stock",
+   "sector": "Communication Services",
+   "mcap_b": 2.0,
+   "ipo": null
+  },
+  {
+   "symbol": "AMR",
+   "name": "Alpha Metallurgical Resources ",
+   "sector": "Energy",
+   "mcap_b": 1.9,
+   "ipo": 2018
+  },
+  {
+   "symbol": "ANIP",
+   "name": "ANI Pharmaceuticals Inc.",
+   "sector": "Healthcare",
+   "mcap_b": 1.9,
+   "ipo": null
+  },
+  {
+   "symbol": "DMRA",
+   "name": "Damora Therapeutics Inc. Commo",
+   "sector": "Healthcare",
+   "mcap_b": 1.9,
+   "ipo": 2020
+  },
+  {
+   "symbol": "IOVA",
+   "name": "Iovance Biotherapeutics Inc. C",
+   "sector": "Healthcare",
+   "mcap_b": 1.9,
+   "ipo": null
+  },
+  {
+   "symbol": "MESO",
+   "name": "Mesoblast Limited American Dep",
+   "sector": "Healthcare",
+   "mcap_b": 1.9,
+   "ipo": 2015
+  },
+  {
+   "symbol": "NBTX",
+   "name": "Nanobiotix S.A. American Depos",
+   "sector": "Healthcare",
+   "mcap_b": 1.9,
+   "ipo": 2020
+  },
+  {
+   "symbol": "NEO",
+   "name": "NeoGenomics Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.9,
+   "ipo": null
+  },
+  {
+   "symbol": "NOG",
+   "name": "Northern Oil and Gas Inc. Comm",
+   "sector": "Energy",
+   "mcap_b": 1.9,
+   "ipo": 2022
+  },
+  {
+   "symbol": "PRCH",
+   "name": "Porch Group Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 1.9,
+   "ipo": 2020
+  },
+  {
+   "symbol": "TSHA",
+   "name": "Taysha Gene Therapies Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 1.9,
+   "ipo": 2020
+  },
+  {
+   "symbol": "TYRA",
+   "name": "Tyra Biosciences Inc. Common S",
+   "sector": "Healthcare",
+   "mcap_b": 1.9,
+   "ipo": 2021
+  },
+  {
+   "symbol": "URGN",
+   "name": "UroGen Pharma Ltd. Ordinary Sh",
+   "sector": "Healthcare",
+   "mcap_b": 1.9,
+   "ipo": 2017
+  },
+  {
+   "symbol": "ZYME",
+   "name": "Zymeworks Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.9,
+   "ipo": null
+  },
+  {
+   "symbol": "AAPG",
+   "name": "Ascentage Pharma Group Interna",
+   "sector": "Healthcare",
+   "mcap_b": 1.8,
+   "ipo": 2025
+  },
+  {
+   "symbol": "ABSI",
+   "name": "Absci Corporation Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.8,
+   "ipo": 2021
+  },
+  {
+   "symbol": "AGL",
+   "name": "agilon health inc. Common Stoc",
+   "sector": "Healthcare",
+   "mcap_b": 1.8,
+   "ipo": 2021
+  },
+  {
+   "symbol": "APPN",
+   "name": "Appian Corporation Class A Com",
+   "sector": "Technology",
+   "mcap_b": 1.8,
+   "ipo": 2017
+  },
+  {
+   "symbol": "ASAN",
+   "name": "Asana Inc. Class A Common Stoc",
+   "sector": "Technology",
+   "mcap_b": 1.8,
+   "ipo": 2020
+  },
+  {
+   "symbol": "BHC",
+   "name": "Bausch Health Companies Inc. C",
+   "sector": "Healthcare",
+   "mcap_b": 1.8,
+   "ipo": null
+  },
+  {
+   "symbol": "BRUN",
+   "name": "Boost Run Inc. Class A Common ",
+   "sector": "Technology",
+   "mcap_b": 1.8,
+   "ipo": null
+  },
+  {
+   "symbol": "DV",
+   "name": "DoubleVerify Holdings Inc. Com",
+   "sector": "Technology",
+   "mcap_b": 1.8,
+   "ipo": 2021
+  },
+  {
+   "symbol": "EPAC",
+   "name": "Enerpac Tool Group Corp. Commo",
+   "sector": "Technology",
+   "mcap_b": 1.8,
+   "ipo": null
+  },
+  {
+   "symbol": "EVCM",
+   "name": "EverCommerce Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 1.8,
+   "ipo": 2021
+  },
+  {
+   "symbol": "FCEL",
+   "name": "FuelCell Energy Inc. Common St",
+   "sector": "Energy",
+   "mcap_b": 1.8,
+   "ipo": null
+  },
+  {
+   "symbol": "GHRS",
+   "name": "GH Research PLC Ordinary Share",
+   "sector": "Healthcare",
+   "mcap_b": 1.8,
+   "ipo": 2021
+  },
+  {
+   "symbol": "KARO",
+   "name": "Karooooo Ltd. Ordinary Shares",
+   "sector": "Technology",
+   "mcap_b": 1.8,
+   "ipo": 2021
+  },
+  {
+   "symbol": "MAZE",
+   "name": "Maze Therapeutics Inc. Common ",
+   "sector": "Healthcare",
+   "mcap_b": 1.8,
+   "ipo": 2025
+  },
+  {
+   "symbol": "NNNN",
+   "name": "Anbio Biotechnology Class A Or",
+   "sector": "Healthcare",
+   "mcap_b": 1.8,
+   "ipo": 2025
+  },
+  {
+   "symbol": "OPRA",
+   "name": "Opera Limited American Deposit",
+   "sector": "Technology",
+   "mcap_b": 1.8,
+   "ipo": 2018
+  },
+  {
+   "symbol": "TRLV",
+   "name": "Trulieve Cannabis Corp. Subord",
+   "sector": "Healthcare",
+   "mcap_b": 1.8,
+   "ipo": null
+  },
+  {
+   "symbol": "WOLF",
+   "name": "Wolfspeed Inc. Common Stock Ne",
+   "sector": "Technology",
+   "mcap_b": 1.8,
+   "ipo": 2025
+  },
+  {
+   "symbol": "WRD",
+   "name": "WeRide Inc. American Depositar",
+   "sector": "Technology",
+   "mcap_b": 1.8,
+   "ipo": 2024
+  },
+  {
+   "symbol": "AMBQ",
+   "name": "Ambiq Micro Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 1.7,
+   "ipo": 2025
+  },
+  {
+   "symbol": "BBAI",
+   "name": "BigBear.ai Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 1.7,
+   "ipo": 2021
+  },
+  {
+   "symbol": "BL",
+   "name": "BlackLine Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 1.7,
+   "ipo": 2016
+  },
+  {
+   "symbol": "CMPS",
+   "name": "COMPASS Pathways Plc American ",
+   "sector": "Healthcare",
+   "mcap_b": 1.7,
+   "ipo": 2020
+  },
+  {
+   "symbol": "CTS",
+   "name": "CTS Corporation Common Stock",
+   "sector": "Technology",
+   "mcap_b": 1.7,
+   "ipo": null
+  },
+  {
+   "symbol": "DXC",
+   "name": "DXC Technology Company Common ",
+   "sector": "Technology",
+   "mcap_b": 1.7,
+   "ipo": null
+  },
+  {
+   "symbol": "FORTY",
+   "name": "Formula Systems (1985) Ltd. Am",
+   "sector": "Technology",
+   "mcap_b": 1.7,
+   "ipo": null
+  },
+  {
+   "symbol": "HROW",
+   "name": "Harrow Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.7,
+   "ipo": null
+  },
+  {
+   "symbol": "KMTS",
+   "name": "Kestra Medical Technologies Lt",
+   "sector": "Healthcare",
+   "mcap_b": 1.7,
+   "ipo": 2025
+  },
+  {
+   "symbol": "LILA",
+   "name": "Liberty Latin America Ltd. Cla",
+   "sector": "Communication Services",
+   "mcap_b": 1.7,
+   "ipo": null
+  },
+  {
+   "symbol": "LILAK",
+   "name": "Liberty Latin America Ltd. Cla",
+   "sector": "Communication Services",
+   "mcap_b": 1.7,
+   "ipo": null
+  },
+  {
+   "symbol": "MPLT",
+   "name": "MapLight Therapeutics Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 1.7,
+   "ipo": 2025
+  },
+  {
+   "symbol": "RXT",
+   "name": "Rackspace Technology Inc. Comm",
+   "sector": "Technology",
+   "mcap_b": 1.7,
+   "ipo": 2020
+  },
+  {
+   "symbol": "SEPN",
+   "name": "Septerna Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.7,
+   "ipo": 2024
+  },
+  {
+   "symbol": "SHLS",
+   "name": "Shoals Technologies Group Inc.",
+   "sector": "Technology",
+   "mcap_b": 1.7,
+   "ipo": 2021
+  },
+  {
+   "symbol": "TDOC",
+   "name": "Teladoc Health Inc. Common Sto",
+   "sector": "Healthcare",
+   "mcap_b": 1.7,
+   "ipo": 2015
+  },
+  {
+   "symbol": "VIR",
+   "name": "Vir Biotechnology Inc. Common ",
+   "sector": "Healthcare",
+   "mcap_b": 1.7,
+   "ipo": 2019
+  },
+  {
+   "symbol": "WKC",
+   "name": "World Kinect Corporation Commo",
+   "sector": "Energy",
+   "mcap_b": 1.7,
+   "ipo": null
+  },
+  {
+   "symbol": "ZBIO",
+   "name": "Zenas BioPharma Inc. Common St",
+   "sector": "Healthcare",
+   "mcap_b": 1.7,
+   "ipo": 2024
+  },
+  {
+   "symbol": "AKTS",
+   "name": "Aktis Oncology Inc. Common sto",
+   "sector": "Healthcare",
+   "mcap_b": 1.6,
+   "ipo": 2026
+  },
+  {
+   "symbol": "ARDT",
+   "name": "Ardent Health Inc. Common Stoc",
+   "sector": "Healthcare",
+   "mcap_b": 1.6,
+   "ipo": 2024
+  },
+  {
+   "symbol": "AVBP",
+   "name": "ArriVent BioPharma Inc. Common",
+   "sector": "Healthcare",
+   "mcap_b": 1.6,
+   "ipo": 2024
+  },
+  {
+   "symbol": "CLVT",
+   "name": "Clarivate Plc Ordinary Shares",
+   "sector": "Technology",
+   "mcap_b": 1.6,
+   "ipo": 2019
+  },
+  {
+   "symbol": "EYE",
+   "name": "National Vision Holdings Inc. ",
+   "sector": "Healthcare",
+   "mcap_b": 1.6,
+   "ipo": 2017
+  },
+  {
+   "symbol": "FTRE",
+   "name": "Fortrea Holdings Inc. Common S",
+   "sector": "Healthcare",
+   "mcap_b": 1.6,
+   "ipo": null
+  },
+  {
+   "symbol": "IMCR",
+   "name": "Immunocore Holdings plc Americ",
+   "sector": "Healthcare",
+   "mcap_b": 1.6,
+   "ipo": 2021
+  },
+  {
+   "symbol": "INNV",
+   "name": "InnovAge Holding Corp. Common ",
+   "sector": "Healthcare",
+   "mcap_b": 1.6,
+   "ipo": 2021
+  },
+  {
+   "symbol": "KRP",
+   "name": "Kimbell Royalty Partners Commo",
+   "sector": "Energy",
+   "mcap_b": 1.6,
+   "ipo": 2017
+  },
+  {
+   "symbol": "LIME",
+   "name": "Neutron Holdings Inc. Common S",
+   "sector": "Technology",
+   "mcap_b": 1.6,
+   "ipo": 2026
+  },
+  {
+   "symbol": "PRGO",
+   "name": "Perrigo Company plc Ordinary S",
+   "sector": "Healthcare",
+   "mcap_b": 1.6,
+   "ipo": null
+  },
+  {
+   "symbol": "SKYT",
+   "name": "SkyWater Technology Inc. Commo",
+   "sector": "Technology",
+   "mcap_b": 1.6,
+   "ipo": 2021
+  },
+  {
+   "symbol": "TRIP",
+   "name": "TripAdvisor Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 1.6,
+   "ipo": null
+  },
+  {
+   "symbol": "UZD",
+   "name": "Array Digital Infrastructure I",
+   "sector": "Communication Services",
+   "mcap_b": 1.6,
+   "ipo": 2020
+  },
+  {
+   "symbol": "VIA",
+   "name": "Via Transportation Inc. Class ",
+   "sector": "Technology",
+   "mcap_b": 1.6,
+   "ipo": 2025
+  },
+  {
+   "symbol": "XERS",
+   "name": "Xeris Biopharma Holdings Inc. ",
+   "sector": "Healthcare",
+   "mcap_b": 1.6,
+   "ipo": 2018
+  },
+  {
+   "symbol": "AIP",
+   "name": "Arteris Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 1.5,
+   "ipo": 2021
+  },
+  {
+   "symbol": "CNXC",
+   "name": "Concentrix Corporation Common ",
+   "sector": "Technology",
+   "mcap_b": 1.5,
+   "ipo": null
+  },
+  {
+   "symbol": "ENOV",
+   "name": "Enovis Corporation Common Stoc",
+   "sector": "Healthcare",
+   "mcap_b": 1.5,
+   "ipo": null
+  },
+  {
+   "symbol": "IDT",
+   "name": "IDT Corporation Class B Common",
+   "sector": "Communication Services",
+   "mcap_b": 1.5,
+   "ipo": null
+  },
+  {
+   "symbol": "KYIVW",
+   "name": "Kyivstar Group Ltd. Warrant",
+   "sector": "Communication Services",
+   "mcap_b": 1.5,
+   "ipo": null
+  },
+  {
+   "symbol": "MRVI",
+   "name": "Maravai LifeSciences Holdings ",
+   "sector": "Healthcare",
+   "mcap_b": 1.5,
+   "ipo": 2020
+  },
+  {
+   "symbol": "NVAX",
+   "name": "Novavax Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.5,
+   "ipo": null
+  },
+  {
+   "symbol": "PLTK",
+   "name": "Playtika Holding Corp. Common ",
+   "sector": "Technology",
+   "mcap_b": 1.5,
+   "ipo": 2021
+  },
+  {
+   "symbol": "PSNL",
+   "name": "Personalis Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.5,
+   "ipo": 2019
+  },
+  {
+   "symbol": "PUMP",
+   "name": "ProPetro Holding Corp. Common ",
+   "sector": "Energy",
+   "mcap_b": 1.5,
+   "ipo": 2017
+  },
+  {
+   "symbol": "SLNHP",
+   "name": "Soluna Holdings Inc 9.0% Serie",
+   "sector": "Technology",
+   "mcap_b": 1.5,
+   "ipo": null
+  },
+  {
+   "symbol": "TBLA",
+   "name": "Taboola.com Ltd. Ordinary Shar",
+   "sector": "Technology",
+   "mcap_b": 1.5,
+   "ipo": null
+  },
+  {
+   "symbol": "UZE",
+   "name": "Array Digital Infrastructure I",
+   "sector": "Communication Services",
+   "mcap_b": 1.5,
+   "ipo": 2020
+  },
+  {
+   "symbol": "VPG",
+   "name": "Vishay Precision Group Inc. Co",
+   "sector": "Technology",
+   "mcap_b": 1.5,
+   "ipo": null
+  },
+  {
+   "symbol": "AHCO",
+   "name": "AdaptHealth Corp. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.4,
+   "ipo": 2018
+  },
+  {
+   "symbol": "AI",
+   "name": "C3.ai Inc. Class A Common Stoc",
+   "sector": "Technology",
+   "mcap_b": 1.4,
+   "ipo": 2020
+  },
+  {
+   "symbol": "BLFS",
+   "name": "BioLife Solutions Inc. Common ",
+   "sector": "Healthcare",
+   "mcap_b": 1.4,
+   "ipo": null
+  },
+  {
+   "symbol": "BORR",
+   "name": "Borr Drilling Limited Common S",
+   "sector": "Energy",
+   "mcap_b": 1.4,
+   "ipo": 2019
+  },
+  {
+   "symbol": "COAG",
+   "name": "Hemab Therapeutics Holdings In",
+   "sector": "Healthcare",
+   "mcap_b": 1.4,
+   "ipo": 2026
+  },
+  {
+   "symbol": "IART",
+   "name": "Integra LifeSciences Holdings ",
+   "sector": "Healthcare",
+   "mcap_b": 1.4,
+   "ipo": null
+  },
+  {
+   "symbol": "INBX",
+   "name": "Inhibrx Biosciences Inc. Commo",
+   "sector": "Healthcare",
+   "mcap_b": 1.4,
+   "ipo": null
+  },
+  {
+   "symbol": "INSP",
+   "name": "Inspire Medical Systems Inc. C",
+   "sector": "Healthcare",
+   "mcap_b": 1.4,
+   "ipo": 2018
+  },
+  {
+   "symbol": "LSPD",
+   "name": "Lightspeed Commerce Inc. Subor",
+   "sector": "Technology",
+   "mcap_b": 1.4,
+   "ipo": null
+  },
+  {
+   "symbol": "MGTX",
+   "name": "MeiraGTx Holdings plc Ordinary",
+   "sector": "Healthcare",
+   "mcap_b": 1.4,
+   "ipo": 2018
+  },
+  {
+   "symbol": "MLTX",
+   "name": "MoonLake Immunotherapeutics Cl",
+   "sector": "Healthcare",
+   "mcap_b": 1.4,
+   "ipo": 2020
+  },
+  {
+   "symbol": "NSSC",
+   "name": "NAPCO Security Technologies In",
+   "sector": "Communication Services",
+   "mcap_b": 1.4,
+   "ipo": null
+  },
+  {
+   "symbol": "OMDA",
+   "name": "Omada Health Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.4,
+   "ipo": 2025
+  },
+  {
+   "symbol": "PNTG",
+   "name": "The Pennant Group Inc. Common ",
+   "sector": "Healthcare",
+   "mcap_b": 1.4,
+   "ipo": null
+  },
+  {
+   "symbol": "UZF",
+   "name": "Array Digital Infrastructure I",
+   "sector": "Communication Services",
+   "mcap_b": 1.4,
+   "ipo": 2021
+  },
+  {
+   "symbol": "VET",
+   "name": "Vermilion Energy Inc. Common (",
+   "sector": "Energy",
+   "mcap_b": 1.4,
+   "ipo": null
+  },
+  {
+   "symbol": "AVLN",
+   "name": "Avalyn Pharma Inc. Common Stoc",
+   "sector": "Healthcare",
+   "mcap_b": 1.3,
+   "ipo": 2026
+  },
+  {
+   "symbol": "CAPR",
+   "name": "Capricor Therapeutics Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 1.3,
+   "ipo": null
+  },
+  {
+   "symbol": "CDRE",
+   "name": "Cadre Holdings Inc. Common Sto",
+   "sector": "Healthcare",
+   "mcap_b": 1.3,
+   "ipo": 2021
+  },
+  {
+   "symbol": "CRVS",
+   "name": "Corvus Pharmaceuticals Inc. Co",
+   "sector": "Healthcare",
+   "mcap_b": 1.3,
+   "ipo": 2016
+  },
+  {
+   "symbol": "CXM",
+   "name": "Sprinklr Inc. Class A Common S",
+   "sector": "Technology",
+   "mcap_b": 1.3,
+   "ipo": 2021
+  },
+  {
+   "symbol": "HLX",
+   "name": "Helix Energy Solutions Group I",
+   "sector": "Energy",
+   "mcap_b": 1.3,
+   "ipo": null
+  },
+  {
+   "symbol": "IMTX",
+   "name": "Immatics N.V. Ordinary Shares",
+   "sector": "Healthcare",
+   "mcap_b": 1.3,
+   "ipo": null
+  },
+  {
+   "symbol": "POET",
+   "name": "POET Technologies Inc. Common ",
+   "sector": "Technology",
+   "mcap_b": 1.3,
+   "ipo": null
+  },
+  {
+   "symbol": "SDGR",
+   "name": "Schrodinger Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.3,
+   "ipo": 2020
+  },
+  {
+   "symbol": "STAA",
+   "name": "STAAR Surgical Company Common ",
+   "sector": "Healthcare",
+   "mcap_b": 1.3,
+   "ipo": null
+  },
+  {
+   "symbol": "SVRA",
+   "name": "Savara Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.3,
+   "ipo": null
+  },
+  {
+   "symbol": "AMPL",
+   "name": "Amplitude Inc. Class A Common ",
+   "sector": "Technology",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "AORT",
+   "name": "Artivion Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "AZTA",
+   "name": "Azenta Inc.",
+   "sector": "Technology",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "BRAI",
+   "name": "Braiin Limited Common Stock",
+   "sector": "Technology",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "CEVA",
+   "name": "CEVA Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "COLL",
+   "name": "Collegium Pharmaceutical Inc. ",
+   "sector": "Healthcare",
+   "mcap_b": 1.2,
+   "ipo": 2015
+  },
+  {
+   "symbol": "DMLP",
+   "name": "Dorchester Minerals L.P. Commo",
+   "sector": "Energy",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "ENRD",
+   "name": "Einride AB American Depositary",
+   "sector": "Technology",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "HQ",
+   "name": "Horizon Quantum Holdings Ltd. ",
+   "sector": "Technology",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "LMRI",
+   "name": "Lumexa Imaging Holdings Inc. C",
+   "sector": "Healthcare",
+   "mcap_b": 1.2,
+   "ipo": 2025
+  },
+  {
+   "symbol": "LZ",
+   "name": "LegalZoom.com Inc. Common Stoc",
+   "sector": "Technology",
+   "mcap_b": 1.2,
+   "ipo": 2021
+  },
+  {
+   "symbol": "PBT",
+   "name": "Permian Basin Royalty Trust Co",
+   "sector": "Energy",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "PRCT",
+   "name": "PROCEPT BioRobotics Corporatio",
+   "sector": "Healthcare",
+   "mcap_b": 1.2,
+   "ipo": 2021
+  },
+  {
+   "symbol": "QDEL",
+   "name": "QuidelOrtho Corporation Common",
+   "sector": "Healthcare",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "RCAT",
+   "name": "Red Cat Holdings Inc. Common S",
+   "sector": "Technology",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "RES",
+   "name": "RPC Inc. Common Stock",
+   "sector": "Energy",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "SBET",
+   "name": "Sharplink Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "TRUP",
+   "name": "Trupanion Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "TTI",
+   "name": "Tetra Technologies Inc. Common",
+   "sector": "Energy",
+   "mcap_b": 1.2,
+   "ipo": null
+  },
+  {
+   "symbol": "TUYA",
+   "name": "Tuya Inc. American Depositary ",
+   "sector": "Technology",
+   "mcap_b": 1.2,
+   "ipo": 2021
+  },
+  {
+   "symbol": "WVE",
+   "name": "Wave Life Sciences Ltd. Ordina",
+   "sector": "Healthcare",
+   "mcap_b": 1.2,
+   "ipo": 2015
+  },
+  {
+   "symbol": "ALVO",
+   "name": "Alvotech Ordinary Shares",
+   "sector": "Healthcare",
+   "mcap_b": 1.1,
+   "ipo": null
+  },
+  {
+   "symbol": "BIOA",
+   "name": "BioAge Labs Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.1,
+   "ipo": 2024
+  },
+  {
+   "symbol": "BRUNW",
+   "name": "Boost Run Inc. Warrant",
+   "sector": "Technology",
+   "mcap_b": 1.1,
+   "ipo": null
+  },
+  {
+   "symbol": "CERT",
+   "name": "Certara Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 1.1,
+   "ipo": 2020
+  },
+  {
+   "symbol": "CGEM",
+   "name": "Cullinan Therapeutics Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 1.1,
+   "ipo": 2021
+  },
+  {
+   "symbol": "DRTS",
+   "name": "Alpha Tau Medical Ltd. Ordinar",
+   "sector": "Healthcare",
+   "mcap_b": 1.1,
+   "ipo": null
+  },
+  {
+   "symbol": "ETON",
+   "name": "Eton Pharmaceuticals Inc. Comm",
+   "sector": "Healthcare",
+   "mcap_b": 1.1,
+   "ipo": 2018
+  },
+  {
+   "symbol": "EVLV",
+   "name": "Evolv Technologies Holdings In",
+   "sector": "Technology",
+   "mcap_b": 1.1,
+   "ipo": 2020
+  },
+  {
+   "symbol": "JBIO",
+   "name": "Jade Biosciences Inc. Common S",
+   "sector": "Healthcare",
+   "mcap_b": 1.1,
+   "ipo": 2021
+  },
+  {
+   "symbol": "LFMDP",
+   "name": "LifeMD Inc. 8.875% Series A Cu",
+   "sector": "Healthcare",
+   "mcap_b": 1.1,
+   "ipo": null
+  },
+  {
+   "symbol": "LXRX",
+   "name": "Lexicon Pharmaceuticals Inc. C",
+   "sector": "Healthcare",
+   "mcap_b": 1.1,
+   "ipo": null
+  },
+  {
+   "symbol": "MGRT",
+   "name": "Mega Fortune Company Limited O",
+   "sector": "Technology",
+   "mcap_b": 1.1,
+   "ipo": 2025
+  },
+  {
+   "symbol": "OLMA",
+   "name": "Olema Pharmaceuticals Inc. Com",
+   "sector": "Healthcare",
+   "mcap_b": 1.1,
+   "ipo": 2020
+  },
+  {
+   "symbol": "OPK",
+   "name": "OPKO Health Inc. Common Stock",
+   "sector": "Healthcare",
+   "mcap_b": 1.1,
+   "ipo": null
+  },
+  {
+   "symbol": "ORIC",
+   "name": "Oric Pharmaceuticals Inc. Comm",
+   "sector": "Healthcare",
+   "mcap_b": 1.1,
+   "ipo": 2020
+  },
+  {
+   "symbol": "RZLV",
+   "name": "Rezolve AI PLC Ordinary Shares",
+   "sector": "Technology",
+   "mcap_b": 1.1,
+   "ipo": null
+  },
+  {
+   "symbol": "SANA",
+   "name": "Sana Biotechnology Inc. Common",
+   "sector": "Healthcare",
+   "mcap_b": 1.1,
+   "ipo": 2021
+  },
+  {
+   "symbol": "SBR",
+   "name": "Sabine Royalty Trust Common St",
+   "sector": "Energy",
+   "mcap_b": 1.1,
+   "ipo": null
+  },
+  {
+   "symbol": "SCSC",
+   "name": "ScanSource Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 1.1,
+   "ipo": null
+  },
+  {
+   "symbol": "SIFY",
+   "name": "Sify Technologies Limited Amer",
+   "sector": "Technology",
+   "mcap_b": 1.1,
+   "ipo": null
+  },
+  {
+   "symbol": "SLDB",
+   "name": "Solid Biosciences Inc. Common ",
+   "sector": "Healthcare",
+   "mcap_b": 1.1,
+   "ipo": 2018
+  },
+  {
+   "symbol": "UPWK",
+   "name": "Upwork Inc. Common Stock",
+   "sector": "Technology",
+   "mcap_b": 1.1,
+   "ipo": 2018
+  },
+  {
+   "symbol": "VOR",
+   "name": "Vor Biopharma Inc. Common Stoc",
+   "sector": "Healthcare",
+   "mcap_b": 1.1,
+   "ipo": 2021
+  },
+  {
+   "symbol": "ABUS",
+   "name": "Arbutus Biopharma Corporation ",
+   "sector": "Healthcare",
+   "mcap_b": 1.0,
+   "ipo": null
+  },
+  {
+   "symbol": "AVTX",
+   "name": "Avalo Therapeutics Inc. Common",
+   "sector": "Healthcare",
+   "mcap_b": 1.0,
+   "ipo": 2015
+  },
+  {
+   "symbol": "CRON",
+   "name": "Cronos Group Inc. Common Share",
+   "sector": "Healthcare",
+   "mcap_b": 1.0,
+   "ipo": null
+  },
+  {
+   "symbol": "GDRX",
+   "name": "GoodRx Holdings Inc. Class A C",
+   "sector": "Technology",
+   "mcap_b": 1.0,
+   "ipo": 2020
+  },
+  {
+   "symbol": "KDK",
+   "name": "Kodiak AI Inc. Common Stock ",
+   "sector": "Technology",
+   "mcap_b": 1.0,
+   "ipo": null
+  },
+  {
+   "symbol": "KURA",
+   "name": "Kura Oncology Inc. Common Stoc",
+   "sector": "Healthcare",
+   "mcap_b": 1.0,
+   "ipo": null
+  },
+  {
+   "symbol": "PHAR",
+   "name": "Pharming Group N.V. ADS each r",
+   "sector": "Healthcare",
+   "mcap_b": 1.0,
+   "ipo": null
+  }
  ]
 }
