@@ -28,7 +28,6 @@ import os, json, time, urllib.request, urllib.parse
 from datetime import datetime, timezone
 
 # ── Configuración desde entorno (secrets de GitHub) ──
-FMP_KEY        = os.environ.get("FMP_API_KEY", "")
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT  = os.environ.get("TELEGRAM_CHAT_ID", "")
 NOW = datetime.now(timezone.utc)
@@ -78,18 +77,44 @@ def telegram_send(text):
 # ───────────────────────────────────────────────────────────────────────
 # CAPA 1 — DETECTOR DE TESIS
 # ───────────────────────────────────────────────────────────────────────
-def fmp_fundamentals(symbol):
-    """Trae 4 trimestres de income statement. (data, error)."""
-    if not FMP_KEY:
-        return None, "FMP_API_KEY no configurada"
-    url = (f"https://financialmodelingprep.com/stable/income-statement"
-           f"?symbol={symbol}&period=quarter&limit=6&apikey={FMP_KEY}")
+def yahoo_fundamentals(symbol):
+    """Ingresos trimestrales, beneficio bruto y neto desde Yahoo (sin key, sin cuota).
+    Mismo Yahoo que usa el módulo de trading. Devuelve (lista más-reciente-primero
+    con dicts {"revenue","grossProfit","netIncome"}, error)."""
+    now = int(time.time()); start = now - 3*365*86400
+    url = (f"https://query2.finance.yahoo.com/ws/fundamentals-timeseries/v1/finance/timeseries/{symbol}"
+           f"?type=quarterlyTotalRevenue,quarterlyGrossProfit,quarterlyNetIncome"
+           f"&period1={start}&period2={now}")
     data, err = _get(url)
     if err:
-        return None, f"FMP {symbol}: {err}"
-    if not isinstance(data, list) or len(data) < 3:
-        return None, f"FMP {symbol}: datos insuficientes ({len(data) if isinstance(data,list) else 0} trim)"
-    return data, None
+        return None, f"Yahoo fund {symbol}: {err}"
+    try:
+        series = {}
+        for r in data.get("timeseries", {}).get("result", []):
+            t = r.get("meta", {}).get("type", [""])[0]
+            vals = {}
+            for v in (r.get(t) or []):
+                if v and v.get("reportedValue") is not None:
+                    vals[v.get("asOfDate")] = v["reportedValue"].get("raw")
+            series[t] = vals
+        revs = series.get("quarterlyTotalRevenue", {})
+        gps  = series.get("quarterlyGrossProfit", {})
+        nis  = series.get("quarterlyNetIncome", {})
+        if len(revs) < 3:
+            return None, f"Yahoo fund {symbol}: datos insuficientes ({len(revs)} trim)"
+        # Ordenar por fecha DESC (más reciente primero, como hacía FMP)
+        quarters = []
+        for d in sorted(revs.keys(), reverse=True):
+            quarters.append({"revenue": revs.get(d),
+                             "grossProfit": gps.get(d),
+                             "netIncome": nis.get(d)})
+        return quarters, None
+    except Exception as e:
+        return None, f"Yahoo fund {symbol}: parse {e}"
+
+# Alias de compatibilidad: el resto del código llama fmp_fundamentals
+def fmp_fundamentals(symbol):
+    return yahoo_fundamentals(symbol)
 
 # Umbrales de ruptura ESPECÍFICOS por activo, tomados de la tesis escrita de la cartera.
 # NVDA: la tesis dice "vender si crecimiento data-center cae sostenidamente <30% YoY
@@ -136,13 +161,16 @@ def analyze_fundamentals(quarters, asset_id=None):
         elif below_thesis_margin:
             reason = f"RUPTURA DE TESIS: margen {gms[-1]:.0f}% por debajo del umbral escrito ({thr['min_gross_margin']}%)"
         else:
-            reason = f"Crecimiento {growths[-1]:+.0f}%, margen {gms[0]:.0f}%→{gms[-1]:.0f}% — tesis deteriorándose"
+            reason = (f"Crecimiento {growths[-1]:+.0f}%, margen {gms[0]:.0f}%→{gms[-1]:.0f}% — tesis deteriorándose"
+                      if gms else f"Crecimiento {growths[-1]:+.0f}% en retroceso — tesis deteriorándose")
     elif accelerating and margin_stable:
         status = "VERDE"
-        reason = f"Ingresos acelerando {growths[0]:.0f}%→{growths[-1]:.0f}%, margen {gms[-1]:.0f}% sólido"
+        reason = (f"Ingresos acelerando {growths[0]:.0f}%→{growths[-1]:.0f}%, margen {gms[-1]:.0f}% sólido"
+                  if gms else f"Ingresos acelerando {growths[0]:.0f}%→{growths[-1]:.0f}% (sin dato de margen)")
     else:
         status = "AMBAR"
-        reason = f"Crece {growths[-1]:+.0f}% pero desacelera; margen {gms[-1]:.0f}% OK — vigilar"
+        reason = (f"Crece {growths[-1]:+.0f}% pero desacelera; margen {gms[-1]:.0f}% OK — vigilar"
+                  if gms else f"Crece {growths[-1]:+.0f}% pero desacelera (sin dato de margen) — vigilar")
 
     return {
         "status": status, "reason": reason,
@@ -351,7 +379,7 @@ def radar_convex_crypto():
     return candidates[:8], None
 
 # ── RADAR DE DESCUBRIMIENTO CON MEMORIA (barrido + observación a 1 año) ──
-# Fuentes que funcionan desde GitHub: SEC EDGAR (símbolos) + FMP (perfil/fundamentales).
+# Fuente única: Yahoo Finance (fundamentales + precios), sin key ni cuota.
 # Máquina de estados: nueva -> OBSERVACION -> CONFIRMADA (4 trim. tesis OK) / DESCARTADA.
 # Barrido continuo por lotes (no agota la API). Memoria en radar_watchlist.json.
 
@@ -385,50 +413,15 @@ def sec_symbols():
     syms = [v["ticker"] for v in data.values() if v.get("ticker")]
     return syms, None
 
-def fmp_profile(symbol):
-    """Perfil de empresa (sector, mcap, beta, IPO). Plan free OK. (data, error)."""
-    if not FMP_KEY:
-        return None, "FMP key no configurada"
-    url = f"https://financialmodelingprep.com/stable/profile?symbol={symbol}&apikey={FMP_KEY}"
-    data, err = _get(url)
-    if err:
-        return None, err
-    if not isinstance(data, list) or not data:
-        return None, "perfil vacío"
-    return data[0], None
-
-def _passes_structural_filter(profile):
-    """Filtro estructural: mid-cap emergente, joven, volátil (capaz de gran movimiento)."""
-    if not profile:
-        return False
-    if profile.get("isEtf") or profile.get("isFund"):
-        return False
-    if not profile.get("isActivelyTrading", True):
-        return False
-    mcap = profile.get("marketCap", 0) or 0
-    if not (1e9 <= mcap <= 50e9):        # ni micro-casino ni gigante maduro
-        return False
-    if profile.get("sector", "") not in GROWTH_SECTORS_RADAR:
-        return False
-    # IPO reciente (disrupción joven) — opcional pero preferente
-    ipo = profile.get("ipoDate", "") or ""
-    try:
-        ipo_year = int(ipo[:4]) if ipo else 0
-    except Exception:
-        ipo_year = 0
-    if ipo_year and ipo_year < 2015:
-        return False
-    return True
-
 def _evaluate_thesis(symbol):
-    """Analiza fundamentales de un símbolo. Devuelve dict de tesis o None."""
+    """Analiza fundamentales de un símbolo. Devuelve (tesis|None, fetch_error|None)."""
     q, err = fmp_fundamentals(symbol)
     if err or not q:
-        return None
+        return None, (err or "sin datos")
     t = analyze_fundamentals(q)
     if t.get("status") in ("NO_DATA", None):
-        return None
-    return t
+        return None, None   # datos llegaron pero incompletos: rechazo, no fallo
+    return t, None
 
 def _price_strength(symbol):
     """Fuerza de precio: distancia al máximo de 52 semanas (Yahoo, gratis).
@@ -465,31 +458,36 @@ def run_discovery_radar():
         return wl, f"radar: {err}"  # devuelve watchlist previa, avisa del fallo
 
     # ── COLA PRIORITARIA: candidatas pre-cribadas (radar_priority.json) ──
-    # Lista precomputada de ~610 empresas que pasan el filtro estructural
-    # (generada offline con el screener completo del mercado). El radar las
-    # analiza PRIMERO — zona fértil directa, sin barrer gigantes durante meses.
-    priority_syms = []
+    # Lista precomputada (~610) del screener completo del mercado, CON perfil
+    # embebido (nombre/sector/mcap). El radar ya no necesita llamadas de perfil:
+    # va directo a evaluar la tesis con Yahoo (sin key, sin cuota).
+    priority_items = []
     try:
         with open("radar_priority.json") as f:
-            priority_syms = json.load(f).get("symbols", [])
+            raw = json.load(f).get("symbols", [])
+        # Compatibilidad: acepta lista de strings (v1) o de dicts (v2 con perfil)
+        for it in raw:
+            if isinstance(it, str):
+                priority_items.append({"symbol": it, "name": "", "sector": "", "mcap_b": None})
+            else:
+                priority_items.append(it)
     except Exception:
         pass
 
     pcursor = wl.get("priority_cursor", 0)
-    using_priority = bool(priority_syms) and pcursor < len(priority_syms)
+    using_priority = bool(priority_items) and pcursor < len(priority_items)
 
     if using_priority:
-        batch = priority_syms[pcursor:pcursor + SCAN_BATCH]
-        cursor = pcursor                      # para el rollback si la cuota se agota
+        batch = priority_items[pcursor:pcursor + SCAN_BATCH]
+        cursor = pcursor                      # para el rollback si algo falla
         wl["priority_cursor"] = pcursor + SCAN_BATCH
     else:
-        # Cola prioritaria agotada -> barrido SEC clásico (captura lo que falte)
-        cursor = wl.get("scan_cursor", 0)
-        if cursor >= len(symbols):
-            cursor = 0
-            wl["last_scan_reset"] = DATE_ES[:10]
-        batch = symbols[cursor:cursor + SCAN_BATCH]
-        wl["scan_cursor"] = cursor + SCAN_BATCH
+        # Cola agotada: no hay barrido de respaldo (requeriría perfiles por símbolo).
+        # Se avisa para regenerar la lista con datos frescos del mercado.
+        batch = []
+        cursor = pcursor
+        if priority_items:
+            wl["priority_exhausted"] = DATE_ES[:10]
 
     fmp_fail = 0
     new_found = 0
@@ -497,7 +495,8 @@ def run_discovery_radar():
     # Contadores de auditoría: saber POR QUÉ el radar rechaza (nunca más silencio opaco)
     audit_ct = {"fmp_fail": 0, "fail_size": 0, "fail_sector": 0,
                 "fail_ipo": 0, "fail_other": 0, "structural_pass": 0, "thesis_fail": 0}
-    for sym in batch:
+    for item in batch:
+        sym = item["symbol"]
         # Saltar si ya está en seguimiento o descartada reciente
         if sym in wl["candidates"]:
             continue
@@ -509,41 +508,15 @@ def run_discovery_radar():
                     continue
             except Exception:
                 pass
-        prof, perr = fmp_profile(sym)
-        if perr:
-            fmp_fail += 1; audit_ct["fmp_fail"] += 1
-            if "429" in str(perr):
-                # Cuota FMP agotada: parar el lote y retroceder el cursor para
-                # NO saltarse empresas sin analizar. Mañana sigue donde tocaba.
-                if using_priority:
-                    wl["priority_cursor"] = cursor
-                else:
-                    wl["scan_cursor"] = cursor
-                quota_exhausted = True
-                break
-            time.sleep(0.4)
-            continue
-        if not _passes_structural_filter(prof):
-            # Clasificar el motivo del rechazo (auditoría)
-            mcap = prof.get("marketCap", 0) or 0
-            if not (1e9 <= mcap <= 50e9):
-                audit_ct["fail_size"] += 1
-            elif prof.get("sector", "") not in GROWTH_SECTORS_RADAR:
-                audit_ct["fail_sector"] += 1
-            else:
-                ipo = prof.get("ipoDate", "") or ""
-                try: iy = int(ipo[:4]) if ipo else 0
-                except Exception: iy = 0
-                if iy and iy < 2015:
-                    audit_ct["fail_ipo"] += 1
-                else:
-                    audit_ct["fail_other"] += 1
-            time.sleep(0.4)
-            continue
+        # Perfil embebido en la lista (pre-cribado estructural hecho offline)
+        prof = {"companyName": item.get("name",""), "sector": item.get("sector","")}
         audit_ct["structural_pass"] += 1
-        # Pasa filtro estructural -> evaluar tesis
-        thesis = _evaluate_thesis(sym)
+        # Pasa filtro estructural -> evaluar tesis (Yahoo)
+        thesis, ferr = _evaluate_thesis(sym)
         time.sleep(0.4)
+        if ferr:
+            fmp_fail += 1; audit_ct["fmp_fail"] += 1
+            continue
         high_growth_quality = (thesis
             and thesis.get("status") in ("VERDE", "AMBAR")
             and (thesis.get("rev_growth_latest") or 0) >= 20
@@ -576,7 +549,7 @@ def run_discovery_radar():
             days = 999
         if days < 75:   # ~1 trimestre entre re-evaluaciones
             continue
-        thesis = _evaluate_thesis(sym)
+        thesis, ferr = _evaluate_thesis(sym)
         time.sleep(0.4)
         if not thesis:
             continue
@@ -617,7 +590,7 @@ def run_discovery_radar():
 
     summary = {
         "scanned_batch": len(batch),
-        "scan_position": (f"prioridad {wl.get('priority_cursor',0)}/{len(priority_syms)}"
+        "scan_position": (f"prioridad {wl.get('priority_cursor',0)}/{len(priority_items)}"
                           if using_priority else f"{wl['scan_cursor']}/{len(symbols)}"),
         "batch_audit": audit_ct,
         "audit_totals": hist,
@@ -629,8 +602,11 @@ def run_discovery_radar():
         "fmp_failures": fmp_fail,
     }
     err_out = None
-    if quota_exhausted:
-        err_out = "radar: cuota diaria FMP agotada — lote pospuesto a mañana (cursor intacto)"
+    if wl.get("priority_exhausted") and not batch:
+        err_out = ("radar: cola prioritaria COMPLETADA (610/610) — pedir a Claude "
+                   "una lista regenerada con datos frescos del mercado")
+    elif quota_exhausted:
+        err_out = "radar: fuente de datos caída — lote pospuesto (cursor intacto)"
     elif fmp_fail >= len(batch) and len(batch) > 0:
         # Fallo total (key mal, FMP caído): tampoco avanzar — no quemar la cola en vacío
         if using_priority:
@@ -638,7 +614,7 @@ def run_discovery_radar():
         else:
             wl["scan_cursor"] = cursor
         save_watchlist(wl)
-        err_out = f"radar: FMP falló en todo el lote ({fmp_fail}) — cursor sin avanzar"
+        err_out = f"radar: Yahoo falló en todo el lote ({fmp_fail}) — cursor sin avanzar"
     return summary, err_out, wl
 
 
@@ -653,8 +629,6 @@ def self_check(thesis_results, thesis_failures, radar_failures):
     problems = []
 
     # 1. ¿Hay credenciales?
-    if not FMP_KEY:
-        problems.append("FMP_API_KEY no configurada — fundamentales no disponibles")
     if not TELEGRAM_TOKEN or not TELEGRAM_CHAT:
         problems.append("Telegram no configurado — sin alertas")
 
