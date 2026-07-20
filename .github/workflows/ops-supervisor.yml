@@ -1,0 +1,115 @@
+name: GeoMacro Intel — Supervisor
+
+on:
+  workflow_run:
+    workflows: ["GeoMacro Intel — Análisis Autónomo"]
+    types: [completed]
+  schedule:
+    # Revisión diaria independiente, fuera del inicio de la hora.
+    - cron: "47 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  supervise:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      HEALTHCHECKS_PING_URL: ${{ secrets.HEALTHCHECKS_PING_URL }}
+      MAIN_RUN_URL: ${{ github.event.workflow_run.html_url }}
+
+    steps:
+      - name: Detect main workflow failure
+        if: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.conclusion != 'success' }}
+        run: |
+          echo "::error::El workflow principal terminó como ${{ github.event.workflow_run.conclusion }}"
+          exit 1
+
+      - name: Checkout main
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Compile supervisor
+        run: python -m py_compile ops_health.py tjl_validation.py
+
+      - name: Audit after main workflow
+        if: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' }}
+        run: python ops_health.py audit --max-age-hours 8 --write health_status.json
+
+      - name: Daily stale-data watchdog
+        if: ${{ github.event_name != 'workflow_run' }}
+        run: python ops_health.py audit --max-age-hours 30 --write health_status.json
+
+      - name: Add health summary
+        if: ${{ always() && hashFiles('health_status.json') != '' }}
+        run: |
+          echo "## GeoMacro Intel — health audit" >> "$GITHUB_STEP_SUMMARY"
+          echo '```json' >> "$GITHUB_STEP_SUMMARY"
+          cat health_status.json >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: External heartbeat success
+        if: ${{ success() && github.event_name != 'workflow_run' }}
+        run: |
+          if [ -n "$HEALTHCHECKS_PING_URL" ]; then
+            curl -fsS --retry 3 --max-time 10 -o /dev/null "${HEALTHCHECKS_PING_URL%/}" || true
+          fi
+
+      - name: Notify failure independently
+        if: ${{ failure() }}
+        env:
+          SUPERVISOR_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          TRIGGER_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import urllib.parse
+          import urllib.request
+
+          token = os.environ.get("TELEGRAM_BOT_TOKEN", "")
+          chat_id = os.environ.get("TELEGRAM_CHAT_ID", "")
+          main_url = os.environ.get("MAIN_RUN_URL") or ""
+          supervisor_url = os.environ.get("SUPERVISOR_RUN_URL") or ""
+          conclusion = os.environ.get("TRIGGER_CONCLUSION") or "fallo de auditoría o ejecución omitida"
+          message = (
+              "🔴 GeoMacro Intel — FALLO OPERATIVO\n"
+              f"Motivo: {conclusion}\n"
+              f"Ejecución principal: {main_url or 'no disponible'}\n"
+              f"Supervisor: {supervisor_url}\n"
+              "No considerar el sistema operativo hasta revisar Actions."
+          )
+          if token and chat_id:
+              data = urllib.parse.urlencode({"chat_id": chat_id, "text": message}).encode()
+              request = urllib.request.Request(
+                  f"https://api.telegram.org/bot{token}/sendMessage",
+                  data=data,
+                  method="POST",
+              )
+              try:
+                  with urllib.request.urlopen(request, timeout=20) as response:
+                      payload = json.loads(response.read().decode("utf-8"))
+                  print("Telegram supervisor:", "OK" if payload.get("ok") else "ERROR")
+              except Exception as exc:
+                  print(f"Telegram supervisor ERROR: {type(exc).__name__}: {exc}")
+          else:
+              print("Telegram supervisor no configurado")
+          PY
+
+          if [ -n "$HEALTHCHECKS_PING_URL" ]; then
+            curl -fsS --retry 3 --max-time 10 -o /dev/null "${HEALTHCHECKS_PING_URL%/}/fail" || true
+          fi
