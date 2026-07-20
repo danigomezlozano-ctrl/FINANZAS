@@ -1057,7 +1057,25 @@ def save_paper_trades(data):
     except Exception as e:
         print(f"  WARN paper_trades: {e}")
 
+def migrate_trade_strategies(paper_data):
+    """Migración estructural (idempotente): etiqueta trades históricos sin campo
+    'strategy'. TJL se reconoce por el summary de la estrategia; el resto es legacy.
+    Tras esto, 'strategy' es campo obligatorio y ningún trade queda 'unknown'."""
+    TJL_PREFIX = "Ruptura de máximos en tendencia"
+    n_tjl = n_leg = 0
+    for t in paper_data.get("trades", []):
+        if t.get("strategy"):
+            continue
+        if (t.get("summary") or "").startswith(TJL_PREFIX):
+            t["strategy"] = "trend_joined_long_v2"; n_tjl += 1
+        else:
+            t["strategy"] = "legacy_momentum_pullback"; n_leg += 1
+    if n_tjl or n_leg:
+        print(f"   Migración de estrategias: {n_tjl} TJL + {n_leg} legacy etiquetados")
+    return paper_data
+
 def update_paper_trades(trading_results, paper_data):
+    paper_data = migrate_trade_strategies(paper_data)
     trades = paper_data.get("trades", [])
     existing_ids = {t["id"] for t in trades}
 
@@ -1144,6 +1162,9 @@ def update_paper_trades(trading_results, paper_data):
             "id":            trade_id,
             "asset":         a["meta"]["name"],
             "asset_id":      a["meta"]["id"],
+            "strategy":      cal.get("strategy", ""),
+            "source":        cal.get("source", ""),
+            "trigger":       cal.get("trigger"),
             "signal":        sig,
             "entry_date":    DATE_ES,
             "entry_price":   ep,
@@ -1188,7 +1209,7 @@ def update_paper_trades(trading_results, paper_data):
     # ── Métricas SOLO de la estrategia v2 (trend_joined_long) ──
     # Separar trades nuevos (estrategia con ventaja) de los viejos (lógica rota).
     def is_new_strategy(t):
-        # Estrategia v2 (trend_joined_long) — la única que mide el sistema actual
+        # Campo estructural obligatorio (la migración garantiza que existe)
         return t.get("strategy") == "trend_joined_long_v2"
     new_closed = [t for t in closed if is_new_strategy(t)]
     new_wins = [t for t in new_closed if t["result"]=="win"]
@@ -1214,6 +1235,11 @@ def update_paper_trades(trading_results, paper_data):
         "new_this_run":   new_count,
         "last_updated":   DATE_ES,
         # Estrategia validada por separado (lo que de verdad mide el sistema actual)
+        "strategy_breakdown": {
+            "trend_joined_long_v2": sum(1 for t in closed if t.get("strategy")=="trend_joined_long_v2"),
+            "legacy_momentum_pullback": sum(1 for t in closed if t.get("strategy")=="legacy_momentum_pullback"),
+            "unknown": sum(1 for t in closed if not t.get("strategy")),
+        },
         "strategy_validated": {
             "name": "trend_joined_long_v2 (ruptura en tendencia, 40 acciones USA)",
             "closed": len(new_closed),
@@ -1421,6 +1447,21 @@ def run():
             cpi_yoy = round((cpi_obs[0][1]/cpi_obs[12][1]-1)*100, 2)
             fred_d["cpi_yoy"] = cpi_yoy; print(f"   FRED cpi_yoy: {cpi_yoy}%")
 
+    # Salud FRED explícita y auditable (las 4 series obligatorias)
+    REQUIRED_FRED = ["fed_funds_rate", "yield_curve_spread", "dxy_index", "cpi_yoy"]
+    missing_fred = sorted(set(REQUIRED_FRED) - set(fred_d.keys()))
+    results["fred_health"] = {
+        "status": "OK" if not missing_fred else "ERROR",
+        "last_attempt": DATE_ES,
+        "missing_series": missing_fred,
+        "note": "" if FRED_KEY else "FRED_API_KEY no configurada",
+    }
+    # geo_intelligence: módulo RETIRADO deliberadamente (jun 2026) — explícito
+    # para que ninguna auditoría lo confunda con un fallo silencioso.
+    results["geo_intelligence"] = {
+        "active": False, "status": "REMOVED",
+        "note": "Módulo retirado deliberadamente: fuentes gratuitas llegaban tarde y sin alfa. No es un fallo.",
+    }
     results["macro"] = {"fx_rates": fx_rates, "fred": fred_d, "eia_crude": eia, "timestamp": DATE_ES}
     macro_ctx = (f"FED:{fred_d.get('fed_funds_rate','N/A')}% "
                  f"CPI YoY:{fred_d.get('cpi_yoy','N/A')}% "
@@ -1444,6 +1485,40 @@ def run():
 
     paper_data = run_paper_trading_module(trading_results)
     results["paper_trading"] = paper_data
+
+    # ── INVARIANTES FUNCIONALES (coherencia de resultados, no solo disponibilidad) ──
+    integrity_problems = []
+    try:
+        st = paper_data.get("stats", {})
+        sv = st.get("strategy_validated", {})
+        bd = st.get("strategy_breakdown", {})
+        trades_all = paper_data.get("trades", [])
+        TJL_PREFIX = "Ruptura de máximos en tendencia"
+        tjl_closed_by_summary = sum(1 for t in trades_all
+                                    if t.get("status") not in ("open", None)
+                                    and (t.get("summary") or "").startswith(TJL_PREFIX))
+        # 1. Si hay cierres TJL reales pero las métricas dicen 0 -> las métricas mienten
+        if tjl_closed_by_summary > 0 and (sv.get("closed") or 0) == 0:
+            integrity_problems.append("TJL: existen cierres reales pero strategy_validated=0 (métricas rotas)")
+        # 2. Cerradas = ganadas + perdidas
+        if (st.get("closed") or 0) != (st.get("wins") or 0) + (st.get("losses") or 0):
+            integrity_problems.append("Incoherencia: closed != wins + losses")
+        # 3. Ningún trade sin estrategia etiquetada
+        if (bd.get("unknown") or 0) > 0:
+            integrity_problems.append(f"unknown_strategy = {bd.get('unknown')} (debe ser 0)")
+        # 4. Series FRED obligatorias
+        mf = results.get("fred_health", {}).get("missing_series", [])
+        if mf:
+            integrity_problems.append(f"FRED series ausentes: {', '.join(mf)}")
+    except Exception as e:
+        integrity_problems.append(f"Invariantes: excepción {e}")
+
+    results["integrity"] = {"ok": not integrity_problems, "problems": integrity_problems}
+    if integrity_problems:
+        send_telegram("🔴 INTEGRIDAD DEL SISTEMA\n" + "\n".join(f"• {p}" for p in integrity_problems)
+                      + "\nEl sistema detectó esto solo.", "critical")
+        for p in integrity_problems:
+            print(f"   ⚠️ INTEGRIDAD: {p}")
 
     backtest_results = run_backtest_module()
     results["backtesting"] = backtest_results
