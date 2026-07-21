@@ -1,5 +1,5 @@
 {
-  "generated_at": "20/07/2026 09:40 UTC",
+  "generated_at": "21/07/2026 09:07 UTC",
   "thesis": {
     "NVDA": {
       "status": "AMBAR",
@@ -24,11 +24,11 @@
       "revenue_latest_b": 81615000.0
     },
     "BTC": {
-      "status": "AMBAR",
-      "reason": "Mixto: direcciones -23%, hashrate +5%",
-      "active_addr_trend_180d": -23.3,
-      "hashrate_trend_180d": 4.6,
-      "price_vs_ath": -49.1,
+      "status": "ROJO",
+      "reason": "Red debilit\u00e1ndose: direcciones -6%, hashrate -21%",
+      "active_addr_trend_180d": -6.0,
+      "hashrate_trend_180d": -20.7,
+      "price_vs_ath": -47.5,
       "_errors": []
     },
     "MSCI": {
@@ -40,63 +40,63 @@
     {
       "symbol": "ETH",
       "name": "Ethereum",
-      "mcap_b": 224.8,
-      "change_1y": -49.3
+      "mcap_b": 233.8,
+      "change_1y": -48.8
     },
     {
       "symbol": "BNB",
       "name": "BNB",
-      "mcap_b": 75.4,
+      "mcap_b": 76.8,
       "change_1y": -24.1
     },
     {
       "symbol": "XRP",
       "name": "XRP",
-      "mcap_b": 68.1,
+      "mcap_b": 70.7,
       "change_1y": -68.3
     },
     {
       "symbol": "SOL",
       "name": "Solana",
-      "mcap_b": 44.6,
-      "change_1y": -57.0
+      "mcap_b": 45.6,
+      "change_1y": -58.8
     },
     {
       "symbol": "TRX",
       "name": "TRON",
-      "mcap_b": 30.9,
-      "change_1y": 1.9
+      "mcap_b": 31.0,
+      "change_1y": 3.8
     },
     {
       "symbol": "FIGR_HELOC",
       "name": "Figure Heloc",
-      "mcap_b": 20.9,
+      "mcap_b": 20.1,
       "change_1y": null
     },
     {
       "symbol": "HYPE",
       "name": "Hyperliquid",
-      "mcap_b": 13.5,
-      "change_1y": 34.8
+      "mcap_b": 14.0,
+      "change_1y": 34.1
     },
     {
       "symbol": "DOGE",
       "name": "Dogecoin",
-      "mcap_b": 11.2,
-      "change_1y": -71.5
+      "mcap_b": 11.4,
+      "change_1y": -73.1
     }
   ],
   "discovery": {
-    "scanned_batch": 10,
-    "scan_position": "prioridad 650/610",
+    "scanned_batch": 0,
+    "scan_position": "920/10426",
     "batch_audit": {
       "fmp_fail": 0,
       "fail_size": 0,
       "fail_sector": 0,
       "fail_ipo": 0,
       "fail_other": 0,
-      "structural_pass": 10,
-      "thesis_fail": 8
+      "structural_pass": 0,
+      "thesis_fail": 0
     },
     "audit_totals": {
       "fmp_fail": 46,
@@ -107,9 +107,9 @@
       "structural_pass": 610,
       "thesis_fail": 452
     },
-    "new_in_observation": 2,
-    "total_observing": 7,
-    "confirmed_total": 110,
+    "new_in_observation": 0,
+    "total_observing": 2,
+    "confirmed_total": 115,
     "promoted_now": [
       "CRDO",
       "RBLX",
@@ -220,7 +220,12 @@
       "XERS",
       "KYIVW",
       "MRVI",
-      "OMDA"
+      "OMDA",
+      "STAA",
+      "DMLP",
+      "PRCT",
+      "ETON",
+      "LXRX"
     ],
     "discarded_now": [],
     "fmp_failures": 0
@@ -995,13 +1000,50 @@
       "sector": "Healthcare",
       "confirmed_date": "20/07/2026",
       "quarters": 4
+    },
+    {
+      "symbol": "STAA",
+      "name": "STAAR Surgical Company Common ",
+      "sector": "Healthcare",
+      "confirmed_date": "21/07/2026",
+      "quarters": 4
+    },
+    {
+      "symbol": "DMLP",
+      "name": "Dorchester Minerals L.P. Commo",
+      "sector": "Energy",
+      "confirmed_date": "21/07/2026",
+      "quarters": 4
+    },
+    {
+      "symbol": "PRCT",
+      "name": "PROCEPT BioRobotics Corporatio",
+      "sector": "Healthcare",
+      "confirmed_date": "21/07/2026",
+      "quarters": 4
+    },
+    {
+      "symbol": "ETON",
+      "name": "Eton Pharmaceuticals Inc. Comm",
+      "sector": "Healthcare",
+      "confirmed_date": "21/07/2026",
+      "quarters": 4
+    },
+    {
+      "symbol": "LXRX",
+      "name": "Lexicon Pharmaceuticals Inc. C",
+      "sector": "Healthcare",
+      "confirmed_date": "21/07/2026",
+      "quarters": 4
     }
   ],
-  "observing_count": 7,
+  "observing_count": 2,
   "health": {
-    "last_run": "20/07/2026 09:40 UTC",
-    "last_run_ts": "2026-07-20T09:40:39.425416+00:00",
-    "ok": true,
-    "problems": []
+    "last_run": "21/07/2026 09:07 UTC",
+    "last_run_ts": "2026-07-21T09:07:53.110030+00:00",
+    "ok": false,
+    "problems": [
+      "Fallo de fetch: radar: cola prioritaria COMPLETADA (610/610) \u2014 pedir a Claude una lista regenerada con datos frescos del mercado"
+    ]
   }
 }
