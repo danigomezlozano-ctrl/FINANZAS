@@ -1082,8 +1082,8 @@
       "conviction": "alta",
       "score": 58,
       "kelly": 0.185,
-      "current_price": 61.73,
-      "current_pnl_pct": 3.77,
+      "current_price": 61.78,
+      "current_pnl_pct": 3.85,
       "status": "open",
       "exit_price": null,
       "exit_date": null,
@@ -1096,7 +1096,7 @@
       "strategy_version": "trend_joined_long_v2",
       "protocol_hash": "de855be08c78",
       "rules_hash": "33542b259852",
-      "last_evaluated_bar_date": "2026-07-30"
+      "last_evaluated_bar_date": "2026-07-31"
     },
     {
       "id": "BA_06/07/2026",
@@ -1255,13 +1255,13 @@
       "conviction": "alta",
       "score": 62,
       "kelly": 0.215,
-      "current_price": 333.43,
-      "current_pnl_pct": 4.1,
-      "status": "open",
-      "exit_price": null,
-      "exit_date": null,
-      "pnl_pct": null,
-      "result": null,
+      "current_price": 305.24,
+      "current_pnl_pct": -4.7,
+      "status": "stopped",
+      "exit_price": 304.80999755859375,
+      "exit_date": "31/07/2026 00:00 UTC",
+      "pnl_pct": -4.8331,
+      "result": "loss",
       "summary": "Ruptura de máximos en tendencia (trigger 316.91). Entry=320.29",
       "strategy": "trend_joined_long_v2",
       "validation_round": 1,
@@ -1269,7 +1269,12 @@
       "strategy_version": "trend_joined_long_v2",
       "protocol_hash": "de855be08c78",
       "rules_hash": "33542b259852",
-      "last_evaluated_bar_date": "2026-07-30"
+      "last_evaluated_bar_date": "2026-07-31",
+      "pnl_net_base": -5.0331,
+      "ambiguous_bar": false,
+      "gap_exit": true,
+      "close_alert_sent": true,
+      "exit_bar_date": "2026-07-31"
     },
     {
       "id": "GS_14/07/2026",
@@ -1576,8 +1581,8 @@
       "conviction": "alta",
       "score": 58,
       "kelly": 0.1851,
-      "current_price": 57.65,
-      "current_pnl_pct": 1.62,
+      "current_price": 57.29,
+      "current_pnl_pct": 0.99,
       "status": "open",
       "exit_price": null,
       "exit_date": null,
@@ -1590,7 +1595,7 @@
       "strategy_version": "trend_joined_long_v2",
       "protocol_hash": "de855be08c78",
       "rules_hash": "33542b259852",
-      "last_evaluated_bar_date": "2026-07-30"
+      "last_evaluated_bar_date": "2026-07-31"
     },
     {
       "id": "XOM_17/07/2026",
@@ -1632,36 +1637,36 @@
   ],
   "stats": {
     "total_signals": 55,
-    "open": 3,
-    "closed": 52,
+    "open": 2,
+    "closed": 53,
     "wins": 11,
-    "losses": 41,
-    "win_rate_pct": 21.2,
+    "losses": 42,
+    "win_rate_pct": 20.8,
     "avg_win_pct": 8.32,
-    "avg_loss_pct": -3.4,
-    "expectancy_pct": -0.92,
+    "avg_loss_pct": -3.43,
+    "expectancy_pct": -0.99,
     "new_this_run": 0,
-    "last_updated": "31/07/2026 08:39 UTC",
+    "last_updated": "31/07/2026 13:48 UTC",
     "strategy_breakdown": {
-      "trend_joined_long_v2": 15,
+      "trend_joined_long_v2": 16,
       "legacy_momentum_pullback": 37,
       "unknown": 0
     },
     "strategy_validated": {
       "name": "trend_joined_long_v2",
-      "closed": 15,
+      "closed": 16,
       "wins": 2,
-      "losses": 13,
-      "win_rate_pct": 13.3,
+      "losses": 14,
+      "win_rate_pct": 12.5,
       "avg_win_pct": 5.96,
-      "avg_loss_pct": -4.4,
-      "expectancy_pct": -3.015,
-      "expectancy_net_base_direct": -3.2154,
+      "avg_loss_pct": -4.43,
+      "expectancy_pct": -3.129,
+      "expectancy_net_base_direct": -3.329,
       "expectancy_net_scenarios": {
-        "optimista_0.10": -3.115,
-        "base_0.20": -3.215,
-        "conservador_0.40": -3.415,
-        "estres_0.75": -3.765
+        "optimista_0.10": -3.229,
+        "base_0.20": -3.329,
+        "conservador_0.40": -3.529,
+        "estres_0.75": -3.879
       },
       "note": "Métricas directas de trades TJL; la decisión usa la muestra congelada por ronda."
     }
@@ -1764,11 +1769,11 @@
         }
       },
       "closed": [],
-      "equity": 99920.44,
+      "equity": 100125.85,
       "rules": "long si close>SMA200 y ret126d>0; peso 1/vol20; coste 0.20% rt",
       "capital": 100000.0,
       "cash": 1999.9999999999927,
-      "return_pct": -0.08,
+      "return_pct": 0.13,
       "n_open": 7,
       "n_closed": 0
     },
@@ -1776,14 +1781,14 @@
       "spy": {
         "start_price": 745.219970703125,
         "start_date": "20/07/2026",
-        "last_price": 741.6900024414062,
-        "return_pct": -0.47
+        "last_price": 742.3499755859375,
+        "return_pct": -0.39
       },
       "iwda": {
         "start_price": 125.26000213623047,
         "start_date": "20/07/2026",
-        "last_price": 125.08999633789062,
-        "return_pct": -0.14
+        "last_price": 125.0999984741211,
+        "return_pct": -0.13
       }
     },
     "vol_managed_tjl": {
@@ -1878,9 +1883,15 @@
           "factor": 1.0,
           "pnl_raw": 5.9264,
           "pnl_scaled": 5.93
+        },
+        {
+          "trade_id": "AAPL_13/07/2026",
+          "factor": 1.0,
+          "pnl_raw": -4.8331,
+          "pnl_scaled": -4.83
         }
       ],
-      "cum_pnl_pct": -45.24,
+      "cum_pnl_pct": -50.07,
       "current_factor": 1.24,
       "current_spy_vol": 12.1
     }
