@@ -1585,8 +1585,8 @@
       "conviction": "alta",
       "score": 58,
       "kelly": 0.1851,
-      "current_price": 61.66,
-      "current_pnl_pct": 8.69,
+      "current_price": 60.52,
+      "current_pnl_pct": 6.68,
       "status": "open",
       "exit_price": null,
       "exit_date": null,
@@ -1599,7 +1599,7 @@
       "strategy_version": "trend_joined_long_v2",
       "protocol_hash": "de855be08c78",
       "rules_hash": "33542b259852",
-      "last_evaluated_bar_date": "2026-08-14"
+      "last_evaluated_bar_date": "2026-08-17"
     },
     {
       "id": "XOM_17/07/2026",
@@ -1650,7 +1650,7 @@
     "avg_loss_pct": -3.43,
     "expectancy_pct": -0.86,
     "new_this_run": 0,
-    "last_updated": "17/08/2026 12:29 UTC",
+    "last_updated": "17/08/2026 18:28 UTC",
     "strategy_breakdown": {
       "trend_joined_long_v2": 17,
       "legacy_momentum_pullback": 37,
@@ -1686,7 +1686,9 @@
     "last_blocked_signal_alert": {
       "date": "17/08/2026",
       "assets": [
-        "Chevron"
+        "Chevron",
+        "Exxon",
+        "Micron"
       ]
     },
     "rounds": {
@@ -1772,11 +1774,11 @@
         }
       },
       "closed": [],
-      "equity": 102298.88,
+      "equity": 102541.94,
       "rules": "long si close>SMA200 y ret126d>0; peso 1/vol20; coste 0.20% rt",
       "capital": 100000.0,
       "cash": 1999.9999999999927,
-      "return_pct": 2.3,
+      "return_pct": 2.54,
       "n_open": 7,
       "n_closed": 0
     },
@@ -1784,14 +1786,14 @@
       "spy": {
         "start_price": 745.219970703125,
         "start_date": "20/07/2026",
-        "last_price": 776.3400268554688,
-        "return_pct": 4.18
+        "last_price": 773.489990234375,
+        "return_pct": 3.79
       },
       "iwda": {
         "start_price": 125.26000213623047,
         "start_date": "20/07/2026",
-        "last_price": 128.91000366210938,
-        "return_pct": 2.91
+        "last_price": 128.72000122070312,
+        "return_pct": 2.76
       }
     },
     "vol_managed_tjl": {
@@ -1901,8 +1903,8 @@
         }
       ],
       "cum_pnl_pct": -43.99,
-      "current_factor": 1.15,
-      "current_spy_vol": 13.0
+      "current_factor": 1.14,
+      "current_spy_vol": 13.1
     }
   }
 }
