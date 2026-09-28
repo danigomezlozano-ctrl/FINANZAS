@@ -1654,7 +1654,7 @@
     "avg_loss_pct": -3.48,
     "expectancy_pct": -0.94,
     "new_this_run": 0,
-    "last_updated": "28/09/2026 12:36 UTC",
+    "last_updated": "28/09/2026 22:50 UTC",
     "strategy_breakdown": {
       "trend_joined_long_v2": 18,
       "legacy_momentum_pullback": 37,
@@ -1768,12 +1768,6 @@
           "weight_at_entry": 0.085,
           "date": "20/07/2026"
         },
-        "XLE": {
-          "entry": 58.244998931884766,
-          "units": 155.9901,
-          "weight_at_entry": 0.093,
-          "date": "20/07/2026"
-        },
         "UUP": {
           "entry": 28.399999618530273,
           "units": 1397.9915,
@@ -1781,27 +1775,37 @@
           "date": "20/07/2026"
         }
       },
-      "closed": [],
-      "equity": 103557.82,
+      "closed": [
+        {
+          "etf": "XLE",
+          "entry": 58.244998931884766,
+          "exit": 62.099998474121094,
+          "units": 155.9901,
+          "pnl_pct": 6.42,
+          "opened": "20/07/2026",
+          "closed": "28/09/2026"
+        }
+      ],
+      "equity": 103290.0,
       "rules": "long si close>SMA200 y ret126d>0; peso 1/vol20; coste 0.20% rt",
       "capital": 100000.0,
-      "cash": 1999.9999999999927,
-      "return_pct": 3.56,
-      "n_open": 7,
-      "n_closed": 0
+      "cash": 11667.611002034035,
+      "return_pct": 3.29,
+      "n_open": 6,
+      "n_closed": 1
     },
     "benchmarks": {
       "spy": {
         "start_price": 745.219970703125,
         "start_date": "20/07/2026",
-        "last_price": 771.3499755859375,
-        "return_pct": 3.51
+        "last_price": 765.6099853515625,
+        "return_pct": 2.74
       },
       "iwda": {
         "start_price": 125.26000213623047,
         "start_date": "20/07/2026",
-        "last_price": 129.10000610351562,
-        "return_pct": 3.07
+        "last_price": 128.91000366210938,
+        "return_pct": 2.91
       }
     },
     "vol_managed_tjl": {
@@ -1917,8 +1921,8 @@
         }
       ],
       "cum_pnl_pct": -49.3,
-      "current_factor": 1.43,
-      "current_spy_vol": 10.5
+      "current_factor": 1.39,
+      "current_spy_vol": 10.8
     }
   }
 }
