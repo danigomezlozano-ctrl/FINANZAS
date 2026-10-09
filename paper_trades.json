@@ -1654,7 +1654,7 @@
     "avg_loss_pct": -3.48,
     "expectancy_pct": -0.94,
     "new_this_run": 0,
-    "last_updated": "09/10/2026 12:24 UTC",
+    "last_updated": "09/10/2026 22:06 UTC",
     "strategy_breakdown": {
       "trend_joined_long_v2": 18,
       "legacy_momentum_pullback": 37,
@@ -1688,7 +1688,7 @@
     "protocol_hash": "de855be08c78",
     "rules_hash": "33542b259852",
     "last_blocked_signal_alert": {
-      "date": "08/10/2026",
+      "date": "09/10/2026",
       "assets": [
         "Amazon"
       ]
@@ -1749,12 +1749,6 @@
           "weight_at_entry": 0.075,
           "date": "20/07/2026"
         },
-        "EFA": {
-          "entry": 102.98999786376953,
-          "units": 123.2098,
-          "weight_at_entry": 0.129,
-          "date": "20/07/2026"
-        },
         "EEM": {
           "entry": 63.939998626708984,
           "units": 85.2498,
@@ -1789,28 +1783,37 @@
           "pnl_pct": 6.42,
           "opened": "20/07/2026",
           "closed": "28/09/2026"
+        },
+        {
+          "etf": "EFA",
+          "entry": 102.98999786376953,
+          "exit": 103.4000015258789,
+          "units": 123.2098,
+          "pnl_pct": 0.2,
+          "opened": "20/07/2026",
+          "closed": "09/10/2026"
         }
       ],
-      "equity": 104309.46,
+      "equity": 104605.06,
       "rules": "long si close>SMA200 y ret126d>0; peso 1/vol20; coste 0.20% rt",
       "capital": 100000.0,
-      "cash": 233.35222004068055,
-      "return_pct": 4.31,
-      "n_open": 7,
-      "n_closed": 1
+      "cash": 12947.765941027908,
+      "return_pct": 4.61,
+      "n_open": 6,
+      "n_closed": 2
     },
     "benchmarks": {
       "spy": {
         "start_price": 745.219970703125,
         "start_date": "20/07/2026",
-        "last_price": 773.9299926757812,
-        "return_pct": 3.85
+        "last_price": 778.5700073242188,
+        "return_pct": 4.48
       },
       "iwda": {
         "start_price": 125.26000213623047,
         "start_date": "20/07/2026",
-        "last_price": 131.60000610351562,
-        "return_pct": 5.06
+        "last_price": 130.97999572753906,
+        "return_pct": 4.57
       }
     },
     "vol_managed_tjl": {
@@ -1927,7 +1930,7 @@
       ],
       "cum_pnl_pct": -49.3,
       "current_factor": 1.5,
-      "current_spy_vol": 9.9
+      "current_spy_vol": 9.7
     }
   }
 }
