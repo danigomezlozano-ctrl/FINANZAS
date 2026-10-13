@@ -1654,7 +1654,7 @@
     "avg_loss_pct": -3.48,
     "expectancy_pct": -0.94,
     "new_this_run": 0,
-    "last_updated": "13/10/2026 13:19 UTC",
+    "last_updated": "13/10/2026 22:10 UTC",
     "strategy_breakdown": {
       "trend_joined_long_v2": 18,
       "legacy_momentum_pullback": 37,
@@ -1690,10 +1690,8 @@
     "last_blocked_signal_alert": {
       "date": "13/10/2026",
       "assets": [
-        "Mastercard",
-        "Microsoft",
-        "PayPal",
-        "Visa"
+        "Exxon",
+        "Microsoft"
       ]
     },
     "rounds": {
@@ -1775,12 +1773,6 @@
           "units": 184.4979,
           "weight_at_entry": 1.0,
           "date": "30/09/2026"
-        },
-        "EFA": {
-          "entry": 103.05000305175781,
-          "units": 122.9728,
-          "weight_at_entry": 1.0,
-          "date": "13/10/2026"
         }
       },
       "closed": [
@@ -1810,28 +1802,37 @@
           "pnl_pct": -0.13,
           "opened": "12/10/2026",
           "closed": "13/10/2026"
+        },
+        {
+          "etf": "EFA",
+          "entry": 103.05000305175781,
+          "exit": 103.47000122070312,
+          "units": 122.9728,
+          "pnl_pct": 0.21,
+          "opened": "13/10/2026",
+          "closed": "13/10/2026"
         }
       ],
-      "equity": 104900.06,
+      "equity": 104972.48,
       "rules": "long si close>SMA200 y ret126d>0; peso 1/vol20; coste 0.20% rt",
       "capital": 100000.0,
-      "cash": 258.619339066041,
-      "return_pct": 4.9,
-      "n_open": 7,
-      "n_closed": 3
+      "cash": 12957.167113647096,
+      "return_pct": 4.97,
+      "n_open": 6,
+      "n_closed": 4
     },
     "benchmarks": {
       "spy": {
         "start_price": 745.219970703125,
         "start_date": "20/07/2026",
-        "last_price": 778.0999755859375,
-        "return_pct": 4.41
+        "last_price": 778.010009765625,
+        "return_pct": 4.4
       },
       "iwda": {
         "start_price": 125.26000213623047,
         "start_date": "20/07/2026",
-        "last_price": 131.9600067138672,
-        "return_pct": 5.35
+        "last_price": 132.25999450683594,
+        "return_pct": 5.59
       }
     },
     "vol_managed_tjl": {
@@ -1948,7 +1949,7 @@
       ],
       "cum_pnl_pct": -49.3,
       "current_factor": 1.5,
-      "current_spy_vol": 9.5
+      "current_spy_vol": 9.3
     }
   }
 }
