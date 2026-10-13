@@ -1654,7 +1654,7 @@
     "avg_loss_pct": -3.48,
     "expectancy_pct": -0.94,
     "new_this_run": 0,
-    "last_updated": "12/10/2026 14:07 UTC",
+    "last_updated": "13/10/2026 00:01 UTC",
     "strategy_breakdown": {
       "trend_joined_long_v2": 18,
       "legacy_momentum_pullback": 37,
@@ -1688,12 +1688,9 @@
     "protocol_hash": "de855be08c78",
     "rules_hash": "33542b259852",
     "last_blocked_signal_alert": {
-      "date": "12/10/2026",
+      "date": "13/10/2026",
       "assets": [
-        "Exxon",
-        "Mastercard",
-        "Microsoft",
-        "Visa"
+        "Amazon"
       ]
     },
     "rounds": {
@@ -1775,12 +1772,6 @@
           "units": 184.4979,
           "weight_at_entry": 1.0,
           "date": "30/09/2026"
-        },
-        "EFA": {
-          "entry": 103.33000183105469,
-          "units": 122.7989,
-          "weight_at_entry": 1.0,
-          "date": "12/10/2026"
         }
       },
       "closed": [
@@ -1801,28 +1792,37 @@
           "pnl_pct": 0.2,
           "opened": "20/07/2026",
           "closed": "09/10/2026"
+        },
+        {
+          "etf": "EFA",
+          "entry": 103.33000183105469,
+          "exit": 103.4000015258789,
+          "units": 122.7989,
+          "pnl_pct": -0.13,
+          "opened": "12/10/2026",
+          "closed": "13/10/2026"
         }
       ],
-      "equity": 104886.5,
+      "equity": 104588.26,
       "rules": "long si close>SMA200 y ret126d>0; peso 1/vol20; coste 0.20% rt",
       "capital": 100000.0,
-      "cash": 258.9553188205591,
-      "return_pct": 4.89,
-      "n_open": 7,
-      "n_closed": 2
+      "cash": 12930.966953302059,
+      "return_pct": 4.59,
+      "n_open": 6,
+      "n_closed": 3
     },
     "benchmarks": {
       "spy": {
         "start_price": 745.219970703125,
         "start_date": "20/07/2026",
-        "last_price": 777.9598999023438,
-        "return_pct": 4.39
+        "last_price": 778.5700073242188,
+        "return_pct": 4.48
       },
       "iwda": {
         "start_price": 125.26000213623047,
         "start_date": "20/07/2026",
-        "last_price": 132.22000122070312,
-        "return_pct": 5.56
+        "last_price": 131.6699981689453,
+        "return_pct": 5.12
       }
     },
     "vol_managed_tjl": {
@@ -1939,7 +1939,7 @@
       ],
       "cum_pnl_pct": -49.3,
       "current_factor": 1.5,
-      "current_spy_vol": 9.6
+      "current_spy_vol": 9.7
     }
   }
 }
