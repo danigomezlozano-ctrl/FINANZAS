@@ -1654,7 +1654,7 @@
     "avg_loss_pct": -3.48,
     "expectancy_pct": -0.94,
     "new_this_run": 0,
-    "last_updated": "13/10/2026 00:01 UTC",
+    "last_updated": "13/10/2026 13:19 UTC",
     "strategy_breakdown": {
       "trend_joined_long_v2": 18,
       "legacy_momentum_pullback": 37,
@@ -1690,7 +1690,10 @@
     "last_blocked_signal_alert": {
       "date": "13/10/2026",
       "assets": [
-        "Amazon"
+        "Mastercard",
+        "Microsoft",
+        "PayPal",
+        "Visa"
       ]
     },
     "rounds": {
@@ -1772,6 +1775,12 @@
           "units": 184.4979,
           "weight_at_entry": 1.0,
           "date": "30/09/2026"
+        },
+        "EFA": {
+          "entry": 103.05000305175781,
+          "units": 122.9728,
+          "weight_at_entry": 1.0,
+          "date": "13/10/2026"
         }
       },
       "closed": [
@@ -1803,26 +1812,26 @@
           "closed": "13/10/2026"
         }
       ],
-      "equity": 104588.26,
+      "equity": 104900.06,
       "rules": "long si close>SMA200 y ret126d>0; peso 1/vol20; coste 0.20% rt",
       "capital": 100000.0,
-      "cash": 12930.966953302059,
-      "return_pct": 4.59,
-      "n_open": 6,
+      "cash": 258.619339066041,
+      "return_pct": 4.9,
+      "n_open": 7,
       "n_closed": 3
     },
     "benchmarks": {
       "spy": {
         "start_price": 745.219970703125,
         "start_date": "20/07/2026",
-        "last_price": 778.5700073242188,
-        "return_pct": 4.48
+        "last_price": 778.0999755859375,
+        "return_pct": 4.41
       },
       "iwda": {
         "start_price": 125.26000213623047,
         "start_date": "20/07/2026",
-        "last_price": 131.6699981689453,
-        "return_pct": 5.12
+        "last_price": 131.9600067138672,
+        "return_pct": 5.35
       }
     },
     "vol_managed_tjl": {
@@ -1939,7 +1948,7 @@
       ],
       "cum_pnl_pct": -49.3,
       "current_factor": 1.5,
-      "current_spy_vol": 9.7
+      "current_spy_vol": 9.5
     }
   }
 }
