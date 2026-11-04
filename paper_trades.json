@@ -1654,7 +1654,7 @@
     "avg_loss_pct": -3.48,
     "expectancy_pct": -0.94,
     "new_this_run": 0,
-    "last_updated": "04/11/2026 13:37 UTC",
+    "last_updated": "04/11/2026 23:03 UTC",
     "strategy_breakdown": {
       "trend_joined_long_v2": 18,
       "legacy_momentum_pullback": 37,
@@ -1690,7 +1690,10 @@
     "last_blocked_signal_alert": {
       "date": "04/11/2026",
       "assets": [
-        "Disney"
+        "Amazon",
+        "Microsoft",
+        "Moderna",
+        "Walmart"
       ]
     },
     "rounds": {
@@ -1743,12 +1746,6 @@
           "weight_at_entry": 0.157,
           "date": "20/07/2026"
         },
-        "QQQ": {
-          "entry": 701.1300048828125,
-          "units": 10.4305,
-          "weight_at_entry": 0.075,
-          "date": "20/07/2026"
-        },
         "DBC": {
           "entry": 29.114999771118164,
           "units": 286.8171,
@@ -1766,12 +1763,6 @@
           "units": 184.4979,
           "weight_at_entry": 1.0,
           "date": "30/09/2026"
-        },
-        "EFA": {
-          "entry": 103.4000015258789,
-          "units": 171.4187,
-          "weight_at_entry": 1.0,
-          "date": "28/10/2026"
         }
       },
       "closed": [
@@ -1828,28 +1819,46 @@
           "pnl_pct": -1.4,
           "opened": "21/10/2026",
           "closed": "26/10/2026"
+        },
+        {
+          "etf": "QQQ",
+          "entry": 701.1300048828125,
+          "exit": 691.9500122070312,
+          "units": 10.4305,
+          "pnl_pct": -1.51,
+          "opened": "20/07/2026",
+          "closed": "04/11/2026"
+        },
+        {
+          "etf": "EFA",
+          "entry": 103.4000015258789,
+          "exit": 105.72000122070312,
+          "units": 171.4187,
+          "pnl_pct": 2.04,
+          "opened": "28/10/2026",
+          "closed": "04/11/2026"
         }
       ],
-      "equity": 102937.21,
+      "equity": 102599.62,
       "rules": "long si close>SMA200 y ret126d>0; peso 1/vol20; coste 0.20% rt",
       "capital": 100000.0,
-      "cash": 361.72841892357246,
-      "return_pct": 2.94,
-      "n_open": 6,
-      "n_closed": 6
+      "cash": 25650.818654949202,
+      "return_pct": 2.6,
+      "n_open": 4,
+      "n_closed": 8
     },
     "benchmarks": {
       "spy": {
         "start_price": 745.219970703125,
         "start_date": "20/07/2026",
-        "last_price": 754.3499755859375,
-        "return_pct": 1.23
+        "last_price": 766.8099975585938,
+        "return_pct": 2.9
       },
       "iwda": {
         "start_price": 125.26000213623047,
         "start_date": "20/07/2026",
-        "last_price": 129.5500030517578,
-        "return_pct": 3.42
+        "last_price": 128.9499969482422,
+        "return_pct": 2.95
       }
     },
     "vol_managed_tjl": {
@@ -1965,8 +1974,8 @@
         }
       ],
       "cum_pnl_pct": -49.3,
-      "current_factor": 1.38,
-      "current_spy_vol": 10.9
+      "current_factor": 1.2,
+      "current_spy_vol": 12.5
     }
   }
 }
