@@ -1,5 +1,5 @@
 {
-  "generated_at": "05/11/2026 13:49 UTC",
+  "generated_at": "05/11/2026 23:07 UTC",
   "version": "9.0-trading",
   "is_weekly": false,
   "live_mode": false,
@@ -12,31 +12,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 200.13,
-        "momentum_1m": -15.72,
-        "momentum_3m": -10.64,
-        "rsi": 35.06,
-        "macd_histogram": -1.8102,
-        "sma20": 216.123,
-        "sma50": 221.2012,
-        "sma200": 204.6722,
-        "bollinger_low": 198.7696,
-        "bollinger_high": 233.4764,
-        "atr": 4.0886,
-        "volatility": 38.21,
-        "sharpe": -0.078,
-        "max_drawdown_6m": 19.4,
-        "var_95_daily": 4.625,
-        "technical_score": 36,
+        "price": 181.6,
+        "momentum_1m": -21.21,
+        "momentum_3m": -16.52,
+        "rsi": 27.62,
+        "macd_histogram": -2.98,
+        "sma20": 213.679,
+        "sma50": 220.64,
+        "sma200": 204.6636,
+        "bollinger_low": 191.6901,
+        "bollinger_high": 235.6679,
+        "atr": 5.1907,
+        "volatility": 40.52,
+        "sharpe": -0.283,
+        "max_drawdown_6m": 24.09,
+        "var_95_daily": 4.657,
+        "technical_score": 43,
         "fundamental_score": 58,
-        "composite_score": 49,
+        "composite_score": 52,
         "levels": {
-          "entry": 200.13,
-          "stop": 191.9528,
-          "target": 216.4844,
+          "entry": 181.6,
+          "stop": 171.2186,
+          "target": 202.3628,
           "rr": 2.0,
-          "stop_pct": 4.09,
-          "target_pct": 8.17
+          "stop_pct": 5.72,
+          "target_pct": 11.43
         },
         "kelly": null
       },
@@ -47,7 +47,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: sin ruptura (precio 200.13 bajo trigger 243.37)",
+          "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -105,7 +105,165 @@
         "module": "trading",
         "asset": "NVIDIA",
         "ticker": "NVDA",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
+        "audit": {
+          "passed": true,
+          "checks": [
+            {
+              "check": "datos_frescos",
+              "ok": true
+            },
+            {
+              "check": "historial_200d",
+              "ok": true
+            },
+            {
+              "check": "rsi_calculado",
+              "ok": true
+            },
+            {
+              "check": "atr_calculado",
+              "ok": true
+            },
+            {
+              "check": "volatilidad_operable",
+              "ok": true
+            },
+            {
+              "check": "scores_consistentes",
+              "ok": true
+            },
+            {
+              "check": "precio_valido",
+              "ok": true
+            },
+            {
+              "check": "niveles_calculados",
+              "ok": true
+            }
+          ],
+          "warnings": [],
+          "score": 100
+        },
+        "claude_calls": 0,
+        "scores": {
+          "tech": 43,
+          "fund": 58,
+          "composite": 52
+        },
+        "signal": "ESPERAR",
+        "audit_passed": true,
+        "autodidacta": {
+          "wr": null,
+          "consecutive_losses": 0,
+          "effective_threshold": 65,
+          "silenced": false
+        },
+        "status": "complete"
+      }
+    },
+    {
+      "meta": {
+        "id": "AMD",
+        "name": "AMD",
+        "type": "tech",
+        "unit": "USD"
+      },
+      "quant": {
+        "price": 404.4,
+        "momentum_1m": -34.85,
+        "momentum_3m": -13.88,
+        "rsi": 32.91,
+        "macd_histogram": -13.6001,
+        "sma20": 535.251,
+        "sma50": 547.3664,
+        "sma200": 415.0009,
+        "bollinger_low": 434.553,
+        "bollinger_high": 635.949,
+        "atr": 25.9864,
+        "volatility": 74.28,
+        "sharpe": 0.587,
+        "max_drawdown_6m": 37.73,
+        "var_95_daily": 6.892,
+        "technical_score": 36,
+        "fundamental_score": 58,
+        "composite_score": 49,
+        "levels": {
+          "entry": 404.4,
+          "stop": 352.4272,
+          "target": 508.3456,
+          "rr": 2.0,
+          "stop_pct": 12.85,
+          "target_pct": 25.7
+        },
+        "kelly": null
+      },
+      "analysis": {
+        "thesis": "",
+        "premortem": "",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 50,
+          "prob_interval": 15,
+          "summary": "Sin señal: sin ruptura (precio 404.4 bajo trigger 648.48)",
+          "conviction": "baja",
+          "source": "trend_joined_long"
+        },
+        "audit": {
+          "passed": true,
+          "checks": [
+            {
+              "check": "datos_frescos",
+              "ok": true
+            },
+            {
+              "check": "historial_200d",
+              "ok": true
+            },
+            {
+              "check": "rsi_calculado",
+              "ok": true
+            },
+            {
+              "check": "atr_calculado",
+              "ok": true
+            },
+            {
+              "check": "volatilidad_operable",
+              "ok": true
+            },
+            {
+              "check": "scores_consistentes",
+              "ok": true
+            },
+            {
+              "check": "precio_valido",
+              "ok": true
+            },
+            {
+              "check": "niveles_calculados",
+              "ok": true
+            }
+          ],
+          "warnings": [],
+          "score": 100
+        },
+        "reputation": {
+          "wr": null,
+          "consecutive_losses": 0,
+          "total_closed": 0,
+          "silenced": false,
+          "silence_reason": null,
+          "threshold_adj": 0,
+          "used_for_decision": false
+        },
+        "effective_threshold": 65
+      },
+      "log": {
+        "module": "trading",
+        "asset": "AMD",
+        "ticker": "AMD",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -164,195 +322,37 @@
     },
     {
       "meta": {
-        "id": "AMD",
-        "name": "AMD",
-        "type": "tech",
-        "unit": "USD"
-      },
-      "quant": {
-        "price": 488.78,
-        "momentum_1m": -24.32,
-        "momentum_3m": 1.12,
-        "rsi": 38.26,
-        "macd_histogram": -9.057,
-        "sma20": 546.065,
-        "sma50": 548.897,
-        "sma200": 414.2279,
-        "bollinger_low": 459.0046,
-        "bollinger_high": 633.1254,
-        "atr": 22.3507,
-        "volatility": 70.88,
-        "sharpe": 0.921,
-        "max_drawdown_6m": 28.11,
-        "var_95_daily": 6.786,
-        "technical_score": 55,
-        "fundamental_score": 58,
-        "composite_score": 57,
-        "levels": {
-          "entry": 488.78,
-          "stop": 444.0786,
-          "target": 578.1828,
-          "rr": 2.0,
-          "stop_pct": 9.15,
-          "target_pct": 18.29
-        },
-        "kelly": null
-      },
-      "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {
-          "signal": "ESPERAR",
-          "prob": 50,
-          "prob_interval": 15,
-          "summary": "Sin señal: sin ruptura (precio 488.78 bajo trigger 658.52)",
-          "conviction": "baja",
-          "source": "trend_joined_long"
-        },
-        "audit": {
-          "passed": true,
-          "checks": [
-            {
-              "check": "datos_frescos",
-              "ok": true
-            },
-            {
-              "check": "historial_200d",
-              "ok": true
-            },
-            {
-              "check": "rsi_calculado",
-              "ok": true
-            },
-            {
-              "check": "atr_calculado",
-              "ok": true
-            },
-            {
-              "check": "volatilidad_operable",
-              "ok": true
-            },
-            {
-              "check": "scores_consistentes",
-              "ok": true
-            },
-            {
-              "check": "precio_valido",
-              "ok": true
-            },
-            {
-              "check": "niveles_calculados",
-              "ok": true
-            }
-          ],
-          "warnings": [],
-          "score": 100
-        },
-        "reputation": {
-          "wr": null,
-          "consecutive_losses": 0,
-          "total_closed": 0,
-          "silenced": false,
-          "silence_reason": null,
-          "threshold_adj": 0,
-          "used_for_decision": false
-        },
-        "effective_threshold": 65
-      },
-      "log": {
-        "module": "trading",
-        "asset": "AMD",
-        "ticker": "AMD",
-        "timestamp": "05/11/2026 13:49 UTC",
-        "audit": {
-          "passed": true,
-          "checks": [
-            {
-              "check": "datos_frescos",
-              "ok": true
-            },
-            {
-              "check": "historial_200d",
-              "ok": true
-            },
-            {
-              "check": "rsi_calculado",
-              "ok": true
-            },
-            {
-              "check": "atr_calculado",
-              "ok": true
-            },
-            {
-              "check": "volatilidad_operable",
-              "ok": true
-            },
-            {
-              "check": "scores_consistentes",
-              "ok": true
-            },
-            {
-              "check": "precio_valido",
-              "ok": true
-            },
-            {
-              "check": "niveles_calculados",
-              "ok": true
-            }
-          ],
-          "warnings": [],
-          "score": 100
-        },
-        "claude_calls": 0,
-        "scores": {
-          "tech": 55,
-          "fund": 58,
-          "composite": 57
-        },
-        "signal": "ESPERAR",
-        "audit_passed": true,
-        "autodidacta": {
-          "wr": null,
-          "consecutive_losses": 0,
-          "effective_threshold": 65,
-          "silenced": false
-        },
-        "status": "complete"
-      }
-    },
-    {
-      "meta": {
         "id": "MU",
         "name": "Micron",
         "type": "tech",
         "unit": "USD"
       },
       "quant": {
-        "price": 795.23,
-        "momentum_1m": -26.91,
-        "momentum_3m": -9.38,
-        "rsi": 36.92,
-        "macd_histogram": -9.7723,
-        "sma20": 914.929,
-        "sma50": 972.1838,
-        "sma200": 753.9267,
-        "bollinger_low": 791.6249,
-        "bollinger_high": 1038.2331,
-        "atr": 37.1307,
-        "volatility": 89.82,
-        "sharpe": 1.558,
-        "max_drawdown_6m": 39.1,
-        "var_95_daily": 7.882,
-        "technical_score": 50,
+        "price": 656.39,
+        "momentum_1m": -36.63,
+        "momentum_3m": -23.76,
+        "rsi": 31.65,
+        "macd_histogram": -20.1959,
+        "sma20": 895.9565,
+        "sma50": 966.5436,
+        "sma200": 755.2631,
+        "bollinger_low": 738.8495,
+        "bollinger_high": 1053.0635,
+        "atr": 43.305,
+        "volatility": 91.64,
+        "sharpe": 1.185,
+        "max_drawdown_6m": 45.91,
+        "var_95_daily": 7.973,
+        "technical_score": 36,
         "fundamental_score": 58,
-        "composite_score": 55,
+        "composite_score": 49,
         "levels": {
-          "entry": 795.23,
-          "stop": 720.9686,
-          "target": 943.7528,
+          "entry": 656.39,
+          "stop": 569.78,
+          "target": 829.61,
           "rr": 2.0,
-          "stop_pct": 9.34,
-          "target_pct": 18.68
+          "stop_pct": 13.19,
+          "target_pct": 26.39
         },
         "kelly": null
       },
@@ -363,7 +363,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: sin ruptura (precio 795.23 bajo trigger 1089.22)",
+          "summary": "Sin señal: sin ruptura (precio 656.39 bajo trigger 1089.22)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -421,7 +421,7 @@
         "module": "trading",
         "asset": "Micron",
         "ticker": "MU",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -463,9 +463,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 50,
+          "tech": 36,
           "fund": 58,
-          "composite": 55
+          "composite": 49
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -486,31 +486,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 325.48,
-        "momentum_1m": -13.55,
-        "momentum_3m": -23.91,
-        "rsi": 41.98,
-        "macd_histogram": -0.4114,
-        "sma20": 338.948,
-        "sma50": 350.724,
-        "sma200": 367.4371,
-        "bollinger_low": 312.5891,
-        "bollinger_high": 365.3069,
-        "atr": 8.3893,
-        "volatility": 47.66,
-        "sharpe": -0.247,
-        "max_drawdown_6m": 33.2,
-        "var_95_daily": 5.512,
-        "technical_score": 28,
+        "price": 291.53,
+        "momentum_1m": -19.05,
+        "momentum_3m": -30.98,
+        "rsi": 36.3,
+        "macd_histogram": -2.6113,
+        "sma20": 335.5175,
+        "sma50": 349.4428,
+        "sma200": 367.2507,
+        "bollinger_low": 303.5166,
+        "bollinger_high": 367.5184,
+        "atr": 9.7014,
+        "volatility": 49.67,
+        "sharpe": -0.515,
+        "max_drawdown_6m": 39.46,
+        "var_95_daily": 5.546,
+        "technical_score": 36,
         "fundamental_score": 58,
-        "composite_score": 46,
+        "composite_score": 49,
         "levels": {
-          "entry": 325.48,
-          "stop": 308.7014,
-          "target": 359.0372,
+          "entry": 291.53,
+          "stop": 272.1272,
+          "target": 330.3356,
           "rr": 2.0,
-          "stop_pct": 5.16,
-          "target_pct": 10.31
+          "stop_pct": 6.66,
+          "target_pct": 13.31
         },
         "kelly": null
       },
@@ -550,7 +550,7 @@
             },
             {
               "check": "scores_consistentes",
-              "ok": false
+              "ok": true
             },
             {
               "check": "precio_valido",
@@ -561,10 +561,8 @@
               "ok": true
             }
           ],
-          "warnings": [
-            "Broadcom: divergencia tech/fund (28 vs 58)"
-          ],
-          "score": 88
+          "warnings": [],
+          "score": 100
         },
         "reputation": {
           "wr": null,
@@ -581,7 +579,7 @@
         "module": "trading",
         "asset": "Broadcom",
         "ticker": "AVGO",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -607,7 +605,7 @@
             },
             {
               "check": "scores_consistentes",
-              "ok": false
+              "ok": true
             },
             {
               "check": "precio_valido",
@@ -618,16 +616,14 @@
               "ok": true
             }
           ],
-          "warnings": [
-            "Broadcom: divergencia tech/fund (28 vs 58)"
-          ],
-          "score": 88
+          "warnings": [],
+          "score": 100
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 28,
+          "tech": 36,
           "fund": 58,
-          "composite": 46
+          "composite": 49
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -648,31 +644,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 173.19,
-        "momentum_1m": -2.22,
-        "momentum_3m": 3.18,
-        "rsi": 46.09,
-        "macd_histogram": -1.0313,
-        "sma20": 174.9255,
-        "sma50": 178.2322,
-        "sma200": 169.6454,
-        "bollinger_low": 162.6927,
-        "bollinger_high": 187.1583,
-        "atr": 4.7636,
-        "volatility": 64.0,
-        "sharpe": -0.064,
+        "price": 156.75,
+        "momentum_1m": -10.94,
+        "momentum_3m": -3.34,
+        "rsi": 40.01,
+        "macd_histogram": -1.7445,
+        "sma20": 173.9625,
+        "sma50": 178.0928,
+        "sma200": 169.6474,
+        "bollinger_low": 159.2984,
+        "bollinger_high": 188.6266,
+        "atr": 5.4886,
+        "volatility": 64.49,
+        "sharpe": -0.316,
         "max_drawdown_6m": 41.2,
-        "var_95_daily": 4.884,
-        "technical_score": 39,
+        "var_95_daily": 4.914,
+        "technical_score": 41,
         "fundamental_score": 58,
-        "composite_score": 50,
+        "composite_score": 51,
         "levels": {
-          "entry": 173.19,
-          "stop": 163.6628,
-          "target": 192.2444,
+          "entry": 156.75,
+          "stop": 145.7728,
+          "target": 178.7044,
           "rr": 2.0,
-          "stop_pct": 5.5,
-          "target_pct": 11.0
+          "stop_pct": 7.0,
+          "target_pct": 14.01
         },
         "kelly": null
       },
@@ -683,7 +679,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
+          "summary": "Sin señal: sin ruptura (precio 156.75 bajo trigger 185.59)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -741,7 +737,7 @@
         "module": "trading",
         "asset": "Qualcomm",
         "ticker": "QCOM",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -783,9 +779,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 39,
+          "tech": 41,
           "fund": 58,
-          "composite": 50
+          "composite": 51
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -806,31 +802,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 58.27,
-        "momentum_1m": -48.49,
-        "momentum_3m": -42.68,
-        "rsi": 21.57,
-        "macd_histogram": -3.7471,
-        "sma20": 88.2385,
-        "sma50": 99.3856,
-        "sma200": 87.0397,
-        "bollinger_low": 58.1812,
-        "bollinger_high": 118.2958,
-        "atr": 4.66,
-        "volatility": 90.07,
-        "sharpe": 0.497,
-        "max_drawdown_6m": 58.66,
-        "var_95_daily": 7.838,
+        "price": 52.25,
+        "momentum_1m": -51.2,
+        "momentum_3m": -46.42,
+        "rsi": 21.4,
+        "macd_histogram": -3.9936,
+        "sma20": 85.497,
+        "sma50": 98.6658,
+        "sma200": 87.0297,
+        "bollinger_low": 52.7904,
+        "bollinger_high": 118.2036,
+        "atr": 4.6957,
+        "volatility": 89.15,
+        "sharpe": 0.322,
+        "max_drawdown_6m": 62.93,
+        "var_95_daily": 7.851,
         "technical_score": 43,
         "fundamental_score": 58,
         "composite_score": 52,
         "levels": {
-          "entry": 58.27,
-          "stop": 48.95,
-          "target": 76.91,
+          "entry": 52.25,
+          "stop": 42.8586,
+          "target": 71.0328,
           "rr": 2.0,
-          "stop_pct": 15.99,
-          "target_pct": 31.99
+          "stop_pct": 17.97,
+          "target_pct": 35.95
         },
         "kelly": null
       },
@@ -899,7 +895,7 @@
         "module": "trading",
         "asset": "Intel",
         "ticker": "INTC",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -964,31 +960,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 555.8,
-        "momentum_1m": 4.92,
-        "momentum_3m": 11.16,
-        "rsi": 57.1,
-        "macd_histogram": -0.6913,
-        "sma20": 530.9645,
-        "sma50": 515.3436,
-        "sma200": 438.9909,
-        "bollinger_low": 510.702,
-        "bollinger_high": 551.227,
-        "atr": 8.2243,
-        "volatility": 36.48,
-        "sharpe": 0.124,
+        "price": 535.93,
+        "momentum_1m": 2.55,
+        "momentum_3m": 5.9,
+        "rsi": 52.76,
+        "macd_histogram": -0.4022,
+        "sma20": 531.6305,
+        "sma50": 516.1348,
+        "sma200": 439.45,
+        "bollinger_low": 511.6506,
+        "bollinger_high": 551.6104,
+        "atr": 8.9014,
+        "volatility": 36.82,
+        "sharpe": 0.057,
         "max_drawdown_6m": 23.38,
-        "var_95_daily": 3.069,
-        "technical_score": 47,
+        "var_95_daily": 3.07,
+        "technical_score": 60,
         "fundamental_score": 58,
-        "composite_score": 54,
+        "composite_score": 59,
         "levels": {
-          "entry": 555.8,
-          "stop": 536.2881,
-          "target": 594.8237,
-          "stop_pct": 3.51,
-          "target_pct": 7.02,
-          "rr": 2.0
+          "entry": 535.93,
+          "stop": 518.1272,
+          "target": 571.5356,
+          "rr": 2.0,
+          "stop_pct": 3.32,
+          "target_pct": 6.64
         },
         "kelly": null
       },
@@ -996,24 +992,12 @@
         "thesis": "",
         "premortem": "",
         "calibration": {
-          "signal": "COMPRAR",
-          "evidence": {
-            "hist_wr_pct": 44,
-            "interval_95_pct": [
-              36,
-              53
-            ],
-            "n_oos": 124,
-            "quality": "provisional (backtest OOS)"
-          },
-          "prob": null,
-          "prob_interval": null,
-          "horizon": "días-semanas",
-          "summary": "Ruptura de máximos en tendencia (trigger 551.15). Entry=555.8",
-          "conviction": "alta",
-          "source": "trend_joined_long",
-          "strategy": "trend_joined_long_v2",
-          "trigger": 551.15
+          "signal": "ESPERAR",
+          "prob": 50,
+          "prob_interval": 15,
+          "summary": "Sin señal: sin ruptura (precio 535.93 bajo trigger 559.15)",
+          "conviction": "baja",
+          "source": "trend_joined_long"
         },
         "audit": {
           "passed": true,
@@ -1069,7 +1053,7 @@
         "module": "trading",
         "asset": "Microsoft",
         "ticker": "MSFT",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1111,11 +1095,11 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 47,
+          "tech": 60,
           "fund": 58,
-          "composite": 54
+          "composite": 59
         },
-        "signal": "COMPRAR",
+        "signal": "ESPERAR",
         "audit_passed": true,
         "autodidacta": {
           "wr": null,
@@ -1134,31 +1118,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 349.51,
-        "momentum_1m": 3.81,
-        "momentum_3m": 11.55,
-        "rsi": 55.81,
-        "macd_histogram": -0.847,
-        "sma20": 342.9105,
-        "sma50": 334.8436,
-        "sma200": 297.8525,
-        "bollinger_low": 334.1863,
-        "bollinger_high": 351.6347,
-        "atr": 4.615,
-        "volatility": 27.34,
-        "sharpe": 0.896,
+        "price": 344.17,
+        "momentum_1m": 1.1,
+        "momentum_3m": 11.65,
+        "rsi": 50.52,
+        "macd_histogram": -0.7346,
+        "sma20": 343.098,
+        "sma50": 335.458,
+        "sma200": 298.3351,
+        "bollinger_low": 334.4382,
+        "bollinger_high": 351.7578,
+        "atr": 4.8921,
+        "volatility": 27.32,
+        "sharpe": 0.83,
         "max_drawdown_6m": 12.71,
-        "var_95_daily": 3.077,
-        "technical_score": 47,
+        "var_95_daily": 3.073,
+        "technical_score": 60,
         "fundamental_score": 58,
-        "composite_score": 54,
+        "composite_score": 59,
         "levels": {
-          "entry": 349.51,
-          "stop": 340.28,
-          "target": 367.97,
+          "entry": 344.17,
+          "stop": 334.3858,
+          "target": 363.7384,
           "rr": 2.0,
-          "stop_pct": 2.64,
-          "target_pct": 5.28
+          "stop_pct": 2.84,
+          "target_pct": 5.69
         },
         "kelly": null
       },
@@ -1169,7 +1153,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: sin ruptura (precio 349.51 bajo trigger 351.73)",
+          "summary": "Sin señal: sin ruptura (precio 344.17 bajo trigger 354.5)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -1227,7 +1211,7 @@
         "module": "trading",
         "asset": "Apple",
         "ticker": "AAPL",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1269,9 +1253,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 47,
+          "tech": 60,
           "fund": 58,
-          "composite": 54
+          "composite": 59
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -1292,28 +1276,28 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 288.93,
-        "momentum_1m": -17.57,
-        "momentum_3m": -18.45,
-        "rsi": 20.88,
-        "macd_histogram": -5.3806,
-        "sma20": 324.0715,
-        "sma50": 335.234,
-        "sma200": 339.9709,
-        "bollinger_low": 269.4777,
-        "bollinger_high": 378.6653,
-        "atr": 7.395,
-        "volatility": 36.75,
-        "sharpe": 0.012,
+        "price": 282.57,
+        "momentum_1m": -18.87,
+        "momentum_3m": -20.96,
+        "rsi": 21.35,
+        "macd_histogram": -4.7083,
+        "sma20": 320.7855,
+        "sma50": 334.0454,
+        "sma200": 339.7419,
+        "bollinger_low": 264.446,
+        "bollinger_high": 377.125,
+        "atr": 7.2329,
+        "volatility": 36.83,
+        "sharpe": -0.125,
         "max_drawdown_6m": 30.71,
-        "var_95_daily": 3.563,
+        "var_95_daily": 3.559,
         "technical_score": 43,
         "fundamental_score": 58,
         "composite_score": 52,
         "levels": {
-          "entry": 288.93,
-          "stop": 274.14,
-          "target": 318.51,
+          "entry": 282.57,
+          "stop": 268.1042,
+          "target": 311.5016,
           "rr": 2.0,
           "stop_pct": 5.12,
           "target_pct": 10.24
@@ -1385,7 +1369,7 @@
         "module": "trading",
         "asset": "Alphabet",
         "ticker": "GOOGL",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1450,31 +1434,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 630.0,
-        "momentum_1m": -12.66,
-        "momentum_3m": 6.4,
-        "rsi": 20.98,
-        "macd_histogram": -7.7281,
-        "sma20": 673.89,
-        "sma50": 673.5584,
-        "sma200": 632.1657,
-        "bollinger_low": 567.9273,
-        "bollinger_high": 779.8527,
-        "atr": 13.1329,
-        "volatility": 44.7,
-        "sharpe": -0.078,
-        "max_drawdown_6m": 21.97,
-        "var_95_daily": 4.114,
-        "technical_score": 61,
+        "price": 605.08,
+        "momentum_1m": -16.06,
+        "momentum_3m": 1.71,
+        "rsi": 21.26,
+        "macd_histogram": -7.1103,
+        "sma20": 668.0995,
+        "sma50": 674.1372,
+        "sma200": 632.1263,
+        "bollinger_low": 560.3096,
+        "bollinger_high": 775.8894,
+        "atr": 12.9564,
+        "volatility": 45.04,
+        "sharpe": -0.21,
+        "max_drawdown_6m": 22.19,
+        "var_95_daily": 4.113,
+        "technical_score": 40,
         "fundamental_score": 58,
-        "composite_score": 59,
+        "composite_score": 51,
         "levels": {
-          "entry": 630.0,
-          "stop": 603.7342,
-          "target": 682.5316,
+          "entry": 605.08,
+          "stop": 579.1672,
+          "target": 656.9056,
           "rr": 2.0,
-          "stop_pct": 4.17,
-          "target_pct": 8.34
+          "stop_pct": 4.28,
+          "target_pct": 8.57
         },
         "kelly": null
       },
@@ -1543,7 +1527,7 @@
         "module": "trading",
         "asset": "Meta",
         "ticker": "META",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1585,9 +1569,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 61,
+          "tech": 40,
           "fund": 58,
-          "composite": 59
+          "composite": 51
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -1608,31 +1592,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 266.03,
-        "momentum_1m": 2.35,
-        "momentum_3m": -3.08,
-        "rsi": 57.17,
-        "macd_histogram": 0.3757,
-        "sma20": 254.1275,
-        "sma50": 253.8908,
-        "sma200": 243.6709,
-        "bollinger_low": 240.0189,
-        "bollinger_high": 268.2361,
-        "atr": 5.6107,
-        "volatility": 37.31,
-        "sharpe": 0.086,
+        "price": 260.21,
+        "momentum_1m": 2.42,
+        "momentum_3m": -6.43,
+        "rsi": 56.41,
+        "macd_histogram": 0.8291,
+        "sma20": 254.435,
+        "sma50": 253.8894,
+        "sma200": 243.8154,
+        "bollinger_low": 240.0669,
+        "bollinger_high": 268.8031,
+        "atr": 5.6864,
+        "volatility": 37.43,
+        "sharpe": 0.009,
         "max_drawdown_6m": 17.28,
-        "var_95_daily": 3.599,
-        "technical_score": 62,
+        "var_95_daily": 3.594,
+        "technical_score": 65,
         "fundamental_score": 58,
-        "composite_score": 60,
+        "composite_score": 61,
         "levels": {
-          "entry": 266.03,
-          "stop": 253.5071,
-          "target": 291.0758,
-          "stop_pct": 4.71,
-          "target_pct": 9.41,
-          "rr": 2.0
+          "entry": 260.21,
+          "stop": 248.8372,
+          "target": 282.9556,
+          "rr": 2.0,
+          "stop_pct": 4.37,
+          "target_pct": 8.74
         },
         "kelly": null
       },
@@ -1640,24 +1624,12 @@
         "thesis": "",
         "premortem": "",
         "calibration": {
-          "signal": "COMPRAR",
-          "evidence": {
-            "hist_wr_pct": 44,
-            "interval_95_pct": [
-              36,
-              53
-            ],
-            "n_oos": 124,
-            "quality": "provisional (backtest OOS)"
-          },
-          "prob": null,
-          "prob_interval": null,
-          "horizon": "días-semanas",
-          "summary": "Ruptura de máximos en tendencia (trigger 265.34). Entry=266.03",
-          "conviction": "alta",
-          "source": "trend_joined_long",
-          "strategy": "trend_joined_long_v2",
-          "trigger": 265.34
+          "signal": "ESPERAR",
+          "prob": 50,
+          "prob_interval": 15,
+          "summary": "Sin señal: sin ruptura (precio 260.21 bajo trigger 271.49)",
+          "conviction": "baja",
+          "source": "trend_joined_long"
         },
         "audit": {
           "passed": true,
@@ -1713,7 +1685,7 @@
         "module": "trading",
         "asset": "Amazon",
         "ticker": "AMZN",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1755,11 +1727,11 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 62,
+          "tech": 65,
           "fund": 58,
-          "composite": 60
+          "composite": 61
         },
-        "signal": "COMPRAR",
+        "signal": "ESPERAR",
         "audit_passed": true,
         "autodidacta": {
           "wr": null,
@@ -1778,31 +1750,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 385.19,
-        "momentum_1m": 1.95,
-        "momentum_3m": 17.23,
-        "rsi": 59.54,
-        "macd_histogram": 0.7092,
-        "sma20": 383.212,
-        "sma50": 372.1116,
-        "sma200": 384.7595,
-        "bollinger_low": 352.0035,
-        "bollinger_high": 414.4205,
-        "atr": 8.5179,
-        "volatility": 49.87,
-        "sharpe": -0.4,
+        "price": 343.69,
+        "momentum_1m": -8.35,
+        "momentum_3m": 3.87,
+        "rsi": 46.4,
+        "macd_histogram": -2.9509,
+        "sma20": 381.6465,
+        "sma50": 372.069,
+        "sma200": 384.3208,
+        "bollinger_low": 345.8933,
+        "bollinger_high": 417.3997,
+        "atr": 10.9307,
+        "volatility": 52.08,
+        "sharpe": -0.722,
         "max_drawdown_6m": 33.0,
-        "var_95_daily": 6.033,
-        "technical_score": 75,
+        "var_95_daily": 6.064,
+        "technical_score": 49,
         "fundamental_score": 58,
-        "composite_score": 65,
+        "composite_score": 54,
         "levels": {
-          "entry": 385.19,
-          "stop": 368.1542,
-          "target": 419.2616,
+          "entry": 343.69,
+          "stop": 321.8286,
+          "target": 387.4128,
           "rr": 2.0,
-          "stop_pct": 4.42,
-          "target_pct": 8.85
+          "stop_pct": 6.36,
+          "target_pct": 12.72
         },
         "kelly": null
       },
@@ -1813,7 +1785,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: sin ruptura (precio 385.19 bajo trigger 414.23)",
+          "summary": "Sin señal: sin ruptura (precio 343.69 bajo trigger 414.23)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -1871,7 +1843,7 @@
         "module": "trading",
         "asset": "Tesla",
         "ticker": "TSLA",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -1913,9 +1885,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 75,
+          "tech": 49,
           "fund": 58,
-          "composite": 65
+          "composite": 54
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -1936,31 +1908,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 66.39,
-        "momentum_1m": -4.75,
-        "momentum_3m": -10.45,
-        "rsi": 33.67,
-        "macd_histogram": 0.0574,
-        "sma20": 66.891,
-        "sma50": 71.679,
-        "sma200": 81.2405,
-        "bollinger_low": 59.383,
-        "bollinger_high": 74.399,
-        "atr": 1.36,
-        "volatility": 34.7,
-        "sharpe": -1.489,
+        "price": 65.56,
+        "momentum_1m": -8.4,
+        "momentum_3m": -14.06,
+        "rsi": 36.03,
+        "macd_histogram": 0.233,
+        "sma20": 66.5905,
+        "sma50": 71.361,
+        "sma200": 81.1415,
+        "bollinger_low": 59.3965,
+        "bollinger_high": 73.7845,
+        "atr": 1.2707,
+        "volatility": 34.72,
+        "sharpe": -1.537,
         "max_drawdown_6m": 30.85,
-        "var_95_daily": 3.57,
+        "var_95_daily": 3.565,
         "technical_score": 48,
         "fundamental_score": 58,
         "composite_score": 54,
         "levels": {
-          "entry": 66.39,
-          "stop": 63.67,
-          "target": 71.83,
+          "entry": 65.56,
+          "stop": 63.0186,
+          "target": 70.6428,
           "rr": 2.0,
-          "stop_pct": 4.1,
-          "target_pct": 8.19
+          "stop_pct": 3.88,
+          "target_pct": 7.75
         },
         "kelly": null
       },
@@ -2029,7 +2001,7 @@
         "module": "trading",
         "asset": "Netflix",
         "ticker": "NFLX",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -2094,31 +2066,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 118.95,
-        "momentum_1m": 13.56,
-        "momentum_3m": 13.38,
-        "rsi": 72.2,
-        "macd_histogram": 0.5277,
-        "sma20": 110.945,
-        "sma50": 107.6866,
-        "sma200": 103.5124,
-        "bollinger_low": 105.6436,
-        "bollinger_high": 116.2464,
-        "atr": 1.3307,
-        "volatility": 25.1,
-        "sharpe": 0.105,
-        "max_drawdown_6m": 14.57,
-        "var_95_daily": 2.979,
-        "technical_score": 57,
+        "price": 117.22,
+        "momentum_1m": 9.53,
+        "momentum_3m": 13.61,
+        "rsi": 66.35,
+        "macd_histogram": 0.5997,
+        "sma20": 111.455,
+        "sma50": 107.8384,
+        "sma200": 103.5325,
+        "bollinger_low": 105.7932,
+        "bollinger_high": 117.1168,
+        "atr": 1.4479,
+        "volatility": 25.17,
+        "sharpe": 0.055,
+        "max_drawdown_6m": 14.06,
+        "var_95_daily": 2.975,
+        "technical_score": 67,
         "fundamental_score": 58,
-        "composite_score": 58,
+        "composite_score": 62,
         "levels": {
-          "entry": 118.95,
-          "stop": 116.2886,
-          "target": 124.2728,
+          "entry": 117.22,
+          "stop": 114.3242,
+          "target": 123.0116,
           "rr": 2.0,
-          "stop_pct": 2.24,
-          "target_pct": 4.47
+          "stop_pct": 2.47,
+          "target_pct": 4.94
         },
         "kelly": null
       },
@@ -2129,7 +2101,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: precio demasiado extendido sobre el trigger (no perseguir)",
+          "summary": "Sin señal: sin ruptura (precio 117.22 bajo trigger 119.96)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -2187,7 +2159,7 @@
         "module": "trading",
         "asset": "Disney",
         "ticker": "DIS",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -2229,9 +2201,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 57,
+          "tech": 67,
           "fund": 58,
-          "composite": 58
+          "composite": 62
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -2252,31 +2224,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 40.49,
-        "momentum_1m": 17.84,
-        "momentum_3m": -2.9,
-        "rsi": 68.8,
-        "macd_histogram": 0.3379,
-        "sma20": 37.287,
-        "sma50": 36.8864,
-        "sma200": 45.6772,
-        "bollinger_low": 34.2122,
-        "bollinger_high": 40.3618,
-        "atr": 0.6364,
-        "volatility": 32.33,
-        "sharpe": -1.224,
+        "price": 39.56,
+        "momentum_1m": 13.87,
+        "momentum_3m": -6.06,
+        "rsi": 62.36,
+        "macd_histogram": 0.3088,
+        "sma20": 37.528,
+        "sma50": 36.9058,
+        "sma200": 45.5479,
+        "bollinger_low": 34.5394,
+        "bollinger_high": 40.5166,
+        "atr": 0.7021,
+        "volatility": 32.48,
+        "sharpe": -1.326,
         "max_drawdown_6m": 28.5,
-        "var_95_daily": 3.832,
-        "technical_score": 48,
+        "var_95_daily": 3.827,
+        "technical_score": 43,
         "fundamental_score": 58,
-        "composite_score": 54,
+        "composite_score": 52,
         "levels": {
-          "entry": 40.49,
-          "stop": 39.2172,
-          "target": 43.0356,
+          "entry": 39.56,
+          "stop": 38.1558,
+          "target": 42.3684,
           "rr": 2.0,
-          "stop_pct": 3.14,
-          "target_pct": 6.29
+          "stop_pct": 3.55,
+          "target_pct": 7.1
         },
         "kelly": null
       },
@@ -2345,7 +2317,7 @@
         "module": "trading",
         "asset": "Nike",
         "ticker": "NKE",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -2387,9 +2359,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 48,
+          "tech": 43,
           "fund": 58,
-          "composite": 54
+          "composite": 52
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -2410,31 +2382,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 109.7,
-        "momentum_1m": 17.23,
-        "momentum_3m": 3.9,
-        "rsi": 83.21,
-        "macd_histogram": 1.0368,
-        "sma20": 99.5955,
-        "sma50": 99.229,
-        "sma200": 100.0422,
-        "bollinger_low": 89.0314,
-        "bollinger_high": 110.1596,
-        "atr": 1.3786,
-        "volatility": 23.17,
-        "sharpe": 1.033,
+        "price": 106.16,
+        "momentum_1m": 13.89,
+        "momentum_3m": 1.44,
+        "rsi": 69.46,
+        "macd_histogram": 0.8635,
+        "sma20": 100.243,
+        "sma50": 99.1824,
+        "sma200": 100.0909,
+        "bollinger_low": 89.7395,
+        "bollinger_high": 110.7465,
+        "atr": 1.5857,
+        "volatility": 23.63,
+        "sharpe": 0.769,
         "max_drawdown_6m": 16.4,
-        "var_95_daily": 3.208,
-        "technical_score": 52,
+        "var_95_daily": 3.207,
+        "technical_score": 70,
         "fundamental_score": 58,
-        "composite_score": 56,
+        "composite_score": 63,
         "levels": {
-          "entry": 109.7,
-          "stop": 106.9428,
-          "target": 115.2144,
+          "entry": 106.16,
+          "stop": 102.9886,
+          "target": 112.5028,
           "rr": 2.0,
-          "stop_pct": 2.51,
-          "target_pct": 5.03
+          "stop_pct": 2.99,
+          "target_pct": 5.97
         },
         "kelly": null
       },
@@ -2445,7 +2417,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: precio demasiado extendido sobre el trigger (no perseguir)",
+          "summary": "Sin señal: sin ruptura (precio 106.16 bajo trigger 109.82)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -2503,7 +2475,7 @@
         "module": "trading",
         "asset": "Starbucks",
         "ticker": "SBUX",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -2545,9 +2517,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 52,
+          "tech": 70,
           "fund": 58,
-          "composite": 56
+          "composite": 63
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -2568,31 +2540,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 280.22,
-        "momentum_1m": 21.37,
-        "momentum_3m": 2.09,
-        "rsi": 84.22,
-        "macd_histogram": 3.5701,
-        "sma20": 248.955,
-        "sma50": 248.2222,
-        "sma200": 282.634,
-        "bollinger_low": 225.7568,
-        "bollinger_high": 272.1532,
-        "atr": 3.9371,
-        "volatility": 23.76,
-        "sharpe": -0.488,
+        "price": 278.04,
+        "momentum_1m": 17.37,
+        "momentum_3m": 1.58,
+        "rsi": 80.86,
+        "macd_histogram": 3.7788,
+        "sma20": 251.012,
+        "sma50": 248.4444,
+        "sma200": 282.4958,
+        "bollinger_low": 225.1695,
+        "bollinger_high": 276.8546,
+        "atr": 4.0593,
+        "volatility": 23.44,
+        "sharpe": -0.631,
         "max_drawdown_6m": 19.81,
-        "var_95_daily": 2.005,
+        "var_95_daily": 2.002,
         "technical_score": 38,
         "fundamental_score": 58,
         "composite_score": 50,
         "levels": {
-          "entry": 280.22,
-          "stop": 272.3458,
-          "target": 295.9684,
+          "entry": 278.04,
+          "stop": 269.9214,
+          "target": 294.2772,
           "rr": 2.0,
-          "stop_pct": 2.81,
-          "target_pct": 5.62
+          "stop_pct": 2.92,
+          "target_pct": 5.84
         },
         "kelly": null
       },
@@ -2661,7 +2633,7 @@
         "module": "trading",
         "asset": "McDonalds",
         "ticker": "MCD",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -2726,31 +2698,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 95.8,
-        "momentum_1m": 11.63,
-        "momentum_3m": 10.05,
-        "rsi": 61.34,
-        "macd_histogram": 0.225,
-        "sma20": 92.499,
-        "sma50": 89.6984,
-        "sma200": 82.505,
-        "bollinger_low": 87.9068,
-        "bollinger_high": 97.0912,
-        "atr": 1.1971,
+        "price": 95.73,
+        "momentum_1m": 9.07,
+        "momentum_3m": 10.2,
+        "rsi": 56.13,
+        "macd_histogram": 0.2199,
+        "sma20": 92.897,
+        "sma50": 89.8114,
+        "sma200": 82.6236,
+        "bollinger_low": 88.6648,
+        "bollinger_high": 97.1292,
+        "atr": 1.0664,
         "volatility": 21.08,
-        "sharpe": 1.565,
+        "sharpe": 1.573,
         "max_drawdown_6m": 6.89,
-        "var_95_daily": 1.981,
+        "var_95_daily": 1.979,
         "technical_score": 67,
         "fundamental_score": 58,
         "composite_score": 62,
         "levels": {
-          "entry": 95.8,
-          "stop": 93.4058,
-          "target": 100.5884,
+          "entry": 95.73,
+          "stop": 93.5972,
+          "target": 99.9956,
           "rr": 2.0,
-          "stop_pct": 2.5,
-          "target_pct": 5.0
+          "stop_pct": 2.23,
+          "target_pct": 4.46
         },
         "kelly": null
       },
@@ -2761,7 +2733,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: sin ruptura (precio 95.8 bajo trigger 96.26)",
+          "summary": "Sin señal: sin ruptura (precio 95.73 bajo trigger 96.56)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -2819,7 +2791,7 @@
         "module": "trading",
         "asset": "CocaCola",
         "ticker": "KO",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -2884,31 +2856,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 142.42,
-        "momentum_1m": 15.11,
-        "momentum_3m": 2.45,
-        "rsi": 71.44,
-        "macd_histogram": 1.0156,
-        "sma20": 133.3575,
-        "sma50": 133.2872,
-        "sma200": 145.8854,
-        "bollinger_low": 124.0398,
-        "bollinger_high": 142.6752,
-        "atr": 2.3386,
-        "volatility": 23.48,
-        "sharpe": -0.184,
-        "max_drawdown_6m": 20.83,
-        "var_95_daily": 2.28,
-        "technical_score": 38,
+        "price": 142.71,
+        "momentum_1m": 11.2,
+        "momentum_3m": 3.62,
+        "rsi": 68.75,
+        "macd_histogram": 1.0979,
+        "sma20": 134.076,
+        "sma50": 133.2976,
+        "sma200": 145.8653,
+        "bollinger_low": 124.1886,
+        "bollinger_high": 143.9634,
+        "atr": 2.1371,
+        "volatility": 23.44,
+        "sharpe": -0.173,
+        "max_drawdown_6m": 19.98,
+        "var_95_daily": 2.278,
+        "technical_score": 48,
         "fundamental_score": 58,
-        "composite_score": 50,
+        "composite_score": 54,
         "levels": {
-          "entry": 142.42,
-          "stop": 137.7428,
-          "target": 151.7744,
+          "entry": 142.71,
+          "stop": 138.4358,
+          "target": 151.2584,
           "rr": 2.0,
-          "stop_pct": 3.28,
-          "target_pct": 6.57
+          "stop_pct": 3.0,
+          "target_pct": 5.99
         },
         "kelly": null
       },
@@ -2977,7 +2949,7 @@
         "module": "trading",
         "asset": "PepsiCo",
         "ticker": "PEP",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -3019,9 +2991,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 38,
+          "tech": 48,
           "fund": 58,
-          "composite": 50
+          "composite": 54
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -3042,31 +3014,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 129.17,
-        "momentum_1m": 19.42,
-        "momentum_3m": 15.49,
-        "rsi": 73.08,
-        "macd_histogram": 0.7971,
-        "sma20": 119.0165,
-        "sma50": 111.5568,
-        "sma200": 118.6294,
-        "bollinger_low": 109.0907,
-        "bollinger_high": 128.9423,
-        "atr": 1.7486,
-        "volatility": 29.12,
-        "sharpe": 0.734,
+        "price": 127.72,
+        "momentum_1m": 15.52,
+        "momentum_3m": 13.37,
+        "rsi": 67.83,
+        "macd_histogram": 0.7341,
+        "sma20": 119.8745,
+        "sma50": 112.0244,
+        "sma200": 118.6712,
+        "bollinger_low": 110.0605,
+        "bollinger_high": 129.6885,
+        "atr": 1.785,
+        "volatility": 29.16,
+        "sharpe": 0.721,
         "max_drawdown_6m": 23.52,
-        "var_95_daily": 2.749,
-        "technical_score": 57,
+        "var_95_daily": 2.746,
+        "technical_score": 67,
         "fundamental_score": 58,
-        "composite_score": 58,
+        "composite_score": 62,
         "levels": {
-          "entry": 129.17,
-          "stop": 125.0975,
-          "target": 137.315,
-          "stop_pct": 3.15,
-          "target_pct": 6.31,
-          "rr": 2.0
+          "entry": 127.72,
+          "stop": 124.15,
+          "target": 134.86,
+          "rr": 2.0,
+          "stop_pct": 2.8,
+          "target_pct": 5.59
         },
         "kelly": null
       },
@@ -3074,24 +3046,12 @@
         "thesis": "",
         "premortem": "",
         "calibration": {
-          "signal": "COMPRAR",
-          "evidence": {
-            "hist_wr_pct": 44,
-            "interval_95_pct": [
-              36,
-              53
-            ],
-            "n_oos": 124,
-            "quality": "provisional (backtest OOS)"
-          },
-          "prob": null,
-          "prob_interval": null,
-          "horizon": "días-semanas",
-          "summary": "Ruptura de máximos en tendencia (trigger 127.94). Entry=129.17",
-          "conviction": "alta",
-          "source": "trend_joined_long",
-          "strategy": "trend_joined_long_v2",
-          "trigger": 127.94
+          "signal": "ESPERAR",
+          "prob": 50,
+          "prob_interval": 15,
+          "summary": "Sin señal: sin ruptura (precio 127.72 bajo trigger 130.94)",
+          "conviction": "baja",
+          "source": "trend_joined_long"
         },
         "audit": {
           "passed": true,
@@ -3147,7 +3107,7 @@
         "module": "trading",
         "asset": "Walmart",
         "ticker": "WMT",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -3189,11 +3149,11 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 57,
+          "tech": 67,
           "fund": 58,
-          "composite": 58
+          "composite": 62
         },
-        "signal": "COMPRAR",
+        "signal": "ESPERAR",
         "audit_passed": true,
         "autodidacta": {
           "wr": null,
@@ -3212,31 +3172,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 352.11,
-        "momentum_1m": 6.84,
-        "momentum_3m": -1.51,
-        "rsi": 64.47,
-        "macd_histogram": 1.8361,
-        "sma20": 336.6595,
-        "sma50": 342.6068,
-        "sma200": 323.479,
-        "bollinger_low": 326.9852,
-        "bollinger_high": 346.3338,
-        "atr": 4.0929,
-        "volatility": 20.32,
-        "sharpe": 0.417,
+        "price": 337.34,
+        "momentum_1m": 1.79,
+        "momentum_3m": -6.24,
+        "rsi": 48.25,
+        "macd_histogram": 1.2698,
+        "sma20": 336.9555,
+        "sma50": 342.2236,
+        "sma200": 323.6555,
+        "bollinger_low": 327.5991,
+        "bollinger_high": 346.3119,
+        "atr": 4.8486,
+        "volatility": 21.16,
+        "sharpe": 0.188,
         "max_drawdown_6m": 9.75,
-        "var_95_daily": 2.662,
-        "technical_score": 46,
+        "var_95_daily": 2.671,
+        "technical_score": 54,
         "fundamental_score": 58,
-        "composite_score": 53,
+        "composite_score": 56,
         "levels": {
-          "entry": 352.11,
-          "stop": 343.9242,
-          "target": 368.4816,
+          "entry": 337.34,
+          "stop": 327.6428,
+          "target": 356.7344,
           "rr": 2.0,
-          "stop_pct": 2.32,
-          "target_pct": 4.65
+          "stop_pct": 2.87,
+          "target_pct": 5.75
         },
         "kelly": null
       },
@@ -3247,7 +3207,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: precio demasiado extendido sobre el trigger (no perseguir)",
+          "summary": "Sin señal: sin ruptura (precio 337.34 bajo trigger 352.33)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -3305,7 +3265,7 @@
         "module": "trading",
         "asset": "JPMorgan",
         "ticker": "JPM",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -3347,9 +3307,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 46,
+          "tech": 54,
           "fund": 58,
-          "composite": 53
+          "composite": 56
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -3370,31 +3330,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 51.63,
-        "momentum_1m": -3.53,
-        "momentum_3m": -18.27,
-        "rsi": 49.49,
-        "macd_histogram": 0.2523,
-        "sma20": 51.415,
-        "sma50": 55.7244,
-        "sma200": 54.9199,
-        "bollinger_low": 48.406,
-        "bollinger_high": 54.424,
-        "atr": 0.4864,
-        "volatility": 21.93,
-        "sharpe": -0.326,
+        "price": 49.76,
+        "momentum_1m": -7.18,
+        "momentum_3m": -22.08,
+        "rsi": 41.05,
+        "macd_histogram": 0.2175,
+        "sma20": 51.2225,
+        "sma50": 55.475,
+        "sma200": 54.9083,
+        "bollinger_low": 48.3139,
+        "bollinger_high": 54.1311,
+        "atr": 0.5864,
+        "volatility": 22.2,
+        "sharpe": -0.396,
         "max_drawdown_6m": 23.51,
-        "var_95_daily": 2.682,
-        "technical_score": 40,
+        "var_95_daily": 2.686,
+        "technical_score": 48,
         "fundamental_score": 58,
-        "composite_score": 51,
+        "composite_score": 54,
         "levels": {
-          "entry": 51.63,
-          "stop": 50.6572,
-          "target": 53.5756,
+          "entry": 49.76,
+          "stop": 48.5872,
+          "target": 52.1056,
           "rr": 2.0,
-          "stop_pct": 1.88,
-          "target_pct": 3.77
+          "stop_pct": 2.36,
+          "target_pct": 4.71
         },
         "kelly": null
       },
@@ -3463,7 +3423,7 @@
         "module": "trading",
         "asset": "BofA",
         "ticker": "BAC",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -3505,9 +3465,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 40,
+          "tech": 48,
           "fund": 58,
-          "composite": 51
+          "composite": 54
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -3528,31 +3488,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 928.0,
-        "momentum_1m": 4.6,
-        "momentum_3m": -10.74,
-        "rsi": 59.3,
-        "macd_histogram": 6.1276,
-        "sma20": 896.1315,
-        "sma50": 939.4428,
-        "sma200": 957.0614,
-        "bollinger_low": 863.9106,
-        "bollinger_high": 928.3524,
-        "atr": 14.1014,
-        "volatility": 33.33,
-        "sharpe": 0.386,
-        "max_drawdown_6m": 23.99,
-        "var_95_daily": 3.494,
-        "technical_score": 27,
+        "price": 868.95,
+        "momentum_1m": -1.55,
+        "momentum_3m": -16.0,
+        "rsi": 47.5,
+        "macd_histogram": 2.9325,
+        "sma20": 895.4495,
+        "sma50": 936.0126,
+        "sma200": 956.6411,
+        "bollinger_low": 861.4912,
+        "bollinger_high": 929.4078,
+        "atr": 17.6036,
+        "volatility": 34.57,
+        "sharpe": 0.168,
+        "max_drawdown_6m": 24.57,
+        "var_95_daily": 3.513,
+        "technical_score": 48,
         "fundamental_score": 58,
-        "composite_score": 46,
+        "composite_score": 54,
         "levels": {
-          "entry": 928.0,
-          "stop": 899.7972,
-          "target": 984.4056,
+          "entry": 868.95,
+          "stop": 833.7428,
+          "target": 939.3644,
           "rr": 2.0,
-          "stop_pct": 3.04,
-          "target_pct": 6.08
+          "stop_pct": 4.05,
+          "target_pct": 8.1
         },
         "kelly": null
       },
@@ -3592,7 +3552,7 @@
             },
             {
               "check": "scores_consistentes",
-              "ok": false
+              "ok": true
             },
             {
               "check": "precio_valido",
@@ -3603,10 +3563,8 @@
               "ok": true
             }
           ],
-          "warnings": [
-            "Goldman: divergencia tech/fund (27 vs 58)"
-          ],
-          "score": 88
+          "warnings": [],
+          "score": 100
         },
         "reputation": {
           "wr": null,
@@ -3623,7 +3581,7 @@
         "module": "trading",
         "asset": "Goldman",
         "ticker": "GS",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -3649,7 +3607,7 @@
             },
             {
               "check": "scores_consistentes",
-              "ok": false
+              "ok": true
             },
             {
               "check": "precio_valido",
@@ -3660,16 +3618,14 @@
               "ok": true
             }
           ],
-          "warnings": [
-            "Goldman: divergencia tech/fund (27 vs 58)"
-          ],
-          "score": 88
+          "warnings": [],
+          "score": 100
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 27,
+          "tech": 48,
           "fund": 58,
-          "composite": 46
+          "composite": 54
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -3690,31 +3646,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 436.57,
-        "momentum_1m": 17.33,
-        "momentum_3m": 20.43,
-        "rsi": 74.72,
-        "macd_histogram": 2.1158,
-        "sma20": 404.626,
-        "sma50": 384.2092,
-        "sma200": 343.7071,
-        "bollinger_low": 376.6472,
-        "bollinger_high": 432.6048,
-        "atr": 5.32,
-        "volatility": 20.67,
-        "sharpe": 0.947,
+        "price": 422.59,
+        "momentum_1m": 12.66,
+        "momentum_3m": 16.96,
+        "rsi": 61.67,
+        "macd_histogram": 1.56,
+        "sma20": 407.0005,
+        "sma50": 384.983,
+        "sma200": 344.1937,
+        "bollinger_low": 381.6336,
+        "bollinger_high": 432.3674,
+        "atr": 6.1143,
+        "volatility": 21.21,
+        "sharpe": 0.797,
         "max_drawdown_6m": 6.46,
-        "var_95_daily": 2.406,
-        "technical_score": 57,
+        "var_95_daily": 2.41,
+        "technical_score": 67,
         "fundamental_score": 58,
-        "composite_score": 58,
+        "composite_score": 62,
         "levels": {
-          "entry": 436.57,
-          "stop": 425.93,
-          "target": 457.85,
+          "entry": 422.59,
+          "stop": 410.3614,
+          "target": 447.0472,
           "rr": 2.0,
-          "stop_pct": 2.44,
-          "target_pct": 4.87
+          "stop_pct": 2.89,
+          "target_pct": 5.79
         },
         "kelly": null
       },
@@ -3725,7 +3681,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: precio demasiado extendido sobre el trigger (no perseguir)",
+          "summary": "Sin señal: sin ruptura (precio 422.59 bajo trigger 436.76)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -3783,7 +3739,7 @@
         "module": "trading",
         "asset": "Visa",
         "ticker": "V",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -3825,9 +3781,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 57,
+          "tech": 67,
           "fund": 58,
-          "composite": 58
+          "composite": 62
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -3848,31 +3804,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 672.68,
-        "momentum_1m": 18.0,
-        "momentum_3m": 19.49,
-        "rsi": 72.2,
-        "macd_histogram": 4.1265,
-        "sma20": 620.1175,
-        "sma50": 590.6934,
-        "sma200": 537.5515,
-        "bollinger_low": 573.9271,
-        "bollinger_high": 666.3079,
-        "atr": 9.0686,
-        "volatility": 22.25,
-        "sharpe": 0.689,
+        "price": 655.92,
+        "momentum_1m": 14.12,
+        "momentum_3m": 16.47,
+        "rsi": 63.5,
+        "macd_histogram": 3.5055,
+        "sma20": 624.1755,
+        "sma50": 591.8424,
+        "sma200": 538.1932,
+        "bollinger_low": 580.5755,
+        "bollinger_high": 667.7755,
+        "atr": 10.1871,
+        "volatility": 22.51,
+        "sharpe": 0.572,
         "max_drawdown_6m": 8.31,
         "var_95_daily": 2.425,
-        "technical_score": 57,
+        "technical_score": 67,
         "fundamental_score": 58,
-        "composite_score": 58,
+        "composite_score": 62,
         "levels": {
-          "entry": 672.68,
-          "stop": 654.5428,
-          "target": 708.9544,
+          "entry": 655.92,
+          "stop": 635.5458,
+          "target": 696.6684,
           "rr": 2.0,
-          "stop_pct": 2.7,
-          "target_pct": 5.39
+          "stop_pct": 3.11,
+          "target_pct": 6.21
         },
         "kelly": null
       },
@@ -3883,7 +3839,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: precio demasiado extendido sobre el trigger (no perseguir)",
+          "summary": "Sin señal: sin ruptura (precio 655.92 bajo trigger 673.5)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -3941,7 +3897,7 @@
         "module": "trading",
         "asset": "Mastercard",
         "ticker": "MA",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -3983,9 +3939,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 57,
+          "tech": 67,
           "fund": 58,
-          "composite": 58
+          "composite": 62
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -4006,31 +3962,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 177.0,
-        "momentum_1m": -6.01,
-        "momentum_3m": -24.49,
-        "rsi": 37.89,
-        "macd_histogram": -0.3868,
-        "sma20": 183.066,
-        "sma50": 193.924,
-        "sma200": 215.8949,
-        "bollinger_low": 165.8602,
-        "bollinger_high": 200.2718,
-        "atr": 3.4593,
-        "volatility": 37.43,
-        "sharpe": -0.426,
+        "price": 172.5,
+        "momentum_1m": -8.12,
+        "momentum_3m": -25.9,
+        "rsi": 32.79,
+        "macd_histogram": -0.314,
+        "sma20": 182.3035,
+        "sma50": 193.1322,
+        "sma200": 215.507,
+        "bollinger_low": 164.6265,
+        "bollinger_high": 199.9805,
+        "atr": 3.675,
+        "volatility": 37.34,
+        "sharpe": -0.492,
         "max_drawdown_6m": 30.53,
-        "var_95_daily": 3.774,
+        "var_95_daily": 3.77,
         "technical_score": 28,
         "fundamental_score": 58,
         "composite_score": 46,
         "levels": {
-          "entry": 177.0,
-          "stop": 170.0814,
-          "target": 190.8372,
+          "entry": 172.5,
+          "stop": 165.15,
+          "target": 187.2,
           "rr": 2.0,
-          "stop_pct": 3.91,
-          "target_pct": 7.82
+          "stop_pct": 4.26,
+          "target_pct": 8.52
         },
         "kelly": null
       },
@@ -4101,7 +4057,7 @@
         "module": "trading",
         "asset": "Boeing",
         "ticker": "BA",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -4168,31 +4124,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 591.3,
-        "momentum_1m": -27.34,
-        "momentum_3m": -29.79,
-        "rsi": 20.86,
-        "macd_histogram": -11.2661,
-        "sma20": 709.2145,
-        "sma50": 770.8762,
-        "sma200": 809.4369,
-        "bollinger_low": 583.7649,
-        "bollinger_high": 834.6641,
-        "atr": 17.6914,
-        "volatility": 43.06,
-        "sharpe": 0.101,
-        "max_drawdown_6m": 44.47,
-        "var_95_daily": 3.876,
+        "price": 553.64,
+        "momentum_1m": -30.46,
+        "momentum_3m": -33.9,
+        "rsi": 18.42,
+        "macd_histogram": -13.2287,
+        "sma20": 697.0875,
+        "sma50": 765.5104,
+        "sma200": 808.9782,
+        "bollinger_low": 560.6264,
+        "bollinger_high": 833.5486,
+        "atr": 20.0329,
+        "volatility": 43.95,
+        "sharpe": -0.157,
+        "max_drawdown_6m": 48.01,
+        "var_95_daily": 3.891,
         "technical_score": 43,
         "fundamental_score": 58,
         "composite_score": 52,
         "levels": {
-          "entry": 591.3,
-          "stop": 555.9172,
-          "target": 662.0656,
+          "entry": 553.64,
+          "stop": 513.5742,
+          "target": 633.7716,
           "rr": 2.0,
-          "stop_pct": 5.98,
-          "target_pct": 11.97
+          "stop_pct": 7.24,
+          "target_pct": 14.47
         },
         "kelly": null
       },
@@ -4261,7 +4217,7 @@
         "module": "trading",
         "asset": "Caterpillar",
         "ticker": "CAT",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -4326,31 +4282,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 329.45,
-        "momentum_1m": 8.51,
-        "momentum_3m": -10.98,
-        "rsi": 59.06,
-        "macd_histogram": 4.0397,
-        "sma20": 305.856,
-        "sma50": 315.8346,
-        "sma200": 322.7612,
-        "bollinger_low": 284.4316,
-        "bollinger_high": 327.2804,
-        "atr": 6.8807,
-        "volatility": 31.27,
-        "sharpe": 0.128,
+        "price": 314.73,
+        "momentum_1m": 2.98,
+        "momentum_3m": -14.17,
+        "rsi": 50.41,
+        "macd_histogram": 3.5309,
+        "sma20": 306.3115,
+        "sma50": 315.0414,
+        "sma200": 322.7423,
+        "bollinger_low": 284.5239,
+        "bollinger_high": 328.0991,
+        "atr": 7.8014,
+        "volatility": 31.84,
+        "sharpe": -0.015,
         "max_drawdown_6m": 25.07,
-        "var_95_daily": 3.498,
-        "technical_score": 41,
+        "var_95_daily": 3.502,
+        "technical_score": 40,
         "fundamental_score": 58,
         "composite_score": 51,
         "levels": {
-          "entry": 329.45,
-          "stop": 315.6886,
-          "target": 356.9728,
+          "entry": 314.73,
+          "stop": 299.1272,
+          "target": 345.9356,
           "rr": 2.0,
-          "stop_pct": 4.18,
-          "target_pct": 8.35
+          "stop_pct": 4.96,
+          "target_pct": 9.92
         },
         "kelly": null
       },
@@ -4361,7 +4317,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
+          "summary": "Sin señal: sin ruptura (precio 314.73 bajo trigger 333.75)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -4419,7 +4375,7 @@
         "module": "trading",
         "asset": "GE",
         "ticker": "GE",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -4461,7 +4417,7 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 41,
+          "tech": 40,
           "fund": 58,
           "composite": 51
         },
@@ -4484,31 +4440,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 169.27,
-        "momentum_1m": 3.18,
-        "momentum_3m": 10.61,
-        "rsi": 43.57,
-        "macd_histogram": -1.2055,
-        "sma20": 177.671,
-        "sma50": 168.4936,
-        "sma200": 155.2836,
-        "bollinger_low": 167.254,
-        "bollinger_high": 188.088,
-        "atr": 3.0036,
-        "volatility": 27.38,
-        "sharpe": 1.326,
+        "price": 165.3,
+        "momentum_1m": -1.9,
+        "momentum_3m": 3.45,
+        "rsi": 33.6,
+        "macd_histogram": -1.9687,
+        "sma20": 177.511,
+        "sma50": 168.6358,
+        "sma200": 155.442,
+        "bollinger_low": 166.4241,
+        "bollinger_high": 188.5979,
+        "atr": 2.98,
+        "volatility": 27.52,
+        "sharpe": 1.248,
         "max_drawdown_6m": 16.3,
-        "var_95_daily": 2.7,
-        "technical_score": 76,
+        "var_95_daily": 2.698,
+        "technical_score": 71,
         "fundamental_score": 58,
-        "composite_score": 65,
+        "composite_score": 63,
         "levels": {
-          "entry": 169.27,
-          "stop": 163.2628,
-          "target": 181.2844,
+          "entry": 165.3,
+          "stop": 159.34,
+          "target": 177.22,
           "rr": 2.0,
-          "stop_pct": 3.55,
-          "target_pct": 7.1
+          "stop_pct": 3.61,
+          "target_pct": 7.21
         },
         "kelly": null
       },
@@ -4519,7 +4475,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: sin ruptura (precio 169.27 bajo trigger 188.5)",
+          "summary": "Sin señal: sin ruptura (precio 165.3 bajo trigger 188.5)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -4577,7 +4533,165 @@
         "module": "trading",
         "asset": "Exxon",
         "ticker": "XOM",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
+        "audit": {
+          "passed": true,
+          "checks": [
+            {
+              "check": "datos_frescos",
+              "ok": true
+            },
+            {
+              "check": "historial_200d",
+              "ok": true
+            },
+            {
+              "check": "rsi_calculado",
+              "ok": true
+            },
+            {
+              "check": "atr_calculado",
+              "ok": true
+            },
+            {
+              "check": "volatilidad_operable",
+              "ok": true
+            },
+            {
+              "check": "scores_consistentes",
+              "ok": true
+            },
+            {
+              "check": "precio_valido",
+              "ok": true
+            },
+            {
+              "check": "niveles_calculados",
+              "ok": true
+            }
+          ],
+          "warnings": [],
+          "score": 100
+        },
+        "claude_calls": 0,
+        "scores": {
+          "tech": 71,
+          "fund": 58,
+          "composite": 63
+        },
+        "signal": "ESPERAR",
+        "audit_passed": true,
+        "autodidacta": {
+          "wr": null,
+          "consecutive_losses": 0,
+          "effective_threshold": 65,
+          "silenced": false
+        },
+        "status": "complete"
+      }
+    },
+    {
+      "meta": {
+        "id": "CVX",
+        "name": "Chevron",
+        "type": "energy",
+        "unit": "USD"
+      },
+      "quant": {
+        "price": 212.93,
+        "momentum_1m": 0.65,
+        "momentum_3m": 9.25,
+        "rsi": 36.46,
+        "macd_histogram": -2.0252,
+        "sma20": 224.358,
+        "sma50": 214.6372,
+        "sma200": 194.4301,
+        "bollinger_low": 210.769,
+        "bollinger_high": 237.947,
+        "atr": 3.18,
+        "volatility": 25.23,
+        "sharpe": 1.206,
+        "max_drawdown_6m": 16.0,
+        "var_95_daily": 2.645,
+        "technical_score": 76,
+        "fundamental_score": 58,
+        "composite_score": 65,
+        "levels": {
+          "entry": 212.93,
+          "stop": 206.57,
+          "target": 225.65,
+          "rr": 2.0,
+          "stop_pct": 2.99,
+          "target_pct": 5.97
+        },
+        "kelly": null
+      },
+      "analysis": {
+        "thesis": "",
+        "premortem": "",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 50,
+          "prob_interval": 15,
+          "summary": "Sin señal: sin ruptura (precio 212.93 bajo trigger 236.48)",
+          "conviction": "baja",
+          "source": "trend_joined_long"
+        },
+        "audit": {
+          "passed": true,
+          "checks": [
+            {
+              "check": "datos_frescos",
+              "ok": true
+            },
+            {
+              "check": "historial_200d",
+              "ok": true
+            },
+            {
+              "check": "rsi_calculado",
+              "ok": true
+            },
+            {
+              "check": "atr_calculado",
+              "ok": true
+            },
+            {
+              "check": "volatilidad_operable",
+              "ok": true
+            },
+            {
+              "check": "scores_consistentes",
+              "ok": true
+            },
+            {
+              "check": "precio_valido",
+              "ok": true
+            },
+            {
+              "check": "niveles_calculados",
+              "ok": true
+            }
+          ],
+          "warnings": [],
+          "score": 100
+        },
+        "reputation": {
+          "wr": null,
+          "consecutive_losses": 0,
+          "total_closed": 1,
+          "silenced": false,
+          "silence_reason": null,
+          "threshold_adj": 0,
+          "used_for_decision": false
+        },
+        "effective_threshold": 65
+      },
+      "log": {
+        "module": "trading",
+        "asset": "Chevron",
+        "ticker": "CVX",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -4636,37 +4750,37 @@
     },
     {
       "meta": {
-        "id": "CVX",
-        "name": "Chevron",
-        "type": "energy",
+        "id": "JNJ",
+        "name": "J&J",
+        "type": "health",
         "unit": "USD"
       },
       "quant": {
-        "price": 216.96,
-        "momentum_1m": 5.76,
-        "momentum_3m": 16.3,
-        "rsi": 47.44,
-        "macd_histogram": -1.2069,
-        "sma20": 224.289,
-        "sma50": 214.3828,
-        "sma200": 194.1991,
-        "bollinger_low": 210.4441,
-        "bollinger_high": 238.1339,
-        "atr": 3.2971,
-        "volatility": 25.08,
-        "sharpe": 1.267,
-        "max_drawdown_6m": 16.0,
-        "var_95_daily": 2.647,
-        "technical_score": 60,
+        "price": 272.32,
+        "momentum_1m": 6.18,
+        "momentum_3m": 4.01,
+        "rsi": 64.67,
+        "macd_histogram": 1.3093,
+        "sma20": 263.936,
+        "sma50": 265.578,
+        "sma200": 248.0404,
+        "bollinger_low": 247.6172,
+        "bollinger_high": 280.2548,
+        "atr": 4.08,
+        "volatility": 24.9,
+        "sharpe": 1.639,
+        "max_drawdown_6m": 10.71,
+        "var_95_daily": 2.21,
+        "technical_score": 54,
         "fundamental_score": 58,
-        "composite_score": 59,
+        "composite_score": 56,
         "levels": {
-          "entry": 216.96,
-          "stop": 210.3658,
-          "target": 230.1484,
+          "entry": 272.32,
+          "stop": 264.16,
+          "target": 288.64,
           "rr": 2.0,
-          "stop_pct": 3.04,
-          "target_pct": 6.08
+          "stop_pct": 3.0,
+          "target_pct": 5.99
         },
         "kelly": null
       },
@@ -4677,7 +4791,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: sin ruptura (precio 216.96 bajo trigger 236.48)",
+          "summary": "Sin señal: sin ruptura (precio 272.32 bajo trigger 282.02)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -4733,9 +4847,167 @@
       },
       "log": {
         "module": "trading",
-        "asset": "Chevron",
-        "ticker": "CVX",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "asset": "J&J",
+        "ticker": "JNJ",
+        "timestamp": "05/11/2026 23:07 UTC",
+        "audit": {
+          "passed": true,
+          "checks": [
+            {
+              "check": "datos_frescos",
+              "ok": true
+            },
+            {
+              "check": "historial_200d",
+              "ok": true
+            },
+            {
+              "check": "rsi_calculado",
+              "ok": true
+            },
+            {
+              "check": "atr_calculado",
+              "ok": true
+            },
+            {
+              "check": "volatilidad_operable",
+              "ok": true
+            },
+            {
+              "check": "scores_consistentes",
+              "ok": true
+            },
+            {
+              "check": "precio_valido",
+              "ok": true
+            },
+            {
+              "check": "niveles_calculados",
+              "ok": true
+            }
+          ],
+          "warnings": [],
+          "score": 100
+        },
+        "claude_calls": 0,
+        "scores": {
+          "tech": 54,
+          "fund": 58,
+          "composite": 56
+        },
+        "signal": "ESPERAR",
+        "audit_passed": true,
+        "autodidacta": {
+          "wr": null,
+          "consecutive_losses": 0,
+          "effective_threshold": 65,
+          "silenced": false
+        },
+        "status": "complete"
+      }
+    },
+    {
+      "meta": {
+        "id": "PFE",
+        "name": "Pfizer",
+        "type": "health",
+        "unit": "USD"
+      },
+      "quant": {
+        "price": 29.88,
+        "momentum_1m": 7.4,
+        "momentum_3m": 10.46,
+        "rsi": 52.41,
+        "macd_histogram": -0.0078,
+        "sma20": 29.699,
+        "sma50": 28.7152,
+        "sma200": 26.8896,
+        "bollinger_low": 28.2663,
+        "bollinger_high": 31.1317,
+        "atr": 0.4443,
+        "volatility": 20.84,
+        "sharpe": 0.718,
+        "max_drawdown_6m": 9.69,
+        "var_95_daily": 2.554,
+        "technical_score": 60,
+        "fundamental_score": 58,
+        "composite_score": 59,
+        "levels": {
+          "entry": 29.88,
+          "stop": 28.9914,
+          "target": 31.6572,
+          "rr": 2.0,
+          "stop_pct": 2.97,
+          "target_pct": 5.95
+        },
+        "kelly": null
+      },
+      "analysis": {
+        "thesis": "",
+        "premortem": "",
+        "calibration": {
+          "signal": "ESPERAR",
+          "prob": 50,
+          "prob_interval": 15,
+          "summary": "Sin señal: sin ruptura (precio 29.88 bajo trigger 31.06)",
+          "conviction": "baja",
+          "source": "trend_joined_long"
+        },
+        "audit": {
+          "passed": true,
+          "checks": [
+            {
+              "check": "datos_frescos",
+              "ok": true
+            },
+            {
+              "check": "historial_200d",
+              "ok": true
+            },
+            {
+              "check": "rsi_calculado",
+              "ok": true
+            },
+            {
+              "check": "atr_calculado",
+              "ok": true
+            },
+            {
+              "check": "volatilidad_operable",
+              "ok": true
+            },
+            {
+              "check": "scores_consistentes",
+              "ok": true
+            },
+            {
+              "check": "precio_valido",
+              "ok": true
+            },
+            {
+              "check": "niveles_calculados",
+              "ok": true
+            }
+          ],
+          "warnings": [],
+          "score": 100
+        },
+        "reputation": {
+          "wr": null,
+          "consecutive_losses": 0,
+          "total_closed": 0,
+          "silenced": false,
+          "silence_reason": null,
+          "threshold_adj": 0,
+          "used_for_decision": false
+        },
+        "effective_threshold": 65
+      },
+      "log": {
+        "module": "trading",
+        "asset": "Pfizer",
+        "ticker": "PFE",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -4794,353 +5066,37 @@
     },
     {
       "meta": {
-        "id": "JNJ",
-        "name": "J&J",
-        "type": "health",
-        "unit": "USD"
-      },
-      "quant": {
-        "price": 276.32,
-        "momentum_1m": 6.91,
-        "momentum_3m": 6.59,
-        "rsi": 70.79,
-        "macd_histogram": 1.5242,
-        "sma20": 263.144,
-        "sma50": 265.5316,
-        "sma200": 247.7689,
-        "bollinger_low": 247.0019,
-        "bollinger_high": 279.2861,
-        "atr": 3.9571,
-        "volatility": 24.82,
-        "sharpe": 1.691,
-        "max_drawdown_6m": 10.71,
-        "var_95_daily": 2.212,
-        "technical_score": 41,
-        "fundamental_score": 58,
-        "composite_score": 51,
-        "levels": {
-          "entry": 276.32,
-          "stop": 268.4058,
-          "target": 292.1484,
-          "rr": 2.0,
-          "stop_pct": 2.86,
-          "target_pct": 5.73
-        },
-        "kelly": null
-      },
-      "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {
-          "signal": "ESPERAR",
-          "prob": 50,
-          "prob_interval": 15,
-          "summary": "Sin señal: sin ruptura (precio 276.32 bajo trigger 282.02)",
-          "conviction": "baja",
-          "source": "trend_joined_long"
-        },
-        "audit": {
-          "passed": true,
-          "checks": [
-            {
-              "check": "datos_frescos",
-              "ok": true
-            },
-            {
-              "check": "historial_200d",
-              "ok": true
-            },
-            {
-              "check": "rsi_calculado",
-              "ok": true
-            },
-            {
-              "check": "atr_calculado",
-              "ok": true
-            },
-            {
-              "check": "volatilidad_operable",
-              "ok": true
-            },
-            {
-              "check": "scores_consistentes",
-              "ok": true
-            },
-            {
-              "check": "precio_valido",
-              "ok": true
-            },
-            {
-              "check": "niveles_calculados",
-              "ok": true
-            }
-          ],
-          "warnings": [],
-          "score": 100
-        },
-        "reputation": {
-          "wr": null,
-          "consecutive_losses": 0,
-          "total_closed": 1,
-          "silenced": false,
-          "silence_reason": null,
-          "threshold_adj": 0,
-          "used_for_decision": false
-        },
-        "effective_threshold": 65
-      },
-      "log": {
-        "module": "trading",
-        "asset": "J&J",
-        "ticker": "JNJ",
-        "timestamp": "05/11/2026 13:49 UTC",
-        "audit": {
-          "passed": true,
-          "checks": [
-            {
-              "check": "datos_frescos",
-              "ok": true
-            },
-            {
-              "check": "historial_200d",
-              "ok": true
-            },
-            {
-              "check": "rsi_calculado",
-              "ok": true
-            },
-            {
-              "check": "atr_calculado",
-              "ok": true
-            },
-            {
-              "check": "volatilidad_operable",
-              "ok": true
-            },
-            {
-              "check": "scores_consistentes",
-              "ok": true
-            },
-            {
-              "check": "precio_valido",
-              "ok": true
-            },
-            {
-              "check": "niveles_calculados",
-              "ok": true
-            }
-          ],
-          "warnings": [],
-          "score": 100
-        },
-        "claude_calls": 0,
-        "scores": {
-          "tech": 41,
-          "fund": 58,
-          "composite": 51
-        },
-        "signal": "ESPERAR",
-        "audit_passed": true,
-        "autodidacta": {
-          "wr": null,
-          "consecutive_losses": 0,
-          "effective_threshold": 65,
-          "silenced": false
-        },
-        "status": "complete"
-      }
-    },
-    {
-      "meta": {
-        "id": "PFE",
-        "name": "Pfizer",
-        "type": "health",
-        "unit": "USD"
-      },
-      "quant": {
-        "price": 30.79,
-        "momentum_1m": 9.96,
-        "momentum_3m": 15.06,
-        "rsi": 62.39,
-        "macd_histogram": 0.0451,
-        "sma20": 29.596,
-        "sma50": 28.6836,
-        "sma200": 26.8697,
-        "bollinger_low": 27.9394,
-        "bollinger_high": 31.2526,
-        "atr": 0.3893,
-        "volatility": 20.86,
-        "sharpe": 0.92,
-        "max_drawdown_6m": 10.61,
-        "var_95_daily": 2.553,
-        "technical_score": 67,
-        "fundamental_score": 58,
-        "composite_score": 62,
-        "levels": {
-          "entry": 30.79,
-          "stop": 30.0114,
-          "target": 32.3472,
-          "rr": 2.0,
-          "stop_pct": 2.53,
-          "target_pct": 5.06
-        },
-        "kelly": null
-      },
-      "analysis": {
-        "thesis": "",
-        "premortem": "",
-        "calibration": {
-          "signal": "ESPERAR",
-          "prob": 50,
-          "prob_interval": 15,
-          "summary": "Sin señal: sin ruptura (precio 30.79 bajo trigger 31.06)",
-          "conviction": "baja",
-          "source": "trend_joined_long"
-        },
-        "audit": {
-          "passed": true,
-          "checks": [
-            {
-              "check": "datos_frescos",
-              "ok": true
-            },
-            {
-              "check": "historial_200d",
-              "ok": true
-            },
-            {
-              "check": "rsi_calculado",
-              "ok": true
-            },
-            {
-              "check": "atr_calculado",
-              "ok": true
-            },
-            {
-              "check": "volatilidad_operable",
-              "ok": true
-            },
-            {
-              "check": "scores_consistentes",
-              "ok": true
-            },
-            {
-              "check": "precio_valido",
-              "ok": true
-            },
-            {
-              "check": "niveles_calculados",
-              "ok": true
-            }
-          ],
-          "warnings": [],
-          "score": 100
-        },
-        "reputation": {
-          "wr": null,
-          "consecutive_losses": 0,
-          "total_closed": 0,
-          "silenced": false,
-          "silence_reason": null,
-          "threshold_adj": 0,
-          "used_for_decision": false
-        },
-        "effective_threshold": 65
-      },
-      "log": {
-        "module": "trading",
-        "asset": "Pfizer",
-        "ticker": "PFE",
-        "timestamp": "05/11/2026 13:49 UTC",
-        "audit": {
-          "passed": true,
-          "checks": [
-            {
-              "check": "datos_frescos",
-              "ok": true
-            },
-            {
-              "check": "historial_200d",
-              "ok": true
-            },
-            {
-              "check": "rsi_calculado",
-              "ok": true
-            },
-            {
-              "check": "atr_calculado",
-              "ok": true
-            },
-            {
-              "check": "volatilidad_operable",
-              "ok": true
-            },
-            {
-              "check": "scores_consistentes",
-              "ok": true
-            },
-            {
-              "check": "precio_valido",
-              "ok": true
-            },
-            {
-              "check": "niveles_calculados",
-              "ok": true
-            }
-          ],
-          "warnings": [],
-          "score": 100
-        },
-        "claude_calls": 0,
-        "scores": {
-          "tech": 67,
-          "fund": 58,
-          "composite": 62
-        },
-        "signal": "ESPERAR",
-        "audit_passed": true,
-        "autodidacta": {
-          "wr": null,
-          "consecutive_losses": 0,
-          "effective_threshold": 65,
-          "silenced": false
-        },
-        "status": "complete"
-      }
-    },
-    {
-      "meta": {
         "id": "LLY",
         "name": "EliLilly",
         "type": "health",
         "unit": "USD"
       },
       "quant": {
-        "price": 1417.99,
-        "momentum_1m": 19.29,
-        "momentum_3m": 19.59,
-        "rsi": 76.98,
-        "macd_histogram": 15.1652,
-        "sma20": 1283.4615,
-        "sma50": 1207.1882,
-        "sma200": 1096.8709,
-        "bollinger_low": 1115.4981,
-        "bollinger_high": 1451.4249,
-        "atr": 22.0257,
-        "volatility": 31.95,
-        "sharpe": 1.18,
+        "price": 1364.73,
+        "momentum_1m": 16.68,
+        "momentum_3m": 10.78,
+        "rsi": 65.12,
+        "macd_histogram": 9.9744,
+        "sma20": 1293.218,
+        "sma50": 1210.6946,
+        "sma200": 1098.302,
+        "bollinger_low": 1130.5159,
+        "bollinger_high": 1455.9201,
+        "atr": 25.4429,
+        "volatility": 32.19,
+        "sharpe": 1.005,
         "max_drawdown_6m": 12.86,
-        "var_95_daily": 4.084,
-        "technical_score": 57,
+        "var_95_daily": 4.083,
+        "technical_score": 75,
         "fundamental_score": 58,
-        "composite_score": 58,
+        "composite_score": 65,
         "levels": {
-          "entry": 1417.99,
-          "stop": 1373.9386,
-          "target": 1506.0928,
+          "entry": 1364.73,
+          "stop": 1313.8442,
+          "target": 1466.5016,
           "rr": 2.0,
-          "stop_pct": 3.11,
-          "target_pct": 6.21
+          "stop_pct": 3.73,
+          "target_pct": 7.46
         },
         "kelly": null
       },
@@ -5151,7 +5107,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: sin ruptura (precio 1417.99 bajo trigger 1449.6801)",
+          "summary": "Sin señal: sin ruptura (precio 1364.73 bajo trigger 1449.6801)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -5209,7 +5165,7 @@
         "module": "trading",
         "asset": "EliLilly",
         "ticker": "LLY",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -5251,9 +5207,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 57,
+          "tech": 75,
           "fund": 58,
-          "composite": 58
+          "composite": 65
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -5274,31 +5230,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 409.38,
-        "momentum_1m": 8.88,
-        "momentum_3m": 0.57,
-        "rsi": 51.82,
-        "macd_histogram": -0.7813,
-        "sma20": 402.8395,
-        "sma50": 390.772,
-        "sma200": 363.7922,
-        "bollinger_low": 372.6132,
-        "bollinger_high": 433.0658,
-        "atr": 5.315,
-        "volatility": 24.58,
-        "sharpe": 0.497,
+        "price": 395.72,
+        "momentum_1m": 6.68,
+        "momentum_3m": -3.19,
+        "rsi": 46.55,
+        "macd_histogram": -1.6413,
+        "sma20": 404.078,
+        "sma50": 390.6662,
+        "sma200": 364.032,
+        "bollinger_low": 377.5497,
+        "bollinger_high": 430.6063,
+        "atr": 5.9164,
+        "volatility": 24.78,
+        "sharpe": 0.426,
         "max_drawdown_6m": 16.31,
-        "var_95_daily": 4.487,
+        "var_95_daily": 4.483,
         "technical_score": 55,
         "fundamental_score": 58,
         "composite_score": 57,
         "levels": {
-          "entry": 409.38,
-          "stop": 398.75,
-          "target": 430.64,
+          "entry": 395.72,
+          "stop": 383.8872,
+          "target": 419.3856,
           "rr": 2.0,
-          "stop_pct": 2.6,
-          "target_pct": 5.19
+          "stop_pct": 2.99,
+          "target_pct": 5.98
         },
         "kelly": null
       },
@@ -5309,7 +5265,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: sin ruptura (precio 409.38 bajo trigger 426.55)",
+          "summary": "Sin señal: sin ruptura (precio 395.72 bajo trigger 426.55)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -5367,7 +5323,7 @@
         "module": "trading",
         "asset": "UnitedHealth",
         "ticker": "UNH",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -5432,31 +5388,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 258.38,
-        "momentum_1m": 31.5,
-        "momentum_3m": 336.67,
-        "rsi": 56.98,
-        "macd_histogram": 0.3228,
-        "sma20": 221.1713,
-        "sma50": 187.7825,
-        "sma200": 89.4972,
-        "bollinger_low": 188.8042,
-        "bollinger_high": 253.5383,
-        "atr": 11.1886,
-        "volatility": 170.77,
-        "sharpe": 1.821,
+        "price": 241.46,
+        "momentum_1m": 22.57,
+        "momentum_3m": 303.71,
+        "rsi": 57.56,
+        "macd_histogram": 0.5894,
+        "sma20": 223.3943,
+        "sma50": 189.6185,
+        "sma200": 90.4555,
+        "bollinger_low": 191.9224,
+        "bollinger_high": 254.8661,
+        "atr": 11.0764,
+        "volatility": 170.56,
+        "sharpe": 1.772,
         "max_drawdown_6m": 34.16,
-        "var_95_daily": 11.122,
-        "technical_score": 67,
+        "var_95_daily": 11.109,
+        "technical_score": 75,
         "fundamental_score": 58,
-        "composite_score": 62,
+        "composite_score": 65,
         "levels": {
-          "entry": 258.38,
-          "stop": 223.777,
-          "target": 327.5861,
-          "stop_pct": 13.39,
-          "target_pct": 26.78,
-          "rr": 2.0
+          "entry": 241.46,
+          "stop": 219.3072,
+          "target": 285.7656,
+          "rr": 2.0,
+          "stop_pct": 9.17,
+          "target_pct": 18.35
         },
         "kelly": null
       },
@@ -5464,24 +5420,12 @@
         "thesis": "",
         "premortem": "",
         "calibration": {
-          "signal": "COMPRAR",
-          "evidence": {
-            "hist_wr_pct": 44,
-            "interval_95_pct": [
-              36,
-              53
-            ],
-            "n_oos": 124,
-            "quality": "provisional (backtest OOS)"
-          },
-          "prob": null,
-          "prob_interval": null,
-          "horizon": "días-semanas",
-          "summary": "Ruptura de máximos en tendencia (trigger 254.48). Entry=258.38",
-          "conviction": "alta",
-          "source": "trend_joined_long",
-          "strategy": "trend_joined_long_v2",
-          "trigger": 254.48
+          "signal": "ESPERAR",
+          "prob": 50,
+          "prob_interval": 15,
+          "summary": "Sin señal: sin ruptura (precio 241.46 bajo trigger 258.72)",
+          "conviction": "baja",
+          "source": "trend_joined_long"
         },
         "audit": {
           "passed": true,
@@ -5537,7 +5481,7 @@
         "module": "trading",
         "asset": "Moderna",
         "ticker": "MRNA",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -5579,11 +5523,11 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 67,
+          "tech": 75,
           "fund": 58,
-          "composite": 62
+          "composite": 65
         },
-        "signal": "COMPRAR",
+        "signal": "ESPERAR",
         "audit_passed": true,
         "autodidacta": {
           "wr": null,
@@ -5602,31 +5546,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 60.2,
-        "momentum_1m": 9.55,
-        "momentum_3m": 1.91,
-        "rsi": 64.38,
-        "macd_histogram": 0.2852,
-        "sma20": 56.8457,
-        "sma50": 55.1968,
-        "sma200": 50.0147,
-        "bollinger_low": 54.3896,
-        "bollinger_high": 59.3019,
-        "atr": 0.755,
-        "volatility": 40.55,
-        "sharpe": -0.3,
+        "price": 58.96,
+        "momentum_1m": 7.16,
+        "momentum_3m": -0.19,
+        "rsi": 59.96,
+        "macd_histogram": 0.2646,
+        "sma20": 57.0427,
+        "sma50": 55.1398,
+        "sma200": 50.03,
+        "bollinger_low": 54.5712,
+        "bollinger_high": 59.5143,
+        "atr": 0.8107,
+        "volatility": 40.58,
+        "sharpe": -0.417,
         "max_drawdown_6m": 16.26,
-        "var_95_daily": 4.207,
+        "var_95_daily": 4.201,
         "technical_score": 62,
         "fundamental_score": 58,
         "composite_score": 60,
         "levels": {
-          "entry": 60.2,
-          "stop": 58.69,
-          "target": 63.22,
+          "entry": 58.96,
+          "stop": 57.3386,
+          "target": 62.2028,
           "rr": 2.0,
-          "stop_pct": 2.51,
-          "target_pct": 5.02
+          "stop_pct": 2.75,
+          "target_pct": 5.5
         },
         "kelly": null
       },
@@ -5637,7 +5581,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: precio demasiado extendido sobre el trigger (no perseguir)",
+          "summary": "Sin señal: sin ruptura (precio 58.96 bajo trigger 60.87)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -5695,7 +5639,7 @@
         "module": "trading",
         "asset": "PayPal",
         "ticker": "PYPL",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -5760,31 +5704,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 227.11,
-        "momentum_1m": 1.14,
-        "momentum_3m": 17.83,
-        "rsi": 31.27,
-        "macd_histogram": -2.419,
-        "sma20": 237.197,
-        "sma50": 239.9326,
-        "sma200": 198.2848,
-        "bollinger_low": 220.3713,
-        "bollinger_high": 254.0227,
-        "atr": 3.7436,
-        "volatility": 51.8,
-        "sharpe": -0.323,
+        "price": 222.41,
+        "momentum_1m": -2.37,
+        "momentum_3m": 12.61,
+        "rsi": 32.09,
+        "macd_histogram": -2.54,
+        "sma20": 236.9275,
+        "sma50": 240.2684,
+        "sma200": 198.289,
+        "bollinger_low": 219.3138,
+        "bollinger_high": 254.5412,
+        "atr": 3.6479,
+        "volatility": 51.77,
+        "sharpe": -0.353,
         "max_drawdown_6m": 28.38,
-        "var_95_daily": 4.162,
-        "technical_score": 52,
+        "var_95_daily": 4.157,
+        "technical_score": 60,
         "fundamental_score": 58,
-        "composite_score": 56,
+        "composite_score": 59,
         "levels": {
-          "entry": 227.11,
-          "stop": 219.6228,
-          "target": 242.0844,
+          "entry": 222.41,
+          "stop": 215.1142,
+          "target": 237.0016,
           "rr": 2.0,
-          "stop_pct": 3.3,
-          "target_pct": 6.59
+          "stop_pct": 3.28,
+          "target_pct": 6.56
         },
         "kelly": null
       },
@@ -5795,7 +5739,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: sin ruptura (precio 227.11 bajo trigger 252.42)",
+          "summary": "Sin señal: sin ruptura (precio 222.41 bajo trigger 252.42)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -5853,7 +5797,7 @@
         "module": "trading",
         "asset": "Salesforce",
         "ticker": "CRM",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -5895,9 +5839,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 52,
+          "tech": 60,
           "fund": 58,
-          "composite": 56
+          "composite": 59
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -5918,31 +5862,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 123.73,
-        "momentum_1m": -13.81,
-        "momentum_3m": -15.84,
-        "rsi": 42.18,
-        "macd_histogram": -0.3947,
-        "sma20": 131.6495,
-        "sma50": 140.5072,
-        "sma200": 156.0059,
-        "bollinger_low": 117.9909,
-        "bollinger_high": 145.3081,
-        "atr": 4.9071,
-        "volatility": 62.32,
-        "sharpe": -1.251,
+        "price": 115.16,
+        "momentum_1m": -15.13,
+        "momentum_3m": -23.76,
+        "rsi": 40.8,
+        "macd_histogram": -1.0093,
+        "sma20": 130.623,
+        "sma50": 139.833,
+        "sma200": 155.7123,
+        "bollinger_low": 115.2631,
+        "bollinger_high": 145.9829,
+        "atr": 5.0736,
+        "volatility": 63.05,
+        "sharpe": -1.379,
         "max_drawdown_6m": 53.66,
-        "var_95_daily": 5.923,
-        "technical_score": 28,
+        "var_95_daily": 5.926,
+        "technical_score": 36,
         "fundamental_score": 58,
-        "composite_score": 46,
+        "composite_score": 49,
         "levels": {
-          "entry": 123.73,
-          "stop": 113.9158,
-          "target": 143.3584,
+          "entry": 115.16,
+          "stop": 105.0128,
+          "target": 135.4544,
           "rr": 2.0,
-          "stop_pct": 7.93,
-          "target_pct": 15.86
+          "stop_pct": 8.81,
+          "target_pct": 17.62
         },
         "kelly": null
       },
@@ -5982,7 +5926,7 @@
             },
             {
               "check": "scores_consistentes",
-              "ok": false
+              "ok": true
             },
             {
               "check": "precio_valido",
@@ -5993,10 +5937,8 @@
               "ok": true
             }
           ],
-          "warnings": [
-            "Oracle: divergencia tech/fund (28 vs 58)"
-          ],
-          "score": 88
+          "warnings": [],
+          "score": 100
         },
         "reputation": {
           "wr": null,
@@ -6013,7 +5955,7 @@
         "module": "trading",
         "asset": "Oracle",
         "ticker": "ORCL",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -6039,7 +5981,7 @@
             },
             {
               "check": "scores_consistentes",
-              "ok": false
+              "ok": true
             },
             {
               "check": "precio_valido",
@@ -6050,16 +5992,14 @@
               "ok": true
             }
           ],
-          "warnings": [
-            "Oracle: divergencia tech/fund (28 vs 58)"
-          ],
-          "score": 88
+          "warnings": [],
+          "score": 100
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 28,
+          "tech": 36,
           "fund": 58,
-          "composite": 46
+          "composite": 49
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -6080,31 +6020,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 69.87,
-        "momentum_1m": 2.07,
-        "momentum_3m": -6.86,
-        "rsi": 45.24,
-        "macd_histogram": 0.1693,
-        "sma20": 68.456,
-        "sma50": 70.506,
-        "sma200": 73.0886,
-        "bollinger_low": 63.9206,
-        "bollinger_high": 72.9914,
-        "atr": 1.05,
-        "volatility": 35.24,
-        "sharpe": -0.975,
+        "price": 68.78,
+        "momentum_1m": -2.08,
+        "momentum_3m": -11.85,
+        "rsi": 44.72,
+        "macd_histogram": 0.2802,
+        "sma20": 68.383,
+        "sma50": 70.3118,
+        "sma200": 73.0112,
+        "bollinger_low": 63.9222,
+        "bollinger_high": 72.8438,
+        "atr": 1.0621,
+        "volatility": 35.23,
+        "sharpe": -0.962,
         "max_drawdown_6m": 18.79,
-        "var_95_daily": 3.817,
-        "technical_score": 40,
+        "var_95_daily": 3.812,
+        "technical_score": 48,
         "fundamental_score": 58,
-        "composite_score": 51,
+        "composite_score": 54,
         "levels": {
-          "entry": 69.87,
-          "stop": 67.77,
-          "target": 74.07,
+          "entry": 68.78,
+          "stop": 66.6558,
+          "target": 73.0284,
           "rr": 2.0,
-          "stop_pct": 3.01,
-          "target_pct": 6.01
+          "stop_pct": 3.09,
+          "target_pct": 6.18
         },
         "kelly": null
       },
@@ -6173,7 +6113,7 @@
         "module": "trading",
         "asset": "Uber",
         "ticker": "UBER",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -6215,9 +6155,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 40,
+          "tech": 48,
           "fund": 58,
-          "composite": 51
+          "composite": 54
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -6238,31 +6178,31 @@
         "unit": "USD"
       },
       "quant": {
-        "price": 176.37,
-        "momentum_1m": 9.8,
-        "momentum_3m": -0.95,
-        "rsi": 52.51,
-        "macd_histogram": 0.0984,
-        "sma20": 169.9137,
-        "sma50": 169.316,
-        "sma200": 147.3143,
-        "bollinger_low": 160.6543,
-        "bollinger_high": 179.1732,
-        "atr": 2.9714,
-        "volatility": 40.3,
-        "sharpe": 0.914,
+        "price": 170.13,
+        "momentum_1m": 4.23,
+        "momentum_3m": -7.89,
+        "rsi": 46.22,
+        "macd_histogram": 0.0368,
+        "sma20": 170.2588,
+        "sma50": 168.9572,
+        "sma200": 147.497,
+        "bollinger_low": 161.5501,
+        "bollinger_high": 178.9674,
+        "atr": 3.3757,
+        "volatility": 40.65,
+        "sharpe": 0.807,
         "max_drawdown_6m": 21.48,
-        "var_95_daily": 3.94,
-        "technical_score": 67,
+        "var_95_daily": 3.938,
+        "technical_score": 70,
         "fundamental_score": 58,
-        "composite_score": 62,
+        "composite_score": 63,
         "levels": {
-          "entry": 176.37,
-          "stop": 170.4272,
-          "target": 188.2556,
+          "entry": 170.13,
+          "stop": 163.3786,
+          "target": 183.6328,
           "rr": 2.0,
-          "stop_pct": 3.37,
-          "target_pct": 6.74
+          "stop_pct": 3.97,
+          "target_pct": 7.94
         },
         "kelly": null
       },
@@ -6273,7 +6213,7 @@
           "signal": "ESPERAR",
           "prob": 50,
           "prob_interval": 15,
-          "summary": "Sin señal: sin ruptura (precio 176.37 bajo trigger 179.13)",
+          "summary": "Sin señal: sin ruptura (precio 170.13 bajo trigger 180.06)",
           "conviction": "baja",
           "source": "trend_joined_long"
         },
@@ -6331,7 +6271,7 @@
         "module": "trading",
         "asset": "Airbnb",
         "ticker": "ABNB",
-        "timestamp": "05/11/2026 13:49 UTC",
+        "timestamp": "05/11/2026 23:07 UTC",
         "audit": {
           "passed": true,
           "checks": [
@@ -6373,9 +6313,9 @@
         },
         "claude_calls": 0,
         "scores": {
-          "tech": 67,
+          "tech": 70,
           "fund": 58,
-          "composite": 62
+          "composite": 63
         },
         "signal": "ESPERAR",
         "audit_passed": true,
@@ -6392,45 +6332,28 @@
   "backtesting": [],
   "macro": {
     "fx_rates": {
-      "BRL": 5.4654,
-      "CNY": 6.6723,
-      "EUR": 0.88755,
-      "GBP": 0.74075,
-      "IDR": 18129,
-      "INR": 94.64,
-      "MXN": 18.6465,
-      "PLN": 3.9043
+      "BRL": 5.4664,
+      "CNY": 6.6684,
+      "EUR": 0.89095,
+      "GBP": 0.74299,
+      "IDR": 18069,
+      "INR": 94.48,
+      "MXN": 18.5905,
+      "PLN": 3.9104
     },
     "fred": {
       "fed_funds_rate": 3.88,
-      "yield_curve_spread": 0.32,
+      "yield_curve_spread": 0.38,
       "dxy_index": 90.822,
       "cpi_yoy": 4.02
     },
     "eia_crude": null,
-    "timestamp": "05/11/2026 13:49 UTC"
+    "timestamp": "05/11/2026 23:07 UTC"
   },
   "ranking": [
     {
       "rank": 1,
-      "name": "Tesla",
-      "type": "consumer",
-      "category": "commodity",
-      "score": 65,
-      "signal": "ESPERAR",
-      "prob": 50,
-      "prob_interval": 15,
-      "kelly": null,
-      "vol": 49.87,
-      "sharpe": -0.4,
-      "price": 385.19,
-      "summary": "Sin señal: sin ruptura (precio 385.19 bajo trigger 414.23)",
-      "conviction": "baja",
-      "audit_passed": true
-    },
-    {
-      "rank": 2,
-      "name": "Exxon",
+      "name": "Chevron",
       "type": "energy",
       "category": "commodity",
       "score": 65,
@@ -6438,15 +6361,117 @@
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 27.38,
-      "sharpe": 1.326,
-      "price": 169.27,
-      "summary": "Sin señal: sin ruptura (precio 169.27 bajo trigger 188.5)",
+      "vol": 25.23,
+      "sharpe": 1.206,
+      "price": 212.93,
+      "summary": "Sin señal: sin ruptura (precio 212.93 bajo trigger 236.48)",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 2,
+      "name": "EliLilly",
+      "type": "health",
+      "category": "commodity",
+      "score": 65,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 32.19,
+      "sharpe": 1.005,
+      "price": 1364.73,
+      "summary": "Sin señal: sin ruptura (precio 1364.73 bajo trigger 1449.6801)",
       "conviction": "baja",
       "audit_passed": true
     },
     {
       "rank": 3,
+      "name": "Moderna",
+      "type": "health",
+      "category": "commodity",
+      "score": 65,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 170.56,
+      "sharpe": 1.772,
+      "price": 241.46,
+      "summary": "Sin señal: sin ruptura (precio 241.46 bajo trigger 258.72)",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 4,
+      "name": "Starbucks",
+      "type": "consumer",
+      "category": "commodity",
+      "score": 63,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 23.63,
+      "sharpe": 0.769,
+      "price": 106.16,
+      "summary": "Sin señal: sin ruptura (precio 106.16 bajo trigger 109.82)",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 5,
+      "name": "Exxon",
+      "type": "energy",
+      "category": "commodity",
+      "score": 63,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 27.52,
+      "sharpe": 1.248,
+      "price": 165.3,
+      "summary": "Sin señal: sin ruptura (precio 165.3 bajo trigger 188.5)",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 6,
+      "name": "Airbnb",
+      "type": "consumer",
+      "category": "commodity",
+      "score": 63,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 40.65,
+      "sharpe": 0.807,
+      "price": 170.13,
+      "summary": "Sin señal: sin ruptura (precio 170.13 bajo trigger 180.06)",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 7,
+      "name": "Disney",
+      "type": "consumer",
+      "category": "commodity",
+      "score": 62,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 25.17,
+      "sharpe": 0.055,
+      "price": 117.22,
+      "summary": "Sin señal: sin ruptura (precio 117.22 bajo trigger 119.96)",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 8,
       "name": "CocaCola",
       "type": "consumer",
       "category": "commodity",
@@ -6456,49 +6481,15 @@
       "prob_interval": 15,
       "kelly": null,
       "vol": 21.08,
-      "sharpe": 1.565,
-      "price": 95.8,
-      "summary": "Sin señal: sin ruptura (precio 95.8 bajo trigger 96.26)",
+      "sharpe": 1.573,
+      "price": 95.73,
+      "summary": "Sin señal: sin ruptura (precio 95.73 bajo trigger 96.56)",
       "conviction": "baja",
       "audit_passed": true
     },
     {
-      "rank": 4,
-      "name": "Pfizer",
-      "type": "health",
-      "category": "commodity",
-      "score": 62,
-      "signal": "ESPERAR",
-      "prob": 50,
-      "prob_interval": 15,
-      "kelly": null,
-      "vol": 20.86,
-      "sharpe": 0.92,
-      "price": 30.79,
-      "summary": "Sin señal: sin ruptura (precio 30.79 bajo trigger 31.06)",
-      "conviction": "baja",
-      "audit_passed": true
-    },
-    {
-      "rank": 5,
-      "name": "Moderna",
-      "type": "health",
-      "category": "commodity",
-      "score": 62,
-      "signal": "COMPRAR",
-      "prob": null,
-      "prob_interval": null,
-      "kelly": null,
-      "vol": 170.77,
-      "sharpe": 1.821,
-      "price": 258.38,
-      "summary": "Ruptura de máximos en tendencia (trigger 254.48). Entry=258.38",
-      "conviction": "alta",
-      "audit_passed": true
-    },
-    {
-      "rank": 6,
-      "name": "Airbnb",
+      "rank": 9,
+      "name": "Walmart",
       "type": "consumer",
       "category": "commodity",
       "score": 62,
@@ -6506,32 +6497,66 @@
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 40.3,
-      "sharpe": 0.914,
-      "price": 176.37,
-      "summary": "Sin señal: sin ruptura (precio 176.37 bajo trigger 179.13)",
+      "vol": 29.16,
+      "sharpe": 0.721,
+      "price": 127.72,
+      "summary": "Sin señal: sin ruptura (precio 127.72 bajo trigger 130.94)",
       "conviction": "baja",
       "audit_passed": true
     },
     {
-      "rank": 7,
+      "rank": 10,
+      "name": "Visa",
+      "type": "financial",
+      "category": "commodity",
+      "score": 62,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 21.21,
+      "sharpe": 0.797,
+      "price": 422.59,
+      "summary": "Sin señal: sin ruptura (precio 422.59 bajo trigger 436.76)",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 11,
+      "name": "Mastercard",
+      "type": "financial",
+      "category": "commodity",
+      "score": 62,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 22.51,
+      "sharpe": 0.572,
+      "price": 655.92,
+      "summary": "Sin señal: sin ruptura (precio 655.92 bajo trigger 673.5)",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 12,
       "name": "Amazon",
       "type": "consumer",
       "category": "commodity",
-      "score": 60,
-      "signal": "COMPRAR",
-      "prob": null,
-      "prob_interval": null,
+      "score": 61,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
       "kelly": null,
-      "vol": 37.31,
-      "sharpe": 0.086,
-      "price": 266.03,
-      "summary": "Ruptura de máximos en tendencia (trigger 265.34). Entry=266.03",
-      "conviction": "alta",
+      "vol": 37.43,
+      "sharpe": 0.009,
+      "price": 260.21,
+      "summary": "Sin señal: sin ruptura (precio 260.21 bajo trigger 271.49)",
+      "conviction": "baja",
       "audit_passed": true
     },
     {
-      "rank": 8,
+      "rank": 13,
       "name": "PayPal",
       "type": "financial",
       "category": "commodity",
@@ -6540,151 +6565,83 @@
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 40.55,
-      "sharpe": -0.3,
-      "price": 60.2,
-      "summary": "Sin señal: precio demasiado extendido sobre el trigger (no perseguir)",
-      "conviction": "baja",
-      "audit_passed": true
-    },
-    {
-      "rank": 9,
-      "name": "Meta",
-      "type": "tech",
-      "category": "commodity",
-      "score": 59,
-      "signal": "ESPERAR",
-      "prob": 50,
-      "prob_interval": 15,
-      "kelly": null,
-      "vol": 44.7,
-      "sharpe": -0.078,
-      "price": 630.0,
-      "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
-      "conviction": "baja",
-      "audit_passed": true
-    },
-    {
-      "rank": 10,
-      "name": "Chevron",
-      "type": "energy",
-      "category": "commodity",
-      "score": 59,
-      "signal": "ESPERAR",
-      "prob": 50,
-      "prob_interval": 15,
-      "kelly": null,
-      "vol": 25.08,
-      "sharpe": 1.267,
-      "price": 216.96,
-      "summary": "Sin señal: sin ruptura (precio 216.96 bajo trigger 236.48)",
-      "conviction": "baja",
-      "audit_passed": true
-    },
-    {
-      "rank": 11,
-      "name": "Disney",
-      "type": "consumer",
-      "category": "commodity",
-      "score": 58,
-      "signal": "ESPERAR",
-      "prob": 50,
-      "prob_interval": 15,
-      "kelly": null,
-      "vol": 25.1,
-      "sharpe": 0.105,
-      "price": 118.95,
-      "summary": "Sin señal: precio demasiado extendido sobre el trigger (no perseguir)",
-      "conviction": "baja",
-      "audit_passed": true
-    },
-    {
-      "rank": 12,
-      "name": "Walmart",
-      "type": "consumer",
-      "category": "commodity",
-      "score": 58,
-      "signal": "COMPRAR",
-      "prob": null,
-      "prob_interval": null,
-      "kelly": null,
-      "vol": 29.12,
-      "sharpe": 0.734,
-      "price": 129.17,
-      "summary": "Ruptura de máximos en tendencia (trigger 127.94). Entry=129.17",
-      "conviction": "alta",
-      "audit_passed": true
-    },
-    {
-      "rank": 13,
-      "name": "Visa",
-      "type": "financial",
-      "category": "commodity",
-      "score": 58,
-      "signal": "ESPERAR",
-      "prob": 50,
-      "prob_interval": 15,
-      "kelly": null,
-      "vol": 20.67,
-      "sharpe": 0.947,
-      "price": 436.57,
-      "summary": "Sin señal: precio demasiado extendido sobre el trigger (no perseguir)",
+      "vol": 40.58,
+      "sharpe": -0.417,
+      "price": 58.96,
+      "summary": "Sin señal: sin ruptura (precio 58.96 bajo trigger 60.87)",
       "conviction": "baja",
       "audit_passed": true
     },
     {
       "rank": 14,
-      "name": "Mastercard",
-      "type": "financial",
+      "name": "Microsoft",
+      "type": "tech",
       "category": "commodity",
-      "score": 58,
+      "score": 59,
       "signal": "ESPERAR",
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 22.25,
-      "sharpe": 0.689,
-      "price": 672.68,
-      "summary": "Sin señal: precio demasiado extendido sobre el trigger (no perseguir)",
+      "vol": 36.82,
+      "sharpe": 0.057,
+      "price": 535.93,
+      "summary": "Sin señal: sin ruptura (precio 535.93 bajo trigger 559.15)",
       "conviction": "baja",
       "audit_passed": true
     },
     {
       "rank": 15,
-      "name": "EliLilly",
-      "type": "health",
+      "name": "Apple",
+      "type": "tech",
       "category": "commodity",
-      "score": 58,
+      "score": 59,
       "signal": "ESPERAR",
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 31.95,
-      "sharpe": 1.18,
-      "price": 1417.99,
-      "summary": "Sin señal: sin ruptura (precio 1417.99 bajo trigger 1449.6801)",
+      "vol": 27.32,
+      "sharpe": 0.83,
+      "price": 344.17,
+      "summary": "Sin señal: sin ruptura (precio 344.17 bajo trigger 354.5)",
       "conviction": "baja",
       "audit_passed": true
     },
     {
       "rank": 16,
-      "name": "AMD",
-      "type": "tech",
+      "name": "Pfizer",
+      "type": "health",
       "category": "commodity",
-      "score": 57,
+      "score": 59,
       "signal": "ESPERAR",
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 70.88,
-      "sharpe": 0.921,
-      "price": 488.78,
-      "summary": "Sin señal: sin ruptura (precio 488.78 bajo trigger 658.52)",
+      "vol": 20.84,
+      "sharpe": 0.718,
+      "price": 29.88,
+      "summary": "Sin señal: sin ruptura (precio 29.88 bajo trigger 31.06)",
       "conviction": "baja",
       "audit_passed": true
     },
     {
       "rank": 17,
+      "name": "Salesforce",
+      "type": "tech",
+      "category": "commodity",
+      "score": 59,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 51.77,
+      "sharpe": -0.353,
+      "price": 222.41,
+      "summary": "Sin señal: sin ruptura (precio 222.41 bajo trigger 252.42)",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 18,
       "name": "UnitedHealth",
       "type": "health",
       "category": "commodity",
@@ -6693,100 +6650,66 @@
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 24.58,
-      "sharpe": 0.497,
-      "price": 409.38,
-      "summary": "Sin señal: sin ruptura (precio 409.38 bajo trigger 426.55)",
-      "conviction": "baja",
-      "audit_passed": true
-    },
-    {
-      "rank": 18,
-      "name": "Starbucks",
-      "type": "consumer",
-      "category": "commodity",
-      "score": 56,
-      "signal": "ESPERAR",
-      "prob": 50,
-      "prob_interval": 15,
-      "kelly": null,
-      "vol": 23.17,
-      "sharpe": 1.033,
-      "price": 109.7,
-      "summary": "Sin señal: precio demasiado extendido sobre el trigger (no perseguir)",
+      "vol": 24.78,
+      "sharpe": 0.426,
+      "price": 395.72,
+      "summary": "Sin señal: sin ruptura (precio 395.72 bajo trigger 426.55)",
       "conviction": "baja",
       "audit_passed": true
     },
     {
       "rank": 19,
-      "name": "Salesforce",
-      "type": "tech",
+      "name": "JPMorgan",
+      "type": "financial",
       "category": "commodity",
       "score": 56,
       "signal": "ESPERAR",
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 51.8,
-      "sharpe": -0.323,
-      "price": 227.11,
-      "summary": "Sin señal: sin ruptura (precio 227.11 bajo trigger 252.42)",
+      "vol": 21.16,
+      "sharpe": 0.188,
+      "price": 337.34,
+      "summary": "Sin señal: sin ruptura (precio 337.34 bajo trigger 352.33)",
       "conviction": "baja",
       "audit_passed": true
     },
     {
       "rank": 20,
-      "name": "Micron",
-      "type": "tech",
+      "name": "J&J",
+      "type": "health",
       "category": "commodity",
-      "score": 55,
+      "score": 56,
       "signal": "ESPERAR",
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 89.82,
-      "sharpe": 1.558,
-      "price": 795.23,
-      "summary": "Sin señal: sin ruptura (precio 795.23 bajo trigger 1089.22)",
+      "vol": 24.9,
+      "sharpe": 1.639,
+      "price": 272.32,
+      "summary": "Sin señal: sin ruptura (precio 272.32 bajo trigger 282.02)",
       "conviction": "baja",
       "audit_passed": true
     },
     {
       "rank": 21,
-      "name": "Microsoft",
-      "type": "tech",
-      "category": "commodity",
-      "score": 54,
-      "signal": "COMPRAR",
-      "prob": null,
-      "prob_interval": null,
-      "kelly": null,
-      "vol": 36.48,
-      "sharpe": 0.124,
-      "price": 555.8,
-      "summary": "Ruptura de máximos en tendencia (trigger 551.15). Entry=555.8",
-      "conviction": "alta",
-      "audit_passed": true
-    },
-    {
-      "rank": 22,
-      "name": "Apple",
-      "type": "tech",
+      "name": "Tesla",
+      "type": "consumer",
       "category": "commodity",
       "score": 54,
       "signal": "ESPERAR",
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 27.34,
-      "sharpe": 0.896,
-      "price": 349.51,
-      "summary": "Sin señal: sin ruptura (precio 349.51 bajo trigger 351.73)",
+      "vol": 52.08,
+      "sharpe": -0.722,
+      "price": 343.69,
+      "summary": "Sin señal: sin ruptura (precio 343.69 bajo trigger 414.23)",
       "conviction": "baja",
       "audit_passed": true
     },
     {
-      "rank": 23,
+      "rank": 22,
       "name": "Netflix",
       "type": "consumer",
       "category": "commodity",
@@ -6795,16 +6718,16 @@
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 34.7,
-      "sharpe": -1.489,
-      "price": 66.39,
+      "vol": 34.72,
+      "sharpe": -1.537,
+      "price": 65.56,
       "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
       "conviction": "baja",
       "audit_passed": true
     },
     {
-      "rank": 24,
-      "name": "Nike",
+      "rank": 23,
+      "name": "PepsiCo",
       "type": "consumer",
       "category": "commodity",
       "score": 54,
@@ -6812,32 +6735,83 @@
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 32.33,
-      "sharpe": -1.224,
-      "price": 40.49,
+      "vol": 23.44,
+      "sharpe": -0.173,
+      "price": 142.71,
+      "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 24,
+      "name": "BofA",
+      "type": "financial",
+      "category": "commodity",
+      "score": 54,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 22.2,
+      "sharpe": -0.396,
+      "price": 49.76,
       "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
       "conviction": "baja",
       "audit_passed": true
     },
     {
       "rank": 25,
-      "name": "JPMorgan",
+      "name": "Goldman",
       "type": "financial",
       "category": "commodity",
-      "score": 53,
+      "score": 54,
       "signal": "ESPERAR",
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 20.32,
-      "sharpe": 0.417,
-      "price": 352.11,
-      "summary": "Sin señal: precio demasiado extendido sobre el trigger (no perseguir)",
+      "vol": 34.57,
+      "sharpe": 0.168,
+      "price": 868.95,
+      "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
       "conviction": "baja",
       "audit_passed": true
     },
     {
       "rank": 26,
+      "name": "Uber",
+      "type": "tech",
+      "category": "commodity",
+      "score": 54,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 35.23,
+      "sharpe": -0.962,
+      "price": 68.78,
+      "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 27,
+      "name": "NVIDIA",
+      "type": "tech",
+      "category": "commodity",
+      "score": 52,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 40.52,
+      "sharpe": -0.283,
+      "price": 181.6,
+      "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 28,
       "name": "Intel",
       "type": "tech",
       "category": "commodity",
@@ -6846,15 +6820,15 @@
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 90.07,
-      "sharpe": 0.497,
-      "price": 58.27,
+      "vol": 89.15,
+      "sharpe": 0.322,
+      "price": 52.25,
       "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
       "conviction": "baja",
       "audit_passed": true
     },
     {
-      "rank": 27,
+      "rank": 29,
       "name": "Alphabet",
       "type": "tech",
       "category": "commodity",
@@ -6863,15 +6837,32 @@
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 36.75,
-      "sharpe": 0.012,
-      "price": 288.93,
+      "vol": 36.83,
+      "sharpe": -0.125,
+      "price": 282.57,
       "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
       "conviction": "baja",
       "audit_passed": true
     },
     {
-      "rank": 28,
+      "rank": 30,
+      "name": "Nike",
+      "type": "consumer",
+      "category": "commodity",
+      "score": 52,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 32.48,
+      "sharpe": -1.326,
+      "price": 39.56,
+      "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 31,
       "name": "Caterpillar",
       "type": "industrial",
       "category": "commodity",
@@ -6880,32 +6871,49 @@
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 43.06,
-      "sharpe": 0.101,
-      "price": 591.3,
+      "vol": 43.95,
+      "sharpe": -0.157,
+      "price": 553.64,
       "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
       "conviction": "baja",
       "audit_passed": true
     },
     {
-      "rank": 29,
-      "name": "BofA",
-      "type": "financial",
+      "rank": 32,
+      "name": "Qualcomm",
+      "type": "tech",
       "category": "commodity",
       "score": 51,
       "signal": "ESPERAR",
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 21.93,
-      "sharpe": -0.326,
-      "price": 51.63,
+      "vol": 64.49,
+      "sharpe": -0.316,
+      "price": 156.75,
+      "summary": "Sin señal: sin ruptura (precio 156.75 bajo trigger 185.59)",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 33,
+      "name": "Meta",
+      "type": "tech",
+      "category": "commodity",
+      "score": 51,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 45.04,
+      "sharpe": -0.21,
+      "price": 605.08,
       "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
       "conviction": "baja",
       "audit_passed": true
     },
     {
-      "rank": 30,
+      "rank": 34,
       "name": "GE",
       "type": "industrial",
       "category": "commodity",
@@ -6914,66 +6922,15 @@
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 31.27,
-      "sharpe": 0.128,
-      "price": 329.45,
-      "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
+      "vol": 31.84,
+      "sharpe": -0.015,
+      "price": 314.73,
+      "summary": "Sin señal: sin ruptura (precio 314.73 bajo trigger 333.75)",
       "conviction": "baja",
       "audit_passed": true
     },
     {
-      "rank": 31,
-      "name": "J&J",
-      "type": "health",
-      "category": "commodity",
-      "score": 51,
-      "signal": "ESPERAR",
-      "prob": 50,
-      "prob_interval": 15,
-      "kelly": null,
-      "vol": 24.82,
-      "sharpe": 1.691,
-      "price": 276.32,
-      "summary": "Sin señal: sin ruptura (precio 276.32 bajo trigger 282.02)",
-      "conviction": "baja",
-      "audit_passed": true
-    },
-    {
-      "rank": 32,
-      "name": "Uber",
-      "type": "tech",
-      "category": "commodity",
-      "score": 51,
-      "signal": "ESPERAR",
-      "prob": 50,
-      "prob_interval": 15,
-      "kelly": null,
-      "vol": 35.24,
-      "sharpe": -0.975,
-      "price": 69.87,
-      "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
-      "conviction": "baja",
-      "audit_passed": true
-    },
-    {
-      "rank": 33,
-      "name": "Qualcomm",
-      "type": "tech",
-      "category": "commodity",
-      "score": 50,
-      "signal": "ESPERAR",
-      "prob": 50,
-      "prob_interval": 15,
-      "kelly": null,
-      "vol": 64.0,
-      "sharpe": -0.064,
-      "price": 173.19,
-      "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
-      "conviction": "baja",
-      "audit_passed": true
-    },
-    {
-      "rank": 34,
+      "rank": 35,
       "name": "McDonalds",
       "type": "consumer",
       "category": "commodity",
@@ -6982,33 +6939,16 @@
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 23.76,
-      "sharpe": -0.488,
-      "price": 280.22,
-      "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
-      "conviction": "baja",
-      "audit_passed": true
-    },
-    {
-      "rank": 35,
-      "name": "PepsiCo",
-      "type": "consumer",
-      "category": "commodity",
-      "score": 50,
-      "signal": "ESPERAR",
-      "prob": 50,
-      "prob_interval": 15,
-      "kelly": null,
-      "vol": 23.48,
-      "sharpe": -0.184,
-      "price": 142.42,
+      "vol": 23.44,
+      "sharpe": -0.631,
+      "price": 278.04,
       "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
       "conviction": "baja",
       "audit_passed": true
     },
     {
       "rank": 36,
-      "name": "NVIDIA",
+      "name": "AMD",
       "type": "tech",
       "category": "commodity",
       "score": 49,
@@ -7016,49 +6956,66 @@
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 38.21,
-      "sharpe": -0.078,
-      "price": 200.13,
-      "summary": "Sin señal: sin ruptura (precio 200.13 bajo trigger 243.37)",
+      "vol": 74.28,
+      "sharpe": 0.587,
+      "price": 404.4,
+      "summary": "Sin señal: sin ruptura (precio 404.4 bajo trigger 648.48)",
       "conviction": "baja",
       "audit_passed": true
     },
     {
       "rank": 37,
-      "name": "Broadcom",
+      "name": "Micron",
       "type": "tech",
       "category": "commodity",
-      "score": 46,
+      "score": 49,
       "signal": "ESPERAR",
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 47.66,
-      "sharpe": -0.247,
-      "price": 325.48,
-      "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
+      "vol": 91.64,
+      "sharpe": 1.185,
+      "price": 656.39,
+      "summary": "Sin señal: sin ruptura (precio 656.39 bajo trigger 1089.22)",
       "conviction": "baja",
       "audit_passed": true
     },
     {
       "rank": 38,
-      "name": "Goldman",
-      "type": "financial",
+      "name": "Broadcom",
+      "type": "tech",
       "category": "commodity",
-      "score": 46,
+      "score": 49,
       "signal": "ESPERAR",
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 33.33,
-      "sharpe": 0.386,
-      "price": 928.0,
+      "vol": 49.67,
+      "sharpe": -0.515,
+      "price": 291.53,
       "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
       "conviction": "baja",
       "audit_passed": true
     },
     {
       "rank": 39,
+      "name": "Oracle",
+      "type": "tech",
+      "category": "commodity",
+      "score": 49,
+      "signal": "ESPERAR",
+      "prob": 50,
+      "prob_interval": 15,
+      "kelly": null,
+      "vol": 63.05,
+      "sharpe": -1.379,
+      "price": 115.16,
+      "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
+      "conviction": "baja",
+      "audit_passed": true
+    },
+    {
+      "rank": 40,
       "name": "Boeing",
       "type": "industrial",
       "category": "commodity",
@@ -7067,26 +7024,9 @@
       "prob": 50,
       "prob_interval": 15,
       "kelly": null,
-      "vol": 37.43,
-      "sharpe": -0.426,
-      "price": 177.0,
-      "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
-      "conviction": "baja",
-      "audit_passed": true
-    },
-    {
-      "rank": 40,
-      "name": "Oracle",
-      "type": "tech",
-      "category": "commodity",
-      "score": 46,
-      "signal": "ESPERAR",
-      "prob": 50,
-      "prob_interval": 15,
-      "kelly": null,
-      "vol": 62.32,
-      "sharpe": -1.251,
-      "price": 123.73,
+      "vol": 37.34,
+      "sharpe": -0.492,
+      "price": 172.5,
       "summary": "Sin señal: sin tendencia de fondo (cierre bajo SMA200) o datos insuficientes",
       "conviction": "baja",
       "audit_passed": true
@@ -7094,27 +7034,35 @@
   ],
   "alerts": [
     {
+      "type": "RSI_OVERSOLD",
+      "module": "trading",
+      "asset": "NVIDIA",
+      "value": 27.62,
+      "message": "NVIDIA: RSI=27.62 sobreventa extrema",
+      "severity": "high"
+    },
+    {
       "type": "HIGH_DRAWDOWN",
       "module": "trading",
       "asset": "AMD",
-      "value": 28.11,
-      "message": "AMD: drawdown 6M=28.11%",
+      "value": 37.73,
+      "message": "AMD: drawdown 6M=37.73%",
       "severity": "medium"
     },
     {
       "type": "HIGH_DRAWDOWN",
       "module": "trading",
       "asset": "Micron",
-      "value": 39.1,
-      "message": "Micron: drawdown 6M=39.1%",
+      "value": 45.91,
+      "message": "Micron: drawdown 6M=45.91%",
       "severity": "medium"
     },
     {
       "type": "HIGH_DRAWDOWN",
       "module": "trading",
       "asset": "Broadcom",
-      "value": 33.2,
-      "message": "Broadcom: drawdown 6M=33.2%",
+      "value": 39.46,
+      "message": "Broadcom: drawdown 6M=39.46%",
       "severity": "medium"
     },
     {
@@ -7129,24 +7077,24 @@
       "type": "RSI_OVERSOLD",
       "module": "trading",
       "asset": "Intel",
-      "value": 21.57,
-      "message": "Intel: RSI=21.57 sobreventa extrema",
+      "value": 21.4,
+      "message": "Intel: RSI=21.4 sobreventa extrema",
       "severity": "high"
     },
     {
       "type": "HIGH_DRAWDOWN",
       "module": "trading",
       "asset": "Intel",
-      "value": 58.66,
-      "message": "Intel: drawdown 6M=58.66%",
+      "value": 62.93,
+      "message": "Intel: drawdown 6M=62.93%",
       "severity": "medium"
     },
     {
       "type": "RSI_OVERSOLD",
       "module": "trading",
       "asset": "Alphabet",
-      "value": 20.88,
-      "message": "Alphabet: RSI=20.88 sobreventa extrema",
+      "value": 21.35,
+      "message": "Alphabet: RSI=21.35 sobreventa extrema",
       "severity": "high"
     },
     {
@@ -7161,8 +7109,8 @@
       "type": "RSI_OVERSOLD",
       "module": "trading",
       "asset": "Meta",
-      "value": 20.98,
-      "message": "Meta: RSI=20.98 sobreventa extrema",
+      "value": 21.26,
+      "message": "Meta: RSI=21.26 sobreventa extrema",
       "severity": "high"
     },
     {
@@ -7201,16 +7149,16 @@
       "type": "RSI_OVERSOLD",
       "module": "trading",
       "asset": "Caterpillar",
-      "value": 20.86,
-      "message": "Caterpillar: RSI=20.86 sobreventa extrema",
+      "value": 18.42,
+      "message": "Caterpillar: RSI=18.42 sobreventa extrema",
       "severity": "high"
     },
     {
       "type": "HIGH_DRAWDOWN",
       "module": "trading",
       "asset": "Caterpillar",
-      "value": 44.47,
-      "message": "Caterpillar: drawdown 6M=44.47%",
+      "value": 48.01,
+      "message": "Caterpillar: drawdown 6M=48.01%",
       "severity": "medium"
     },
     {
@@ -7251,7 +7199,67 @@
       "module": "trading",
       "asset": "NVIDIA",
       "ticker": "NVDA",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
+      "audit": {
+        "passed": true,
+        "checks": [
+          {
+            "check": "datos_frescos",
+            "ok": true
+          },
+          {
+            "check": "historial_200d",
+            "ok": true
+          },
+          {
+            "check": "rsi_calculado",
+            "ok": true
+          },
+          {
+            "check": "atr_calculado",
+            "ok": true
+          },
+          {
+            "check": "volatilidad_operable",
+            "ok": true
+          },
+          {
+            "check": "scores_consistentes",
+            "ok": true
+          },
+          {
+            "check": "precio_valido",
+            "ok": true
+          },
+          {
+            "check": "niveles_calculados",
+            "ok": true
+          }
+        ],
+        "warnings": [],
+        "score": 100
+      },
+      "claude_calls": 0,
+      "scores": {
+        "tech": 43,
+        "fund": 58,
+        "composite": 52
+      },
+      "signal": "ESPERAR",
+      "audit_passed": true,
+      "autodidacta": {
+        "wr": null,
+        "consecutive_losses": 0,
+        "effective_threshold": 65,
+        "silenced": false
+      },
+      "status": "complete"
+    },
+    {
+      "module": "trading",
+      "asset": "AMD",
+      "ticker": "AMD",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -7309,69 +7317,9 @@
     },
     {
       "module": "trading",
-      "asset": "AMD",
-      "ticker": "AMD",
-      "timestamp": "05/11/2026 13:49 UTC",
-      "audit": {
-        "passed": true,
-        "checks": [
-          {
-            "check": "datos_frescos",
-            "ok": true
-          },
-          {
-            "check": "historial_200d",
-            "ok": true
-          },
-          {
-            "check": "rsi_calculado",
-            "ok": true
-          },
-          {
-            "check": "atr_calculado",
-            "ok": true
-          },
-          {
-            "check": "volatilidad_operable",
-            "ok": true
-          },
-          {
-            "check": "scores_consistentes",
-            "ok": true
-          },
-          {
-            "check": "precio_valido",
-            "ok": true
-          },
-          {
-            "check": "niveles_calculados",
-            "ok": true
-          }
-        ],
-        "warnings": [],
-        "score": 100
-      },
-      "claude_calls": 0,
-      "scores": {
-        "tech": 55,
-        "fund": 58,
-        "composite": 57
-      },
-      "signal": "ESPERAR",
-      "audit_passed": true,
-      "autodidacta": {
-        "wr": null,
-        "consecutive_losses": 0,
-        "effective_threshold": 65,
-        "silenced": false
-      },
-      "status": "complete"
-    },
-    {
-      "module": "trading",
       "asset": "Micron",
       "ticker": "MU",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -7413,9 +7361,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 50,
+        "tech": 36,
         "fund": 58,
-        "composite": 55
+        "composite": 49
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -7431,69 +7379,7 @@
       "module": "trading",
       "asset": "Broadcom",
       "ticker": "AVGO",
-      "timestamp": "05/11/2026 13:49 UTC",
-      "audit": {
-        "passed": true,
-        "checks": [
-          {
-            "check": "datos_frescos",
-            "ok": true
-          },
-          {
-            "check": "historial_200d",
-            "ok": true
-          },
-          {
-            "check": "rsi_calculado",
-            "ok": true
-          },
-          {
-            "check": "atr_calculado",
-            "ok": true
-          },
-          {
-            "check": "volatilidad_operable",
-            "ok": true
-          },
-          {
-            "check": "scores_consistentes",
-            "ok": false
-          },
-          {
-            "check": "precio_valido",
-            "ok": true
-          },
-          {
-            "check": "niveles_calculados",
-            "ok": true
-          }
-        ],
-        "warnings": [
-          "Broadcom: divergencia tech/fund (28 vs 58)"
-        ],
-        "score": 88
-      },
-      "claude_calls": 0,
-      "scores": {
-        "tech": 28,
-        "fund": 58,
-        "composite": 46
-      },
-      "signal": "ESPERAR",
-      "audit_passed": true,
-      "autodidacta": {
-        "wr": null,
-        "consecutive_losses": 0,
-        "effective_threshold": 65,
-        "silenced": false
-      },
-      "status": "complete"
-    },
-    {
-      "module": "trading",
-      "asset": "Qualcomm",
-      "ticker": "QCOM",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -7535,9 +7421,69 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 39,
+        "tech": 36,
         "fund": 58,
-        "composite": 50
+        "composite": 49
+      },
+      "signal": "ESPERAR",
+      "audit_passed": true,
+      "autodidacta": {
+        "wr": null,
+        "consecutive_losses": 0,
+        "effective_threshold": 65,
+        "silenced": false
+      },
+      "status": "complete"
+    },
+    {
+      "module": "trading",
+      "asset": "Qualcomm",
+      "ticker": "QCOM",
+      "timestamp": "05/11/2026 23:07 UTC",
+      "audit": {
+        "passed": true,
+        "checks": [
+          {
+            "check": "datos_frescos",
+            "ok": true
+          },
+          {
+            "check": "historial_200d",
+            "ok": true
+          },
+          {
+            "check": "rsi_calculado",
+            "ok": true
+          },
+          {
+            "check": "atr_calculado",
+            "ok": true
+          },
+          {
+            "check": "volatilidad_operable",
+            "ok": true
+          },
+          {
+            "check": "scores_consistentes",
+            "ok": true
+          },
+          {
+            "check": "precio_valido",
+            "ok": true
+          },
+          {
+            "check": "niveles_calculados",
+            "ok": true
+          }
+        ],
+        "warnings": [],
+        "score": 100
+      },
+      "claude_calls": 0,
+      "scores": {
+        "tech": 41,
+        "fund": 58,
+        "composite": 51
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -7553,7 +7499,7 @@
       "module": "trading",
       "asset": "Intel",
       "ticker": "INTC",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -7613,7 +7559,7 @@
       "module": "trading",
       "asset": "Microsoft",
       "ticker": "MSFT",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -7655,11 +7601,11 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 47,
+        "tech": 60,
         "fund": 58,
-        "composite": 54
+        "composite": 59
       },
-      "signal": "COMPRAR",
+      "signal": "ESPERAR",
       "audit_passed": true,
       "autodidacta": {
         "wr": null,
@@ -7673,7 +7619,7 @@
       "module": "trading",
       "asset": "Apple",
       "ticker": "AAPL",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -7715,9 +7661,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 47,
+        "tech": 60,
         "fund": 58,
-        "composite": 54
+        "composite": 59
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -7733,7 +7679,7 @@
       "module": "trading",
       "asset": "Alphabet",
       "ticker": "GOOGL",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -7793,7 +7739,7 @@
       "module": "trading",
       "asset": "Meta",
       "ticker": "META",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -7835,9 +7781,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 61,
+        "tech": 40,
         "fund": 58,
-        "composite": 59
+        "composite": 51
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -7853,7 +7799,7 @@
       "module": "trading",
       "asset": "Amazon",
       "ticker": "AMZN",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -7895,11 +7841,11 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 62,
+        "tech": 65,
         "fund": 58,
-        "composite": 60
+        "composite": 61
       },
-      "signal": "COMPRAR",
+      "signal": "ESPERAR",
       "audit_passed": true,
       "autodidacta": {
         "wr": null,
@@ -7913,7 +7859,7 @@
       "module": "trading",
       "asset": "Tesla",
       "ticker": "TSLA",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -7955,9 +7901,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 75,
+        "tech": 49,
         "fund": 58,
-        "composite": 65
+        "composite": 54
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -7973,7 +7919,7 @@
       "module": "trading",
       "asset": "Netflix",
       "ticker": "NFLX",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8033,7 +7979,7 @@
       "module": "trading",
       "asset": "Disney",
       "ticker": "DIS",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8075,9 +8021,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 57,
+        "tech": 67,
         "fund": 58,
-        "composite": 58
+        "composite": 62
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -8093,7 +8039,7 @@
       "module": "trading",
       "asset": "Nike",
       "ticker": "NKE",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8135,9 +8081,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 48,
+        "tech": 43,
         "fund": 58,
-        "composite": 54
+        "composite": 52
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -8153,7 +8099,7 @@
       "module": "trading",
       "asset": "Starbucks",
       "ticker": "SBUX",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8195,9 +8141,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 52,
+        "tech": 70,
         "fund": 58,
-        "composite": 56
+        "composite": 63
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -8213,7 +8159,7 @@
       "module": "trading",
       "asset": "McDonalds",
       "ticker": "MCD",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8273,7 +8219,7 @@
       "module": "trading",
       "asset": "CocaCola",
       "ticker": "KO",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8333,7 +8279,7 @@
       "module": "trading",
       "asset": "PepsiCo",
       "ticker": "PEP",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8375,9 +8321,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 38,
+        "tech": 48,
         "fund": 58,
-        "composite": 50
+        "composite": 54
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -8393,7 +8339,7 @@
       "module": "trading",
       "asset": "Walmart",
       "ticker": "WMT",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8435,11 +8381,11 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 57,
+        "tech": 67,
         "fund": 58,
-        "composite": 58
+        "composite": 62
       },
-      "signal": "COMPRAR",
+      "signal": "ESPERAR",
       "audit_passed": true,
       "autodidacta": {
         "wr": null,
@@ -8453,7 +8399,7 @@
       "module": "trading",
       "asset": "JPMorgan",
       "ticker": "JPM",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8495,9 +8441,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 46,
+        "tech": 54,
         "fund": 58,
-        "composite": 53
+        "composite": 56
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -8513,7 +8459,7 @@
       "module": "trading",
       "asset": "BofA",
       "ticker": "BAC",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8555,9 +8501,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 40,
+        "tech": 48,
         "fund": 58,
-        "composite": 51
+        "composite": 54
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -8573,7 +8519,7 @@
       "module": "trading",
       "asset": "Goldman",
       "ticker": "GS",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8599,7 +8545,7 @@
           },
           {
             "check": "scores_consistentes",
-            "ok": false
+            "ok": true
           },
           {
             "check": "precio_valido",
@@ -8610,16 +8556,14 @@
             "ok": true
           }
         ],
-        "warnings": [
-          "Goldman: divergencia tech/fund (27 vs 58)"
-        ],
-        "score": 88
+        "warnings": [],
+        "score": 100
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 27,
+        "tech": 48,
         "fund": 58,
-        "composite": 46
+        "composite": 54
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -8635,7 +8579,7 @@
       "module": "trading",
       "asset": "Visa",
       "ticker": "V",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8677,9 +8621,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 57,
+        "tech": 67,
         "fund": 58,
-        "composite": 58
+        "composite": 62
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -8695,7 +8639,7 @@
       "module": "trading",
       "asset": "Mastercard",
       "ticker": "MA",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8737,9 +8681,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 57,
+        "tech": 67,
         "fund": 58,
-        "composite": 58
+        "composite": 62
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -8755,7 +8699,7 @@
       "module": "trading",
       "asset": "Boeing",
       "ticker": "BA",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8817,7 +8761,7 @@
       "module": "trading",
       "asset": "Caterpillar",
       "ticker": "CAT",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8877,7 +8821,7 @@
       "module": "trading",
       "asset": "GE",
       "ticker": "GE",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8919,7 +8863,7 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 41,
+        "tech": 40,
         "fund": 58,
         "composite": 51
       },
@@ -8937,7 +8881,67 @@
       "module": "trading",
       "asset": "Exxon",
       "ticker": "XOM",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
+      "audit": {
+        "passed": true,
+        "checks": [
+          {
+            "check": "datos_frescos",
+            "ok": true
+          },
+          {
+            "check": "historial_200d",
+            "ok": true
+          },
+          {
+            "check": "rsi_calculado",
+            "ok": true
+          },
+          {
+            "check": "atr_calculado",
+            "ok": true
+          },
+          {
+            "check": "volatilidad_operable",
+            "ok": true
+          },
+          {
+            "check": "scores_consistentes",
+            "ok": true
+          },
+          {
+            "check": "precio_valido",
+            "ok": true
+          },
+          {
+            "check": "niveles_calculados",
+            "ok": true
+          }
+        ],
+        "warnings": [],
+        "score": 100
+      },
+      "claude_calls": 0,
+      "scores": {
+        "tech": 71,
+        "fund": 58,
+        "composite": 63
+      },
+      "signal": "ESPERAR",
+      "audit_passed": true,
+      "autodidacta": {
+        "wr": null,
+        "consecutive_losses": 0,
+        "effective_threshold": 65,
+        "silenced": false
+      },
+      "status": "complete"
+    },
+    {
+      "module": "trading",
+      "asset": "Chevron",
+      "ticker": "CVX",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -8995,9 +8999,69 @@
     },
     {
       "module": "trading",
-      "asset": "Chevron",
-      "ticker": "CVX",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "asset": "J&J",
+      "ticker": "JNJ",
+      "timestamp": "05/11/2026 23:07 UTC",
+      "audit": {
+        "passed": true,
+        "checks": [
+          {
+            "check": "datos_frescos",
+            "ok": true
+          },
+          {
+            "check": "historial_200d",
+            "ok": true
+          },
+          {
+            "check": "rsi_calculado",
+            "ok": true
+          },
+          {
+            "check": "atr_calculado",
+            "ok": true
+          },
+          {
+            "check": "volatilidad_operable",
+            "ok": true
+          },
+          {
+            "check": "scores_consistentes",
+            "ok": true
+          },
+          {
+            "check": "precio_valido",
+            "ok": true
+          },
+          {
+            "check": "niveles_calculados",
+            "ok": true
+          }
+        ],
+        "warnings": [],
+        "score": 100
+      },
+      "claude_calls": 0,
+      "scores": {
+        "tech": 54,
+        "fund": 58,
+        "composite": 56
+      },
+      "signal": "ESPERAR",
+      "audit_passed": true,
+      "autodidacta": {
+        "wr": null,
+        "consecutive_losses": 0,
+        "effective_threshold": 65,
+        "silenced": false
+      },
+      "status": "complete"
+    },
+    {
+      "module": "trading",
+      "asset": "Pfizer",
+      "ticker": "PFE",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -9055,129 +9119,9 @@
     },
     {
       "module": "trading",
-      "asset": "J&J",
-      "ticker": "JNJ",
-      "timestamp": "05/11/2026 13:49 UTC",
-      "audit": {
-        "passed": true,
-        "checks": [
-          {
-            "check": "datos_frescos",
-            "ok": true
-          },
-          {
-            "check": "historial_200d",
-            "ok": true
-          },
-          {
-            "check": "rsi_calculado",
-            "ok": true
-          },
-          {
-            "check": "atr_calculado",
-            "ok": true
-          },
-          {
-            "check": "volatilidad_operable",
-            "ok": true
-          },
-          {
-            "check": "scores_consistentes",
-            "ok": true
-          },
-          {
-            "check": "precio_valido",
-            "ok": true
-          },
-          {
-            "check": "niveles_calculados",
-            "ok": true
-          }
-        ],
-        "warnings": [],
-        "score": 100
-      },
-      "claude_calls": 0,
-      "scores": {
-        "tech": 41,
-        "fund": 58,
-        "composite": 51
-      },
-      "signal": "ESPERAR",
-      "audit_passed": true,
-      "autodidacta": {
-        "wr": null,
-        "consecutive_losses": 0,
-        "effective_threshold": 65,
-        "silenced": false
-      },
-      "status": "complete"
-    },
-    {
-      "module": "trading",
-      "asset": "Pfizer",
-      "ticker": "PFE",
-      "timestamp": "05/11/2026 13:49 UTC",
-      "audit": {
-        "passed": true,
-        "checks": [
-          {
-            "check": "datos_frescos",
-            "ok": true
-          },
-          {
-            "check": "historial_200d",
-            "ok": true
-          },
-          {
-            "check": "rsi_calculado",
-            "ok": true
-          },
-          {
-            "check": "atr_calculado",
-            "ok": true
-          },
-          {
-            "check": "volatilidad_operable",
-            "ok": true
-          },
-          {
-            "check": "scores_consistentes",
-            "ok": true
-          },
-          {
-            "check": "precio_valido",
-            "ok": true
-          },
-          {
-            "check": "niveles_calculados",
-            "ok": true
-          }
-        ],
-        "warnings": [],
-        "score": 100
-      },
-      "claude_calls": 0,
-      "scores": {
-        "tech": 67,
-        "fund": 58,
-        "composite": 62
-      },
-      "signal": "ESPERAR",
-      "audit_passed": true,
-      "autodidacta": {
-        "wr": null,
-        "consecutive_losses": 0,
-        "effective_threshold": 65,
-        "silenced": false
-      },
-      "status": "complete"
-    },
-    {
-      "module": "trading",
       "asset": "EliLilly",
       "ticker": "LLY",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -9219,9 +9163,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 57,
+        "tech": 75,
         "fund": 58,
-        "composite": 58
+        "composite": 65
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -9237,7 +9181,7 @@
       "module": "trading",
       "asset": "UnitedHealth",
       "ticker": "UNH",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -9297,7 +9241,7 @@
       "module": "trading",
       "asset": "Moderna",
       "ticker": "MRNA",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -9339,11 +9283,11 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 67,
+        "tech": 75,
         "fund": 58,
-        "composite": 62
+        "composite": 65
       },
-      "signal": "COMPRAR",
+      "signal": "ESPERAR",
       "audit_passed": true,
       "autodidacta": {
         "wr": null,
@@ -9357,7 +9301,7 @@
       "module": "trading",
       "asset": "PayPal",
       "ticker": "PYPL",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -9417,7 +9361,7 @@
       "module": "trading",
       "asset": "Salesforce",
       "ticker": "CRM",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -9459,9 +9403,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 52,
+        "tech": 60,
         "fund": 58,
-        "composite": 56
+        "composite": 59
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -9477,7 +9421,7 @@
       "module": "trading",
       "asset": "Oracle",
       "ticker": "ORCL",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -9503,7 +9447,7 @@
           },
           {
             "check": "scores_consistentes",
-            "ok": false
+            "ok": true
           },
           {
             "check": "precio_valido",
@@ -9514,16 +9458,14 @@
             "ok": true
           }
         ],
-        "warnings": [
-          "Oracle: divergencia tech/fund (28 vs 58)"
-        ],
-        "score": 88
+        "warnings": [],
+        "score": 100
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 28,
+        "tech": 36,
         "fund": 58,
-        "composite": 46
+        "composite": 49
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -9539,7 +9481,7 @@
       "module": "trading",
       "asset": "Uber",
       "ticker": "UBER",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -9581,9 +9523,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 40,
+        "tech": 48,
         "fund": 58,
-        "composite": 51
+        "composite": 54
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -9599,7 +9541,7 @@
       "module": "trading",
       "asset": "Airbnb",
       "ticker": "ABNB",
-      "timestamp": "05/11/2026 13:49 UTC",
+      "timestamp": "05/11/2026 23:07 UTC",
       "audit": {
         "passed": true,
         "checks": [
@@ -9641,9 +9583,9 @@
       },
       "claude_calls": 0,
       "scores": {
-        "tech": 67,
+        "tech": 70,
         "fund": 58,
-        "composite": 62
+        "composite": 63
       },
       "signal": "ESPERAR",
       "audit_passed": true,
@@ -9665,7 +9607,7 @@
   },
   "fred_health": {
     "status": "OK",
-    "last_attempt": "05/11/2026 13:49 UTC",
+    "last_attempt": "05/11/2026 23:07 UTC",
     "missing_series": [],
     "note": ""
   },
@@ -9677,7 +9619,7 @@
   "shadow_health": {
     "status": "OK",
     "error": null,
-    "last_attempt": "05/11/2026 13:49 UTC"
+    "last_attempt": "05/11/2026 23:07 UTC"
   },
   "paper_trading": {
     "trades": [
@@ -11335,7 +11277,7 @@
       "avg_loss_pct": -3.48,
       "expectancy_pct": -0.94,
       "new_this_run": 0,
-      "last_updated": "05/11/2026 13:49 UTC",
+      "last_updated": "05/11/2026 23:07 UTC",
       "strategy_breakdown": {
         "trend_joined_long_v2": 18,
         "legacy_momentum_pullback": 37,
@@ -11520,11 +11462,11 @@
             "closed": "04/11/2026"
           }
         ],
-        "equity": 102599.62,
+        "equity": 101631.51,
         "rules": "long si close>SMA200 y ret126d>0; peso 1/vol20; coste 0.20% rt",
         "capital": 100000.0,
         "cash": 25650.818654949202,
-        "return_pct": 2.6,
+        "return_pct": 1.63,
         "n_open": 4,
         "n_closed": 8
       },
@@ -11532,14 +11474,14 @@
         "spy": {
           "start_price": 745.219970703125,
           "start_date": "20/07/2026",
-          "last_price": 766.8099975585938,
-          "return_pct": 2.9
+          "last_price": 733.0,
+          "return_pct": -1.64
         },
         "iwda": {
           "start_price": 125.26000213623047,
           "start_date": "20/07/2026",
-          "last_price": 130.83999633789062,
-          "return_pct": 4.45
+          "last_price": 130.52999877929688,
+          "return_pct": 4.21
         }
       },
       "vol_managed_tjl": {
@@ -11655,8 +11597,8 @@
           }
         ],
         "cum_pnl_pct": -49.3,
-        "current_factor": 1.2,
-        "current_spy_vol": 12.5
+        "current_factor": 0.77,
+        "current_spy_vol": 19.6
       }
     }
   },
