@@ -1654,7 +1654,7 @@
     "avg_loss_pct": -3.48,
     "expectancy_pct": -0.94,
     "new_this_run": 0,
-    "last_updated": "10/11/2026 01:03 UTC",
+    "last_updated": "10/11/2026 14:05 UTC",
     "strategy_breakdown": {
       "trend_joined_long_v2": 18,
       "legacy_momentum_pullback": 37,
@@ -1688,9 +1688,11 @@
     "protocol_hash": "de855be08c78",
     "rules_hash": "33542b259852",
     "last_blocked_signal_alert": {
-      "date": "09/11/2026",
+      "date": "10/11/2026",
       "assets": [
-        "Airbnb"
+        "GE",
+        "J&J",
+        "Moderna"
       ]
     },
     "rounds": {
@@ -1737,12 +1739,6 @@
   "shadow": {
     "multi_asset_trend": {
       "positions": {
-        "DBC": {
-          "entry": 29.114999771118164,
-          "units": 286.8171,
-          "weight_at_entry": 0.085,
-          "date": "20/07/2026"
-        },
         "UUP": {
           "entry": 28.399999618530273,
           "units": 1397.9915,
@@ -1754,6 +1750,12 @@
           "units": 184.4979,
           "weight_at_entry": 1.0,
           "date": "30/09/2026"
+        },
+        "SPY": {
+          "entry": 752.6900024414062,
+          "units": 63.7271,
+          "weight_at_entry": 1.0,
+          "date": "10/11/2026"
         }
       },
       "closed": [
@@ -1846,28 +1848,37 @@
           "pnl_pct": -1.86,
           "opened": "09/11/2026",
           "closed": "10/11/2026"
+        },
+        {
+          "etf": "DBC",
+          "entry": 29.114999771118164,
+          "exit": 30.979999542236328,
+          "units": 286.8171,
+          "pnl_pct": 6.21,
+          "opened": "20/07/2026",
+          "closed": "10/11/2026"
         }
       ],
-      "equity": 101216.29,
+      "equity": 100873.28,
       "rules": "long si close>SMA200 y ret126d>0; peso 1/vol20; coste 0.20% rt",
       "capital": 100000.0,
-      "cash": 40077.82850894207,
-      "return_pct": 1.22,
+      "cash": 978.9130189678835,
+      "return_pct": 0.87,
       "n_open": 3,
-      "n_closed": 10
+      "n_closed": 11
     },
     "benchmarks": {
       "spy": {
         "start_price": 745.219970703125,
         "start_date": "20/07/2026",
-        "last_price": 735.2899780273438,
-        "return_pct": -1.33
+        "last_price": 752.6900024414062,
+        "return_pct": 1.0
       },
       "iwda": {
         "start_price": 125.26000213623047,
         "start_date": "20/07/2026",
-        "last_price": 127.33000183105469,
-        "return_pct": 1.65
+        "last_price": 128.47000122070312,
+        "return_pct": 2.56
       }
     },
     "vol_managed_tjl": {
@@ -1983,8 +1994,8 @@
         }
       ],
       "cum_pnl_pct": -49.3,
-      "current_factor": 0.77,
-      "current_spy_vol": 19.4
+      "current_factor": 0.7,
+      "current_spy_vol": 21.5
     }
   }
 }
