@@ -1654,7 +1654,7 @@
     "avg_loss_pct": -3.48,
     "expectancy_pct": -0.94,
     "new_this_run": 0,
-    "last_updated": "17/11/2026 15:20 UTC",
+    "last_updated": "18/11/2026 00:20 UTC",
     "strategy_breakdown": {
       "trend_joined_long_v2": 18,
       "legacy_momentum_pullback": 37,
@@ -1748,12 +1748,6 @@
           "units": 184.4979,
           "weight_at_entry": 1.0,
           "date": "30/09/2026"
-        },
-        "SPY": {
-          "entry": 752.6900024414062,
-          "units": 63.7271,
-          "weight_at_entry": 1.0,
-          "date": "10/11/2026"
         }
       },
       "closed": [
@@ -1855,28 +1849,37 @@
           "pnl_pct": 6.21,
           "opened": "20/07/2026",
           "closed": "10/11/2026"
+        },
+        {
+          "etf": "SPY",
+          "entry": 752.6900024414062,
+          "exit": 732.4400024414062,
+          "units": 63.7271,
+          "pnl_pct": -2.89,
+          "opened": "10/11/2026",
+          "closed": "18/11/2026"
         }
       ],
-      "equity": 101075.72,
+      "equity": 100548.29,
       "rules": "long si close>SMA200 y ret126d>0; peso 1/vol20; coste 0.20% rt",
       "capital": 100000.0,
-      "cash": 978.9130189678835,
-      "return_pct": 1.08,
-      "n_open": 3,
-      "n_closed": 11
+      "cash": 47561.83774399245,
+      "return_pct": 0.55,
+      "n_open": 2,
+      "n_closed": 12
     },
     "benchmarks": {
       "spy": {
         "start_price": 745.219970703125,
         "start_date": "20/07/2026",
-        "last_price": 736.530029296875,
-        "return_pct": -1.17
+        "last_price": 732.4400024414062,
+        "return_pct": -1.71
       },
       "iwda": {
         "start_price": 125.26000213623047,
         "start_date": "20/07/2026",
-        "last_price": 128.47000122070312,
-        "return_pct": 2.56
+        "last_price": 129.99000549316406,
+        "return_pct": 3.78
       }
     },
     "vol_managed_tjl": {
@@ -1993,7 +1996,7 @@
       ],
       "cum_pnl_pct": -49.3,
       "current_factor": 0.67,
-      "current_spy_vol": 22.3
+      "current_spy_vol": 22.5
     }
   }
 }
